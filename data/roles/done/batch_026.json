@@ -1,0 +1,47 @@
+{
+"Q3749130": {"status": "not_theory", "roles": {}},
+"Q16840138": {"status": "not_theory", "roles": {}},
+"Q800361": {"status": "debunked", "roles": {
+  "Q800530": "sub", "Q181574": "sub",
+  "Q94150": "loc", "Q94015": "loc"}},
+"Q119882378": {"status": "debunked", "roles": {
+  "Q1661219": "pro", "Q41595": "pro", "Q6019415": "pro",
+  "Q34": "loc"}},
+"Q6504639": {"status": "not_theory", "roles": {}},
+"Q8053631": {"status": "not_theory", "roles": {}},
+"Q106153955": {"status": "debunked", "roles": {
+  "Q30449": "sub", "Q213039": "sub", "Q204617": "sub", "Q310661": "sub", "Q704948": "sub"}},
+"Q129827": {"status": "debunked", "roles": {
+  "Q1373153": "pro", "Q380929": "pro",
+  "Q9036": "sub", "Q2164598": "sub", "Q180381": "sub", "Q575625": "sub", "Q165435": "sub",
+  "Q118903059": "rel"}},
+"Q48815874": {"status": "debunked", "roles": {
+  "Q970272": "pro", "Q557730": "pro",
+  "Q8333": "acc", "Q45410115": "acc",
+  "Q1822266": "deb", "Q28222898": "deb",
+  "Q30682397": "evt"}},
+"Q16147186": {"status": "not_theory", "roles": {}},
+"Q114658515": {"status": "not_theory", "roles": {"Q10230": "pro", "Q106390748": "pro"}},
+"Q91503571": {"status": "debunked", "roles": {
+  "Q57363": "pro",
+  "Q7817": "deb", "Q16196017": "deb",
+  "Q156421": "sub", "Q426921": "sub",
+  "Q1019": "loc"}},
+"Q96375805": {"status": "not_theory", "roles": {}},
+"Q16996855": {"status": "not_theory", "roles": {}},
+"Q1347437": {"status": "not_theory", "roles": {"Q189144": "sub", "Q28975": "sub", "Q342720": "sub"}},
+"Q403356": {"status": "not_theory", "roles": {}},
+"Q4356401": {"status": "debunked", "roles": {
+  "Q1445570": "pro", "Q10386150": "sub",
+  "Q696134": "sub", "Q628261": "sub",
+  "Q648015": "deb", "Q7534655": "deb",
+  "Q962499": "loc"}},
+"Q763842": {"status": "not_theory", "roles": {}},
+"Q65091035": {"status": "not_theory", "roles": {}},
+"Q42294245": {"status": "debunked", "roles": {
+  "Q78525": "acc", "Q603388": "acc", "Q7325": "acc", "Q458": "acc",
+  "Q85073": "pro", "Q27941549": "pro",
+  "Q16844688": "deb", "Q2061914": "deb",
+  "Q22909760": "rel",
+  "Q3394662": "sub"}}
+}

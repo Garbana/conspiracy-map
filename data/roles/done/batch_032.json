@@ -1,0 +1,46 @@
+{
+"Q1397505": {"status": "debunked", "roles": {
+  "Q262626": "pro", "Q485665": "pro",
+  "Q47740": "acc",
+  "Q7061371": "evt"}},
+"Q7095039": {"status": "not_theory", "roles": {
+  "Q7152695": "pro", "Q197662": "pro", "Q172618": "rel", "Q251348": "rel", "Q241802": "deb"}},
+"Q3655145": {"status": "not_theory", "roles": {}},
+"Q65118777": {"status": "debunked", "roles": {
+  "Q161801": "sub", "Q908600": "sub", "Q7907951": "sub",
+  "Q7817": "deb"}},
+"Q112860877": {"status": "debunked", "roles": {
+  "Q6550788": "pro", "Q484325": "loc", "Q421": "rel"}},
+"Q297078": {"status": "not_theory", "roles": {}},
+"Q120504936": {"status": "debunked", "roles": {
+  "Q1331110": "deb", "Q6063347": "deb", "Q1780398": "deb",
+  "Q1430789": "sub",
+  "Q123083957": "evt",
+  "Q34": "loc"}},
+"Q7804964": {"status": "not_theory", "roles": {}},
+"Q56275174": {"status": "debunked", "roles": {
+  "Q42944": "acc", "Q11378": "sub", "Q174546": "sub",
+  "Q40605": "loc"}},
+"Q8146024": {"status": "not_theory", "roles": {}},
+"Q3984165": {"status": "debunked", "roles": {
+  "Q103177": "sub", "Q278567": "sub",
+  "Q16572": "loc"}},
+"Q16148415": {"status": "not_theory", "roles": {}},
+"Q15715260": {"status": "not_theory", "roles": {}},
+"Q96377650": {"status": "debunked", "roles": {
+  "Q4936751": "pro",
+  "Q63245644": "evt",
+  "Q854": "loc"}},
+"Q5509781": {"status": "not_theory", "roles": {}},
+"Q6305196": {"status": "disputed", "roles": {"Q1163715": "acc"}},
+"Q131824256": {"status": "not_theory", "roles": {}},
+"Q7073593": {"status": "debunked", "roles": {
+  "Q1268748": "rel", "Q2529568": "rel",
+  "Q7302973": "sub", "Q18657": "sub",
+  "Q110426": "loc"}},
+"Q131437832": {"status": "debunked", "roles": {
+  "Q83687": "acc", "Q3171471": "acc", "Q1093381": "acc", "Q806936": "acc", "Q156916": "acc",
+  "Q69808": "loc"}},
+"Philip Schneider (conspiracy theorist)": {"status": "not_theory", "roles": {
+  "Q3447736": "rel", "Greada Treaty": "rel", "Q19664566": "sub", "Q720671": "sub"}}
+}

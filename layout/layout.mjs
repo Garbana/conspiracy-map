@@ -18,6 +18,8 @@ import { random } from "graphology-layout";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const src = JSON.parse(fs.readFileSync(path.join(ROOT, "data/export/graph.json"), "utf8"));
+// Išdėstymui naudojami tik branduolio kraštai (5-as elementas = 1); seni duomenys be jo – visi
+const layoutEdges = src.edges.filter((e) => e.length < 5 || e[4] === 1);
 const items = JSON.parse(fs.readFileSync(path.join(ROOT, "data/export/items.json"), "utf8"));
 const ITER = +(process.env.ITER || 2000);
 const TOP_K = +(process.env.TOP_K || 8);         // kiek stipriausių kaimynų pasilieka kiekvienas karkaso mazgas
@@ -34,7 +36,7 @@ const addPair = (a, b, w) => {
   const k = a < b ? a + "|" + b : b + "|" + a;
   pair.set(k, (pair.get(k) || 0) + w);
 };
-for (const [s, t, w] of src.edges) {
+for (const [s, t, w] of layoutEdges) {
   if (!isHub(s)) continue;
   if (isHub(t)) { addPair(s, t, 3 * w); continue; }          // tiesioginė nuoroda
   const e = byId.get(t);
@@ -117,16 +119,12 @@ P.forEach((p) => {                      // skalė -> ~1000; išsišokėlius prit
   p[0] *= f; p[1] *= f;
 });
 
-// Straipsniai be karkaso ryšių – ratu pakraštyje
+// Straipsniai be karkaso ryšių padedami kaip subjektai – šalia teorijų, su kuriomis susiję (žr. žemiau)
 let k = 0;
-for (const n of lonely) {
-  const a = k++ * 2.399963;
-  pos[n] = [Math.cos(a) * 1150, Math.sin(a) * 1150];
-}
 
 // ---------- 2) subjektai – į minančių straipsnių centrą ----------
 const adj = new Map();
-for (const [s, t, w] of src.edges) {
+for (const [s, t, w] of layoutEdges) {
   (adj.get(s) || adj.set(s, []).get(s)).push([t, w]);
   (adj.get(t) || adj.set(t, []).get(t)).push([s, w]);
 }

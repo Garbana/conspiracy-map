@@ -165,11 +165,20 @@ def main():
     for t in listed:
         c = cand.setdefault(t, {"title": t, "sources": [], "categories": []})
         c["sources"].append("list_page")
+    ov_path = os.path.join(ROOT, "data", "overrides.json")
+    if os.path.exists(ov_path):
+        with open(ov_path, encoding="utf-8") as f:
+            added = [t for t in json.load(f).get("add", {}) if not t.startswith("_")]
+        for t in added:
+            c = cand.setdefault(t, {"title": t, "sources": [], "categories": []})
+            c["sources"].append("manual")
+        print(f"[D] Rankiniai papildymai: {len(added)}")
 
     # Patikimumo balas: kiek šaltinių patvirtina
     for c in cand.values():
         s = set(c["sources"])
-        c["confidence"] = (("category" in s) * 2 + ("wikidata" in s) * 2 + ("list_page" in s))
+        c["confidence"] = (("category" in s) * 2 + ("wikidata" in s) * 2 + ("list_page" in s)
+                           + ("manual" in s) * 5)
 
     cats_out = {k: {**v} for k, v in cats.items()}
     with open(os.path.join(OUT, "categories.json"), "w", encoding="utf-8") as f:

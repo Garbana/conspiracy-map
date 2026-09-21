@@ -1,0 +1,57 @@
+{
+"Q110876095": {"status": "debunked", "roles": {
+  "Q56727008": "pro", "Q109941689": "pro", "Q983324": "pro",
+  "Q1463": "sub", "Q104849233": "sub", "Q29096887": "sub",
+  "Q1853468": "deb",
+  "Q55629870": "evt"}},
+"Q97358655": {"status": "not_theory", "roles": {}},
+"Q65064813": {"status": "not_theory", "roles": {}},
+"Q4606455": {"status": "debunked", "roles": {
+  "Q1812075": "pro",
+  "Q1397504": "deb",
+  "Q378605": "acc",
+  "Q794": "loc"}},
+"Q4774279": {"status": "not_theory", "roles": {}},
+"Q130357355": {"status": "not_theory", "roles": {}},
+"Q60740085": {"status": "not_theory", "roles": {}},
+"Q5376967": {"status": "not_theory", "roles": {}},
+"Q111016330": {"status": "debunked", "roles": {
+  "Q3069485": "vic", "Q657089": "vic",
+  "Q28220142": "evt",
+  "Q1049511": "sub",
+  "Q1435379": "deb"}},
+"Q1445137": {"status": "debunked", "roles": {
+  "Q37230": "acc",
+  "Q120682624": "sub", "Q1029421": "sub",
+  "Q5595259": "deb",
+  "Q43199": "loc"}},
+"Q116798950": {"status": "not_theory", "roles": {"Q285488": "loc"}},
+"Q85790054": {"status": "not_theory", "roles": {}},
+"Q96398270": {"status": "not_theory", "roles": {}},
+"Q121811478": {"status": "not_theory", "roles": {}},
+"Q65054561": {"status": "debunked", "roles": {
+  "Q282728": "rel", "Q26193": "rel", "Q14914942": "rel",
+  "Q133957": "acc", "Q41726": "acc", "Q41300": "acc",
+  "Q721700": "pro",
+  "Q6534": "evt"}},
+"Q1747568": {"status": "debunked", "roles": {
+  "Q34211": "pro", "Q26683": "pro",
+  "Q244411": "deb",
+  "Q395390": "sub", "Q44526": "sub", "Q359687": "sub"}},
+"Q969554": {"status": "debunked", "roles": {
+  "Q1364798": "acc", "Q45214": "acc",
+  "Q645986": "pro",
+  "Q1507": "loc", "Q414": "loc", "Q298": "loc"}},
+"Q114924465": {"status": "debunked", "roles": {
+  "Q926348": "rel",
+  "Q8064876": "sub", "Q4764961": "sub", "Q1147995": "sub",
+  "Q15989108": "evt", "Q55887234": "evt",
+  "Q6541130": "pro",
+  "Q204711": "deb"}},
+"Q113318766": {"status": "debunked", "roles": {
+  "Q98380406": "pro",
+  "Q29552": "acc",
+  "Q2184645": "sub", "Q1824206": "sub",
+  "Q136556880": "evt", "Q81068910": "evt"}},
+"Q97585876": {"status": "not_theory", "roles": {}}
+}

@@ -1,5 +1,30 @@
 [
  {
+  "id": "Q482402",
+  "title": "Gulf of Tonkin incident",
+  "url": "https://en.wikipedia.org/wiki/Gulf_of_Tonkin_incident",
+  "type": "event",
+  "instance_of": [
+   "naval battle"
+  ],
+  "shortdesc": "1964 naval confrontation between North Vietnam and the United States",
+  "summary": "The Gulf of Tonkin incident (Vietnamese: Sự kiện Vịnh Bắc Bộ)  refers to a naval confrontation in the Gulf of Tonkin off the coast of North Vietnam, which led to the United States engaging more directly in the Vietnam War. On 2 August 1964 there was a clash between a destroyer of the United States Navy that was collecting signals intelligence close to North Vietnamese waters, and three North Vietnamese naval vessels. On the night of 4 August, two US destroyers reported they were attacked by North Vietnamese vessels and that they were returning fire. Later investigation revealed that the 4 August attack did not happen; no North Vietnamese vessels had been present. Shortly after the events, the National Security Agency, an agency of the US Defense Department, deliberately skewed intelligence to create the impression that an attack had been carried out.\nOn the night of 30 July, South Vietnamese commandos raided a North Vietnamese radar station on the island of Hòn Mê in the Gulf of Tonkin. The next day the destroyer USS Maddox commanded by Commander Herbert L. Ogier began patrolling near the North Vietnamese coast. On 2 August, the Maddox, while performing a signals intelligence patrol as part of DESOTO operations, near one of the islands that had been shelled two nights before, was approached by three North Vietnamese Navy torpedo boats of the 135th Torpedo Squadron. Maddox fired warning shots and the North Vietnamese boats attacked with torpedoes and machine gun fire. In the ensuing engagement, one US aircraft (which had been launched from the aircraft carrier USS Ticonderoga) was damaged, three North Vietnamese torpedo boats were damaged, and four North Vietnamese sailors were killed, with six more wounded. There were no US casualties. Maddox was \"unscathed except for a single bullet hole from a [North] Vietnamese machine gun round\".\nOn 3 August, destroyer USS Turner Joy joined Maddox and the two destroyers continued the DESOTO mission. On the evening of 4 August, the ships opened fire on radar returns that had been preceded by communications intercepts, which US forces said meant an attack was imminent. The commodore of the Maddox task force, Captain John Herrick, reported that the ships were being attacked by North Vietnamese boats when, in fact, there were no North Vietnamese boats in the area. While Herrick soon reported doubts regarding the task force's initial perceptions of the attack, the Johnson administration relied on the wrongly interpreted National Security Agency communications intercepts to conclude that the attack was real.\nWhile doubts regarding the perceived second attack have been expressed since 1964, it was not until years later that it was shown conclusively never to have happened. In the 2003 documentary The Fog of War, the former United States secretary of defense, Robert S. McNamara, admitted that there was no attack on 4 August. In 1995, McNamara met with former North Vietnamese Army General Võ Nguyên Giáp to ask what happened on 4 August 1964. \"Absolutely nothing\", Giáp replied. Giáp confirmed that the attack had been imaginary. In 2005, an internal National Security Agency historical study was declassified; it concluded that Maddox had engaged the North Vietnamese Navy on 2 August, but that the incident of 4 August was based on bad naval intelligence and misrepresentations of North Vietnamese communications. The official US government position is that it was based mostly on erroneously interpreted communications intercepts.\nThe outcome of the incident was the passage by US Congress of the Gulf of Tonkin Resolution, which granted US president Lyndon B. Johnson the authority to assist any Southeast Asian country whose government was considered to be jeopardized by communist aggression. The resolution served as Johnson's legal justification for deploying US conventional forces to South Vietnam and the commencement of open warfare against North Vietnam in early 1965.\n\n",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": [
+   19.783333333333335,
+   106.51833333333333
+  ],
+  "date": "1964-08-02",
+  "country": [],
+  "categories": [],
+  "sources": [
+   "list_page",
+   "manual"
+  ],
+  "confidence": 6
+ },
+ {
   "id": "Q1747568",
   "title": "10 agorot controversy",
   "url": "https://en.wikipedia.org/wiki/10_agorot_controversy",
@@ -393,6 +418,28 @@
   "confidence": 5
  },
  {
+  "id": "Q3621611",
+  "title": "Business Plot",
+  "url": "https://en.wikipedia.org/wiki/Business_Plot",
+  "type": "theory",
+  "instance_of": [
+   "conspiracy",
+   "hoax"
+  ],
+  "shortdesc": "1933 plan to overthrow the U.S. government",
+  "summary": "The Business Plot, also called the Wall Street Putsch, was a political conspiracy in 1933 in the United States to overthrow the government of President Franklin D. Roosevelt and install Smedley Butler as dictator. Butler, a retired Marine Corps major general, testified in 1934 before the House Special Committee on Un-American Activities that wealthy businessmen were plotting to create a fascist veterans' organization with him as its leader and use it in a coup d'état. Although no one was prosecuted, the congressional committee final report said that \"there is no question that these attempts were discussed, were planned, and might have been placed in execution when and if the financial backers deemed it expedient.\"\nMost major news media dismissed the plot, with a New York Times editorial characterizing it as a \"gigantic hoax\". When the committee's final report was released, the Times said the committee \"purported to report that a two-month investigation had convinced it that General Butler's story of a Fascist march on Washington was alarmingly true\" and \"alleged that definite proof had been found that the much publicized Fascist march on Washington, which was to have been led by Major Gen. Smedley D. Butler, retired, according to testimony at a hearing, was actually contemplated\". The individuals involved all denied the existence of a plot. While historians have questioned whether a coup was actually close to execution, most agree that some sort of subversive plan was contemplated and discussed.\n\n",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": null,
+  "country": [],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
   "id": "Q5011472",
   "title": "CIA Kennedy assassination conspiracy theory",
   "url": "https://en.wikipedia.org/wiki/CIA_Kennedy_assassination_conspiracy_theory",
@@ -414,6 +461,32 @@
    "category",
    "wikidata",
    "list_page"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q644439",
+  "title": "COINTELPRO",
+  "url": "https://en.wikipedia.org/wiki/COINTELPRO",
+  "type": "organization",
+  "instance_of": [
+   "government program"
+  ],
+  "shortdesc": "Series of covert and illegal projects by the FBI",
+  "summary": "COINTELPRO (a syllabic abbreviation derived from Counter Intelligence Program) was a series of covert projects conducted between 1956 and 1971 by the United States Federal Bureau of Investigation (FBI) aimed at surveilling, infiltrating, discrediting, and disrupting American political parties and organizations that the FBI perceived as subversive.\nGroups and individuals targeted by the FBI included feminist organizations, the Communist Party USA, anti-Vietnam War organizers, activists in the civil rights and Black power movements (e.g., Martin Luther King Jr., Malcolm X, and the Black Panther Party), student organizations such as Students for a Democratic Society (SDS) and Student Nonviolent Coordinating Committee (SNCC), the American Indian Movement (AIM), Chicano and Mexican-American groups like the Brown Berets and the United Farm Workers, and independence movements (including Puerto Rican independence groups, such as the Young Lords and the Puerto Rican Socialist Party). Although the program primarily focused on organizations that were part of the broader New Left, they also targeted white supremacist groups, such as the Ku Klux Klan and the National States' Rights Party.\nThe FBI engaged in covert operations targeting domestic political groups from its earliest years. Covert operations under the official COINTELPRO label took place between 1956 and 1971. However, the official chronology of the program is the subject of debate. According to a US Senate investigation, \"If COINTELPRO had been a short-lived aberration, the thorny problems of motivation, techniques, and control presented might be safely relegated to history. However, COINTELPRO existed for years on an ad hoc basis before the formal programs were instituted, and more significantly, COINTELPRO-type activities may continue today under the rubric of 'investigation'.\" Many of the tactics used in COINTELPRO are alleged to have seen continued use, including discrediting targets through psychological warfare; smearing individuals and groups using forged documents and by planting false reports in the media; harassment; wrongful imprisonment; illegal violence; and assassination. According to a Senate report, the FBI's motivation was \"protecting national security, preventing violence, and maintaining the existing social and political order\".\nBeginning in 1969, Black Panther party leaders were targeted by the COINTELPRO and \"neutralized\" through tactics including assassination, imprisonment, public humiliation, and false criminal charges. The Black Panthers targeted include Fred Hampton, Mark Clark, Assata Shakur, Geronimo Pratt, Mumia Abu-Jamal, and Marshall Conway. Common tactics used by COINTELPRO were perjury, witness harassment, witness intimidation, and withholding of exculpatory evidence.\nFBI director J. Edgar Hoover issued directives governing COINTELPRO, ordering FBI agents to \"expose, disrupt, misdirect, discredit, or otherwise neutralize\" the activities of these movements and especially their leaders. Under Hoover, the official in charge of COINTELPRO was assistant director William C. Sullivan. Attorney General Robert F. Kennedy personally authorized some of the programs, giving written approval for limited wiretapping of Martin Luther King's phones \"on a trial basis, for a month or so\". Hoover extended the clearance so his men were \"unshackled\" to look for evidence in any areas of King's life they deemed worthy.",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": [
+   38.89527777777778,
+   -77.025
+  ],
+  "date": "1956-08-01",
+  "country": [
+   "Q30"
+  ],
+  "categories": [],
+  "sources": [
+   "manual"
   ],
   "confidence": 5
  },
@@ -470,6 +543,30 @@
    "category",
    "wikidata",
    "list_page"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q1089721",
+  "title": "Church Committee",
+  "url": "https://en.wikipedia.org/wiki/Church_Committee",
+  "type": "organization",
+  "instance_of": [
+   "United States congressional select or special committee",
+   "report"
+  ],
+  "shortdesc": "Committee investigating governmental abuses in the US intelligence community",
+  "summary": "The Church Committee (formally the United States Senate Select Committee to Study Governmental Operations with Respect to Intelligence Activities) was a US Senate select committee in 1975 that  investigated abuses by the Central Intelligence Agency (CIA), National Security Agency (NSA), Federal Bureau of Investigation (FBI), and the Internal Revenue Service (IRS). Chaired by Idaho senator Frank Church (D-ID), the committee was part of a series of investigations into intelligence abuses in 1975, dubbed the \"Year of Intelligence\", including its House counterpart, the Pike Committee, and the presidential Rockefeller Commission. The committee's efforts led to the establishment of the permanent US Senate Select Committee on Intelligence.\nRevelations of the committee include Operation MKULTRA, which involved the drugging of US citizens as part of human experimentation on mind control; COINTELPRO, which involved the surveillance and infiltration of American political and civil-rights organizations; Family Jewels, a set of reports detailing potentially illegal, inappropriate and otherwise sensitive activities conducted by the CIA; and Operation Mockingbird, an alleged campaign during the early years of the Cold War designed to manipulate news media by recruiting journalists as assets in a propaganda campaign.\nIt also unearthed Project SHAMROCK, a program in which the major telecommunications companies shared their traffic with the NSA, and officially confirmed the existence of this signals intelligence agency to the public for the first time.\n\n",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": "1975-01-27",
+  "country": [
+   "Q30"
+  ],
+  "categories": [],
+  "sources": [
+   "manual"
   ],
   "confidence": 5
  },
@@ -1296,6 +1393,29 @@
   "confidence": 5
  },
  {
+  "id": "Q273659",
+  "title": "Iran–Contra affair",
+  "url": "https://en.wikipedia.org/wiki/Iran%E2%80%93Contra_affair",
+  "type": "event",
+  "instance_of": [
+   "political scandal"
+  ],
+  "shortdesc": "1985–1987 political scandal in the U.S.",
+  "summary": "The Iran–Contra affair or Iran–Contra scandal (Persian: ماجرای ایران-کنترا; Spanish: Caso Irán-Contra), also referred to as the Iran Initiative or Contragate, was a political scandal in the United States that centered on arms trafficking to Iran between 1981 and 1986, facilitated by senior officials of the Reagan administration. The administration hoped to use the proceeds of the arms sale to fund the Contras, an anti-Sandinista rebel group in Nicaragua. Under the Boland Amendments, a series of laws passed by Congress and signed by Ronald Reagan, further funding of the Contras by legislative appropriations was prohibited by Congress, but the Reagan administration continued funding them secretly using non-appropriated funds.\nThe administration's justification for the arms shipments was that they were part of an attempt to free seven U.S. hostages being held in Lebanon by Hezbollah, an Islamist paramilitary group connected to Iran's Islamic Revolutionary Guard Corps. The idea to exchange arms for hostages was proposed by Manucher Ghorbanifar, an expatriate Iranian arms dealer. Some within the Reagan administration hoped the sales would influence Iran to get Hezbollah to release the hostages.\nAfter the Lebanese Magazine Ash-Shiraa reported on the weapon dealings in November 1986, it broke international news, prompting Reagan to appear on national television. He claimed that while the weapons transfers had indeed occurred, the U.S. did not trade arms for hostages. The investigation was impeded when large volumes of documents relating to the affair were destroyed or withheld from investigators by Reagan administration officials. In March 1987, Reagan made a further nationally televised address, saying he was taking full responsibility for the affair and stating that \"what began as a strategic opening to Iran deteriorated, in its implementation, into trading arms for hostages.\"\nThe affair was investigated by Congress and by the three-person, Reagan-appointed Tower Commission. Neither investigation found evidence that President Reagan himself knew of the extent of the multiple programs. Additionally, U.S. deputy attorney general Lawrence Walsh was appointed independent counsel in December 1986 to investigate possible criminal actions by officials involved in the scheme. In the end, several dozen administration officials were indicted, including Secretary of Defense Caspar Weinberger and Lieutenant Colonel Oliver North. Eleven convictions resulted, some of which were vacated on appeal. The rest of those indicted or convicted were all pardoned in the final days of the presidency of George H. W. Bush, who had been vice president at the time of the affair. Only one Iran–Contra defendant served a prison sentence; others received probation or had trials pending and then received a pardon. Former Independent Counsel Walsh noted that, in issuing the pardons, Bush appeared to be preempting being implicated himself by evidence that came to light during the Weinberger trial, and that there was a pattern of \"deception and obstruction\" by Bush, Weinberger, and other senior Reagan administration officials. Walsh submitted his final report on 4 August 1993 and later wrote an account of his experiences as counsel, Firewall: The Iran-Contra Conspiracy and Cover-Up.",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": "1985-08-20",
+  "country": [
+   "Q30"
+  ],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
   "id": "Q141422907",
   "title": "Israelization of Albania",
   "url": "https://en.wikipedia.org/wiki/Israelization_of_Albania",
@@ -1871,6 +1991,27 @@
   "confidence": 5
  },
  {
+  "id": "Q994728",
+  "title": "Nayirah testimony",
+  "url": "https://en.wikipedia.org/wiki/Nayirah_testimony",
+  "type": "other",
+  "instance_of": [
+   "testimony"
+  ],
+  "shortdesc": "False testimony about Iraq's invasion of Kuwait",
+  "summary": "The Nayirah testimony was false testimony given before the United States Congressional Human Rights Caucus on October 10, 1990, by a 15-year-old Kuwaiti girl who was publicly identified only as Nayirah at the time, and presented herself as having been a volunteer nurse at a Kuwaiti hospital at the time of the Iraqi invasion of Kuwait. In her testimony, which took place two months after the invasion, she claimed to have witnessed Iraqi soldiers taking premature babies out of incubators in a maternity ward before looting the incubators and leaving the babies to die on the floor. Nayirah's statements were widely publicized and cited numerous times in the United States Senate and by American president George H. W. Bush to contribute to the rationale for pursuing military action against Iraq. Her portrayal of Iraqi war crimes was aimed at further increasing global support for Kuwait against the Iraqi occupation during the Gulf War, which resulted in the expulsion of Iraqi troops from Kuwait by a 42-country coalition led by the United States.\nIn January 1992, it was revealed that Nayirah had never been a nurse and that she was the daughter of Saud Nasser Al-Saud Al-Sabah, the Kuwaiti ambassador to the United States at the time the testimony was made. She and her father were members of the House of Sabah, the ruling family of Kuwait. Furthermore, it was revealed that her testimony was organized as part of a wider public relations campaign conducted by the Kuwaiti government-in-exile's Citizens for a Free Kuwait, which sought to encourage American military involvement against Iraq's occupation of Kuwait through coordination with the American public relations firm Hill & Knowlton. In the aftermath of the Gulf War, the Nayirah testimony came to be regarded as a classic example of modern atrocity propaganda.\nNayirah's story was initially corroborated by Amnesty International, which published a report about the supposed killings and testimony from Kuwaiti evacuees. Following the liberation of Kuwait, international media crews were given access to the country. A report by ABC News found that \"patients, including premature babies, did die, when many of Kuwait's nurses and doctors ... fled\" but Iraqi troops \"almost certainly had not stolen hospital incubators and left hundreds of Kuwaiti babies to die.\" Later, Amnesty International USA reacted by issuing a correction, with executive director John Healey subsequently accusing the George H. W. Bush administration of \"opportunistic manipulation of the international human rights movement.\"",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": null,
+  "country": [],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
   "id": "Q926348",
   "title": "New World Order conspiracy theory",
   "url": "https://en.wikipedia.org/wiki/New_World_Order_conspiracy_theory",
@@ -1949,6 +2090,123 @@
   "confidence": 5
  },
  {
+  "id": "Q157678",
+  "title": "Operation Gladio",
+  "url": "https://en.wikipedia.org/wiki/Operation_Gladio",
+  "type": "event",
+  "instance_of": [
+   "NATO operation",
+   "special forces",
+   "state terrorism",
+   "stay-behind"
+  ],
+  "shortdesc": "Clandestine Western military operations during the Cold War",
+  "summary": "Operation Gladio was the codename for clandestine \"stay-behind\" operations of armed resistance that were organized by the Western Union (WU; founded in 1948), and subsequently by NATO (formed in 1949), and by the CIA (established in 1947), in collaboration with several European intelligence agencies during the Cold War. Although Gladio specifically refers to the Italian branch of the NATO stay-behind organizations, Operation Gladio is used as an informal name for all of them. Stay-behind operations were prepared in many NATO member countries, and in some neutral countries.\nAccording to several Western European researchers, the operation involved the use of assassination, psychological warfare, and false flag operations to delegitimize left-wing parties in Western European countries and to support anti-communist militias and right-wing terrorism who tortured communists and assassinated them, such as Mozambican resistance leader Eduardo Mondlane in 1969. The United States Department of State rejected the view that they supported terrorists and maintains that the operation served only to resist a potential invasion of Western European countries by the Soviet Union.",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": "1956-11-26",
+  "country": [
+   "Q38"
+  ],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q2370273",
+  "title": "Operation Mockingbird",
+  "url": "https://en.wikipedia.org/wiki/Operation_Mockingbird",
+  "type": "theory",
+  "instance_of": [
+   "propaganda",
+   "conspiracy"
+  ],
+  "shortdesc": "Alleged program of the CIA",
+  "summary": "Operation Mockingbird is an alleged large-scale program of the United States Central Intelligence Agency (CIA) that began in the early years of the Cold War and attempted to manipulate domestic American news media organizations for propaganda purposes. According to author Deborah Davis, Operation Mockingbird recruited leading American journalists into a propaganda network and influenced the operations of front groups. CIA support of front groups was exposed when an April 1967 Ramparts article reported that the National Student Association (NSA) received funding from the CIA. In 1975, Church Committee Congressional investigations revealed Agency connections with journalists and civic groups.\nIn 1973, a document referred to as the \"Family Jewels\" was published by the CIA containing a reference to a different operation named \"Project Mockingbird\", which was the name of an operation in 1963 which wiretapped two syndicated columnists, Robert Allen and Paul Scott, \"from March 12 to June 15, 1963\". They had published articles based on classified material. The document does not contain references to \"Operation Mockingbird\".",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": [
+   38.951666666667,
+   -77.146666666667
+  ],
+  "date": "1948-01-01",
+  "country": [
+   "Q30"
+  ],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q898834",
+  "title": "Operation Northwoods",
+  "url": "https://en.wikipedia.org/wiki/Operation_Northwoods",
+  "type": "event",
+  "instance_of": [
+   "false flag",
+   "cancelled military operation"
+  ],
+  "shortdesc": "1962 proposed U.S. false flag operation against American citizens",
+  "summary": "Operation Northwoods was a proposed false flag operation which originated within the Department of Defense of the US government in 1962. The proposals called for Central Intelligence Agency (CIA) operatives to both stage and commit acts of terrorism against US military and civilian targets, blame them on the Cuban government, and use them to justify a war against Cuba. The possibilities detailed in the document included the remote control of civilian aircraft which would be secretly repainted as US Air Force planes, a fabricated 'shoot down' of a US Air Force fighter aircraft off the coast of Cuba, the possible assassination of Cuban immigrants, sinking boats of Cuban refugees on the high seas, exploding a US ship, and orchestrating terrorism in US cities. The proposals were rejected by US President John F. Kennedy.\nFidel Castro had taken power in Cuba in 1959 and began allowing communists into the new Cuban government, nationalizing US businesses and improving relations with the Soviet Union during the Cold War, arousing the concern of the US military. The operation proposed creating public support for a war against Cuba by blaming the Cuban government for terrorist acts that would be perpetrated by the US government. Operation Northwoods proposals recommended hijackings and bombings followed by the introduction of false evidence that would implicate the Cuban government. It stated:\n\nThe desired resultant from the execution of this plan would be to place the United States in the apparent position of suffering defensible grievances from a rash and irresponsible government of Cuba and to develop an international image of a Cuban threat to peace in the Western Hemisphere.\nSeveral other proposals were included within Operation Northwoods, including real or simulated actions against various US military and civilian targets. The operation recommended developing a \"Communist Cuban terror campaign in the Miami area, in other Florida cities and even in Washington\", which involved the bombing of civilian targets, which was to be blamed on the Cuban government to paint a false image of Fidel Castro and misinform the American public.\nThe plan was drafted by the Joint Chiefs of Staff, signed by Chairman Lyman Lemnitzer and sent to the Secretary of Defense. Although part of the US government's anti-communist Cuban Project, Operation Northwoods was never officially accepted; it was approved by the Joint Chiefs of Staff but then rejected by President Kennedy. None of the false flag operations became active under the auspices of the Operation Northwoods proposals.",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": null,
+  "country": [],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q444698",
+  "title": "Operation Paperclip",
+  "url": "https://en.wikipedia.org/wiki/Operation_Paperclip",
+  "type": "event",
+  "instance_of": [
+   "covert operation"
+  ],
+  "shortdesc": "Secret post-WWII United States program",
+  "summary": "Operation Paperclip was a secret United States intelligence program in which more than 1,600 German scientists, engineers, and technicians were taken from former Nazi Germany to the US between 1945 and 1959 for government employment after the end of World War II in Europe; several were confirmed to be former members of the Nazi Party, including the SS or the SA.\nThe effort began in earnest in 1945, as the Allies advanced into Germany and discovered a wealth of scientific talent and advanced research that had contributed to Germany's wartime technological advancements. The US Joint Chiefs of Staff officially established Operation Overcast (operations \"Overcast\" and \"Paperclip\" were related, and the terms are often used interchangeably) on July 20, 1945, with the dual aims of leveraging German expertise for the ongoing war effort against Japan and to bolster US postwar military research. The operation, conducted by the Joint Intelligence Objectives Agency (JIOA), was largely actioned by special agents of the US Army's Counterintelligence Corps (CIC). Many selected scientists were involved in the Nazi rocket program, aviation, or chemical/biological warfare. The Soviet Union in the following year conducted a similar program, called Operation Osoaviakhim, that emphasized many of the same fields of research.\nThe operation, characterized by the recruitment of German specialists and their families, relocated more than 1500 experts to the US. It has been valued at $10 billion USD in patents and industrial processes. Recruits included such notable figures as Wernher von Braun, a leading rocket-technology scientist. Those recruited were instrumental in the development of the US space program and military technology during the Cold War. Despite its contributions to American scientific advances, Operation Paperclip has been controversial because of the Nazi affiliations of many recruits, and the ethics of assimilating individuals associated with war crimes into American society.\nThe operation was not solely focused on rocketry; it also transferred expertise in aerodynamics, aviation medicine, and related military research. Its technological legacy was especially visible in the transformation of German V-2 rocket technology into later American missile and launch systems. After moving to Redstone Arsenal in 1950, Wernher von Braun’s team developed the Redstone and Jupiter missiles. When this group was transferred to the National Aeronautics and Space Administration (NASA) in 1960, it became central to the work of the Marshall Space Flight Center and the development of the Saturn launch vehicles used in the Apollo program. The related Mercury-Redstone rocket also carried Alan Shepard on the first American human spaceflight.\nIn aeronautics, German high-speed flight research and aerodynamic knowledge contributed to postwar American aircraft and missile development. In aviation medicine, German specialists contributed to early space medicine research in the United States, including studies on weightlessness, life-support systems, and human performance in extreme conditions.\nOperation Paperclip was part of a broader strategy by the US to harness German scientific talent in the face of emerging Cold War tensions, and ensure this expertise did not fall into the hands of the Soviet Union or other nations. The operation's legacy has remained controversial in subsequent decades.\n\n",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": "1945-07-20",
+  "country": [],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q2026386",
+  "title": "Operation Snow White",
+  "url": "https://en.wikipedia.org/wiki/Operation_Snow_White",
+  "type": "theory",
+  "instance_of": [
+   "conspiracy"
+  ],
+  "shortdesc": "Criminal conspiracy by the Church of Scientology",
+  "summary": "Operation Snow White was a criminal conspiracy by the Church of Scientology during the 1970s to purge unfavorable records about Scientology and its founder, L. Ron Hubbard. This project included a series of infiltrations into and thefts from 136 government agencies, foreign embassies and consulates, as well as private organizations critical of Scientology, carried out by Church members in more than 30 countries. It was one of the largest infiltrations of the United States government in history, with up to 5,000 covert agents. This operation also exposed the Scientology plot \"Operation Freakout\", because Operation Snow White was the case that initiated the U.S. government's investigation of the Church.\nUnder this program, Scientology operatives committed infiltration, wiretapping, and theft of documents in government offices, most notably those of the U.S. Internal Revenue Service. Eleven highly placed Church executives, including Mary Sue Hubbard (third wife of founder L. Ron Hubbard and second-in-command of the organization), pleaded guilty and were convicted in federal court of obstructing justice, burglary of government offices, and theft of documents and government property. The case was United States v. Mary Sue Hubbard et al., 493 F.Supp. 209 (D.D.C. 1979).",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": null,
+  "country": [],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
   "id": "Q3984114",
   "title": "Oral polio vaccine AIDS hypothesis",
   "url": "https://en.wikipedia.org/wiki/Oral_polio_vaccine_AIDS_hypothesis",
@@ -1971,6 +2229,27 @@
    "category",
    "wikidata",
    "list_page"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q13420597",
+  "title": "PRISM",
+  "url": "https://en.wikipedia.org/wiki/PRISM",
+  "type": "organization",
+  "instance_of": [
+   "computer and network surveillance"
+  ],
+  "shortdesc": "Mass surveillance program run by the NSA",
+  "summary": "PRISM is a code name for a program under which the United States National Security Agency (NSA) collects internet communications from various U.S. internet companies. The program is also known by the SIGAD US-984XN. PRISM collects stored internet communications based on demands made to internet companies such as Google and Apple under Section 702 of the FISA Amendments Act of 2008 to turn over any data that match court-approved search terms. Among other things, the NSA can use these PRISM requests to target communications that were encrypted when they traveled across the internet backbone, to focus on stored data that telecommunication filtering systems discarded earlier, and to get data that is easier to handle.\nPRISM began in 2007 in the wake of the passage of the Protect America Act under the Bush Administration. The program is operated under the supervision of the U.S. Foreign Intelligence Surveillance Court (FISA Court, or FISC) pursuant to the Foreign Intelligence Surveillance Act (FISA). Its existence was leaked six years later by NSA contractor Edward Snowden, who warned that the extent of mass data collection was far greater than the public knew and included what he characterized as \"dangerous\" and \"criminal\" activities. The disclosures were published by The Guardian and The Washington Post on June 6, 2013. Subsequent documents have demonstrated a financial arrangement between the NSA's Special Source Operations (SSO) division and PRISM partners in the millions of dollars.\nDocuments indicate that PRISM is \"the number one source of raw intelligence used for NSA analytic reports\", and it accounts for 91% of the NSA's internet traffic acquired under FISA section 702 authority.\" The leaked information came after the revelation that the FISA Court had been ordering a subsidiary of telecommunications company Verizon Communications to turn over to the NSA the logs tracking all of its customers' telephone calls.\nU.S. government officials have disputed criticisms of PRISM in the Guardian and Washington Post articles and have defended the program, asserting that it cannot be used on domestic targets without a warrant. They additionally claim that the program has helped to prevent acts of terrorism, and that it receives independent oversight from the federal government's executive, judicial and legislative branches. On June 19, 2013, U.S. president Barack Obama, during a visit to Germany, stated that the NSA's data gathering practices constitute \"a circumscribed, narrow system directed at us being able to protect our people\".",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": "2007-01-01",
+  "country": [],
+  "categories": [],
+  "sources": [
+   "manual"
   ],
   "confidence": 5
  },
@@ -2191,6 +2470,29 @@
    "category",
    "wikidata",
    "list_page"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q7249308",
+  "title": "Project SUNSHINE",
+  "url": "https://en.wikipedia.org/wiki/Project_SUNSHINE",
+  "type": "organization",
+  "instance_of": [
+   "nonprofit organization"
+  ],
+  "shortdesc": "Series of US government research studies",
+  "summary": "Project SUNSHINE was a series of research studies that began in 1953 to ascertain the impact of radioactive fallout on the world's population. The project was initially kept secret, and only became known publicly in 1956. Commissioned jointly by the United States Atomic Energy Commission and USAF Project Rand, SUNSHINE sought to examine the long-term effects of nuclear radiation  on the biosphere due to repeated nuclear detonations of increasing yield. With the conclusion from Project GABRIEL that radioactive isotope Strontium-90 (Sr-90) represented the most serious threat to human health from nuclear fallout, Project SUNSHINE sought to measure the global dispersion of Sr-90 by measuring its concentration in the tissues and bones of the dead. Of particular interest was tissue from the young, whose developing bones have the highest propensity to accumulate Sr-90 and thus the highest susceptibility to radiation damage. SUNSHINE elicited a great deal of controversy when it was revealed that many of the remains sampled were utilized without prior permission from relatives of the dead, which wasn't known until many years later.",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": null,
+  "country": [
+   "Q30"
+  ],
+  "categories": [],
+  "sources": [
+   "manual"
   ],
   "confidence": 5
  },
@@ -2583,6 +2885,30 @@
   "confidence": 5
  },
  {
+  "id": "Q1420011",
+  "title": "Tuskegee Syphilis Study",
+  "url": "https://en.wikipedia.org/wiki/Tuskegee_Syphilis_Study",
+  "type": "person",
+  "instance_of": [
+   "human subject research project",
+   "clinical trial"
+  ],
+  "shortdesc": "1932–1972 human experiment in Alabama, United States",
+  "summary": "The Tuskegee Study of Untreated Syphilis in the Negro Male (informally referred to as the Tuskegee Experiment or Tuskegee Syphilis Study) was a study conducted between 1932 and 1972 by the United States Public Health Service (PHS) and the Centers for Disease Control and Prevention (CDC) on a group of nearly 400 African American men with syphilis as well as a control group without. The purpose of the study was to observe the effects of the disease when untreated, to the point of death and autopsy. Although there had been effective treatments to reduce the severity of the disease since the 1920s, the use of penicillin for the treatment of syphilis was widespread as of 1945. The men were not informed of the nature of the study, proper treatment was withheld, and more than 100 died as a result.\nThe Public Health Service started the study in 1932 in collaboration with Tuskegee University (then the Tuskegee Institute), a historically Black college in Alabama. In the study, investigators enrolled 600 impoverished African American sharecroppers from Macon County, Alabama. Of these men, 399 had latent syphilis, with a control group of 201 men who were not infected. As an incentive for participation in the study, the men were promised free medical care and promised funeral expenses. While the men were provided with both medical and mental care that they otherwise would not have received, they were deceived by the PHS, who never informed them of their syphilis diagnosis and who provided disguised placebos, ineffective treatments, and diagnostic procedures, such as lumbar punctures, as treatment for \"bad blood\".\nThe men were initially told that the experiment was only going to last six months, but it was extended to 40 years. After funding for treatment was lost, the study was continued without informing the men that they would never be treated. None of the infected men were treated with penicillin despite the fact that, by 1947, the antibiotic was widely available and had become the standard treatment for syphilis. The study continued, under numerous Public Health Service supervisors, until 1972, when a leak to the press resulted in its termination on November 16 of that year. By then, 28 patients had died directly from syphilis, 100 died from complications related to syphilis, 40 of the patients' wives were infected with syphilis, and 19 children were born with congenital syphilis.\nThe 40-year Tuskegee Study was a major violation of ethical standards and has been cited as \"arguably the most infamous biomedical research study in U.S. history\". Its revelation led to the 1979 Belmont Report and to the establishment of the Office for Human Research Protections (OHRP) and federal laws and regulations requiring institutional review boards for the protection of human subjects in studies. The OHRP manages this responsibility within the United States Department of Health and Human Services (HHS). Its revelation has also been an important cause of distrust in medical science and the US government amongst African Americans. In 1997, President Bill Clinton formally apologized on behalf of the United States to victims of the study, calling it shameful and racist. \"What was done cannot be undone, but we can end the silence,\" he said. \"We can stop turning our heads away. We can look at you in the eye, and finally say, on behalf of the American people, what the United States government did was shameful, and I am sorry.\"",
+  "label_lt": null,
+  "ltwiki": null,
+  "coord": null,
+  "date": "1932-00-00",
+  "country": [
+   "Q30"
+  ],
+  "categories": [],
+  "sources": [
+   "manual"
+  ],
+  "confidence": 5
+ },
+ {
   "id": "Q111281424",
   "title": "Ukraine bioweapons conspiracy theory",
   "url": "https://en.wikipedia.org/wiki/Ukraine_bioweapons_conspiracy_theory",
@@ -2662,6 +2988,29 @@
    "category",
    "list_page",
    "wikidata"
+  ],
+  "confidence": 5
+ },
+ {
+  "id": "Q42761",
+  "title": "Watergate scandal",
+  "url": "https://en.wikipedia.org/wiki/Watergate_scandal",
+  "type": "event",
+  "instance_of": [
+   "political scandal"
+  ],
+  "shortdesc": "1970s political scandal in the U.S.",
+  "summary": "The Watergate scandal, or simply Watergate, was a political scandal in the United States involving the administration of President Richard Nixon. On June 17, 1972, operatives associated with Nixon's 1972 re-election campaign were caught burglarizing and planting listening devices in the Democratic National Committee headquarters at Washington, D.C.'s Watergate complex. Nixon's efforts to conceal his administration's involvement led to an impeachment process and ultimately to his resignation in August 1974.\nEmerging from the White House's efforts to stop leaks, the break-in was an implementation of Operation Gemstone, enacted by mostly Cuban burglars led by former intelligence agents E. Howard Hunt and G. Gordon Liddy. After the arrests, investigators and reporters like The Washington Post's Bob Woodward and Carl Bernstein —guided by the source \"Deep Throat\"—exposed a White House political espionage program illegally funded by donor contributions. Nixon denied involvement but his administration destroyed evidence, obstructed investigators, and bribed the burglars. This cover-up initially worked, helping Nixon win a landslide re-election, until revelations from the burglars' 1973 trial led to a Senate investigation.\nMounting pressure led Attorney General Elliot Richardson to appoint Archibald Cox as Watergate special prosecutor. Cox subpoenaed Nixon's Oval Office tapes—suspected to include Watergate conversations—but Nixon invoked executive privilege to block their release, triggering a constitutional crisis. In the \"Saturday Night Massacre\", Nixon fired Cox, forcing the resignations of the attorney general and his deputy and fueling suspicions of Nixon's involvement. Nixon released select tapes, although one was partially erased and two others disappeared. In April 1974, Cox's replacement Leon Jaworski reissued the subpoena, but Nixon provided only redacted transcripts. In July, the Supreme Court ordered the tapes' release, and the House Judiciary Committee recommended impeachment for obstructing justice, abuse of power, and contempt of Congress. The White House released the \"Smoking Gun\" tape, showing that Nixon ordered the CIA to stop the FBI's investigation. Facing impeachment, on August 9, 1974, Nixon became the first U.S. president to resign. In total, 69 people were charged for Watergate—including two cabinet members—and most pleaded guilty or were convicted. Nixon was pardoned by his successor, Gerald Ford.\nWatergate, often considered the greatest presidential scandal, tarnished Nixon's legacy and had electoral ramifications for the Republican Party: heavy losses in the 1974 midterm elections and Ford's failed 1976 reelection bid. Despite significant coverage, no consensus exists on the motive for the break-in or who specifically ordered it. Theories range from an incompetent break-in by rogue campaign officials to a sexpionage operation or CIA plot. The scandal has generated over 30 memoirs and had such historical impact that the suffix -gate entered the lexicon globally to denote scandals, even those outside of American politics.\n\n",
+  "label_lt": "Votergeito skandalas",
+  "ltwiki": "Votergeito skandalas",
+  "coord": null,
+  "date": "1972-06-17",
+  "country": [
+   "Q30"
+  ],
+  "categories": [],
+  "sources": [
+   "manual"
   ],
   "confidence": 5
  },
@@ -84159,30 +84508,6 @@
    "Q30",
    "Q241"
   ],
-  "categories": [],
-  "sources": [
-   "list_page"
-  ],
-  "confidence": 1
- },
- {
-  "id": "Q482402",
-  "title": "Gulf of Tonkin incident",
-  "url": "https://en.wikipedia.org/wiki/Gulf_of_Tonkin_incident",
-  "type": "event",
-  "instance_of": [
-   "naval battle"
-  ],
-  "shortdesc": "1964 naval confrontation between North Vietnam and the United States",
-  "summary": "The Gulf of Tonkin incident (Vietnamese: Sự kiện Vịnh Bắc Bộ)  refers to a naval confrontation in the Gulf of Tonkin off the coast of North Vietnam, which led to the United States engaging more directly in the Vietnam War. On 2 August 1964 there was a clash between a destroyer of the United States Navy that was collecting signals intelligence close to North Vietnamese waters, and three North Vietnamese naval vessels. On the night of 4 August, two US destroyers reported they were attacked by North Vietnamese vessels and that they were returning fire. Later investigation revealed that the 4 August attack did not happen; no North Vietnamese vessels had been present. Shortly after the events, the National Security Agency, an agency of the US Defense Department, deliberately skewed intelligence to create the impression that an attack had been carried out.\nOn the night of 30 July, South Vietnamese commandos raided a North Vietnamese radar station on the island of Hòn Mê in the Gulf of Tonkin. The next day the destroyer USS Maddox commanded by Commander Herbert L. Ogier began patrolling near the North Vietnamese coast. On 2 August, the Maddox, while performing a signals intelligence patrol as part of DESOTO operations, near one of the islands that had been shelled two nights before, was approached by three North Vietnamese Navy torpedo boats of the 135th Torpedo Squadron. Maddox fired warning shots and the North Vietnamese boats attacked with torpedoes and machine gun fire. In the ensuing engagement, one US aircraft (which had been launched from the aircraft carrier USS Ticonderoga) was damaged, three North Vietnamese torpedo boats were damaged, and four North Vietnamese sailors were killed, with six more wounded. There were no US casualties. Maddox was \"unscathed except for a single bullet hole from a [North] Vietnamese machine gun round\".\nOn 3 August, destroyer USS Turner Joy joined Maddox and the two destroyers continued the DESOTO mission. On the evening of 4 August, the ships opened fire on radar returns that had been preceded by communications intercepts, which US forces said meant an attack was imminent. The commodore of the Maddox task force, Captain John Herrick, reported that the ships were being attacked by North Vietnamese boats when, in fact, there were no North Vietnamese boats in the area. While Herrick soon reported doubts regarding the task force's initial perceptions of the attack, the Johnson administration relied on the wrongly interpreted National Security Agency communications intercepts to conclude that the attack was real.\nWhile doubts regarding the perceived second attack have been expressed since 1964, it was not until years later that it was shown conclusively never to have happened. In the 2003 documentary The Fog of War, the former United States secretary of defense, Robert S. McNamara, admitted that there was no attack on 4 August. In 1995, McNamara met with former North Vietnamese Army General Võ Nguyên Giáp to ask what happened on 4 August 1964. \"Absolutely nothing\", Giáp replied. Giáp confirmed that the attack had been imaginary. In 2005, an internal National Security Agency historical study was declassified; it concluded that Maddox had engaged the North Vietnamese Navy on 2 August, but that the incident of 4 August was based on bad naval intelligence and misrepresentations of North Vietnamese communications. The official US government position is that it was based mostly on erroneously interpreted communications intercepts.\nThe outcome of the incident was the passage by US Congress of the Gulf of Tonkin Resolution, which granted US president Lyndon B. Johnson the authority to assist any Southeast Asian country whose government was considered to be jeopardized by communist aggression. The resolution served as Johnson's legal justification for deploying US conventional forces to South Vietnam and the commencement of open warfare against North Vietnam in early 1965.\n\n",
-  "label_lt": null,
-  "ltwiki": null,
-  "coord": [
-   19.783333333333335,
-   106.51833333333333
-  ],
-  "date": "1964-08-02",
-  "country": [],
   "categories": [],
   "sources": [
    "list_page"

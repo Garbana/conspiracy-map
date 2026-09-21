@@ -62,33 +62,36 @@ TITLE_THEORY = re.compile(r"\b(conspiracy|conspiracies|hoax|denial|denialism|cov
 THEMES = {
     "politics": r"politic|election|government|deep state|new world order|white genocide|"
                 r"great replacement|coup|president|communis|fascis|nazi|stolen election|qanon",
-    "health": r"vaccin|covid|health|medic|aids|hiv|disease|pharma|cancer|fluorid|pandemic|"
-              r"virus|autism|epidemic|drug",
-    "ufo": r"ufo|extraterrestrial|alien|ancient astronaut|flying saucer|roswell|area 51|"
-           r"reptilian|nibiru",
-    "science_tech": r"5g|technolog|space|moon landing|flat earth|scien|nuclear|haarp|"
+    "health": r"vaccin|covid|health|medic|\baids\b|\bhiv\b|disease|pharma|cancer|fluorid|pandemic|"
+              r"virus|autism|epidemic|\bdrugs?\b",
+    "ufo": r"\bufos?\b|\buap\b|extraterrestrial|\baliens?\b|ancient astronaut|flying saucer|"
+           r"roswell|area 51|reptilian|nibiru|abduction|crop circle|men in black|majestic 12",
+    "science_tech": r"\b5g\b|technolog|\bspace\b|moon landing|flat earth|scien|nuclear|haarp|"
                     r"chemtrail|internet|artificial|surveillance|computer",
     "history": r"negationism|historical|history|holocaust|genocide denial|pseudohistory|"
                r"revisionis|ancient|medieval|tartar",
-    "ethnic_religious": r"antisemit|jewish|jews|zionis|islamophob|muslim|racis|ethnic|"
+    "ethnic_religious": r"antisemit|jewish|\bjews\b|zionis|islamophob|muslim|racis|ethnic|"
                         r"anti-catholic|christian|religio|blood libel|satan|occult|"
                         r"freemason|illuminati|secret societ|esoteric",
-    "deaths": r"assassination|death|murder|killing|disappearance|suicide|shooting|"
-              r"poisoning|crash",
-    "war_terror": r"terror|9/11|september 11|war\b|false flag|military|bombing|attack|"
-                  r"weapon|army",
-    "finance": r"econom|financ|bank|money|federal reserve|gold|currency|debt|rothschild|"
-               r"corporat|oil",
-    "media_disinfo": r"disinformation|propaganda|fake news|misinformation|hoax|media|"
+    "deaths": r"assassination|\bdeath|murder|killing|disappearance|suicide|shooting|"
+              r"poisoning|\bcrash",
+    "war_terror": r"terror|9/11|september 11|\bwars?\b|false flag|military|bombing|\battack|"
+                  r"weapon|\barmy\b",
+    "finance": r"econom|financ|\bbank|\bmoney|federal reserve|gold standard|currenc|\bdebt|"
+               r"rothschild|corporat|\boil\b|wealth|\btax|bilderberg|davos|world economic forum|"
+               r"soros|\bimf\b|world bank|great reset|globalis|cryptocurrenc|stock market|usury",
+    "media_disinfo": r"disinformation|propaganda|fake news|misinformation|hoax|\bmedia\b|"
                      r"censorship|information war|troll|psyop",
-    "intelligence": r"\bcia\b|intelligence|espionage|covert|kgb|fsb|mkultra|mossad|"
-                    r"\bnsa\b|spy|spies|cointelpro|secret service",
+    "intelligence": r"\bcia\b|\bfbi\b|intelligence agenc|espionage|covert|\bkgb\b|\bfsb\b|mk-?ultra|"
+                    r"mossad|\bnsa\b|\bspy\b|spies|cointelpro|secret service|mind control|"
+                    r"surveillance|wiretap|deep state|secret police|stasi|\bmi6\b|\bmi5\b|"
+                    r"false flag|black operation|psychological operation|informant",
     "environment": r"climate|environment|weather|global warming|ozone|geoengineering|"
                    r"chemtrail",
 }
 THEME_RE = {k: re.compile(v, re.I) for k, v in THEMES.items()}
-REGION_RE = re.compile(r"(?:conspiracy theories|conspiracy theory|misinformation|"
-                       r"propaganda|hoaxes|disinformation) (?:in|about|of|involving) (.+)$", re.I)
+REGION_RE = re.compile(r"^(?:conspiracy theories|misinformation|propaganda|hoaxes|disinformation|"
+                       r"historical negationism|denialism) in (.+)$", re.I)
 
 
 def load_state():
@@ -200,9 +203,13 @@ def main():
     fetch_class_tree(sorted({c for v in p31_of.values() for c in v}), s)
 
     def new_type(eid, title, shortdesc, old):
+        t = type_of(p31_of.get(eid, []), s)
+        # Wikidata aiškiai sako "žmogus/organizacija/kūrinys/vieta" – pavadinimas to nepakeičia
+        # (pvz. "Cathy O'Brien (conspiracy theorist)" yra asmuo, ne teorija)
+        if t in ("person", "organization", "work", "media", "place"):
+            return t
         if TITLE_THEORY.search(title or ""):
             return "theory"
-        t = type_of(p31_of.get(eid, []), s)
         if t:
             return t
         if old == "theory?":
@@ -218,6 +225,10 @@ def main():
     print("Subjektų tipai:", Counter(e["type"] for e in ents).most_common())
 
     # ---------- B: kurie įrašai lieka ----------
+    ov = json.load(open(os.path.join(ROOT, "data", "overrides.json"), encoding="utf-8"))
+    ov_role = {k: v for k, v in ov.get("role", {}).items() if not k.startswith("_")}
+    ov_status = {k: v for k, v in ov.get("status", {}).items() if not k.startswith("_")}
+    ov_status.update({k: v for k, v in ov.get("add", {}).items() if not k.startswith("_")})
     item_by_id = {i["id"]: i for i in items}
     theory_ids = {i["id"] for i in items if i["type"] in ("theory", "theory?")}
     # Kiek teorijų mini įrašą ir kiek teorijų įrašas mini
@@ -227,24 +238,55 @@ def main():
     for i in items:
         clean_cat = any(not cats.get(c, {}).get("noise") for c in i["categories"])
         score = mentioned_by[i["id"]] + mentions_th[i["id"]]
-        if i["title"].startswith(("List of", "Lists of", "Index of", "Timeline of")):
+        if i["title"] in ov_role:
+            i["role"] = ov_role[i["title"]]
+        elif "manual" in i["sources"]:
+            i["role"] = "theory"
+        elif i["title"].startswith(("List of", "Lists of", "Index of", "Timeline of")):
             i["role"] = "dropped"  # sąrašų puslapiai – ne teorijos, jų ryšiai klaidintų
+        elif i["type"] in ("person", "organization", "work", "media", "place"):
+            # Asmuo/organizacija niekada nėra teorija – bet gali būti susijęs straipsnis
+            i["role"] = "related" if (score >= 2 or (clean_cat and score >= 1)) else "dropped"
         elif i["type"] == "theory":
             i["role"] = "theory"
         elif i["type"] == "theory?" and (clean_cat or score >= 1):
             i["role"] = "theory"
-        elif i["confidence"] >= 3 and i["type"] in ("concept", "event", "theory?"):
-            i["role"] = "theory"
+        elif i["confidence"] >= 3 and i["type"] in ("concept", "theory?"):
+            i["role"] = "theory"  # įvykiai (event) – ne teorijos, o tai, apie ką jos sklinda
         elif score >= 2 or (clean_cat and score >= 1):
             i["role"] = "related"
         else:
             i["role"] = "dropped"
+        i["status"] = ov_status.get(i["title"])
         if i["role"] != "dropped":
             kept.append(i)
     print("Įrašų rolės:", Counter(i["role"] for i in items).most_common())
     theory_ids = {i["id"] for i in kept if i["role"] == "theory"}
 
     # ---------- C: temos ir regionai ----------
+    # Inkariniai subjektai: jei straipsnis juos mini įžangoje arba >= 2 kartus – gauna temą
+    ANCHORS = {
+        "intelligence": ["Central Intelligence Agency", "Federal Bureau of Investigation",
+                         "National Security Agency", "KGB", "Mossad", "MI6", "MI5", "MKUltra",
+                         "COINTELPRO", "Federal Security Service", "Stasi", "Deep state"],
+        "finance": ["Federal Reserve", "Rothschild family", "George Soros", "Bilderberg Meeting",
+                    "World Economic Forum", "International Monetary Fund", "World Bank",
+                    "Goldman Sachs", "Bank of England", "Gold standard"],
+        "ufo": ["Area 51", "Roswell incident", "Unidentified flying object",
+                "Extraterrestrial life", "Alien abduction"],
+        "health": ["Vaccine", "World Health Organization", "Centers for Disease Control and Prevention",
+                   "Food and Drug Administration", "Pharmaceutical industry", "COVID-19"],
+        "environment": ["Climate change", "Global warming", "Chemtrail conspiracy theory"],
+    }
+    title_to_id = {e["title"]: e["id"] for e in ents}
+    title_to_id.update({i["title"]: i["id"] for i in items})
+    anchor_of = {title_to_id[t]: th for th, ts in ANCHORS.items() for t in ts if t in title_to_id}
+    anchor_themes = defaultdict(set)
+    for m in mentions:
+        th = anchor_of.get(m["target"])
+        if th and (m["in_lead"] or m["count"] >= 2):
+            anchor_themes[m["source"]].add(th)
+
     def cat_chain(c, depth=2):
         out, fr = [c], [c]
         for _ in range(depth):
@@ -256,12 +298,20 @@ def main():
         chain = {x for c in i["categories"] for x in cat_chain(c)}
         chain.discard("Category:Conspiracy theories")
         names = [c.replace("Category:", "") for c in chain]
-        th = themes_for(names)
-        if not th:
-            th = themes_for([i["title"], i.get("shortdesc") or ""])
-        i["themes"] = th
+        direct = [c.replace("Category:", "") for c in i["categories"]]
+        # Temų balas: tiesioginė kategorija / pavadinimas / įžanga / inkaras – 2, tėvinė kategorija – 1.
+        # Paliekamos iki 3 stipriausių (pirmoji naudojama spalvinimui).
+        score = Counter()
+        for t in themes_for(names):
+            score[t] += 1
+        first = re.split(r"(?<=[.!?])\s", (i.get("summary") or ""), maxsplit=2)[:2]
+        for t in themes_for(direct + [i["title"], i.get("shortdesc") or ""] + first):
+            score[t] += 2
+        for t in anchor_themes.get(i["id"], set()):
+            score[t] += 2
+        i["themes"] = [t for t, _ in sorted(score.items(), key=lambda x: (-x[1], x[0]))[:3]]
         regions = set()
-        for n in names:
+        for n in direct:
             m = REGION_RE.search(n)
             if m and not m.group(1).lower().startswith(("the united states by", "popular")):
                 regions.add(m.group(1).strip())
@@ -292,7 +342,7 @@ def main():
     db.executescript("""
     CREATE TABLE items(id TEXT PRIMARY KEY, title TEXT, role TEXT, type TEXT, shortdesc TEXT,
         summary TEXT, url TEXT, label_lt TEXT, ltwiki TEXT, date TEXT, lat REAL, lon REAL,
-        confidence INT);
+        confidence INT, status TEXT);
     CREATE TABLE entities(id TEXT PRIMARY KEY, title TEXT, type TEXT, shortdesc TEXT,
         label_lt TEXT, date TEXT, lat REAL, lon REAL, n_theories INT, generic INT, is_item INT);
     CREATE TABLE mentions(source TEXT, target TEXT, count INT, in_lead INT, weight REAL);
@@ -303,10 +353,10 @@ def main():
     """)
     for i in kept:
         c = i.get("coord") or [None, None]
-        db.execute("INSERT INTO items VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        db.execute("INSERT INTO items VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                    (i["id"], i["title"], i["role"], i["type"], i.get("shortdesc"),
                     i.get("summary"), i.get("url"), i.get("label_lt"), i.get("ltwiki"),
-                    i.get("date"), c[0], c[1], i["confidence"]))
+                    i.get("date"), c[0], c[1], i["confidence"], i.get("status")))
         db.executemany("INSERT INTO item_categories VALUES(?,?)", [(i["id"], x) for x in i["categories"]])
         db.executemany("INSERT INTO item_themes VALUES(?,?)", [(i["id"], x) for x in i["themes"]])
         db.executemany("INSERT INTO item_regions VALUES(?,?)", [(i["id"], x) for x in i["regions"]])
@@ -331,10 +381,18 @@ def main():
         nodes.append({"id": i["id"], "t": i["title"], "k": i["role"], "ty": i["type"],
                       "th": i["themes"], "rg": i["regions"], "d": i.get("date"),
                       "c": i.get("coord"), "sd": i.get("shortdesc"),
-                      "lt": i.get("label_lt"), "u": i.get("url")})
+                      "lt": i.get("label_lt"), "u": i.get("url"), "st": i.get("status")})
         node_ids.add(i["id"])
+    # Subjektai su priskirtu vaidmeniu (data/roles/done) įtraukiami visada, net jei minimi vienoje teorijoje
+    role_ents = set()
+    done_dir = os.path.join(ROOT, "data", "roles", "done")
+    if os.path.isdir(done_dir):
+        for f in os.listdir(done_dir):
+            if f.endswith(".json"):
+                for v in json.load(open(os.path.join(done_dir, f), encoding="utf-8")).values():
+                    role_ents.update(v.get("roles", {}))
     for e in ents:
-        if e["id"] in node_ids or e["n_theories"] < 2:
+        if e["id"] in node_ids or (e["n_theories"] < 2 and e["id"] not in role_ents):
             continue
         nodes.append({"id": e["id"], "t": e["title"], "k": "entity", "ty": e["type"],
                       "n": e["n_theories"], "g": int(e["generic"]), "d": e.get("date"),

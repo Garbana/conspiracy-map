@@ -1,5 +1,14 @@
 [
  {
+  "title": "Gulf of Tonkin incident",
+  "sources": [
+   "list_page",
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 6
+ },
+ {
   "title": "10 agorot controversy",
   "sources": [
    "category",
@@ -195,6 +204,14 @@
   "confidence": 5
  },
  {
+  "title": "Business Plot",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
   "title": "CIA Kennedy assassination conspiracy theory",
   "sources": [
    "category",
@@ -205,6 +222,14 @@
    "Category:John F. Kennedy assassination conspiracy theories"
   ],
   "qid": "Q5011472",
+  "confidence": 5
+ },
+ {
+  "title": "COINTELPRO",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
   "confidence": 5
  },
  {
@@ -235,6 +260,14 @@
    "Category:Science and technology-related conspiracy theories"
   ],
   "qid": "Q727908",
+  "confidence": 5
+ },
+ {
+  "title": "Church Committee",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
   "confidence": 5
  },
  {
@@ -663,6 +696,14 @@
   "confidence": 5
  },
  {
+  "title": "Iran–Contra affair",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
   "title": "Israelization of Albania",
   "sources": [
    "category",
@@ -961,6 +1002,14 @@
   "confidence": 5
  },
  {
+  "title": "Nayirah testimony",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
   "title": "New World Order conspiracy theory",
   "sources": [
    "category",
@@ -1003,6 +1052,46 @@
   "confidence": 5
  },
  {
+  "title": "Operation Gladio",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
+  "title": "Operation Mockingbird",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
+  "title": "Operation Northwoods",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
+  "title": "Operation Paperclip",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
+  "title": "Operation Snow White",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
   "title": "Oral polio vaccine AIDS hypothesis",
   "sources": [
    "category",
@@ -1013,6 +1102,14 @@
    "Category:Health-related conspiracy theories"
   ],
   "qid": "Q3984114",
+  "confidence": 5
+ },
+ {
+  "title": "PRISM",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
   "confidence": 5
  },
  {
@@ -1128,6 +1225,14 @@
    "Category:Conspiracy theories in New Zealand"
   ],
   "qid": "Q5314403",
+  "confidence": 5
+ },
+ {
+  "title": "Project Sunshine",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
   "confidence": 5
  },
  {
@@ -1330,6 +1435,14 @@
   "confidence": 5
  },
  {
+  "title": "Tuskegee Syphilis Study",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
+  "confidence": 5
+ },
+ {
   "title": "Ukraine bioweapons conspiracy theory",
   "sources": [
    "category",
@@ -1371,6 +1484,14 @@
    "Category:Conspiracy theories involving Muslims"
   ],
   "qid": "Q7968565",
+  "confidence": 5
+ },
+ {
+  "title": "Watergate scandal",
+  "sources": [
+   "manual"
+  ],
+  "categories": [],
   "confidence": 5
  },
  {
@@ -36334,14 +36455,6 @@
  },
  {
   "title": "Gulf of Mexico",
-  "sources": [
-   "list_page"
-  ],
-  "categories": [],
-  "confidence": 1
- },
- {
-  "title": "Gulf of Tonkin incident",
   "sources": [
    "list_page"
   ],

@@ -7,9 +7,11 @@ Each theory keeps a link to its source article. The map shows what is *claimed*,
 
 ## Current dataset
 
-- ~780 conspiracy theories, ~1,100 related articles
-- ~26,000 entities (people, organizations, places, events, works, concepts) mentioned in 2+ articles
-- ~48,000 weighted theory–entity links
+- 371 conspiracy theories (every one reviewed: 291 debunked, 50 disputed, 30 confirmed),
+  ~1,500 related articles
+- 4,334 reviewed roles linking theories to people, organizations, places and events:
+  accused, promoter, victim/target, subject, event, place, debunker/investigator, related theory
+- ~9,400 nodes, ~74,000 links (core layer ≈ 21,000 links; the rest is an optional "all mentions" layer)
 - 12 themes, ~20 automatically detected clusters
 
 ## Pipeline
@@ -22,7 +24,11 @@ Python (standard library + `truststore`) and Node.js.
 | 2. Summaries, Wikidata IDs, types | `scraper/02_enrich.py` | `data/export/items.json` |
 | 3. Links from article text → entities | `scraper/03_links.py` | `data/export/entities.json`, `mentions.json` |
 | 4. Type hierarchy, themes, weights, database | `scraper/04_build.py` | `data/conspiracy.db`, `data/export/graph.json` |
-| 5. Layout + clusters for the website | `layout/layout.mjs` | `site/data/graph.json`, `summaries.json` |
+| 5. Relevance score (optional, ranks the extended layer) | `scraper/05_relevance.py` | `mentions.score/tier` |
+| 6. Merge reviewed roles and statuses | `scraper/06_roles.py` | `data/conspiracy.db`, `graph.json` |
+| 7. Layout + clusters for the website | `layout/layout.mjs` | `site/data/graph.json`, `summaries.json` |
+
+Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README).
 
 Every step saves progress to `data/raw/` and resumes where it stopped.
 
@@ -32,6 +38,7 @@ python scraper/01_discover.py
 python scraper/02_enrich.py
 python scraper/03_links.py
 python scraper/04_build.py
+python scraper/06_roles.py
 cd layout && npm install && node layout.mjs
 python -m http.server 8765 --directory site
 ```

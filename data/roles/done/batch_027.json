@@ -1,0 +1,47 @@
+{
+"Q115915080": {"status": "debunked", "roles": {
+  "Q109858612": "pro", "Q22686": "pro", "Q109001687": "pro",
+  "Q1658150": "rel",
+  "Q910154": "sub", "Q9696": "sub",
+  "Q55189786": "deb"}},
+"Q2382585": {"status": "not_theory", "roles": {}},
+"Q3686845": {"status": "disputed", "roles": {
+  "Q80702": "acc", "Q547077": "sub",
+  "Q335087": "deb",
+  "Q4948": "loc"}},
+"Q25437305": {"status": "not_theory", "roles": {}},
+"Q104869712": {"status": "not_theory", "roles": {}},
+"Q18737096": {"status": "not_theory", "roles": {"Q585727": "pro", "Q3436506": "pro", "Q7987983": "pro"}},
+"Q141306930": {"status": "not_theory", "roles": {}},
+"Q7318919": {"status": "not_theory", "roles": {}},
+"Q7353121": {"status": "not_theory", "roles": {"Q85796612": "sub"}},
+"Q2260516": {"status": "not_theory", "roles": {}},
+"Q134856290": {"status": "debunked", "roles": {
+  "Q3099714": "vic",
+  "Q11256": "sub", "Q8619": "sub", "Q1939343": "sub",
+  "Q16232342": "pro", "Q106626612": "pro", "Q28228919": "pro",
+  "Q94580023": "rel"}},
+"Q109535982": {"status": "not_theory", "roles": {}},
+"Q4745590": {"status": "not_theory", "roles": {}},
+"Q4774116": {"status": "not_theory", "roles": {}},
+"Q4923377": {"status": "disputed", "roles": {
+  "Q427818": "acc", "Q11223": "acc",
+  "Q777089": "rel",
+  "Q1414565": "sub", "Q2719808": "sub",
+  "Q2642099": "pro"}},
+"Q5097920": {"status": "not_theory", "roles": {}},
+"Q60826831": {"status": "debunked", "roles": {
+  "Q24572317": "pro", "Q52395487": "pro", "Q21546321": "pro", "Q108454548": "pro",
+  "Q645986": "sub", "Q75853": "sub", "Q628021": "sub",
+  "Q75984": "evt",
+  "Q10567262": "rel"}},
+"Q131515331": {"status": "debunked", "roles": {
+  "Q281347": "pro", "Q471040": "pro",
+  "Q2744161": "deb", "Q105836522": "deb",
+  "Q639566": "sub", "Q39950": "sub",
+  "Q269145": "evt", "Q7398747": "rel"}},
+"Q130471900": {"status": "not_theory", "roles": {}},
+"Q7689460": {"status": "debunked", "roles": {
+  "Q5336433": "pro", "Q189694": "pro",
+  "Q1666281": "sub", "Q1308197": "sub", "Q973587": "sub"}}
+}

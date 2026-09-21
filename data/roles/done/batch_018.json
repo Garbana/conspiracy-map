@@ -1,0 +1,58 @@
+{
+"Q5099717": {"status": "not_theory", "roles": {
+  "Q1371471": "vic", "Q6225378": "vic", "Q1344502": "vic", "Q1394780": "vic",
+  "Q15500169": "pro", "Q5496668": "pro", "Q3182589": "pro"}},
+"Q130390517": {"status": "debunked", "roles": {
+  "Q16828912": "pro",
+  "Q3656783": "sub", "Q9197856": "sub", "Q692": "vic",
+  "Q1703090": "deb", "Q1681071": "deb",
+  "Q1466166": "rel"}},
+"Q56573593": {"status": "debunked", "roles": {
+  "Q56727008": "pro", "Q983324": "pro", "Q145881": "pro", "Q111014029": "pro", "Q109941689": "pro",
+  "Q1463": "sub", "Q55647921": "sub", "Q104849233": "sub",
+  "Q3176886": "deb",
+  "Q6504639": "rel", "Q85796308": "rel"}},
+"Q30324090": {"status": "not_theory", "roles": {}},
+"Q7121910": {"status": "debunked", "roles": {
+  "Q96876507": "pro", "Q18246346": "pro",
+  "Q1268748": "rel", "Q2529568": "evt",
+  "Q42504": "acc",
+  "Q11167292": "sub", "Q2682005": "sub"}},
+"Q7665828": {"status": "disputed", "roles": {
+  "Q1206951": "pro", "Q20791099": "pro", "Q51341000": "pro",
+  "Q142": "acc", "Q209065": "acc", "Q139670": "acc",
+  "Q182515": "sub", "Q1145246": "sub",
+  "Q48741620": "rel", "Q14192963": "rel",
+  "Q559228": "deb"}},
+"Q4689642": {"status": "debunked", "roles": {
+  "Q35286": "sub", "Q11817": "sub", "Q36023": "sub"}},
+"Q104854000": {"status": "not_theory", "roles": {}},
+"Q123807564": {"status": "not_theory", "roles": {
+  "Q65117217": "deb", "Q105973558": "rel"}},
+"Q21010171": {"status": "confirmed", "roles": {
+  "Q296741": "acc", "Q47099": "acc", "Q1281055": "acc",
+  "Q26701567": "sub",
+  "Q526297": "vic",
+  "Q1144143": "deb"}},
+"Q7210269": {"status": "not_theory", "roles": {}},
+"Q7571818": {"status": "not_theory", "roles": {}},
+"Q709136": {"status": "not_theory", "roles": {}},
+"Q125018717": {"status": "debunked", "roles": {
+  "Q43302090": "pro", "Q317521": "pro", "Q34660": "pro",
+  "Q107711236": "vic", "Q21511883": "vic", "Q16905504": "vic", "Q13133": "vic", "Q3052772": "vic",
+  "Q133957": "rel",
+  "Q1320972": "deb"}},
+"Q63297249": {"status": "not_theory", "roles": {}},
+"Q28220119": {"status": "not_theory", "roles": {}},
+"Q1203086": {"status": "not_theory", "roles": {}},
+"Q7209783": {"status": "not_theory", "roles": {"Q1459585": "pro"}},
+"Q251348": {"status": "debunked", "roles": {
+  "Q560878": "pro", "Q368363": "pro", "Q7964360": "pro", "Q5082897": "pro",
+  "Q7983996": "deb", "Q87451": "deb",
+  "Q172618": "rel", "Q988290": "rel",
+  "Q7729817": "sub"}},
+"Q1048624": {"status": "debunked", "roles": {
+  "Q151090": "acc", "Q172383": "acc",
+  "Q3044": "sub", "Q83029": "sub", "Q159791": "sub",
+  "Q80205": "deb"}}
+}

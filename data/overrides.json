@@ -1,0 +1,42 @@
+{
+  "_about": "Rankiniai pataisymai. Pavadinimai – kaip angliškoje Vikipedijoje. Galioja per visus perleidimus.",
+
+  "add": {
+    "_about": "Straipsniai, kurių nėra kategorijose, bet turi būti žemėlapyje kaip teorijos. Reikšmė – statusas.",
+    "COINTELPRO": "confirmed",
+    "Operation Northwoods": "confirmed",
+    "Operation Mockingbird": "confirmed",
+    "Tuskegee Syphilis Study": "confirmed",
+    "Watergate scandal": "confirmed",
+    "Iran–Contra affair": "confirmed",
+    "Gulf of Tonkin incident": "confirmed",
+    "Project Sunshine": "confirmed",
+    "Operation Paperclip": "confirmed",
+    "Church Committee": "confirmed",
+    "Business Plot": "confirmed",
+    "Operation Snow White": "confirmed",
+    "PRISM": "confirmed",
+    "Operation Gladio": "confirmed",
+    "Nayirah testimony": "confirmed"
+  },
+
+  "status": {
+    "_about": "Statusas esamiems įrašams: confirmed (įrodyta), debunked (paneigta), disputed (ginčijama).",
+    "MKUltra": "confirmed",
+    "Project MKUltra": "confirmed",
+    "Operation Mockingbird": "confirmed"
+  },
+
+  "role": {
+    "_about": "Priverstinė rolė: theory, related arba dropped.",
+    "Conspiracy theory": "related",
+    "Conspiracy theories": "related",
+    "Conspiracism": "related",
+    "Conspiracy fiction": "related",
+    "Conspiracy theorist": "related",
+    "Fox News controversies": "related",
+    "Assassination of Charlie Kirk": "related",
+    "MKUltra": "theory",
+    "Project MKUltra": "theory"
+  }
+}

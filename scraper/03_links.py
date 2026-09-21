@@ -146,6 +146,18 @@ def main():
         items = json.load(f)
     by_title = {i["title"]: i for i in items}
     hubs = [i["title"] for i in items if i["type"] in HUB_TYPES]
+    # Po pirmo 04 paleidimo žinom tikras roles: renkam nuorodas ir iš visų teorijų bei susijusių
+    # straipsnių (pvz. MKUltra, Area 51), ne tik iš tų, kurie 2 etape atrodė kaip teorijos.
+    db_path = os.path.join(ROOT, "data", "conspiracy.db")
+    if os.path.exists(db_path):
+        import sqlite3
+        db = sqlite3.connect(db_path)
+        roles = {t for (t,) in db.execute("SELECT title FROM items WHERE role IN ('theory','related')")}
+        db.close()
+        extra = [i["title"] for i in items if i["title"] in roles and i["title"] not in set(hubs)]
+        hubs += extra
+        print(f"Pridėta susijusių straipsnių iš ankstesnio 04 rezultato: {len(extra)}")
+    hubs += [i["title"] for i in items if "manual" in i["sources"] and i["title"] not in set(hubs)]
     s = load_state()
     fetch_links(hubs, s)
 

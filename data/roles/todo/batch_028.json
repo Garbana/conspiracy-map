@@ -1,0 +1,1969 @@
+[
+{
+"id": "Q788110",
+"title": "Bach flower remedies",
+"summary": "Bach flower remedies (BFRs) are solutions of brandy and water—the water containing extreme dilutions of flower material developed by Edward Bach, an English medical doctor, in the 1910s. Bach stated that the dew found on flower petals retains the supposed healing properties of that plant. The hypothesis that flower remedies are associated with effects beyond a placebo response is not supported by data from rigorous clinical trials.",
+"candidates": [
+[
+"Q969176",
+"Edward Bach",
+"person",
+"British physician, homeopath and spiritual writer",
+"L1"
+],
+[
+"Q146470",
+"Brandy",
+"concept",
+"Spirit produced by distilling wine",
+"L2"
+],
+[
+"Q506",
+"Flower",
+"concept",
+"Reproductive structure in flowering plants",
+"L1"
+],
+[
+"Q326079",
+"Cancer Research UK",
+"organization",
+"Cancer research and awareness charity",
+"1"
+],
+[
+"Q3320364",
+"Scientific evidence",
+"theory",
+"Evidence that either supports or counters a scientific theory",
+"1"
+],
+[
+"Q70166",
+"Edzard Ernst",
+"person",
+"German academic physician and researcher (born 1948)",
+"1"
+],
+[
+"Q157634",
+"Clematis",
+"concept",
+"Genus of plants in the buttercup family",
+"1"
+],
+[
+"Q189222",
+"Intuition",
+"concept",
+"Ability to acquire knowledge without conscious reasoning",
+"1"
+],
+[
+"Q210501",
+"Introspection",
+"concept",
+"Examining one's own thoughts and feelings",
+"1"
+],
+[
+"Q1303415",
+"Cohort (statistics)",
+"concept",
+"Group of subjects sharing a characteristic",
+"1"
+],
+[
+"Q6987190",
+"Negative affectivity",
+"concept",
+"Personal tendency towards negative emotions and poor self-concept",
+"1"
+],
+[
+"Q188520",
+"Classical element",
+"concept",
+"Earth, water, air, fire, and (later) aether",
+"1"
+],
+[
+"Q1970852",
+"Energy (esotericism)",
+"concept",
+"Term used in esoteric forms of spirituality and alternative medicine",
+"1"
+],
+[
+"Q2917466",
+"Psychic",
+"concept",
+"Person claiming extrasensory perception abilities",
+"1"
+]
+]
+},
+{
+"id": "Q583528",
+"title": "Ear candling",
+"summary": "Ear candling, also called ear coning or thermal-auricular therapy, is a pseudoscientific alternative medicine practice claiming to improve general health and well-being by lighting one end of a hollow candle and placing the other end in the ear canal. Medical research has shown that the practice is both dangerous and ineffective and does not functionally remove earwax or toxicants, despite product design contributing to that impression.",
+"candidates": [
+[
+"Q117255",
+"Hopi",
+"organization",
+"Native American tribe in Arizona",
+"2"
+],
+[
+"Q1057591",
+"Health Canada",
+"organization",
+"Government department",
+"2"
+],
+[
+"Q4437154",
+"List of pseudoscience topics",
+"work",
+"Wikimedia list article",
+"L1"
+],
+[
+"Q76418",
+"Earwax",
+"concept",
+"Waxy substance secreted by the ear",
+"L1"
+],
+[
+"Q258328",
+"Ear canal",
+"concept",
+"Tube running from the outer ear to the middle ear",
+"L1"
+],
+[
+"Q3072135",
+"Toxicant",
+"concept",
+"Toxic substance",
+"L1"
+],
+[
+"Q12888135",
+"Candle",
+"concept",
+"Wick embedded in solid flammable substance",
+"L1"
+],
+[
+"Q187805",
+"Spokane, Washington",
+"place",
+"City in Washington State",
+"1"
+],
+[
+"Q70166",
+"Edzard Ernst",
+"person",
+"German academic physician and researcher (born 1948)",
+"1"
+],
+[
+"Q25373",
+"Atlantis",
+"place",
+"Fictional island in Plato's works",
+"1"
+],
+[
+"Q188504",
+"Alternative medicine",
+"concept",
+"Unscientific healthcare practices",
+"L1"
+],
+[
+"Q189553",
+"Otorhinolaryngology",
+"concept",
+"Medical specialty of the head and neck",
+"1"
+],
+[
+"Q816",
+"Arizona",
+"place",
+"U.S. state",
+"1"
+],
+[
+"Q16",
+"Canada",
+"place",
+"Country in North America",
+"1"
+]
+]
+},
+{
+"id": "Q19392367",
+"title": "ThetaHealing",
+"summary": "ThetaHealing (also Theta Healing) is the registered trademark for a method of meditation created by Vianna Stibal in 1995. ThetaHealing claims to change a practitioner's brain wave pattern to the theta pattern, allowing them to explore how \"emotional energy\" affects their health, and develop a \"natural intuition\".\nThe technique is administered by the ThetaHealing Institute of Knowledge (THInK), the organization founded by Stibal that develops training material and administers practitioner and instructor certification. According to THInK, ThetaHealing is taught by certified instructors in more than 150 countries.\nThetaHealing is an esoteric pseudoscience.",
+"candidates": [
+[
+"Q7988482",
+"Western esotericism",
+"organization",
+"Range of related ideas and movements that have developed in the Western world",
+"L1"
+],
+[
+"Q179965",
+"Electroencephalography",
+"concept",
+"Electrophysiological method to record electrical activity of the brain",
+"L1"
+],
+[
+"Q123046214",
+"Jonathan Jarry",
+"person",
+"Canadian scientist",
+"1"
+],
+[
+"Q167270",
+"Trademark",
+"concept",
+"Trade identifier of products or services",
+"L1"
+],
+[
+"Q55189786",
+"Office for Science and Society",
+"organization",
+"Canada-based science education group",
+"1"
+],
+[
+"Q108458",
+"Meditation",
+"concept",
+"Techniques to train attention and awareness",
+"L1"
+],
+[
+"Q3320364",
+"Scientific evidence",
+"theory",
+"Evidence that either supports or counters a scientific theory",
+"1"
+],
+[
+"Q201492",
+"McGill University",
+"organization",
+"Public university in Montreal, Canada",
+"1"
+],
+[
+"Q70166",
+"Edzard Ernst",
+"person",
+"German academic physician and researcher (born 1948)",
+"1"
+],
+[
+"Q192105",
+"Unconscious mind",
+"concept",
+"Mental processes not available to introspection",
+"1"
+],
+[
+"Q913842",
+"Applied kinesiology",
+"concept",
+"Alternative medicine technique",
+"1"
+],
+[
+"Q213403",
+"Naturopathy",
+"concept",
+"Form of alternative medicine",
+"1"
+],
+[
+"Q691640",
+"Evidence-based medicine",
+"concept",
+"Illness diagnosis, treatment and prevention based on data collection and analysi",
+"1"
+],
+[
+"Q28813",
+"Fraud",
+"concept",
+"Intentional deception to gain unlawfully",
+"1"
+]
+]
+},
+{
+"id": "Q112683795",
+"title": "Ratanabá",
+"summary": "Ratanabá is a conspiracy theory about a lost city in the Brazilian Amazon rainforest allegedly built by extraterrestrial beings. The theory originated with Urandir Fernandes de Oliveira, who claims contact with extraterrestrials, and was spread by gossip pages like Choquei and former Brazilian Culture Secretary Mário Frias.\nThe story has been debunked as false but became a viral meme on Brazilian social media. Archeologists have dismissed the claims, with BBC Brasil reporting the legend \"makes no sense\" scientifically. The Intercept described it as \"pure Bolsonarist lysergia\" emerging shortly after the murders of Dom Phillips and Bruno Pereira.",
+"candidates": [
+[
+"Q6949721",
+"Mário Frias",
+"person",
+"Brazilian actor (born 1971)",
+"L2"
+],
+[
+"Q2927074",
+"Internet meme",
+"organization",
+"Cultural item spread via the Internet",
+"L3"
+],
+[
+"Q177567",
+"Amazon rainforest",
+"place",
+"Large rainforest in South America",
+"L1"
+],
+[
+"Q58493777",
+"Presidency of Jair Bolsonaro",
+"organization",
+"2019–2023 Brazilian presidential administration",
+"1"
+],
+[
+"Q2012367",
+"Corguinho",
+"place",
+"Municipality in Central-West, Brazil",
+"1"
+],
+[
+"Q95",
+"Google",
+"organization",
+"American multinational technology company",
+"1"
+],
+[
+"Q660936",
+"Flat Earth",
+"concept",
+"Archaic conception of Earth's shape",
+"1"
+],
+[
+"Q332102",
+"Paranormal",
+"concept",
+"Purported phenomena beyond the scope of normal scientific understanding",
+"1"
+],
+[
+"Q28549308",
+"Fake news",
+"work",
+"False information presented as news",
+"1"
+],
+[
+"Q1458581",
+"Record (TV network)",
+"media",
+"Brazilian commercial television network",
+"1"
+],
+[
+"Q209330",
+"Instagram",
+"media",
+"Social media platform owned by Meta",
+"1"
+],
+[
+"Q866",
+"YouTube",
+"media",
+"Video-sharing platform",
+"1"
+],
+[
+"Q918",
+"X (social network)",
+"media",
+"American social networking service",
+"1"
+]
+]
+},
+{
+"id": "Q7757363",
+"title": "The Plan (conspiracy theory)",
+"summary": "The Plan is a conspiracy theory in Washington, D.C., which posits that since the enactment of the District of Columbia Home Rule Act in 1973, white people have had a \"plan to take back\" the black-majority city and the offices of the local government. The theory asserts that the decline of low-income black residents and their replacement by wealthier whites from outside of Washington, D.C., is intentional through the calculated use of gentrification and urban renewal. \nWhile most within Washington, D.C., regard the Plan as unfounded, the black population has fallen by about 25 percentage points, and the white population grown by about the same, in the period since the Home Rule Act was enacted. As of the 2020 census, black residents are no longer a majority in the district, but remain a plurality.",
+"candidates": [
+[
+"Q920600",
+"Urban renewal",
+"event",
+"Land redevelopment in cities",
+"L2"
+],
+[
+"Q6501447",
+"Local government",
+"organization",
+"Lowest tier in the public administration pyramid",
+"L1"
+],
+[
+"Q119380",
+"Gentrification",
+"concept",
+"Urban socioeconomic process",
+"L3"
+],
+[
+"Q5283419",
+"District of Columbia Home Rule Act",
+"work",
+"1973 United States law devolving powers to a D.C. local government",
+"L1"
+],
+[
+"Q23766566",
+"2020 United States census",
+"work",
+"24th US national census",
+"L1"
+],
+[
+"Q3120094",
+"District of Columbia Public Schools",
+"organization",
+"American public school system",
+"1"
+],
+[
+"Q6837220",
+"Michelle Rhee",
+"person",
+"American education reformer (born 1969)",
+"1"
+],
+[
+"Q372911",
+"Adrian Fenty",
+"person",
+"Mayor of the District of Columbia from 2007 to 2011",
+"1"
+],
+[
+"Q7971600",
+"2010 Washington, D.C., mayoral election",
+"event",
+"",
+"1"
+],
+[
+"Q2519192",
+"Indian removal",
+"event",
+"U.S. domestic policy of ethnic cleansing",
+"1"
+],
+[
+"Q10931943",
+"Overthrow of the Hawaiian Kingdom",
+"event",
+"1893 government overthrow",
+"1"
+],
+[
+"Q938243",
+"Marion Barry",
+"person",
+"Mayor of the District of Columbia (1979–1991; 1995–1999)",
+"1"
+],
+[
+"Q61",
+"Washington, D.C.",
+"place",
+"Federal capital district of the United States",
+"1"
+]
+]
+},
+{
+"id": "Q28226082",
+"title": "California drought manipulation conspiracy theory",
+"summary": "The California drought manipulation conspiracy theory is a conspiracy theory that proposes that the 2011–2017 drought was a deliberate, man-made phenomenon, created by weather modification. It is largely promoted by a number of self-proclaimed \"independent researchers\" and \"scientists\", and by alternative news outlets. The theory has been dismissed by the scientific community and mainstream media as fringe science or pseudoscience.",
+"candidates": [
+[
+"Q217418",
+"Cloud seeding",
+"event",
+"Weather modification that condenses clouds to cause rainfall",
+"1"
+],
+[
+"Q193320",
+"High-frequency Active Auroral Research Program",
+"organization",
+"Project to analyze the ionosphere",
+"1"
+],
+[
+"Q192855",
+"Alternative media",
+"concept",
+"Media sources that differ from established or dominant types of media",
+"L1"
+],
+[
+"Q1140308",
+"Fringe science",
+"concept",
+"Inquiries far outside of mainstream science",
+"L1"
+],
+[
+"Q12606",
+"West Coast of the United States",
+"place",
+"Coastline in the United States",
+"1"
+],
+[
+"Q240305",
+"Scientific community",
+"concept",
+"Network of interacting scientists",
+"L1"
+],
+[
+"Q5292797",
+"Mainstream media",
+"concept",
+"Mass news media that influence many people",
+"L1"
+],
+[
+"Q1709543",
+"High-pressure area",
+"concept",
+"Region with higher atmospheric pressure",
+"1"
+],
+[
+"Q1991280",
+"Geostrategy",
+"concept",
+"Type of foreign policy guided principally by geographical factors",
+"1"
+],
+[
+"Q187097",
+"Economic geography",
+"concept",
+"Subfield of human geography and economics",
+"1"
+],
+[
+"Q162219",
+"Ionosphere",
+"concept",
+"Ionized part of Earth's upper atmosphere",
+"1"
+],
+[
+"Q906347",
+"Cloud condensation nuclei",
+"concept",
+"Small particles on which water vapor condenses",
+"1"
+],
+[
+"Q921851",
+"Geoengineering",
+"concept",
+"Deliberate and large-scale intervention in Earth's climate system",
+"1"
+]
+]
+},
+{
+"id": "Q3447736",
+"title": "Dulce Base",
+"summary": "Dulce Base is the subject of a conspiracy theory claiming that a jointly-operated human and alien underground facility exists under Archuleta Mesa near the town of Dulce, New Mexico, in the United States. Claims of alien activity there first arose from Albuquerque businessman Paul Bennewitz.",
+"candidates": [
+[
+"Q7149319",
+"Paul Bennewitz",
+"person",
+"American UFO researcher (1927–2003)",
+"L1"
+],
+[
+"Q1264727",
+"Dulce, New Mexico",
+"place",
+"Census-designated place in New Mexico, United States",
+"L1"
+],
+[
+"Q34804",
+"Albuquerque, New Mexico",
+"place",
+"City in New Mexico, United States",
+"L1"
+],
+[
+"Q209114",
+"Delta Force",
+"organization",
+"US Army tier one special operations force",
+"1"
+],
+[
+"Q4147568",
+"Leonard H. Stringfield",
+"person",
+"American ufologist (1920–1994)",
+"1"
+],
+[
+"Q19664566",
+"John Lear",
+"person",
+"American aviator and conspiracy theorist (1942–2022)",
+"1"
+],
+[
+"Q3267576",
+"Richard Sharpe Shaver",
+"person",
+"American writer and conspiracy theorist (1907–1975)",
+"1"
+],
+[
+"Q2025311",
+"Raymond A. Palmer",
+"person",
+"American editor and novelist (1910–1977)",
+"1"
+],
+[
+"Q1234195",
+"Michael Barkun",
+"person",
+"American political scientist and professor (born 1938)",
+"1"
+],
+[
+"Q30",
+"United States",
+"place",
+"Country primarily in North America",
+"L1"
+],
+[
+"Q8683",
+"Cold War",
+"event",
+"1947–1991 geopolitical rivalry between USA and USSR",
+"1"
+],
+[
+"Q895089",
+"Tabloid journalism",
+"concept",
+"Style of largely sensationalist journalism",
+"1"
+],
+[
+"Q498096",
+"Weekly World News",
+"media",
+"American tabloid publication",
+"1"
+]
+]
+},
+{
+"id": "Q5551189",
+"title": "German Plot (Ireland)",
+"summary": "The \"German Plot\" was a spurious conspiracy that the Dublin Castle administration in Ireland claimed existed between the Sinn Féin movement and the German Empire in May 1918. Allegedly, the two factions conspired to start an armed insurrection in Ireland during World War I, which would have diverted the British war effort. The administration used these claims to justify the internment of Sinn Féin leaders, who were actively opposing attempts to introduce conscription in Ireland.",
+"candidates": [
+[
+"Q5162757",
+"Conscription Crisis of 1918",
+"event",
+"British political crisis involving Ireland",
+"L1"
+],
+[
+"Q22890",
+"Ireland",
+"place",
+"Island in the North Atlantic Ocean",
+"L1"
+],
+[
+"Q173196",
+"Michael Collins (Irish leader)",
+"person",
+"Irish revolutionary and politician (1890–1922)",
+"1"
+],
+[
+"Q18074156",
+"List of political conspiracies",
+"work",
+"Wikimedia list article",
+"L1"
+],
+[
+"Q4867265",
+"Basil Thomson",
+"person",
+"British colonial administrator, prison governor and police officer",
+"1"
+],
+[
+"Q1062580",
+"Irish Republican Brotherhood",
+"organization",
+"Former secret oath-bound fraternal organisation",
+"1"
+],
+[
+"Q43287",
+"German Empire",
+"place",
+"German state from 1871 to 1918",
+"L1"
+],
+[
+"Q193689",
+"Easter Rising",
+"event",
+"1916 armed insurrection in Ireland",
+"1"
+],
+[
+"Q16257640",
+"Irish Convention",
+"concept",
+"1917–18 assembly in Dublin",
+"1"
+],
+[
+"Q4488757",
+"Intelligence assessment",
+"concept",
+"Evaluation of sensitive state, military, commercial, or scientific information",
+"1"
+],
+[
+"Q517372",
+"Irish republicanism",
+"concept",
+"Political movement seeking independence in Ireland",
+"1"
+],
+[
+"Q981205",
+"Black propaganda",
+"concept",
+"Form of influence campaign",
+"1"
+],
+[
+"Q30",
+"United States",
+"place",
+"Country primarily in North America",
+"1"
+]
+]
+},
+{
+"id": "Q7249041",
+"title": "Project Cumulus",
+"summary": "Project Cumulus was a 1950s UK government initiative to investigate weather manipulation, in particular through cloud seeding experiments. The project, which was operational between 1949 and 1952, was known jokingly as Operation Witch Doctor. The experiments involved RAF planes dropping chemicals above clouds in an attempt to make rain.\nA conspiracy theory has circulated claiming that the Lynmouth Flood was caused by Project Cumulus. However, the claim ignores the size of the meterological weather pattern and how similar floods have occurred throughout British Isles for centuries.",
+"candidates": [
+[
+"Q217418",
+"Cloud seeding",
+"event",
+"Weather modification that condenses clouds to cause rainfall",
+"L2"
+],
+[
+"Q165862",
+"Royal Air Force",
+"organization",
+"Air and space warfare force of the United Kingdom",
+"L2"
+],
+[
+"Q1878838",
+"Lynmouth Flood",
+"event",
+"1952 natural disaster in the county of Devon, England",
+"L1"
+],
+[
+"Q1513578",
+"Weather modification",
+"event",
+"Act of intentionally altering or manipulating the weather",
+"L1"
+],
+[
+"Q899151",
+"Imperial Chemical Industries",
+"organization",
+"Former British chemicals, paints and pharmaceuticals company",
+"1"
+],
+[
+"Q18921692",
+"Philip Eden",
+"person",
+"British weather journalist (1951–2018)",
+"1"
+],
+[
+"Q1234805",
+"Lynmouth",
+"place",
+"Village in Devon, England",
+"1"
+],
+[
+"Q23156",
+"Devon",
+"place",
+"County of England",
+"1"
+],
+[
+"Q23143",
+"Bedfordshire",
+"place",
+"County of England",
+"1"
+],
+[
+"Q38272",
+"British Isles",
+"place",
+"Archipelago in north-western Europe",
+"1"
+],
+[
+"Q194306",
+"Dry ice",
+"concept",
+"Solid form of carbon dioxide",
+"1"
+],
+[
+"Q19052",
+"Silver iodide",
+"concept",
+"Chemical compound",
+"1"
+],
+[
+"Q11254",
+"Salt",
+"concept",
+"Mineral composed of sodium chloride",
+"1"
+]
+]
+},
+{
+"id": "Q25338541",
+"title": "American cover-up of Japanese war crimes",
+"summary": "The occupying United States government undertook the selective cover-up of some Japanese war crimes after the end of World War II in Asia, granting political immunity to military personnel who had engaged in human experimentation and other crimes against humanity, predominantly in mainland China. The pardon of Japanese war criminals, among whom were Unit 731's commanding officers General Shirō Ishii and General Masaji Kitano, was overseen by General of the Army Douglas MacArthur in September 1945. While a series of war tribunals and trials was organized, many of the high-ranking officials and doctors who devised and respectively performed the experiments were pardoned and never brought to justice due to the US government both classifying incriminating evidence, as well as blocking the prosecution access to key witnesses.",
+"candidates": [
+[
+"Q378835",
+"Unit 731",
+"organization",
+"Japanese biological and chemical warfare research facility (1936–1945)",
+"L3"
+],
+[
+"Q251764",
+"Unit 100",
+"organization",
+"Secret Imperial Japanese Army unit",
+"L2"
+],
+[
+"Q571674",
+"Shirō Ishii",
+"person",
+"Japanese biological weapons specialist (1892–1959)",
+"L2"
+],
+[
+"Q127417",
+"Douglas MacArthur",
+"person",
+"United States Army general (1880–1964)",
+"L2"
+],
+[
+"Q701321",
+"Japanese war crimes",
+"theory?",
+"War crimes committed by the Empire of Japan",
+"L1"
+],
+[
+"Q81126",
+"Manchuria",
+"place",
+"Geographical region in Northeast Asia",
+"L1"
+],
+[
+"Q19188",
+"Mainland China",
+"place",
+"Geopolitical term for China without Hong Kong, Macau, Taiwan",
+"L1"
+],
+[
+"Q280229",
+"Takahito, Prince Mikasa",
+"person",
+"Japanese prince (1915–2016)",
+"1"
+],
+[
+"Q34479",
+"Hirohito",
+"person",
+"Emperor of Japan from 1926 to 1989",
+"1"
+],
+[
+"Q537151",
+"Pardon",
+"concept",
+"Forgiveness of a crime by the government",
+"L1"
+],
+[
+"Q2263216",
+"List of highly toxic gases",
+"work",
+"gas that is toxic",
+"1"
+],
+[
+"Q163244",
+"Potsdam Declaration",
+"work",
+"Allied call for the surrender of all of the armed forces of Japan during World W",
+"1"
+],
+[
+"Q1331083",
+"Human subject research",
+"concept",
+"Systematic, scientific investigation that involves human beings as research subj",
+"1"
+]
+]
+},
+{
+"id": "Q1229735",
+"title": "Cover-up",
+"summary": "A cover-up is an attempt, whether successful or not, to conceal evidence of wrongdoing, error, incompetence, or other embarrassing or criminalizing information. Research has distinguished personal cover-ups (covering up one's own misdeeds) from relational cover-ups (covering up someone else's misdeeds)\nThe expression is usually applied to people in positions of authority who abuse power to avoid or silence criticism or to deflect guilt of wrongdoing.",
+"candidates": [
+[
+"Q173457",
+"Dreyfus affair",
+"event",
+"1894–1906 political scandal in France",
+"L2"
+],
+[
+"Q504",
+"Émile Zola",
+"person",
+"French writer (1840–1902)",
+"L1"
+],
+[
+"Q705178",
+"Guilt (law)",
+"event",
+"State of being responsible for a crime per the state's rules",
+"L1"
+],
+[
+"Q741304",
+"J'Accuse...!",
+"work",
+"1898 open letter by Émile Zola",
+"L1"
+],
+[
+"Q17955",
+"Criticism",
+"concept",
+"Practice of judging the merits and faults of something",
+"L1"
+],
+[
+"Q1761451",
+"Embarrassment",
+"concept",
+"Emotional state associated levels of discomfort",
+"L1"
+],
+[
+"Q183421",
+"My Lai massacre",
+"event",
+"1968 U.S. war crime during the Vietnam War",
+"1"
+],
+[
+"Q51025585",
+"Stormy Daniels–Donald Trump scandal",
+"event",
+"Political scandal and legal dispute",
+"1"
+],
+[
+"Q174834",
+"Authority",
+"concept",
+"Legitimate power to decide or authorize",
+"L1"
+],
+[
+"Q273659",
+"Iran–Contra affair",
+"event",
+"1985–1987 political scandal in the U.S.",
+"1"
+],
+[
+"Q486",
+"Chernobyl disaster",
+"event",
+"1986 nuclear accident in the Soviet Union",
+"1"
+],
+[
+"Q1975478",
+"Abuse of power",
+"concept",
+"Unlawful use of powers in an official capacity",
+"L1"
+],
+[
+"Q786536",
+"Armenian genocide denial",
+"theory",
+"negation, distortion or trivialization of Armenian genocide",
+"1"
+]
+]
+},
+{
+"id": "Q5883964",
+"title": "Holocaust teaching hoax",
+"summary": "The Holocaust teaching hoax was a hoax perpetrated in Great Britain in 2007 that purported that the teaching of the Holocaust had been banned in British schools for fear of offending Muslim pupils. These sensationalist claims, mainly circulated in a chain email, were false, but were inspired by a reported event at a school in Northern England in which a teacher avoided teaching the Holocaust as an optional topic.\nThe emails alleged that the ban had been put in place because of concerns that such teaching could \"offend\" Muslim pupils, claiming that \"the Muslim population\" denied the Holocaust. On 2 April 2007, the Daily Mail and The Guardian ran stories on the subject.",
+"candidates": [
+[
+"Q260464",
+"Ed Balls",
+"person",
+"British broadcaster and politician (born 1967)",
+"L1"
+],
+[
+"Q47740",
+"Muslims",
+"organization",
+"Adherents of Islam",
+"L2"
+],
+[
+"Q371008",
+"Chain letter",
+"concept",
+"Letter written in succession by a group of people",
+"L1"
+],
+[
+"Q4671329",
+"Academy (English school)",
+"concept",
+"Type of independent state school in England",
+"L1"
+],
+[
+"Q5260118",
+"Department for Education and Skills (England)",
+"organization",
+"Former United Kingdom government department",
+"1"
+],
+[
+"Q213283",
+"Diplomatic mission",
+"concept",
+"Representatives of one state in another",
+"L1"
+],
+[
+"Q2763",
+"The Holocaust",
+"event",
+"Genocide of European Jews by Nazi Germany",
+"L1"
+],
+[
+"Q1080794",
+"State school",
+"concept",
+"Type of school funded in whole or in part by general taxation",
+"L1"
+],
+[
+"Q145",
+"United Kingdom",
+"place",
+"Country in northwestern Europe",
+"L1"
+],
+[
+"Q1501560",
+"GCSE",
+"concept",
+"British educational qualifications",
+"1"
+],
+[
+"Q210534",
+"Daily Mail",
+"media",
+"British tabloid newspaper",
+"L1"
+],
+[
+"Q9531",
+"BBC",
+"media",
+"British public service broadcaster",
+"L1"
+],
+[
+"Q11148",
+"The Guardian",
+"media",
+"British national daily newspaper",
+"L1"
+]
+]
+},
+{
+"id": "Q6108128",
+"title": "JFK: The CIA, Vietnam, and the Plot to Assassinate John F. Kennedy",
+"summary": "JFK: The CIA, Vietnam and the Plot to Assassinate John F. Kennedy (ISBN 978-0806517728) is a book by L. Fletcher Prouty who was a Washington insider for nearly 20 years. It was first published in 1992.",
+"candidates": [
+[
+"Q2918736",
+"L. Fletcher Prouty",
+"person",
+"United States Air Force officer (1917–2001)",
+"L1"
+],
+[
+"Q103784",
+"Donald Sutherland",
+"person",
+"Canadian actor (1935–2024)",
+"1"
+],
+[
+"Q15456187",
+"Chip Berlet",
+"person",
+"American journalist and analyst (1949–2026)",
+"1"
+],
+[
+"Q6541867",
+"Liberty Lobby",
+"organization",
+"Former United States political advocacy organization",
+"1"
+],
+[
+"Q452765",
+"Jim Garrison",
+"person",
+"American district attorney (1921–1992)",
+"1"
+],
+[
+"Q609474",
+"Joint Chiefs of Staff",
+"organization",
+"Senior-most US military leaders",
+"1"
+],
+[
+"Q179497",
+"Oliver Stone",
+"person",
+"American filmmaker (born 1946)",
+"1"
+],
+[
+"Q34216",
+"Mossad",
+"organization",
+"National intelligence agency of Israel",
+"1"
+],
+[
+"Q881",
+"Vietnam",
+"place",
+"Country in Southeast Asia",
+"1"
+],
+[
+"Q741823",
+"JFK (film)",
+"work",
+"1991 American political thriller film directed by Oliver Stone",
+"1"
+],
+[
+"Q35525",
+"White House",
+"place",
+"Residence and workplace of the US president",
+"1"
+],
+[
+"Q37230",
+"Central Intelligence Agency",
+"organization",
+"U.S. intelligence and covert action agency",
+"1"
+],
+[
+"Q11696",
+"President of the United States",
+"concept",
+"Head of state and government",
+"1"
+]
+]
+},
+{
+"id": "Q130349047",
+"title": "Leland Olds hearing",
+"summary": "The United States Senate failed to confirm the re-nomination of Leland Olds as the head of the Federal Power Commission in 1949. Olds was an economist who in the 1920s, before he was appointed by Roosevelt as chairman of the commission, had been the Industrial editor for the Federated Press. It was a left wing news agency which served Trade Union newspapers but had an ambiguous relationship with the Communist Party USA. The Olds hearings have been cited as a precursor to McCarthyism.",
+"candidates": [
+[
+"Q6520781",
+"Leland Olds",
+"person",
+"American economist (1890–1960)",
+"L3"
+],
+[
+"Q3067871",
+"Federal Power Commission",
+"organization",
+"US government body (1930–1977)",
+"L1"
+],
+[
+"Q207066",
+"McCarthyism",
+"organization",
+"Phenomenon of US political rhetoric after WWII",
+"L2"
+],
+[
+"Q9640",
+"Lyndon B. Johnson",
+"person",
+"President of the United States from 1963 to 1969",
+"3"
+],
+[
+"Q308714",
+"Communist Party USA",
+"organization",
+"American political party",
+"L1"
+],
+[
+"Q885374",
+"John W. Bricker",
+"person",
+"U.S. Politician from Ohio",
+"1"
+],
+[
+"Q76381298",
+"1948 United States Senate election in Texas",
+"event",
+"1948 senatorial election in Texas",
+"1"
+],
+[
+"Q2378864",
+"United States Senate Committee on Commerce, Science, and Transportation",
+"organization",
+"Standing committee of the United States Senate",
+"1"
+],
+[
+"Q382801",
+"Irving Ives",
+"person",
+"American politician",
+"1"
+],
+[
+"Q373423",
+"Robert Caro",
+"person",
+"American journalist and author (born 1935)",
+"1"
+],
+[
+"Q223677",
+"John Foster Dulles",
+"person",
+"American politician and diplomat (1888–1959)",
+"1"
+],
+[
+"Q83396",
+"Eleanor Roosevelt",
+"person",
+"American diplomat and activist (1884–1962)",
+"1"
+],
+[
+"Q945795",
+"House Un-American Activities Committee",
+"organization",
+"American investigative committee (1938–1975)",
+"1"
+]
+]
+},
+{
+"id": "Q7019572",
+"title": "News propaganda",
+"summary": "News propaganda is a type of propaganda covertly packaged as credible news, but without sufficient transparency concerning the news item's source and the motivation behind its release. Transparency of the source is one parameter critical to distinguish between news propaganda and traditional news press releases and video news releases. The accuracy of this type of information, or lack thereof, puts the propaganda into the Black Propaganda or Gray Propaganda categories.\nAs with any propaganda, news propaganda may be spread for widely different reasons including governance, political or ideological motivations, partisan agendas, religious or ethnic reasons, and commercial or business motivations; their purposes are not always clear.",
+"candidates": [
+[
+"Q1683995",
+"Jason Stanley",
+"person",
+"American philosopher (born 1969)",
+"L1"
+],
+[
+"Q535347",
+"Transparency (behavior)",
+"concept",
+"Ethical concept implying accountability",
+"L1"
+],
+[
+"Q26643",
+"Commerce",
+"concept",
+"Exchange of goods and services",
+"L1"
+],
+[
+"Q207184",
+"Press release",
+"work",
+"Information provided for public relations",
+"L1"
+],
+[
+"Q5404323",
+"Ethnicity",
+"concept",
+"Social group defined by shared traits",
+"L1"
+],
+[
+"Q7281",
+"Propaganda",
+"event",
+"Communication used to influence opinion",
+"L1"
+],
+[
+"Q38926",
+"News",
+"work",
+"Information about current events",
+"L1"
+],
+[
+"Q1503443",
+"Secrecy",
+"concept",
+"Practice of hiding information",
+"L1"
+],
+[
+"Q1553864",
+"Governance",
+"concept",
+"Processes of interacting with people and making decisions",
+"L1"
+],
+[
+"Q4830453",
+"Business",
+"concept",
+"Organization engaged in commerce or industry",
+"L1"
+],
+[
+"Q7163",
+"Politics",
+"concept",
+"Activities associated with group decisions",
+"L1"
+],
+[
+"Q258307",
+"National security",
+"concept",
+"Security and defence of a nation state",
+"L1"
+],
+[
+"Q683794",
+"New media",
+"concept",
+"Communication technologies",
+"1"
+]
+]
+},
+{
+"id": "Q7132716",
+"title": "Paper terrorism",
+"summary": "\"Paper terrorism\" is a neologism referring to the use of false liens, frivolous lawsuits, bogus letters of credit, and other legal or pseudolegal documents lacking sound factual basis as a method of harassment against an opponent on a scale described as evocative of conventional armed terrorism. These methods are popular among some American anti-government groups and those associated with the redemption movement. \nMark Pitcavage of the Anti-Defamation League states that these methods were pioneered by the Posse Comitatus. Some victims of paper terrorism have been forced to declare bankruptcy. An article by the Southern Poverty Law Center states that another tactic is filing reports with the Internal Revenue Service falsely accusing their political enemies of having unreported income.",
+"candidates": [
+[
+"Q27277581",
+"Pseudolaw",
+"theory?",
+"Falsehood or trickery presented as law",
+"L1"
+],
+[
+"Q6769274",
+"Mark Pitcavage",
+"person",
+"American political scientist",
+"L1"
+],
+[
+"Q7233368",
+"Posse Comitatus (organization)",
+"organization",
+"Extremist American anti-government movement",
+"L1"
+],
+[
+"Q130989",
+"Neologism",
+"event",
+"Recent term gaining acceptance",
+"L1"
+],
+[
+"Q973587",
+"Internal Revenue Service",
+"organization",
+"Revenue service of the U.S. federal government",
+"L1"
+],
+[
+"Q7283",
+"Terrorism",
+"event",
+"Use of violence to achieve political or ideological aims",
+"L1"
+],
+[
+"Q2061914",
+"Southern Poverty Law Center",
+"organization",
+"American civil rights organization",
+"L1"
+],
+[
+"Q191627",
+"Letter of credit",
+"concept",
+"Document issued by a financial institution",
+"L1"
+],
+[
+"Q5432710",
+"False lien",
+"concept",
+"False document for granting confiscation of property of a debtor",
+"L1"
+],
+[
+"Q372765",
+"Credit rating",
+"concept",
+"Evaluation of the credit risk of a prospective debtor",
+"L1"
+],
+[
+"Q1439",
+"Texas",
+"place",
+"U.S. state",
+"L1"
+],
+[
+"Q7305770",
+"Redemption movement",
+"concept",
+"Movement advocating fraudulent tax resistance and debt elimination schemes",
+"L1"
+],
+[
+"Q544394",
+"Sedition",
+"concept",
+"Incitement of rebellion",
+"L1"
+]
+]
+},
+{
+"id": "Q383025",
+"title": "Tiszaeszlár affair",
+"summary": "The Tiszaeszlár affair was originally a murder case which was represented in journals as a blood libel that led to a trial that set off antisemitic agitation in Austria-Hungary in 1882 and 1883. After a local 14 year old girl, Eszter Solymosi, failed to return home on 1 April 1882, Jews were accused of murdering and beheading her. On 18 June 1882, a female body was found floating in the Tisza river near the town of Tiszadada.  A lengthy trial followed, eventually resulting in the acquittal of all the accused.",
+"candidates": [
+[
+"Q1061047",
+"Blood libel",
+"theory?",
+"Antisemitic trope",
+"L1"
+],
+[
+"Q28513",
+"Austria-Hungary",
+"place",
+"1867–1918 dual monarchy in Central Europe",
+"L1"
+],
+[
+"Q390287",
+"Eötvös Loránd University",
+"organization",
+"Public research university in Budapest, Hungary",
+"1"
+],
+[
+"Q177716",
+"Pogrom",
+"theory?",
+"Violent attack on an ethnic or religious group",
+"1"
+],
+[
+"Q429997",
+"Tiszaeszlár",
+"place",
+"Village in Szabolcs-Szatmár-Bereg Region, Hungary",
+"1"
+],
+[
+"Q171223",
+"Nyíregyháza",
+"place",
+"City in northeastern Hungary",
+"1"
+],
+[
+"Q1781",
+"Budapest",
+"place",
+"Capital and largest city of Hungary",
+"2"
+],
+[
+"Q134350",
+"Tisza",
+"place",
+"River in Central and Eastern Europe",
+"1"
+],
+[
+"Q1780",
+"Bratislava",
+"place",
+"Capital and largest city of Slovakia",
+"1"
+],
+[
+"Q121393",
+"Passover",
+"event",
+"Jewish holiday",
+"1"
+],
+[
+"Q179742",
+"Prejudice",
+"event",
+"Attitudes based on preconceived categories",
+"1"
+],
+[
+"Q132821",
+"Murder",
+"event",
+"Unlawful killing of a human with malice",
+"1"
+],
+[
+"Q28",
+"Hungary",
+"place",
+"Country in Central Europe",
+"1"
+]
+]
+},
+{
+"id": "Q2451922",
+"title": "Factoid",
+"summary": "A factoid was originally defined to mean a false statement presented as a fact. In colloquial speech, it is often used to mean a true but brief or trivial item of news or information (which can be less ambiguously described as a \"factlet\").\nThe term was coined in 1973 by American writer Norman Mailer to mean a piece of information that becomes accepted as a fact even though it is not actually true, or an invented fact believed to be true because it appears in print. Since the term's invention in 1973, it has become used to describe a brief or trivial item of news or information.",
+"candidates": [
+[
+"Q180962",
+"Norman Mailer",
+"person",
+"American writer (1923–2007)",
+"L2"
+],
+[
+"Q254983",
+"William Safire",
+"person",
+"American journalist and presidential speechwriter (1929–2009)",
+"2"
+],
+[
+"Q12501",
+"Great Wall of China",
+"work",
+"Series of fortifications in northern China",
+"L1"
+],
+[
+"Q1521451",
+"Trivia",
+"concept",
+"Knowledge of little consequence",
+"L1"
+],
+[
+"Q4616",
+"Marilyn Monroe",
+"person",
+"American actress and model (1926–1962)",
+"1"
+],
+[
+"Q130989",
+"Neologism",
+"event",
+"Recent term gaining acceptance",
+"1"
+],
+[
+"Q186174",
+"List of common misconceptions",
+"work",
+"Wikimedia list article",
+"1"
+],
+[
+"Q189349",
+"Urban legend",
+"concept",
+"Form of modern folklore",
+"1"
+],
+[
+"Q575741",
+"The Mercury News",
+"media",
+"Daily newspaper published in California",
+"1"
+],
+[
+"Q494170",
+"The Washington Times",
+"media",
+"American broadsheet newspaper",
+"1"
+],
+[
+"Q851510",
+"Mother Jones (magazine)",
+"media",
+"American progressive magazine",
+"1"
+],
+[
+"Q1542536",
+"The Atlantic",
+"media",
+"American magazine and publisher",
+"1"
+],
+[
+"Q11148",
+"The Guardian",
+"media",
+"British national daily newspaper",
+"1"
+]
+]
+},
+{
+"id": "Q1326929",
+"title": "Finland Plot",
+"summary": "In Thai politics, the Finland Plot, Finland Plan, Finland Strategy, Finland Conspiracy or Finland Declaration (Thai: แผนฟินแลนด์, ยุทธศาสตร์ฟินแลนด์, ปฏิญญาฟินแลนด์, Finnish: Suomi-salaliitto, Suomi-suunnitelma, Suomi-strategia) are names of a controversial conspiracy theory espoused by Sondhi Limthongkul and supporters affiliated with the People's Alliance for Democracy (PAD) in 2006 describing a plot allegedly developed by Thai Prime Minister Thaksin Shinawatra and former left-wing student leaders to overthrow the former Thai monarch, take control of the nation, and establish a communist state.  The plot allegedly originated in Finland.\nThe allegations damaged the popularity of Thaksin and his government, despite the fact that no evidence was ever produced to verify the existence of a plot.",
+"candidates": [
+[
+"Q164373",
+"Thaksin Shinawatra",
+"person",
+"Prime Minister of Thailand from 2001 to 2006",
+"L4"
+],
+[
+"Q855252",
+"Bhumibol Adulyadej",
+"person",
+"King of Thailand from 1946 to 2016",
+"L2"
+],
+[
+"Q869",
+"Thailand",
+"place",
+"Country in Southeast Asia",
+"L2"
+],
+[
+"Q1359816",
+"Communist Party of Thailand",
+"organization",
+"1942–1990s political party in Thailand",
+"2"
+],
+[
+"Q33",
+"Finland",
+"place",
+"Country in Northern Europe",
+"L2"
+],
+[
+"Q691928",
+"Chakri dynasty",
+"organization",
+"Reigning dynasty of Thailand",
+"1"
+],
+[
+"Q41614",
+"Constitutional monarchy",
+"organization",
+"Form of government",
+"1"
+],
+[
+"Q849866",
+"Communist state",
+"concept",
+"Form of government",
+"L1"
+],
+[
+"Q7210259",
+"Political capital",
+"concept",
+"Means by which a politician or political party may gain support or popularity",
+"1"
+],
+[
+"Q4921854",
+"Constitution of Thailand",
+"concept",
+"Supreme law of Thailand",
+"1"
+],
+[
+"Q190004",
+"Historical materialism",
+"concept",
+"Marxist theory of history and society",
+"1"
+],
+[
+"Q45382",
+"Coup d'état",
+"concept",
+"Deposition of a government",
+"1"
+]
+]
+},
+{
+"id": "Q141422907",
+"title": "Israelization of Albania",
+"summary": "The Israelization of Albania (Albanian: Izraelizimi i Shqipërisë) is an antisemitic conspiracy theory originating in Albania. The theory alleges that organizations or individuals affiliated with the Zionist movement are seeking to establish a Jewish state in Albania, and that resorts in Sazan, Zvërnec, Rrjoll and elsewhere are being created to establish Jewish settlements.\nThe theory has been promoted by prominent Albanian conspiracy theorists such as Alfred Cako, Zaçe Islami, and Altin Goxhaj.",
+"candidates": [
+[
+"Q222",
+"Albania",
+"place",
+"Country in Southeast Europe",
+"L2"
+],
+[
+"Q316901",
+"Edi Rama",
+"person",
+"Prime Minister of Albania since 2013",
+"2"
+],
+[
+"Q8748",
+"Albanian language",
+"concept",
+"Indo-European language",
+"L1"
+],
+[
+"Q6243195",
+"John Kiriakou",
+"person",
+"American ex-CIA officer and whistleblower (born 1964)",
+"1"
+],
+[
+"Q239411",
+"Ivanka Trump",
+"person",
+"American businesswoman (born 1981)",
+"1"
+],
+[
+"Q13628723",
+"Jared Kushner",
+"person",
+"American businessman (born 1981)",
+"1"
+],
+[
+"Q236",
+"Montenegro",
+"place",
+"Country in Southeast Europe",
+"1"
+],
+[
+"Q221",
+"North Macedonia",
+"place",
+"Country in Southeast Europe",
+"1"
+],
+[
+"Q403",
+"Serbia",
+"place",
+"Country in Southeast and Central Europe",
+"1"
+],
+[
+"Q22649",
+"Antisemitism",
+"concept",
+"Hostility, prejudice, or discrimination against Jews",
+"L1"
+],
+[
+"Q37230",
+"Central Intelligence Agency",
+"organization",
+"U.S. intelligence and covert action agency",
+"1"
+],
+[
+"Q48938223",
+"TikTok",
+"media",
+"Chinese video-focused social media platform",
+"1"
+]
+]
+}
+]
