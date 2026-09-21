@@ -308,6 +308,7 @@ async function init() {
   renderer.on("clickNode", ({ node }) => select(node, false));
   renderer.on("clickStage", () => select(null));
   renderer.getMouseCaptor().on("mousemovebody", (e) => moveTip(e.original));
+  setupTouchTap();
 
   buildClusterLabels();
   renderer.on("afterRender", placeClusterLabels);
@@ -374,6 +375,48 @@ function drawHover(ctx, d, settings) {
   ctx.fillText(d.label, d.x + d.size + 10, d.y + size / 3);
   ctx.beginPath(); ctx.arc(d.x, d.y, d.size + 2, 0, Math.PI * 2);
   ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
+}
+
+// ---------- lietimas (telefonai) ----------
+// Sigma "click" sugeneruoja tik jei pirštas visai nepajudėjo, o mazgai maži – todėl patys
+// atpažįstam bakstelėjimą ir parenkam artimiausią matomą mazgą aplink piršto vietą.
+function setupTouchTap() {
+  const TAP_MOVE = 12, TAP_MS = 450, HIT_R = 28;
+  let start = null, last = null, multi = false;
+  const tc = renderer.getTouchCaptor();
+  tc.on("touchdown", (e) => {
+    multi = e.touches.length > 1;
+    start = last = { x: e.touches[0].x, y: e.touches[0].y, t: Date.now() };
+  });
+  tc.on("touchmove", (e) => {
+    if (e.touches.length > 1) multi = true;
+    if (e.touches[0]) last = { x: e.touches[0].x, y: e.touches[0].y };
+  });
+  tc.on("touchup", () => {
+    if (!start || multi) { start = null; return; }
+    const moved = Math.hypot(last.x - start.x, last.y - start.y);
+    const quick = Date.now() - start.t < TAP_MS;
+    const p = start;
+    start = null;
+    if (moved > TAP_MOVE || !quick) return;
+    const id = nearestNode(p.x, p.y, HIT_R);
+    if (id) select(id, false);
+  });
+}
+
+function nearestNode(x, y, maxDist) {
+  let best = null, bestD = maxDist;
+  graph.forEachNode((id, a) => {
+    if (!visible(a.raw) && id !== state.selected) return;
+    const d = renderer.getNodeDisplayData(id);
+    if (!d || d.hidden) return;
+    const v = renderer.framedGraphToViewport(d);
+    const dist = Math.hypot(v.x - x, v.y - y) - d.size;
+    // Teorijoms – nedidelis pranašumas, kad būtų lengviau pataikyti
+    const bias = a.raw.k === "theory" ? 4 : 0;
+    if (dist - bias < bestD) { bestD = dist - bias; best = id; }
+  });
+  return best;
 }
 
 // ---------- klasterių etiketės ----------
