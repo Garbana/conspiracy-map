@@ -159,9 +159,9 @@ def main():
     resolve_titles(targets, s)
 
     qids = sorted({r["qid"] for r in s["resolve"].values() if r and r.get("qid")})
-    enrich.fetch_wikidata(qids, s, "wd", full=True)
+    enrich.fetch_wikidata(qids, s, "wd", full=True, save=save_state)
     classes = sorted({c for q in qids for c in s["wd"].get(q, {}).get("p31", [])})
-    enrich.fetch_wikidata(classes, s, "classes", full=False)
+    enrich.fetch_wikidata(classes, s, "classes", full=False, save=save_state)
 
     def clabel(q):
         return s["classes"].get(q, {}).get("label_en") or q

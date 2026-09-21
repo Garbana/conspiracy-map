@@ -101,7 +101,8 @@ def claim_time(ent, prop):
     return None
 
 
-def fetch_wikidata(qids, s, key, full=True):
+def fetch_wikidata(qids, s, key, full=True, save=None):
+    save = save or save_state
     todo = [q for q in qids if q not in s[key]]
     print(f"[{'B' if full else 'C'}] Wikidata ({key}): liko {len(todo)}")
     for i, batch in enumerate(chunks(todo, 50), 1):
@@ -140,9 +141,9 @@ def fetch_wikidata(qids, s, key, full=True):
         for q in batch:
             s[key].setdefault(q, {"missing": True})
         if i % 10 == 0:
-            save_state(s)
+            save(s)
         print(f"   {min(i * 50, len(todo)):5d}/{len(todo)}")
-    save_state(s)
+    save(s)
 
 
 # ---------- C: tipo klasifikacija ----------

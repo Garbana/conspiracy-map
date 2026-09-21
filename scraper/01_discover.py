@@ -2,7 +2,7 @@
 
 Šaltiniai:
   A) Vikipedijos kategorijų medis nuo 'Category:Conspiracy theories'
-  B) Wikidata: instance of (P31) / subclass of (P279) -> conspiracy theory (Q17379835)
+  B) Wikidata: instance of (P31) / subclass of (P279) -> conspiracy theory (Q159535)
   C) Nuorodos iš 'List of conspiracy theories'
 
 Rezultatas: data/export/theories_candidates.json ir data/export/categories.json
@@ -98,7 +98,7 @@ def from_wikidata():
     try:
         rows = sparql("""
         SELECT ?item ?enwiki WHERE {
-          ?item wdt:P31 wd:Q17379835 .
+          ?item wdt:P31 wd:Q159535 .
           ?enwiki schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> .
         }""", retries=4)
     except RuntimeError as e:
