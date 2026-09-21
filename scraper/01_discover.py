@@ -96,11 +96,18 @@ def from_wikidata():
     # Paprasčiausia užklausa (tik tiesioginis P31). Wikidata dažnai perkrauta – jei nepavyksta,
     # žingsnį praleidžiam: QID visiems straipsniams gausim 2 etape per MediaWiki pageprops.
     try:
-        rows = sparql("""
-        SELECT ?item ?enwiki WHERE {
-          ?item wdt:P31 wd:Q159535 .
-          ?enwiki schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> .
-        }""", retries=4)
+        classes = [r["c"]["value"].rsplit("/", 1)[-1] for r in sparql(
+            "SELECT ?c WHERE { ?c wdt:P279* wd:Q159535 . }", retries=4)]
+        print(f"   {len(classes)} klasių (conspiracy theory + poklasiai)")
+        rows = []
+        for i in range(0, len(classes), 50):
+            vals = " ".join(f"wd:{c}" for c in classes[i:i + 50])
+            rows += sparql(f"""
+            SELECT DISTINCT ?item ?enwiki WHERE {{
+              VALUES ?cls {{ {vals} }}
+              ?item wdt:P31 ?cls .
+              ?enwiki schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> .
+            }}""", retries=4)
     except RuntimeError as e:
         print(f"   ! Wikidata nepasiekiama, praleidžiu ({e})")
         return []

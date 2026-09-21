@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sąmokslo teorijų žemėlapis</title>
+<meta name="description" content="Interaktyvus sąmokslo teorijų, jose minimų asmenų, vietų ir organizacijų žemėlapis pagal Vikipediją ir Wikidata.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07080d; --bg2: #0d0f18; --panel: rgba(14, 16, 26, .92); --line: rgba(255,255,255,.08);
+  --text: #e6e3da; --muted: #8d8a82; --faint: #5b5a56; --accent: #d4a84a; --accent2: #f0cf82;
+  --radius: 12px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+  font: 14px/1.5 Inter, system-ui, sans-serif; overflow: hidden; }
+#graph { position: fixed; inset: 0;
+  background: radial-gradient(ellipse at 50% 45%, #121526 0%, var(--bg) 70%); }
+button, input, select { font: inherit; color: inherit; }
+a { color: var(--accent2); }
+
+/* ---------- kairysis skydas ---------- */
+#side { position: fixed; top: 16px; left: 16px; bottom: 16px; width: 320px; z-index: 5;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  backdrop-filter: blur(10px); display: flex; flex-direction: column; overflow: hidden; }
+#side header { padding: 20px 20px 14px; border-bottom: 1px solid var(--line); }
+h1 { font: 700 26px/1.05 "Cormorant Garamond", serif; margin: 0; letter-spacing: .01em; }
+h1 span { color: var(--accent); }
+.sub { color: var(--muted); font-size: 12px; margin-top: 6px; }
+#side .scroll { overflow-y: auto; padding: 14px 20px 20px; flex: 1; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+  margin: 16px 0 8px; display: flex; justify-content: space-between; align-items: center; }
+.label:first-child { margin-top: 0; }
+.label button { background: none; border: 0; color: var(--faint); cursor: pointer; font-size: 11px;
+  letter-spacing: .05em; text-transform: none; padding: 0; }
+.label button:hover { color: var(--accent2); }
+
+#search-wrap { position: relative; }
+#search { width: 100%; padding: 10px 12px; background: var(--bg2); border: 1px solid var(--line);
+  border-radius: 8px; outline: none; }
+#search:focus { border-color: var(--accent); }
+#results { position: absolute; left: 0; right: 0; top: 100%; margin-top: 4px; z-index: 10;
+  background: #11131e; border: 1px solid var(--line); border-radius: 8px; max-height: 320px;
+  overflow-y: auto; display: none; }
+#results div { padding: 8px 12px; cursor: pointer; display: flex; gap: 8px; align-items: center; }
+#results div:hover, #results div.on { background: rgba(212,168,74,.12); }
+#results small { color: var(--muted); margin-left: auto; font-size: 11px; white-space: nowrap; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 99px;
+  border: 1px solid var(--line); background: transparent; cursor: pointer; font-size: 12.5px;
+  color: var(--muted); transition: all .15s; user-select: none; }
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.chip.on { color: var(--text); border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.05); }
+.chip:not(.on) .dot { opacity: .35; }
+.chip .n { color: var(--faint); font-size: 11px; }
+
+.row { display: flex; align-items: center; gap: 10px; }
+input[type=range] { flex: 1; accent-color: var(--accent); }
+select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px solid var(--line);
+  border-radius: 8px; }
+.toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--muted);
+  font-size: 13px; margin-top: 8px; }
+.toggle input { accent-color: var(--accent); }
+#stats { color: var(--faint); font-size: 12px; margin-top: 18px; line-height: 1.6; }
+#side footer { padding: 12px 20px; border-top: 1px solid var(--line); font-size: 11px; color: var(--faint); }
+#side footer a { color: var(--muted); }
+
+/* ---------- dešinysis skydas (kortelė) ---------- */
+#card { position: fixed; top: 16px; right: 16px; bottom: 16px; width: 380px; z-index: 5;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  backdrop-filter: blur(10px); display: none; flex-direction: column; overflow: hidden; }
+#card.open { display: flex; }
+#card .head { padding: 20px 20px 14px; border-bottom: 1px solid var(--line); position: relative; }
+#card .close { position: absolute; top: 12px; right: 12px; background: none; border: 0;
+  color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; padding: 4px 8px; }
+#card .close:hover { color: var(--text); }
+#card h2 { font: 700 24px/1.15 "Cormorant Garamond", serif; margin: 6px 28px 4px 0; }
+#card .lt { color: var(--muted); font-style: italic; margin-bottom: 6px; }
+.badge { display: inline-block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.meta { color: var(--muted); font-size: 12.5px; margin-top: 8px; }
+.meta b { color: var(--text); font-weight: 500; }
+#card .scroll { overflow-y: auto; padding: 16px 20px 24px; flex: 1; }
+.summary { color: #cfccc4; line-height: 1.65; white-space: pre-line; }
+.summary.short { max-height: 11.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+.more { background: none; border: 0; color: var(--accent2); cursor: pointer; padding: 4px 0; font-size: 13px; }
+.links a { display: inline-block; margin: 10px 14px 0 0; font-size: 13px; }
+.group h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+  margin: 22px 0 8px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.group h3 .n { color: var(--faint); }
+.conn { display: flex; align-items: center; gap: 8px; padding: 5px 8px; margin: 0 -8px;
+  border-radius: 6px; cursor: pointer; }
+.conn:hover { background: rgba(255,255,255,.05); }
+.conn .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+.conn .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.conn .w { width: 38px; height: 3px; background: rgba(255,255,255,.08); border-radius: 2px; flex: none; }
+.conn .w i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+.conn .lead { color: var(--accent); font-size: 10px; }
+.showall { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 12px; padding: 6px 0; }
+.showall:hover { color: var(--accent2); }
+
+/* ---------- legenda, loader, mobilus ---------- */
+#legend { position: fixed; bottom: 16px; left: 352px; z-index: 4; display: flex; flex-wrap: wrap;
+  gap: 4px 14px; max-width: calc(100vw - 760px); font-size: 12px; color: var(--muted);
+  background: rgba(7,8,13,.6); padding: 8px 12px; border-radius: 8px; }
+#legend span { display: inline-flex; align-items: center; gap: 6px; }
+#legend .dot { width: 8px; height: 8px; border-radius: 50%; }
+#zoom { position: fixed; right: 16px; bottom: 16px; z-index: 4; display: flex; flex-direction: column; gap: 4px; }
+#card.open ~ #zoom { right: 412px; }
+#zoom button { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--panel); cursor: pointer; font-size: 18px; }
+#zoom button:hover { border-color: var(--accent); }
+#loader { position: fixed; inset: 0; display: grid; place-items: center; z-index: 20; background: var(--bg);
+  transition: opacity .6s; }
+#loader div { text-align: center; }
+#loader .big { font: 700 34px "Cormorant Garamond", serif; }
+#loader .big span { color: var(--accent); }
+#loader p { color: var(--muted); }
+#menu-btn { display: none; }
+#clabels { position: fixed; inset: 0; pointer-events: none; z-index: 2; }
+.clabel { position: absolute; transform: translate(-50%, -50%); text-align: center; white-space: nowrap;
+  font: 600 15px/1.1 "Cormorant Garamond", serif; letter-spacing: .04em; text-transform: uppercase;
+  color: rgba(255,255,255,.75); text-shadow: 0 0 6px #07080d, 0 0 12px #07080d; transition: opacity .2s; }
+.clabel small { display: block; font: 500 10px Inter, sans-serif; letter-spacing: .08em; opacity: .6; margin-top: 3px; }
+#clabels.off .clabel { opacity: 0; }
+#tooltip { position: fixed; pointer-events: none; z-index: 30; background: #11131e; border: 1px solid var(--line);
+  border-radius: 8px; padding: 8px 10px; max-width: 280px; font-size: 12.5px; display: none; }
+#tooltip b { display: block; font-weight: 600; }
+#tooltip span { color: var(--muted); }
+
+@media (max-width: 900px) {
+  #side { top: auto; left: 0; right: 0; bottom: 0; width: auto; max-height: 70vh; border-radius: 14px 14px 0 0;
+    transform: translateY(calc(100% - 64px)); transition: transform .25s; }
+  #side.open { transform: none; }
+  #side header { cursor: pointer; padding: 14px 16px; }
+  #side header .sub { display: none; }
+  #side .scroll, #side footer { padding-left: 16px; padding-right: 16px; }
+  h1 { font-size: 22px; }
+  #card { top: 0; left: 0; right: 0; bottom: 0; width: auto; border-radius: 0; z-index: 8; }
+  #legend { display: none; }
+  .clabel { font-size: 11px; }
+  .clabel small { display: none; }
+  #zoom { bottom: 80px; }
+  #card.open ~ #zoom { right: 16px; }
+}
+</style>
+</head>
+<body>
+<div id="graph"></div>
+
+<aside id="side">
+  <header id="side-head">
+    <h1>Sąmokslo teorijų <span>žemėlapis</span></h1>
+    <div class="sub">Teorijos, jose minimi žmonės, vietos, organizacijos ir įvykiai — ir kaip jie susiję.</div>
+  </header>
+  <div class="scroll">
+    <div class="label">Paieška</div>
+    <div id="search-wrap">
+      <input id="search" type="search" placeholder="Teorija, asmuo, vieta…" autocomplete="off">
+      <div id="results"></div>
+    </div>
+
+    <div class="label">Temos <button id="themes-all">visos / jokios</button></div>
+    <div class="chips" id="themes"></div>
+
+    <div class="label">Mazgų tipai</div>
+    <div class="chips" id="types"></div>
+    <label class="toggle"><input type="checkbox" id="generic"> Rodyti bendrus mazgus (žiniasklaida, šalys…)</label>
+
+    <div class="label">Min. ryšių skaičius <span id="deg-v" style="color:var(--text)">2</span></div>
+    <div class="row"><input type="range" id="deg" min="1" max="30" value="2"></div>
+
+    <div class="label">Spalvinti pagal</div>
+    <select id="color-by">
+      <option value="cluster">Klasterį (automatiškai rastas grupes)</option>
+      <option value="type">Tipą</option>
+      <option value="theme">Temą</option>
+    </select>
+
+    <div id="stats"></div>
+  </div>
+  <footer>
+    Duomenys: <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Vikipedija</a> (CC BY-SA 4.0),
+    <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a> (CC0).
+    <a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">Atviras kodas</a>.
+    Žemėlapis rodo, kas <em>teigiama</em> — ne tai, kas tiesa.
+  </footer>
+</aside>
+
+<aside id="card">
+  <div class="head">
+    <button class="close" id="card-close" aria-label="Uždaryti">×</button>
+    <span class="badge" id="c-badge"></span>
+    <h2 id="c-title"></h2>
+    <div class="lt" id="c-lt"></div>
+    <div class="meta" id="c-meta"></div>
+  </div>
+  <div class="scroll" id="c-body"></div>
+</aside>
+
+<div id="clabels"></div>
+<div id="legend"></div>
+<div id="zoom">
+  <button id="z-in" title="Priartinti">+</button>
+  <button id="z-out" title="Nutolinti">−</button>
+  <button id="z-reset" title="Visas vaizdas">⤢</button>
+</div>
+<div id="tooltip"></div>
+<div id="loader"><div><div class="big">Sąmokslo teorijų <span>žemėlapis</span></div><p id="load-msg">Kraunami duomenys…</p></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/graphology@0.25.4/dist/graphology.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
+<script>
+"use strict";
+const TYPES = {
+  theory:       { lt: "Teorija",       color: "#e8b14a" },
+  related:      { lt: "Susijęs straipsnis", color: "#c77dff" },
+  person:       { lt: "Asmuo",         color: "#5fb4ff" },
+  organization: { lt: "Organizacija",  color: "#ff6b6b" },
+  place:        { lt: "Vieta",         color: "#4fd1a5" },
+  event:        { lt: "Įvykis",        color: "#ff9f5a" },
+  work:         { lt: "Kūrinys",       color: "#f57fb5" },
+  concept:      { lt: "Sąvoka",        color: "#9aa3b5" },
+  media:        { lt: "Žiniasklaida",  color: "#7b8494" },
+};
+const THEMES = {
+  politics:        { lt: "Politika",                color: "#ff6b6b" },
+  health:          { lt: "Sveikata ir medicina",    color: "#4fd1a5" },
+  ufo:             { lt: "NSO ir ateiviai",         color: "#8be04e" },
+  science_tech:    { lt: "Mokslas ir technologijos", color: "#5fb4ff" },
+  history:         { lt: "Istorija",                color: "#e8b14a" },
+  ethnic_religious:{ lt: "Etninės ir religinės",    color: "#c77dff" },
+  deaths:          { lt: "Mirtys ir žmogžudystės",  color: "#ff4d8d" },
+  war_terror:      { lt: "Karas ir terorizmas",     color: "#ff9f5a" },
+  finance:         { lt: "Finansai",                color: "#f5d76e" },
+  media_disinfo:   { lt: "Žiniasklaida ir dezinformacija", color: "#9aa3b5" },
+  intelligence:    { lt: "Žvalgyba ir slaptos operacijos", color: "#3ec1d3" },
+  environment:     { lt: "Klimatas ir aplinka",     color: "#6fcf97" },
+};
+const CLUSTER_PAL = ["#e8b14a","#5fb4ff","#ff6b6b","#4fd1a5","#c77dff","#ff9f5a","#f57fb5","#8be04e",
+  "#3ec1d3","#f5d76e","#b39ddb","#ff8a65","#81c784","#64b5f6","#e57373","#ffd54f"];
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const kindOf = (n) => (n.k === "theory" ? "theory" : n.k === "related" ? "related" : n.ty in TYPES ? n.ty : "concept");
+
+let graph, renderer, data, summaries = null;
+const state = { themes: new Set(Object.keys(THEMES)), types: new Set(Object.keys(TYPES).filter((t) => t !== "media")),
+  generic: false, minDeg: 2, colorBy: "cluster", selected: null, hovered: null, neighbors: new Set() };
+
+function nodeColor(n) {
+  if (state.colorBy === "theme") {
+    const t = n.th && n.th[0];
+    return t ? THEMES[t].color : "#4a4d57";
+  }
+  if (state.colorBy === "cluster") return n.cm === undefined ? "#4a4d57" : CLUSTER_PAL[n.cm % CLUSTER_PAL.length];
+  return TYPES[kindOf(n)].color;
+}
+
+function visible(n) {
+  const kind = kindOf(n);
+  if (!state.types.has(kind)) return false;
+  if (n.g && !state.generic) return false;
+  if ((n.dg || 0) < state.minDeg) return false;
+  if (n.k === "theory" || n.k === "related") {
+    if (state.themes.size < Object.keys(THEMES).length) {
+      if (!n.th || !n.th.some((t) => state.themes.has(t))) return false;
+    }
+  }
+  return true;
+}
+
+async function init() {
+  const res = await fetch("data/graph.json");
+  $("load-msg").textContent = "Braižomas žemėlapis…";
+  data = await res.json();
+  graph = new graphology.Graph({ type: "undirected", multi: false });
+  for (const n of data.nodes) {
+    const kind = kindOf(n);
+    const base = kind === "theory" ? 2 : kind === "related" ? 1.6 : 1;
+    graph.addNode(n.id, { x: n.x, y: n.y, label: n.t, size: base + Math.sqrt(n.dg || 0) * (kind === "theory" ? .32 : .2),
+      raw: n, zIndex: kind === "theory" ? 2 : 1 });
+  }
+  let maxW = 0;
+  for (const [s, t, w, lead] of data.edges) {
+    if (!graph.hasNode(s) || !graph.hasNode(t) || s === t || graph.hasEdge(s, t)) continue;
+    graph.addEdge(s, t, { weight: w, lead });
+    maxW = Math.max(maxW, w);
+  }
+  data.maxW = maxW;
+
+  renderer = new Sigma(graph, $("graph"), {
+    renderEdgeLabels: false, hideEdgesOnMove: true, allowInvalidContainer: true, labelFont: "Inter", labelSize: 12,
+    labelWeight: "500", labelColor: { color: "#d8d4ca" }, labelDensity: 0.6,
+    labelGridCellSize: 90, labelRenderedSizeThreshold: 7, zIndex: true,
+    defaultEdgeColor: "rgba(255,255,255,0.05)", minCameraRatio: 0.02, maxCameraRatio: 3,
+    nodeReducer, edgeReducer,
+  });
+  // Etiketės šviesiame fone neatrodo – piešiam be fono, su šešėliu
+  renderer.setSetting("hoverRenderer", drawHover);
+
+  renderer.on("enterNode", ({ node }) => { state.hovered = node; renderer.refresh({ skipIndexation: true }); showTip(node); });
+  renderer.on("leaveNode", () => { state.hovered = null; renderer.refresh({ skipIndexation: true }); hideTip(); });
+  renderer.on("clickNode", ({ node }) => select(node, false));
+  renderer.on("clickStage", () => select(null));
+  renderer.getMouseCaptor().on("mousemovebody", (e) => moveTip(e.original));
+
+  buildClusterLabels();
+  renderer.on("afterRender", placeClusterLabels);
+  buildControls();
+  updateStats();
+  readHash();
+  $("loader").style.opacity = 0;
+  setTimeout(() => $("loader").remove(), 700);
+}
+
+function nodeReducer(id, attr) {
+  const n = attr.raw;
+  const res = { ...attr, color: nodeColor(n) };
+  if (!visible(n) && id !== state.selected) { res.hidden = true; return res; }
+  const focus = state.hovered || state.selected;
+  if (focus) {
+    if (id === focus || state.neighbors.has(id) || (state.hovered && graph.hasEdge(state.hovered, id))) {
+      res.forceLabel = true;
+      res.zIndex = 3;
+      if (id === focus) res.highlighted = true;
+    } else {
+      res.color = "#23252e";
+      res.label = "";
+      res.zIndex = 0;
+    }
+  }
+  return res;
+}
+
+function edgeReducer(id, attr) {
+  const res = { ...attr };
+  const [s, t] = graph.extremities(id);
+  const focus = state.hovered || state.selected;
+  if (focus) {
+    if (s === focus || t === focus) {
+      const other = graph.getNodeAttributes(s === focus ? t : s).raw;
+      const a = 0.25 + 0.6 * Math.min(1, attr.weight / (data.maxW * 0.4));
+      res.color = hexA(nodeColor(other), a);
+      res.size = attr.lead ? 1.4 : 0.8;
+      res.zIndex = 2;
+    } else res.hidden = true;
+  } else {
+    res.color = "#161a26";
+    res.size = 0.3;
+  }
+  return res;
+}
+
+function hexA(hex, a) {
+  const v = parseInt(hex.slice(1), 16);
+  return `rgba(${v >> 16},${(v >> 8) & 255},${v & 255},${a.toFixed(2)})`;
+}
+
+function drawHover(ctx, d, settings) {
+  const size = settings.labelSize, font = settings.labelFont;
+  ctx.font = `600 ${size}px ${font}`;
+  const w = ctx.measureText(d.label).width + 12;
+  ctx.fillStyle = "rgba(14,16,26,.95)";
+  ctx.strokeStyle = "rgba(255,255,255,.18)";
+  ctx.beginPath();
+  ctx.roundRect(d.x + d.size + 4, d.y - size / 2 - 5, w, size + 10, 5);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = "#fff";
+  ctx.fillText(d.label, d.x + d.size + 10, d.y + size / 3);
+  ctx.beginPath(); ctx.arc(d.x, d.y, d.size + 2, 0, Math.PI * 2);
+  ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
+}
+
+// ---------- klasterių etiketės ----------
+function buildClusterLabels() {
+  const box = $("clabels");
+  box.innerHTML = (data.clusters || []).map((c) =>
+    `<div class="clabel" data-c="${c.id}" style="color:${hexA(CLUSTER_PAL[c.id % CLUSTER_PAL.length], .9)}">` +
+    `${esc(c.top)}<small>${c.n} teorijos · ${c.themes.map((t) => esc(THEMES[t].lt)).join(" · ")}</small></div>`).join("");
+}
+function placeClusterLabels() {
+  const box = $("clabels");
+  const focus = state.hovered || state.selected;
+  box.classList.toggle("off", !!focus || state.colorBy !== "cluster");
+  // Didesni klasteriai – pirmi; persidengiantys mažesni slepiami (priartinus atsiras)
+  const els = [...box.children].map((el) => ({ el, c: data.clusters.find((x) => x.id === +el.dataset.c) }))
+    .sort((a, b) => b.c.n - a.c.n);
+  const placed = [];
+  for (const { el, c } of els) {
+    const p = renderer.graphToViewport({ x: c.x, y: c.y });
+    el.style.left = p.x + "px";
+    el.style.top = p.y + "px";
+    el.style.display = "";
+    const w = el.offsetWidth, h = el.offsetHeight;
+    const r = { l: p.x - w / 2 - 6, r: p.x + w / 2 + 6, t: p.y - h / 2 - 4, b: p.y + h / 2 + 4 };
+    const hit = placed.some((q) => r.l < q.r && r.r > q.l && r.t < q.b && r.b > q.t);
+    if (hit) el.style.display = "none"; else placed.push(r);
+  }
+}
+
+// ---------- tooltip ----------
+function showTip(id) {
+  const n = graph.getNodeAttribute(id, "raw");
+  $("tooltip").innerHTML = `<b>${esc(n.t)}</b><span>${esc(TYPES[kindOf(n)].lt)}${n.sd ? " · " + esc(n.sd) : ""}</span>`;
+  $("tooltip").style.display = "block";
+}
+function moveTip(e) {
+  const t = $("tooltip");
+  if (t.style.display !== "block") return;
+  t.style.left = Math.min(e.clientX + 14, innerWidth - t.offsetWidth - 8) + "px";
+  t.style.top = (e.clientY + 14) + "px";
+}
+function hideTip() { $("tooltip").style.display = "none"; }
+
+// ---------- pasirinkimas ir kortelė ----------
+function select(id, fromSearch) {
+  state.selected = id;
+  state.neighbors = new Set(id ? graph.neighbors(id) : []);
+  if (!id) {
+    $("card").classList.remove("open");
+    history.replaceState(null, "", location.pathname);
+    renderer.refresh({ skipIndexation: true });
+    return;
+  }
+  history.replaceState(null, "", "#" + encodeURIComponent(id));
+  renderCard(id);
+  const cam = renderer.getCamera();
+  const p = renderer.getNodeDisplayData(id);
+  if (p) cam.animate({ x: p.x, y: p.y, ratio: fromSearch ? 0.25 : Math.min(cam.ratio, 0.6) }, { duration: 600 });
+  renderer.refresh({ skipIndexation: true });
+}
+
+async function renderCard(id) {
+  const n = graph.getNodeAttribute(id, "raw");
+  const kind = kindOf(n);
+  const t = TYPES[kind];
+  $("c-badge").textContent = t.lt;
+  $("c-badge").style.cssText = `background:${hexA(t.color, .15)};color:${t.color}`;
+  $("c-title").textContent = n.t;
+  $("c-lt").textContent = n.lt && n.lt !== n.t ? n.lt : "";
+  const meta = [];
+  if (n.sd) meta.push(esc(n.sd));
+  if (n.d) meta.push(`<b>${esc(n.d.replace(/-00/g, "").replace(/^0+/, ""))}</b>`);
+  if (n.rg) meta.push("Regionas: <b>" + n.rg.map(esc).join(", ") + "</b>");
+  $("c-meta").innerHTML = meta.join(" · ");
+
+  const body = [];
+  if (n.th && n.th.length) {
+    body.push(`<div class="chips" style="margin-bottom:14px">${n.th.map((k) =>
+      `<span class="chip on"><span class="dot" style="background:${THEMES[k].color}"></span>${esc(THEMES[k].lt)}</span>`).join("")}</div>`);
+  }
+  body.push(`<div id="c-summary"></div>`);
+  const wiki = n.u || `https://en.wikipedia.org/wiki/${encodeURIComponent(n.t.replace(/ /g, "_"))}`;
+  body.push(`<div class="links"><a href="${esc(wiki)}" target="_blank" rel="noopener">Vikipedija ↗</a>` +
+    (n.id.startsWith("Q") ? `<a href="https://www.wikidata.org/wiki/${esc(n.id)}" target="_blank" rel="noopener">Wikidata ↗</a>` : "") +
+    (n.c ? `<a href="https://www.openstreetmap.org/?mlat=${n.c[0]}&mlon=${n.c[1]}#map=6/${n.c[0]}/${n.c[1]}" target="_blank" rel="noopener">Žemėlapyje ↗</a>` : "") +
+    `</div>`);
+
+  // Ryšiai, sugrupuoti pagal tipą, surikiuoti pagal svorį
+  const groups = {};
+  graph.forEachEdge(id, (e, a, s, tg) => {
+    const o = s === id ? tg : s;
+    const on = graph.getNodeAttribute(o, "raw");
+    (groups[kindOf(on)] ||= []).push({ id: o, n: on, w: a.weight, lead: a.lead });
+  });
+  const order = ["theory", "related", "person", "organization", "event", "place", "work", "concept", "media"];
+  for (const k of order) {
+    const g = groups[k];
+    if (!g) continue;
+    g.sort((a, b) => b.w - a.w);
+    const LIM = 12;
+    const row = (c) => `<div class="conn" data-id="${esc(c.id)}"><span class="dot" style="background:${TYPES[k].color}"></span>` +
+      `<span class="t" title="${esc(c.n.t)}">${esc(c.n.t)}</span>${c.lead ? '<span class="lead" title="Minima įžangoje">★</span>' : ""}` +
+      `<span class="w"><i style="width:${Math.max(8, Math.min(100, c.w / data.maxW * 250))}%"></i></span></div>`;
+    body.push(`<div class="group"><h3>${esc(TYPES[k].lt)} <span class="n">${g.length}</span></h3>` +
+      g.slice(0, LIM).map(row).join("") +
+      (g.length > LIM ? `<div class="rest" hidden>${g.slice(LIM).map(row).join("")}</div><button class="showall">Rodyti visus (${g.length})</button>` : "") +
+      `</div>`);
+  }
+  if (!Object.keys(groups).length) body.push(`<p style="color:var(--muted)">Ryšių nerasta.</p>`);
+  $("c-body").innerHTML = body.join("");
+  $("c-body").scrollTop = 0;
+  $("card").classList.add("open");
+
+  const box = $("c-summary");
+  if (n.k === "theory" || n.k === "related") {
+    if (!summaries) {
+      box.innerHTML = `<p style="color:var(--faint)">Kraunama…</p>`;
+      summaries = await fetch("data/summaries.json").then((r) => r.json()).catch(() => ({}));
+    }
+    if (state.selected !== id) return;
+    const s = summaries[id];
+    if (s) {
+      box.innerHTML = `<div class="summary short">${esc(s)}</div>`;
+      const el = box.firstChild;
+      if (el.scrollHeight > el.clientHeight + 4) {
+        const b = document.createElement("button");
+        b.className = "more"; b.textContent = "Skaityti daugiau";
+        b.onclick = () => { el.classList.remove("short"); b.remove(); };
+        box.appendChild(b);
+      } else el.classList.remove("short");
+    } else box.innerHTML = "";
+  } else {
+    box.innerHTML = n.n ? `<p style="color:var(--muted)">Minimas <b style="color:var(--text)">${n.n}</b> teorijų straipsniuose.</p>` : "";
+  }
+}
+
+$("c-body").addEventListener("click", (e) => {
+  const c = e.target.closest(".conn");
+  if (c) return select(c.dataset.id, false);
+  const b = e.target.closest(".showall");
+  if (b) { b.previousElementSibling.hidden = false; b.remove(); }
+});
+$("card-close").onclick = () => select(null);
+
+// ---------- valdikliai ----------
+function buildControls() {
+  const tc = {}, kc = {};
+  for (const n of data.nodes) {
+    kc[kindOf(n)] = (kc[kindOf(n)] || 0) + 1;
+    if (n.k === "theory") for (const t of n.th || []) tc[t] = (tc[t] || 0) + 1;
+  }
+  $("themes").innerHTML = Object.entries(THEMES).sort((a, b) => (tc[b[0]] || 0) - (tc[a[0]] || 0)).map(([k, v]) =>
+    `<button class="chip on" data-k="${k}"><span class="dot" style="background:${v.color}"></span>${esc(v.lt)} <span class="n">${tc[k] || 0}</span></button>`).join("");
+  $("types").innerHTML = Object.entries(TYPES).map(([k, v]) =>
+    `<button class="chip ${state.types.has(k) ? "on" : ""}" data-k="${k}"><span class="dot" style="background:${v.color}"></span>${esc(v.lt)} <span class="n">${kc[k] || 0}</span></button>`).join("");
+
+  $("themes").onclick = (e) => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    toggle(state.themes, c.dataset.k, c);
+  };
+  $("types").onclick = (e) => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    toggle(state.types, c.dataset.k, c);
+    if (c.dataset.k === "media" && state.types.has("media")) { state.generic = true; $("generic").checked = true; }
+    refresh();
+  };
+  $("themes-all").onclick = () => {
+    const all = state.themes.size === Object.keys(THEMES).length;
+    state.themes = new Set(all ? [] : Object.keys(THEMES));
+    document.querySelectorAll("#themes .chip").forEach((c) => c.classList.toggle("on", !all));
+    refresh();
+  };
+  $("generic").onchange = (e) => { state.generic = e.target.checked; refresh(); };
+  $("deg").oninput = (e) => { state.minDeg = +e.target.value; $("deg-v").textContent = e.target.value; refresh(); };
+  $("color-by").onchange = (e) => { state.colorBy = e.target.value; renderLegend(); refresh(); };
+  $("z-in").onclick = () => renderer.getCamera().animatedZoom({ duration: 300 });
+  $("z-out").onclick = () => renderer.getCamera().animatedUnzoom({ duration: 300 });
+  $("z-reset").onclick = () => renderer.getCamera().animatedReset({ duration: 400 });
+  $("side-head").onclick = () => { if (innerWidth <= 900) $("side").classList.toggle("open"); };
+  setupSearch();
+  renderLegend();
+}
+
+function toggle(set, k, el) {
+  if (set.has(k)) set.delete(k); else set.add(k);
+  el.classList.toggle("on", set.has(k));
+  refresh();
+}
+
+function refresh() { renderer.refresh({ skipIndexation: true }); updateStats(); }
+
+function updateStats() {
+  let nv = 0, nt = 0;
+  const vis = new Set();
+  graph.forEachNode((id, a) => { if (visible(a.raw)) { nv++; vis.add(id); if (a.raw.k === "theory") nt++; } });
+  let ne = 0;
+  graph.forEachEdge((e, a, s, t) => { if (vis.has(s) && vis.has(t)) ne++; });
+  $("stats").innerHTML = `Rodoma: <b style="color:var(--text)">${nt.toLocaleString("lt")}</b> teorijų, ` +
+    `${nv.toLocaleString("lt")} mazgų, ${ne.toLocaleString("lt")} ryšių<br>` +
+    `Iš viso duomenyse: ${graph.order.toLocaleString("lt")} mazgų, ${graph.size.toLocaleString("lt")} ryšių`;
+}
+
+function renderLegend() {
+  let entries;
+  if (state.colorBy === "type") entries = Object.values(TYPES).map((v) => [v.lt, v.color]);
+  else if (state.colorBy === "theme") entries = Object.values(THEMES).map((v) => [v.lt, v.color]);
+  else entries = [["Spalva = automatiškai rastas glaudžiai susijusių mazgų klasteris", "#e8b14a"]];
+  $("legend").innerHTML = entries.map(([l, c]) => `<span><span class="dot" style="background:${c}"></span>${esc(l)}</span>`).join("");
+}
+
+// ---------- paieška ----------
+function setupSearch() {
+  const idx = data.nodes.map((n) => ({ id: n.id, s: (n.t + " " + (n.lt || "")).toLowerCase(), n }));
+  const input = $("search"), box = $("results");
+  let hits = [], cur = -1;
+  const show = () => {
+    box.innerHTML = hits.map((h, i) => `<div data-id="${esc(h.id)}" class="${i === cur ? "on" : ""}">` +
+      `<span class="dot" style="width:8px;height:8px;border-radius:50%;background:${TYPES[kindOf(h.n)].color}"></span>` +
+      `${esc(h.n.t)}<small>${esc(TYPES[kindOf(h.n)].lt)}</small></div>`).join("");
+    box.style.display = hits.length ? "block" : "none";
+  };
+  input.oninput = () => {
+    const q = input.value.trim().toLowerCase();
+    cur = -1;
+    if (q.length < 2) { hits = []; return show(); }
+    hits = idx.filter((x) => x.s.includes(q))
+      .sort((a, b) => (b.s.startsWith(q) - a.s.startsWith(q)) || ((b.n.k === "theory") - (a.n.k === "theory")) || ((b.n.dg || 0) - (a.n.dg || 0)))
+      .slice(0, 12);
+    show();
+  };
+  input.onkeydown = (e) => {
+    if (e.key === "ArrowDown") { cur = Math.min(hits.length - 1, cur + 1); show(); e.preventDefault(); }
+    else if (e.key === "ArrowUp") { cur = Math.max(0, cur - 1); show(); e.preventDefault(); }
+    else if (e.key === "Enter" && hits.length) pick(hits[Math.max(0, cur)].id);
+    else if (e.key === "Escape") { hits = []; show(); }
+  };
+  box.onclick = (e) => { const d = e.target.closest("[data-id]"); if (d) pick(d.dataset.id); };
+  document.addEventListener("click", (e) => { if (!e.target.closest("#search-wrap")) box.style.display = "none"; });
+  function pick(id) {
+    hits = []; show(); input.value = "";
+    if (innerWidth <= 900) $("side").classList.remove("open");
+    select(id, true);
+  }
+}
+
+function readHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (id && graph.hasNode(id)) setTimeout(() => select(id, true), 300);
+}
+addEventListener("keydown", (e) => { if (e.key === "Escape" && document.activeElement !== $("search")) select(null); });
+
+init().catch((e) => { $("load-msg").textContent = "Nepavyko įkelti duomenų: " + e.message; console.error(e); });
+</script>
+</body>
+</html>

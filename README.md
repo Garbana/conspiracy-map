@@ -1,16 +1,46 @@
 # Conspiracy Map
 
-Open-source project that systematizes publicly available information about conspiracy theories
-(starting with Wikipedia and Wikidata) into a tagged knowledge graph – theories, people,
-places, organizations, projects – and visualizes it as an interactive map.
+Open-source interactive map of conspiracy theories built from Wikipedia and Wikidata.
+Theories, the people, places, organizations and events they mention, and how they connect.
 
-Each theory keeps a link to its source article and a status (debunked / unproven / confirmed).
+Each theory keeps a link to its source article. The map shows what is *claimed*, not what is true.
 
-## Structure
+## Current dataset
 
-- `scraper/` – Python data collection scripts (Wikipedia MediaWiki API, Wikidata SPARQL)
-- `data/export/` – processed JSON data
-- `site/` – static interactive map (planned)
+- ~780 conspiracy theories, ~1,100 related articles
+- ~26,000 entities (people, organizations, places, events, works, concepts) mentioned in 2+ articles
+- ~48,000 weighted theory–entity links
+- 12 themes, ~20 automatically detected clusters
+
+## Pipeline
+
+Python (standard library + `truststore`) and Node.js.
+
+| Step | Script | Output |
+|---|---|---|
+| 1. Discover theories (category tree, Wikidata, list page) | `scraper/01_discover.py` | `data/export/theories_candidates.json` |
+| 2. Summaries, Wikidata IDs, types | `scraper/02_enrich.py` | `data/export/items.json` |
+| 3. Links from article text → entities | `scraper/03_links.py` | `data/export/entities.json`, `mentions.json` |
+| 4. Type hierarchy, themes, weights, database | `scraper/04_build.py` | `data/conspiracy.db`, `data/export/graph.json` |
+| 5. Layout + clusters for the website | `layout/layout.mjs` | `site/data/graph.json`, `summaries.json` |
+
+Every step saves progress to `data/raw/` and resumes where it stopped.
+
+```bash
+pip install truststore
+python scraper/01_discover.py
+python scraper/02_enrich.py
+python scraper/03_links.py
+python scraper/04_build.py
+cd layout && npm install && node layout.mjs
+python -m http.server 8765 --directory site
+```
+
+## Website
+
+`site/` is a static site (Sigma.js + graphology, WebGL): search, theme and type filters,
+cluster/type/theme coloring, a card with summary and all connections for each node,
+shareable links (`#Q815614`). It can be hosted for free on GitHub Pages.
 
 ## Data license
 
