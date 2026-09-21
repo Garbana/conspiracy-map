@@ -1,0 +1,3748 @@
+{
+ "Category:Conspiracy theories": {
+  "depth": 0,
+  "parents": [],
+  "noise": false
+ },
+ "Category:Conspiracy theories by continent": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories by country": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories by subject": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories by type": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theorists": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Conspiracist media": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in popular culture": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracist works": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Works about conspiracy theories": {
+  "depth": 1,
+  "parents": [
+   "Category:Conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Africa": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by continent"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Asia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by continent"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Europe": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by continent"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in North America": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by continent"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Oceania": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by continent"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in South America": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by continent"
+  ],
+  "noise": false
+ },
+ "Category:Climate change denial by country": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Climate change denial"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theorists by nationality": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country"
+  ],
+  "noise": true
+ },
+ "Category:COVID-19 misinformation by country": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:COVID-19 misinformation"
+  ],
+  "noise": false
+ },
+ "Category:Fake news by country": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Fake news"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism by country": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial by country": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Historical negationism by country",
+   "Category:Holocaust denial"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Argentina": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in South America"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Armenia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Australia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Oceania"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Austria": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Azerbaijan": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Bangladesh": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Belgium": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Brazil": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in South America"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Bulgaria": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Canada": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in North America"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Chile": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in South America"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in China": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Croatia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in the Czech Republic": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Denmark": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Egypt": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Africa"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Finland": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in France": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Germany": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Greece": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Hungary": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in India": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Indonesia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Iran": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Iraq": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Ireland": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Israel": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia",
+   "Category:Conspiracy theories involving Israel"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Italy": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Ivory Coast": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Africa"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Japan": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Lebanon": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Malaysia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Mexico": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in North America"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Moldova": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in the Netherlands": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in New Zealand": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Oceania"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Nigeria": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Africa"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Norway": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Pakistan": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Palestine": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in the Philippines": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Poland": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Romania": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Russia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Serbia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Singapore": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Slovakia": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in South Africa": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Africa"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in South Korea": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Spain": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Sweden": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Switzerland": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Syria": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Taiwan": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Tanzania": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Africa"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Thailand": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Turkey": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Asia",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Ukraine": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in the United Kingdom": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in the United States": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in North America"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories in Venezuela": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by country",
+   "Category:Conspiracy theories in South America"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving aviation incidents": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving communism": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:Death conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:False flag conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject",
+   "Category:Death conspiracy theories",
+   "Category:Military and warfare conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Genocide denial": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject",
+   "Category:Death conspiracy theories",
+   "Category:False flag conspiracy theories",
+   "Category:Military and warfare conspiracy theories",
+   "Category:Conspiracy theories involving race and ethnicity",
+   "Category:Conspiracy theories involving religion",
+   "Category:Denialism",
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Health-related conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject",
+   "Category:Science and technology-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving Israel": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject",
+   "Category:Conspiracy theories involving Jews"
+  ],
+  "noise": false
+ },
+ "Category:Military and warfare conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:Nazi-related conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject",
+   "Category:Conspiracy theories in Germany",
+   "Category:Conspiracy theories involving race and ethnicity",
+   "Category:World War II-related historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Pseudolaw": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving race and ethnicity": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving religion": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:Science and technology-related conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:Sexuality and gender-related conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject"
+  ],
+  "noise": false
+ },
+ "Category:Shakespeare authorship question": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject",
+   "Category:Conspiracy theories in Europe"
+  ],
+  "noise": false
+ },
+ "Category:UFO conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by subject",
+   "Category:Space and astronomy conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Denialism": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by type"
+  ],
+  "noise": false
+ },
+ "Category:Fake news": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by type"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by type",
+   "Category:Denialism"
+  ],
+  "noise": false
+ },
+ "Category:Satirical conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracy theories by type"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracist periodicals": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist media"
+  ],
+  "noise": false
+ },
+ "Category:Anti-vaccination media": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist media",
+   "Category:Vaccine hesitancy"
+  ],
+  "noise": false
+ },
+ "Category:China Media Group": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist media"
+  ],
+  "noise": false
+ },
+ "Category:Coast to Coast AM": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist media"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracist websites": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist media",
+   "Category:Conspiracist works"
+  ],
+  "noise": true
+ },
+ "Category:John Birch Society": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist media"
+  ],
+  "noise": false
+ },
+ "Category:Paranormal television": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist media"
+  ],
+  "noise": true
+ },
+ "Category:RT (TV network)": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist media"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracist books": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist works"
+  ],
+  "noise": true
+ },
+ "Category:Conspiracist films": {
+  "depth": 2,
+  "parents": [
+   "Category:Conspiracist works"
+  ],
+  "noise": true
+ },
+ "Category:Books about conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Works about conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Films about conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Works about conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Role-playing games about conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Works about conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Songs about conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Works about conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Television series about conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Works about conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Video games about conspiracy theories": {
+  "depth": 2,
+  "parents": [
+   "Category:Works about conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Works about occultism in Nazism": {
+  "depth": 2,
+  "parents": [
+   "Category:Works about conspiracy theories",
+   "Category:Occultism in Nazism"
+  ],
+  "noise": false
+ },
+ "Category:Climate change denial in Australia": {
+  "depth": 3,
+  "parents": [
+   "Category:Climate change denial by country",
+   "Category:Conspiracy theories in Australia"
+  ],
+  "noise": false
+ },
+ "Category:Climate change denial in Canada": {
+  "depth": 3,
+  "parents": [
+   "Category:Climate change denial by country",
+   "Category:Conspiracy theories in Canada"
+  ],
+  "noise": false
+ },
+ "Category:Climate change denial in the United Kingdom": {
+  "depth": 3,
+  "parents": [
+   "Category:Climate change denial by country",
+   "Category:Conspiracy theories in the United Kingdom"
+  ],
+  "noise": false
+ },
+ "Category:Climate change denial in the United States": {
+  "depth": 3,
+  "parents": [
+   "Category:Climate change denial by country",
+   "Category:Conspiracy theories in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in Bangladesh": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news by country",
+   "Category:Conspiracy theories in Bangladesh",
+   "Category:Fake news in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in India": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news by country",
+   "Category:Conspiracy theories in India",
+   "Category:Fake news in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in Pakistan": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news by country",
+   "Category:Conspiracy theories in Pakistan",
+   "Category:Fake news in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in the Philippines": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news by country",
+   "Category:Conspiracy theories in the Philippines",
+   "Category:Fake news in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in Sweden": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news by country",
+   "Category:Conspiracy theories in Sweden"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in Syria": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news by country",
+   "Category:Conspiracy theories in Syria",
+   "Category:Fake news in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in Turkey": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news by country",
+   "Category:Conspiracy theories in Turkey",
+   "Category:Fake news in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in the United States": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news by country",
+   "Category:Conspiracy theories in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationists by nationality": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Historical negationists"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in Azerbaijan": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in Azerbaijan"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in China": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in China"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in ancient Egypt": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in Egypt"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in France": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in France"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in Germany": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in Germany"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in Japan": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in Japan"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in South Korea": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in South Korea"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in Taiwan": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in Taiwan"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in Turkey": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in Turkey"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationism in the United States": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism by country",
+   "Category:Conspiracy theories in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust deniers by nationality": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Historical negationists by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Australia": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Australia"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Austria": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Austria"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Belgium": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Belgium"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Canada": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Canada"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Croatia": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Croatia"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Finland": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Finland"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in France": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in France",
+   "Category:Historical negationism in France"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Germany": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Germany",
+   "Category:Historical negationism in Germany"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Greece": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Greece"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Iran": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Iran"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Israel": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Israel"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Italy": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Italy"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in the Netherlands": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in the Netherlands"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Norway": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Norway"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Romania": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Romania"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Russia": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Russia"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Spain": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Spain"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Sweden": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Sweden"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in Switzerland": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in Switzerland"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in the United Kingdom": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in the United Kingdom"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial in the United States": {
+  "depth": 3,
+  "parents": [
+   "Category:Holocaust denial by country",
+   "Category:Conspiracy theories in the United States",
+   "Category:Historical negationism in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Argentine conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Argentina"
+  ],
+  "noise": true
+ },
+ "Category:Australian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Australia"
+  ],
+  "noise": true
+ },
+ "Category:Austrian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Austria"
+  ],
+  "noise": true
+ },
+ "Category:Belgian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Belgium"
+  ],
+  "noise": true
+ },
+ "Category:Brazilian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Brazil"
+  ],
+  "noise": true
+ },
+ "Category:Bulgarian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Bulgaria"
+  ],
+  "noise": true
+ },
+ "Category:Canadian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Canada"
+  ],
+  "noise": true
+ },
+ "Category:Chilean conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Chile"
+  ],
+  "noise": true
+ },
+ "Category:Chinese conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in China"
+  ],
+  "noise": true
+ },
+ "Category:Croatian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Croatia"
+  ],
+  "noise": true
+ },
+ "Category:Czech conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the Czech Republic"
+  ],
+  "noise": true
+ },
+ "Category:Danish conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Denmark"
+  ],
+  "noise": true
+ },
+ "Category:Egyptian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Egypt"
+  ],
+  "noise": true
+ },
+ "Category:Finnish conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Finland"
+  ],
+  "noise": true
+ },
+ "Category:French conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in France"
+  ],
+  "noise": true
+ },
+ "Category:German conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Germany"
+  ],
+  "noise": true
+ },
+ "Category:Greek conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Greece"
+  ],
+  "noise": true
+ },
+ "Category:Hungarian Holocaust deniers": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Hungary",
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Indian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in India"
+  ],
+  "noise": true
+ },
+ "Category:Love jihad conspiracy theory": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in India",
+   "Category:Sexuality and gender-related conspiracy theories",
+   "Category:Fake news in India",
+   "Category:Conspiracy theories involving Muslims"
+  ],
+  "noise": false
+ },
+ "Category:Indonesian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Indonesia"
+  ],
+  "noise": true
+ },
+ "Category:Iranian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Iran"
+  ],
+  "noise": true
+ },
+ "Category:Iraqi conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Iraq"
+  ],
+  "noise": true
+ },
+ "Category:Irish conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Ireland"
+  ],
+  "noise": true
+ },
+ "Category:Israeli conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Israel"
+  ],
+  "noise": true
+ },
+ "Category:Misinformation in the Gaza war": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Israel",
+   "Category:Conspiracy theories in Palestine",
+   "Category:Fake news in Asia"
+  ],
+  "noise": false
+ },
+ "Category:Italian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Italy"
+  ],
+  "noise": true
+ },
+ "Category:Ivorian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Ivory Coast"
+  ],
+  "noise": true
+ },
+ "Category:Japanese conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Japan"
+  ],
+  "noise": true
+ },
+ "Category:2020 Beirut explosion": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Lebanon"
+  ],
+  "noise": false
+ },
+ "Category:Lebanese conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Lebanon"
+  ],
+  "noise": true
+ },
+ "Category:Malaysian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Malaysia"
+  ],
+  "noise": true
+ },
+ "Category:Mexican conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Mexico"
+  ],
+  "noise": true
+ },
+ "Category:Moldovan conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Moldova"
+  ],
+  "noise": true
+ },
+ "Category:Dutch conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the Netherlands"
+  ],
+  "noise": true
+ },
+ "Category:New Zealand conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in New Zealand"
+  ],
+  "noise": true
+ },
+ "Category:Nigerian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Nigeria"
+  ],
+  "noise": true
+ },
+ "Category:Norwegian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Norway"
+  ],
+  "noise": true
+ },
+ "Category:Pakistani conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Pakistan"
+  ],
+  "noise": true
+ },
+ "Category:Palestinian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Palestine"
+  ],
+  "noise": true
+ },
+ "Category:Polish conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Poland"
+  ],
+  "noise": true
+ },
+ "Category:Romanian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Romania"
+  ],
+  "noise": true
+ },
+ "Category:Propaganda in Russia related to the Russian invasion of Ukraine": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Russia"
+  ],
+  "noise": false
+ },
+ "Category:Russian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Russia"
+  ],
+  "noise": true
+ },
+ "Category:Serbian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Serbia"
+  ],
+  "noise": true
+ },
+ "Category:Singaporean conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Singapore"
+  ],
+  "noise": true
+ },
+ "Category:Slovak conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Slovakia"
+  ],
+  "noise": true
+ },
+ "Category:South African conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in South Africa"
+  ],
+  "noise": true
+ },
+ "Category:South Korean conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in South Korea"
+  ],
+  "noise": true
+ },
+ "Category:Spanish conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Spain"
+  ],
+  "noise": true
+ },
+ "Category:Sinking of the MS Estonia": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Sweden"
+  ],
+  "noise": false
+ },
+ "Category:Swedish conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Sweden"
+  ],
+  "noise": true
+ },
+ "Category:Swiss conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Switzerland"
+  ],
+  "noise": true
+ },
+ "Category:Syrian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Syria"
+  ],
+  "noise": true
+ },
+ "Category:Tanzanian conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Tanzania"
+  ],
+  "noise": true
+ },
+ "Category:Turkish conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Turkey"
+  ],
+  "noise": true
+ },
+ "Category:Propaganda in Ukraine related to the Russian invasion of Ukraine": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Ukraine"
+  ],
+  "noise": false
+ },
+ "Category:British conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United Kingdom"
+  ],
+  "noise": true
+ },
+ "Category:American conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States"
+  ],
+  "noise": true
+ },
+ "Category:9/11 conspiracy theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Conspiracy theories involving aviation incidents",
+   "Category:Death conspiracy theories",
+   "Category:False flag conspiracy theories",
+   "Category:Conspiracy theories involving Israel",
+   "Category:Military and warfare conspiracy theories",
+   "Category:Historical negationism in the United States",
+   "Category:Conspiracy theories involving Muslims"
+  ],
+  "noise": false
+ },
+ "Category:Anti-vaccination in the United States": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Vaccine hesitancy"
+  ],
+  "noise": false
+ },
+ "Category:CIA drug trafficking allegations": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Lost Cause of the Confederacy": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Military and warfare conspiracy theories",
+   "Category:Conspiracy theories involving race and ethnicity",
+   "Category:Historical negationism in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving the United States military": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Military and warfare conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Moon landing conspiracy theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Historical negationism in the United States",
+   "Category:Space and astronomy conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving presidents of the United States": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States"
+  ],
+  "noise": false
+ },
+ "Category:QAnon": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Satanic ritual abuse hysteria in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Satanic ritual abuse hysteria in the United States": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Satanic ritual abuse"
+  ],
+  "noise": false
+ },
+ "Category:Sovereign citizen movement": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Pseudolaw"
+  ],
+  "noise": false
+ },
+ "Category:UFO conspiracy theories in the United States": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:UFO conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:White genocide conspiracy theory": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in the United States",
+   "Category:Conspiracy theories involving race and ethnicity",
+   "Category:Conspiracy theories involving Jews",
+   "Category:Conspiracy theories involving Muslims"
+  ],
+  "noise": false
+ },
+ "Category:Venezuelan Holocaust deniers": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories in Venezuela",
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Alleged UFO-related aviation incidents": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving aviation incidents",
+   "Category:UFO sightings"
+  ],
+  "noise": false
+ },
+ "Category:Holodomor denial": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving communism",
+   "Category:Genocide denial",
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Jewish Bolshevism": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving communism",
+   "Category:Conspiracy theories involving Jews"
+  ],
+  "noise": false
+ },
+ "Category:John F. Kennedy assassination conspiracy theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving communism",
+   "Category:Death conspiracy theories",
+   "Category:False flag conspiracy theories",
+   "Category:Conspiracy theories involving Israel",
+   "Category:Historical negationism in the United States",
+   "Category:Conspiracy theories involving presidents of the United States"
+  ],
+  "noise": false
+ },
+ "Category:McCarthyism": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving communism",
+   "Category:Red Scare",
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Red Scare": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving communism",
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Denial of the crucifixion of Jesus": {
+  "depth": 3,
+  "parents": [
+   "Category:Death conspiracy theories",
+   "Category:Historical negationism",
+   "Category:Conspiracy theories involving Christians"
+  ],
+  "noise": false
+ },
+ "Category:Romanov impostors": {
+  "depth": 3,
+  "parents": [
+   "Category:Death conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Attempted assassination of Donald Trump in Pennsylvania": {
+  "depth": 3,
+  "parents": [
+   "Category:False flag conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Genocide deniers": {
+  "depth": 3,
+  "parents": [
+   "Category:Genocide denial",
+   "Category:Historical negationists"
+  ],
+  "noise": false
+ },
+ "Category:Books about genocide denial": {
+  "depth": 3,
+  "parents": [
+   "Category:Genocide denial"
+  ],
+  "noise": true
+ },
+ "Category:Armenian genocide denial": {
+  "depth": 3,
+  "parents": [
+   "Category:Genocide denial",
+   "Category:Historical negationism in Turkey",
+   "Category:Conspiracy theories involving Christians"
+  ],
+  "noise": false
+ },
+ "Category:Bosnian genocide denial": {
+  "depth": 3,
+  "parents": [
+   "Category:Genocide denial",
+   "Category:Conspiracy theories involving Muslims"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust denial": {
+  "depth": 3,
+  "parents": [
+   "Category:Genocide denial",
+   "Category:Nazi-related conspiracy theories",
+   "Category:World War II-related historical negationism",
+   "Category:Conspiracy theories involving Jews"
+  ],
+  "noise": false
+ },
+ "Category:Indigenous genocide denial": {
+  "depth": 3,
+  "parents": [
+   "Category:Genocide denial"
+  ],
+  "noise": false
+ },
+ "Category:Rwandan genocide denial": {
+  "depth": 3,
+  "parents": [
+   "Category:Genocide denial"
+  ],
+  "noise": false
+ },
+ "Category:COVID-19 misinformation": {
+  "depth": 3,
+  "parents": [
+   "Category:Health-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:HIV/AIDS denialism": {
+  "depth": 3,
+  "parents": [
+   "Category:Health-related conspiracy theories",
+   "Category:Denialism"
+  ],
+  "noise": false
+ },
+ "Category:Seed oil misinformation": {
+  "depth": 3,
+  "parents": [
+   "Category:Health-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Vaccine hesitancy": {
+  "depth": 3,
+  "parents": [
+   "Category:Health-related conspiracy theories",
+   "Category:Denialism"
+  ],
+  "noise": false
+ },
+ "Category:Military UFO conspiracy theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Military and warfare conspiracy theories",
+   "Category:UFO conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:World War II-related historical negationism": {
+  "depth": 3,
+  "parents": [
+   "Category:Military and warfare conspiracy theories",
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust-related hoaxes": {
+  "depth": 3,
+  "parents": [
+   "Category:Nazi-related conspiracy theories",
+   "Category:World War II-related historical negationism",
+   "Category:Conspiracy theories involving Jews"
+  ],
+  "noise": false
+ },
+ "Category:Occultism in Nazism": {
+  "depth": 3,
+  "parents": [
+   "Category:Nazi-related conspiracy theories",
+   "Category:Conspiracy theories involving religion"
+  ],
+  "noise": false
+ },
+ "Category:Eurabia conspiracy theory": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving race and ethnicity",
+   "Category:White genocide conspiracy theory",
+   "Category:Conspiracy theories involving Muslims"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving Jews": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving race and ethnicity",
+   "Category:Conspiracy theories involving religion"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories regarding Barack Obama": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving race and ethnicity",
+   "Category:Conspiracy theories involving religion",
+   "Category:Conspiracy theories involving presidents of the United States"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving Christians": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving religion"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving Muslims": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving religion"
+  ],
+  "noise": false
+ },
+ "Category:Satanic ritual abuse": {
+  "depth": 3,
+  "parents": [
+   "Category:Conspiracy theories involving religion",
+   "Category:Sexuality and gender-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Earth science conspiracy theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Science and technology-related conspiracy theories",
+   "Category:Space and astronomy conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Free energy conspiracy theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Science and technology-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Space and astronomy conspiracy theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Science and technology-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Day care sexual abuse allegations": {
+  "depth": 3,
+  "parents": [
+   "Category:Sexuality and gender-related conspiracy theories",
+   "Category:Satanic ritual abuse"
+  ],
+  "noise": false
+ },
+ "Category:Gamergate": {
+  "depth": 3,
+  "parents": [
+   "Category:Sexuality and gender-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:LGBTQ-related conspiracy theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Sexuality and gender-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Shakespeare authorship fiction": {
+  "depth": 3,
+  "parents": [
+   "Category:Shakespeare authorship question"
+  ],
+  "noise": true
+ },
+ "Category:Shakespeare authorship organizations": {
+  "depth": 3,
+  "parents": [
+   "Category:Shakespeare authorship question"
+  ],
+  "noise": true
+ },
+ "Category:Shakespeare authorship theories": {
+  "depth": 3,
+  "parents": [
+   "Category:Shakespeare authorship question"
+  ],
+  "noise": false
+ },
+ "Category:UFO conspiracy theorists": {
+  "depth": 3,
+  "parents": [
+   "Category:UFO conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Cattle mutilation": {
+  "depth": 3,
+  "parents": [
+   "Category:UFO conspiracy theories",
+   "Category:Alleged extraterrestrial visitation"
+  ],
+  "noise": false
+ },
+ "Category:Alleged extraterrestrial visitation": {
+  "depth": 3,
+  "parents": [
+   "Category:UFO conspiracy theories",
+   "Category:Space and astronomy conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:UFO sightings": {
+  "depth": 3,
+  "parents": [
+   "Category:UFO conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Climate change denial": {
+  "depth": 3,
+  "parents": [
+   "Category:Denialism",
+   "Category:Earth science conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Denial of the virgin birth of Jesus": {
+  "depth": 3,
+  "parents": [
+   "Category:Denialism"
+  ],
+  "noise": false
+ },
+ "Category:Germ theory denialists": {
+  "depth": 3,
+  "parents": [
+   "Category:Denialism"
+  ],
+  "noise": false
+ },
+ "Category:Fake news in Asia": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news"
+  ],
+  "noise": false
+ },
+ "Category:Deepfakes": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news"
+  ],
+  "noise": false
+ },
+ "Category:Disinformation in the Russo-Ukrainian war": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news"
+  ],
+  "noise": false
+ },
+ "Category:Fake news-related lists": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news"
+  ],
+  "noise": false
+ },
+ "Category:Fake news websites": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news"
+  ],
+  "noise": true
+ },
+ "Category:World War I propaganda": {
+  "depth": 3,
+  "parents": [
+   "Category:Fake news"
+  ],
+  "noise": false
+ },
+ "Category:Historical negationists": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Attacks on libraries": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Book burnings": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Censorship": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Christ myth theory": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Cultural genocide": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Damnatio memoriae": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:LGBTQ erasure": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Political and cultural purges": {
+  "depth": 3,
+  "parents": [
+   "Category:Historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Church of the SubGenius": {
+  "depth": 3,
+  "parents": [
+   "Category:Satirical conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:American propaganda films about vaccination": {
+  "depth": 3,
+  "parents": [
+   "Category:Anti-vaccination media",
+   "Category:Anti-vaccination in the United States"
+  ],
+  "noise": true
+ },
+ "Category:China Central Television": {
+  "depth": 3,
+  "parents": [
+   "Category:China Media Group"
+  ],
+  "noise": true
+ },
+ "Category:China National Radio": {
+  "depth": 3,
+  "parents": [
+   "Category:China Media Group"
+  ],
+  "noise": false
+ },
+ "Category:China Radio International": {
+  "depth": 3,
+  "parents": [
+   "Category:China Media Group"
+  ],
+  "noise": false
+ },
+ "Category:John Birch Society members": {
+  "depth": 3,
+  "parents": [
+   "Category:John Birch Society"
+  ],
+  "noise": false
+ },
+ "Category:RT (TV network) original programming": {
+  "depth": 3,
+  "parents": [
+   "Category:RT (TV network)"
+  ],
+  "noise": false
+ },
+ "Category:RT (TV network) people": {
+  "depth": 3,
+  "parents": [
+   "Category:RT (TV network)"
+  ],
+  "noise": true
+ },
+ "Category:Books about occultism in Nazism": {
+  "depth": 3,
+  "parents": [
+   "Category:Works about occultism in Nazism"
+  ],
+  "noise": true
+ },
+ "Category:One Nation": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in Australia"
+  ],
+  "noise": false
+ },
+ "Category:People's Party of Canada": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in Canada"
+  ],
+  "noise": true
+ },
+ "Category:UK Independence Party": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in the United Kingdom"
+  ],
+  "noise": false
+ },
+ "Category:Workers Party of Britain": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in the United Kingdom"
+  ],
+  "noise": false
+ },
+ "Category:Cato Institute": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Competitive Enterprise Institute": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Constitution Party (United States)": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in the United States"
+  ],
+  "noise": false
+ },
+ "Category:ExxonMobil": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in the United States"
+  ],
+  "noise": false
+ },
+ "Category:George C. Marshall Institute": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Trumpism": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Godi media": {
+  "depth": 4,
+  "parents": [
+   "Category:Fake news in India"
+  ],
+  "noise": false
+ },
+ "Category:American historical negationists": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationists by nationality",
+   "Category:Historical negationism in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Japanese historical negationists": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationists by nationality",
+   "Category:Historical negationism in Japan"
+  ],
+  "noise": false
+ },
+ "Category:Priory of Sion hoax": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in France"
+  ],
+  "noise": false
+ },
+ "Category:Deutsche Allgemeine Zeitung": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in Germany"
+  ],
+  "noise": false
+ },
+ "Category:Comfort women denial": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in Japan",
+   "Category:World War II-related historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Kantō Massacre deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in Japan",
+   "Category:Genocide deniers"
+  ],
+  "noise": false
+ },
+ "Category:Nanjing Massacre deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in Japan",
+   "Category:Genocide deniers",
+   "Category:World War II-related historical negationism",
+   "Category:Historical negationists"
+  ],
+  "noise": false
+ },
+ "Category:Nippon Kaigi": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in Japan",
+   "Category:World War II-related historical negationism"
+  ],
+  "noise": false
+ },
+ "Category:Comfort women denial in South Korea": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in South Korea"
+  ],
+  "noise": false
+ },
+ "Category:Comfort women denial in Taiwan": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in Taiwan"
+  ],
+  "noise": false
+ },
+ "Category:Destroyed Armenian churches in Turkey": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in Turkey"
+  ],
+  "noise": false
+ },
+ "Category:Turkish Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in Turkey",
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Institute for Historical Review": {
+  "depth": 4,
+  "parents": [
+   "Category:Historical negationism in the United States",
+   "Category:Holocaust denial in the United States"
+  ],
+  "noise": false
+ },
+ "Category:American Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Argentine Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Australian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Australia"
+  ],
+  "noise": false
+ },
+ "Category:Austrian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Austria"
+  ],
+  "noise": false
+ },
+ "Category:Belgian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Belgium"
+  ],
+  "noise": false
+ },
+ "Category:Brazilian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:British Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in the United Kingdom"
+  ],
+  "noise": false
+ },
+ "Category:Canadian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Canada"
+  ],
+  "noise": false
+ },
+ "Category:Croatian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Croatia"
+  ],
+  "noise": false
+ },
+ "Category:Danish Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Dutch Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in the Netherlands"
+  ],
+  "noise": false
+ },
+ "Category:Egyptian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Estonian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Filipino Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Finnish Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Finland"
+  ],
+  "noise": false
+ },
+ "Category:French Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in France"
+  ],
+  "noise": false
+ },
+ "Category:German Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Germany"
+  ],
+  "noise": false
+ },
+ "Category:Greek Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Greece"
+  ],
+  "noise": false
+ },
+ "Category:Iranian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Iran"
+  ],
+  "noise": false
+ },
+ "Category:Irish Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Italian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Japanese Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Lebanese Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:New Zealand Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Norwegian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Palestinian deniers of the Holocaust": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Polish Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Romanian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Romania"
+  ],
+  "noise": false
+ },
+ "Category:Russian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Russia"
+  ],
+  "noise": false
+ },
+ "Category:Slovak Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:South African Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Spanish Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Swedish Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Sweden"
+  ],
+  "noise": false
+ },
+ "Category:Swiss Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality",
+   "Category:Holocaust denial in Switzerland"
+  ],
+  "noise": false
+ },
+ "Category:Syrian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:Ukrainian Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust deniers by nationality"
+  ],
+  "noise": false
+ },
+ "Category:British National Party": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust denial in the United Kingdom"
+  ],
+  "noise": false
+ },
+ "Category:Saddam Hussein and al-Qaeda link allegations": {
+  "depth": 4,
+  "parents": [
+   "Category:9/11 conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:9/11 conspiracy theorists": {
+  "depth": 4,
+  "parents": [
+   "Category:9/11 conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:American anti-vaccination activists": {
+  "depth": 4,
+  "parents": [
+   "Category:Anti-vaccination in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Confederate monuments and memorials legislation": {
+  "depth": 4,
+  "parents": [
+   "Category:Lost Cause of the Confederacy"
+  ],
+  "noise": false
+ },
+ "Category:Confederate States of America monuments and memorials": {
+  "depth": 4,
+  "parents": [
+   "Category:Lost Cause of the Confederacy"
+  ],
+  "noise": false
+ },
+ "Category:Neo-Confederates": {
+  "depth": 4,
+  "parents": [
+   "Category:Lost Cause of the Confederacy"
+  ],
+  "noise": false
+ },
+ "Category:Lost Cause of the Confederacy in popular culture": {
+  "depth": 4,
+  "parents": [
+   "Category:Lost Cause of the Confederacy"
+  ],
+  "noise": false
+ },
+ "Category:Military UFO conspiracy theories in the United States": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving the United States military",
+   "Category:UFO conspiracy theories in the United States",
+   "Category:Military UFO conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Moon landing conspiracy theorists": {
+  "depth": 4,
+  "parents": [
+   "Category:Moon landing conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Conspiracy theories regarding Joe Biden": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving presidents of the United States"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories promoted by Donald Trump": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving presidents of the United States"
+  ],
+  "noise": false
+ },
+ "Category:Day care sexual abuse allegations in the United States": {
+  "depth": 4,
+  "parents": [
+   "Category:Satanic ritual abuse hysteria in the United States",
+   "Category:Day care sexual abuse allegations"
+  ],
+  "noise": false
+ },
+ "Category:Sovereign citizen movement individuals": {
+  "depth": 4,
+  "parents": [
+   "Category:Sovereign citizen movement"
+  ],
+  "noise": false
+ },
+ "Category:Incidents involving the sovereign citizen movement": {
+  "depth": 4,
+  "parents": [
+   "Category:Sovereign citizen movement"
+  ],
+  "noise": false
+ },
+ "Category:Patriot movement": {
+  "depth": 4,
+  "parents": [
+   "Category:Sovereign citizen movement"
+  ],
+  "noise": false
+ },
+ "Category:Men in black": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO conspiracy theories in the United States"
+  ],
+  "noise": false
+ },
+ "Category:UFO sightings in the United States": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO conspiracy theories in the United States"
+  ],
+  "noise": false
+ },
+ "Category:Aviation incidents involving UFOs and military aircraft": {
+  "depth": 4,
+  "parents": [
+   "Category:Alleged UFO-related aviation incidents",
+   "Category:Military UFO conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Holodomor deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Holodomor denial",
+   "Category:Genocide deniers"
+  ],
+  "noise": false
+ },
+ "Category:Bandenbekämpfung": {
+  "depth": 4,
+  "parents": [
+   "Category:Jewish Bolshevism"
+  ],
+  "noise": false
+ },
+ "Category:John F. Kennedy conspiracy theorists": {
+  "depth": 4,
+  "parents": [
+   "Category:John F. Kennedy assassination conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Joseph McCarthy": {
+  "depth": 4,
+  "parents": [
+   "Category:McCarthyism"
+  ],
+  "noise": false
+ },
+ "Category:Victims of McCarthyism": {
+  "depth": 4,
+  "parents": [
+   "Category:McCarthyism"
+  ],
+  "noise": false
+ },
+ "Category:Works about McCarthyism": {
+  "depth": 4,
+  "parents": [
+   "Category:McCarthyism"
+  ],
+  "noise": false
+ },
+ "Category:Red Summer": {
+  "depth": 4,
+  "parents": [
+   "Category:Red Scare"
+  ],
+  "noise": false
+ },
+ "Category:Deniers of the Armenian genocide": {
+  "depth": 4,
+  "parents": [
+   "Category:Genocide deniers",
+   "Category:Armenian genocide denial"
+  ],
+  "noise": false
+ },
+ "Category:Deniers of the Bosnian genocide": {
+  "depth": 4,
+  "parents": [
+   "Category:Genocide deniers",
+   "Category:Bosnian genocide denial"
+  ],
+  "noise": false
+ },
+ "Category:Deniers of the Rwandan genocide": {
+  "depth": 4,
+  "parents": [
+   "Category:Genocide deniers",
+   "Category:Rwandan genocide denial"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust deniers": {
+  "depth": 4,
+  "parents": [
+   "Category:Genocide deniers",
+   "Category:Holocaust denial"
+  ],
+  "noise": false
+ },
+ "Category:Deniers of the genocide of Serbs in the Independent State of Croatia": {
+  "depth": 4,
+  "parents": [
+   "Category:Genocide deniers"
+  ],
+  "noise": false
+ },
+ "Category:Holocaust-denying books": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust denial"
+  ],
+  "noise": true
+ },
+ "Category:Books about Holocaust denial": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust denial"
+  ],
+  "noise": true
+ },
+ "Category:Holocaust denial in the European Union": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust denial"
+  ],
+  "noise": false
+ },
+ "Category:Films about Holocaust denial": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust denial"
+  ],
+  "noise": true
+ },
+ "Category:Holocaust-denying websites": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust denial"
+  ],
+  "noise": true
+ },
+ "Category:Laws criminalizing Holocaust denial": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust denial"
+  ],
+  "noise": false
+ },
+ "Category:Al-Qaeda": {
+  "depth": 4,
+  "parents": [
+   "Category:Holocaust denial"
+  ],
+  "noise": false
+ },
+ "Category:American propaganda films about COVID-19": {
+  "depth": 4,
+  "parents": [
+   "Category:COVID-19 misinformation"
+  ],
+  "noise": true
+ },
+ "Category:COVID-19 conspiracy theorists": {
+  "depth": 4,
+  "parents": [
+   "Category:COVID-19 misinformation"
+  ],
+  "noise": true
+ },
+ "Category:COVID-19 vaccine misinformation and hesitancy": {
+  "depth": 4,
+  "parents": [
+   "Category:COVID-19 misinformation",
+   "Category:Vaccine hesitancy"
+  ],
+  "noise": false
+ },
+ "Category:HIV/AIDS denialists": {
+  "depth": 4,
+  "parents": [
+   "Category:HIV/AIDS denialism"
+  ],
+  "noise": false
+ },
+ "Category:HIV/AIDS denialist books": {
+  "depth": 4,
+  "parents": [
+   "Category:HIV/AIDS denialism"
+  ],
+  "noise": true
+ },
+ "Category:AIDS origin hypotheses": {
+  "depth": 4,
+  "parents": [
+   "Category:HIV/AIDS denialism",
+   "Category:LGBTQ-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Anti-vaccination activists": {
+  "depth": 4,
+  "parents": [
+   "Category:Vaccine hesitancy"
+  ],
+  "noise": false
+ },
+ "Category:Orthopathy": {
+  "depth": 4,
+  "parents": [
+   "Category:Vaccine hesitancy"
+  ],
+  "noise": false
+ },
+ "Category:Armanen runes": {
+  "depth": 4,
+  "parents": [
+   "Category:Occultism in Nazism"
+  ],
+  "noise": false
+ },
+ "Category:Satanism and Nazism": {
+  "depth": 4,
+  "parents": [
+   "Category:Occultism in Nazism"
+  ],
+  "noise": false
+ },
+ "Category:Bat Ye'or": {
+  "depth": 4,
+  "parents": [
+   "Category:Eurabia conspiracy theory"
+  ],
+  "noise": false
+ },
+ "Category:Antisemitic forgeries": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving Jews"
+  ],
+  "noise": false
+ },
+ "Category:Antisemitic tropes": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving Jews"
+  ],
+  "noise": false
+ },
+ "Category:Bible conspiracy theories": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving Jews",
+   "Category:Conspiracy theories involving Christians"
+  ],
+  "noise": false
+ },
+ "Category:Blood libel": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving Jews"
+  ],
+  "noise": false
+ },
+ "Category:Conspiracy theories involving Catholics": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving Christians"
+  ],
+  "noise": false
+ },
+ "Category:Anti-Islamic forgeries": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving Muslims"
+  ],
+  "noise": false
+ },
+ "Category:Counter-jihad": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving Muslims"
+  ],
+  "noise": false
+ },
+ "Category:Islamophobic tropes": {
+  "depth": 4,
+  "parents": [
+   "Category:Conspiracy theories involving Muslims"
+  ],
+  "noise": false
+ },
+ "Category:Books about satanic ritual abuse": {
+  "depth": 4,
+  "parents": [
+   "Category:Satanic ritual abuse"
+  ],
+  "noise": true
+ },
+ "Category:2012 phenomenon": {
+  "depth": 4,
+  "parents": [
+   "Category:Earth science conspiracy theories",
+   "Category:Space and astronomy conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Flat Earth": {
+  "depth": 4,
+  "parents": [
+   "Category:Earth science conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Hollow Earth": {
+  "depth": 4,
+  "parents": [
+   "Category:Earth science conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Free energy conspiracy theorists": {
+  "depth": 4,
+  "parents": [
+   "Category:Free energy conspiracy theories"
+  ],
+  "noise": true
+ },
+ "Category:Water fuel": {
+  "depth": 4,
+  "parents": [
+   "Category:Free energy conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Anti-gender movement": {
+  "depth": 4,
+  "parents": [
+   "Category:LGBTQ-related conspiracy theories"
+  ],
+  "noise": false
+ },
+ "Category:Baconian theory of Shakespeare authorship": {
+  "depth": 4,
+  "parents": [
+   "Category:Shakespeare authorship theories"
+  ],
+  "noise": false
+ },
+ "Category:Derbyite theory of Shakespeare authorship": {
+  "depth": 4,
+  "parents": [
+   "Category:Shakespeare authorship theories"
+  ],
+  "noise": false
+ },
+ "Category:Marlovian theory of Shakespeare authorship": {
+  "depth": 4,
+  "parents": [
+   "Category:Shakespeare authorship theories"
+  ],
+  "noise": false
+ },
+ "Category:Oxfordian theory of Shakespeare authorship": {
+  "depth": 4,
+  "parents": [
+   "Category:Shakespeare authorship theories"
+  ],
+  "noise": false
+ },
+ "Category:Shakespeare authorship theorists": {
+  "depth": 4,
+  "parents": [
+   "Category:Shakespeare authorship theories"
+  ],
+  "noise": true
+ },
+ "Category:Alleged extraterrestrial beings": {
+  "depth": 4,
+  "parents": [
+   "Category:Alleged extraterrestrial visitation"
+  ],
+  "noise": false
+ },
+ "Category:Alleged extraterrestrial encounters": {
+  "depth": 4,
+  "parents": [
+   "Category:Alleged extraterrestrial visitation"
+  ],
+  "noise": false
+ },
+ "Category:Fiction about alien visitations": {
+  "depth": 4,
+  "parents": [
+   "Category:Alleged extraterrestrial visitation"
+  ],
+  "noise": true
+ },
+ "Category:Alien abduction": {
+  "depth": 4,
+  "parents": [
+   "Category:Alleged extraterrestrial visitation"
+  ],
+  "noise": false
+ },
+ "Category:Ancient astronaut speculation": {
+  "depth": 4,
+  "parents": [
+   "Category:Alleged extraterrestrial visitation"
+  ],
+  "noise": false
+ },
+ "Category:UFO sightings by continent": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO sightings"
+  ],
+  "noise": false
+ },
+ "Category:UFO sightings by country": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO sightings"
+  ],
+  "noise": false
+ },
+ "Category:UFOs by type": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO sightings"
+  ],
+  "noise": false
+ },
+ "Category:Collective UFO sightings": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO sightings"
+  ],
+  "noise": false
+ },
+ "Category:UFO crashes": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO sightings"
+  ],
+  "noise": false
+ },
+ "Category:UFO hoaxes": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO sightings"
+  ],
+  "noise": false
+ },
+ "Category:UFO photographs": {
+  "depth": 4,
+  "parents": [
+   "Category:UFO sightings"
+  ],
+  "noise": false
+ },
+ "Category:Bolsonarism": {
+  "depth": 4,
+  "parents": [
+   "Category:Climate change denial"
+  ],
+  "noise": false
+ },
+ "Category:Disinformation in the Russian invasion of Ukraine": {
+  "depth": 4,
+  "parents": [
+   "Category:Disinformation in the Russo-Ukrainian war"
+  ],
+  "noise": false
+ },
+ "Category:World War I propaganda films": {
+  "depth": 4,
+  "parents": [
+   "Category:World War I propaganda"
+  ],
+  "noise": true
+ },
+ "Category:World War I political slogans": {
+  "depth": 4,
+  "parents": [
+   "Category:World War I propaganda"
+  ],
+  "noise": false
+ },
+ "Category:Destroyed libraries": {
+  "depth": 4,
+  "parents": [
+   "Category:Attacks on libraries"
+  ],
+  "noise": false
+ },
+ "Category:Censorship by country": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Censorship by topic": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Censorship by continent": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Censorship by medium": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Censorship by religion": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Censors": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Works about censorship": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Lists of banned works": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Blacklisting": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Censored social media accounts": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Exclusion zones": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:History of censorship": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Obscenity": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Publisher censorship": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Self-censorship": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Strategic lawsuits against public participation": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Censored works": {
+  "depth": 4,
+  "parents": [
+   "Category:Censorship"
+  ],
+  "noise": false
+ },
+ "Category:Proponents of the Christ myth theory": {
+  "depth": 4,
+  "parents": [
+   "Category:Christ myth theory"
+  ],
+  "noise": false
+ },
+ "Category:Works about the Christ myth theory": {
+  "depth": 4,
+  "parents": [
+   "Category:Christ myth theory"
+  ],
+  "noise": false
+ },
+ "Category:Archaeological theft": {
+  "depth": 4,
+  "parents": [
+   "Category:Cultural genocide"
+  ],
+  "noise": false
+ },
+ "Category:Attacks on museums": {
+  "depth": 4,
+  "parents": [
+   "Category:Cultural genocide"
+  ],
+  "noise": false
+ },
+ "Category:Destruction of cultural heritage": {
+  "depth": 4,
+  "parents": [
+   "Category:Cultural genocide"
+  ],
+  "noise": false
+ },
+ "Category:Grave desecration": {
+  "depth": 4,
+  "parents": [
+   "Category:Cultural genocide"
+  ],
+  "noise": false
+ },
+ "Category:Persecution of Yenish people": {
+  "depth": 4,
+  "parents": [
+   "Category:Cultural genocide"
+  ],
+  "noise": true
+ },
+ "Category:Roman emperors to suffer posthumous denigration or damnatio memoriae": {
+  "depth": 4,
+  "parents": [
+   "Category:Damnatio memoriae"
+  ],
+  "noise": false
+ },
+ "Category:Anti-LGBTQ purges": {
+  "depth": 4,
+  "parents": [
+   "Category:LGBTQ erasure",
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Censorship of LGBTQ issues": {
+  "depth": 4,
+  "parents": [
+   "Category:LGBTQ erasure"
+  ],
+  "noise": false
+ },
+ "Category:Politicides": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Anti-Rightist Campaign": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Dealul Spirii Trial": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Decommunization in Ukraine": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Derussification in Ukraine": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Katyn massacre": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Martial law under Ferdinand Marcos": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Persecution of dissidents in the Soviet Union": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Persecution of intellectuals": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Purges in North Korea": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Purges in Turkey following the 2016 Turkish coup attempt": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Red Terror (Spain)": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Religious expulsion orders": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Soviet deportations from Estonia": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Soviet deportations from Lithuania": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:Transition to the New Order": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:White Terror": {
+  "depth": 4,
+  "parents": [
+   "Category:Political and cultural purges"
+  ],
+  "noise": false
+ },
+ "Category:SubGenii": {
+  "depth": 4,
+  "parents": [
+   "Category:Church of the SubGenius"
+  ],
+  "noise": false
+ },
+ "Category:People of the China National Radio": {
+  "depth": 4,
+  "parents": [
+   "Category:China National Radio"
+  ],
+  "noise": true
+ }
+}

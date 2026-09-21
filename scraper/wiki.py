@@ -11,7 +11,7 @@ try:  # naudoti Windows sertifikatų saugyklą (Python'o saugykla pasenusi)
 except ImportError:
     pass
 
-UA = "ConspiracyMapProject/0.1 (open-source research; python-urllib)"
+UA = "ConspiracyMapBot/0.1 (https://github.com/Garbana/conspiracy-map; aanndriuss@gmail.com) python-urllib"
 WP_API = "https://en.wikipedia.org/w/api.php"
 SPARQL = "https://query.wikidata.org/sparql"
 
@@ -58,5 +58,5 @@ def wp_query(params):
         cont = data["continue"]
 
 
-def sparql(query):
-    return get_json(SPARQL, {"query": query, "format": "json"})["results"]["bindings"]
+def sparql(query, retries=8):
+    return get_json(SPARQL, {"query": query, "format": "json"}, retries=retries)["results"]["bindings"]

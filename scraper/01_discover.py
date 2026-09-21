@@ -93,20 +93,24 @@ def crawl_categories():
 
 def from_wikidata():
     print("[B] Wikidata SPARQL")
-    rows = sparql("""
-    SELECT DISTINCT ?item ?itemLabel ?enwiki ?ltwiki WHERE {
-      ?item wdt:P31/wdt:P279* wd:Q17379835 .
-      OPTIONAL { ?enwiki schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> . }
-      OPTIONAL { ?ltwiki schema:about ?item ; schema:isPartOf <https://lt.wikipedia.org/> . }
-      SERVICE wikibase:label { bd:serviceParam wikibase:language "en,lt". }
-    }""")
+    # Paprasčiausia užklausa (tik tiesioginis P31). Wikidata dažnai perkrauta – jei nepavyksta,
+    # žingsnį praleidžiam: QID visiems straipsniams gausim 2 etape per MediaWiki pageprops.
+    try:
+        rows = sparql("""
+        SELECT ?item ?enwiki WHERE {
+          ?item wdt:P31 wd:Q17379835 .
+          ?enwiki schema:about ?item ; schema:isPartOf <https://en.wikipedia.org/> .
+        }""", retries=4)
+    except RuntimeError as e:
+        print(f"   ! Wikidata nepasiekiama, praleidžiu ({e})")
+        return []
     out = []
     for r in rows:
         out.append({
             "qid": r["item"]["value"].rsplit("/", 1)[-1],
-            "label": r["itemLabel"]["value"],
+            "label": None,
             "enwiki": r.get("enwiki", {}).get("value"),
-            "ltwiki": r.get("ltwiki", {}).get("value"),
+            "ltwiki": None,
         })
     print(f"   {len(out)} įrašų Wikidatoje")
     return out
