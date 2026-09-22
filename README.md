@@ -28,7 +28,7 @@ Python (standard library + `truststore`) and Node.js.
 | 6. Merge reviewed roles and statuses | `scraper/06_roles.py` | `data/conspiracy.db`, `graph.json` |
 | 7. Layout + clusters for the website | `layout/layout.mjs` | `site/data/graph.json`, `summaries.json` |
 | 8. Lithuanian summaries and links (lt.wikipedia.org) | `scraper/07_lt.py` | `site/data/summaries_lt.json`, `graph.json` |
-| 9. Lithuanian theory titles and summaries (translations) | `scraper/08_i18n.py` | `site/data/summaries_lt.json`, `graph.json` |
+| 9. Lithuanian titles and summaries (translations) | `scraper/08_i18n.py` | `site/data/summaries_lt.json`, `graph.json` |
 | 10. Which language's summary each node has | `scraper/09_sumflags.py` | `site/data/graph.json` (`se` / `sl`) |
 | 11. A share page per node (title, summary, status in its meta) | `scraper/10_share_pages.py` | `site/t/*.html`, `graph.json` (`sg`) |
 | 12. Game levels (start nodes, shortest distances, budgets) | `scraper/11_levels.py` | `site/data/levels.json` |
@@ -37,7 +37,10 @@ Python (standard library + `truststore`) and Node.js.
 
 Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README);
 Lithuanian translations of all theories in `data/i18n/done/` (written by Claude from the English
-Wikipedia intro, checked with `scraper/check_i18n.py NN`; the site labels them as such);
+Wikipedia intro, checked with `scraper/check_i18n.py NN`; the site labels them as such), and of the
+400 most-linked organizations, events, concepts and works in `data/i18n/done_ents/` (`{"keep": 1}`
+marks a name reviewed and deliberately left in the original; personal names are never translated,
+checked with `scraper/check_i18n_ents.py NN`);
 cluster names in `data/cluster_names.json` (keyed by each cluster's main theory, so they survive re-layout —
 the layout uses a fixed random seed).
 

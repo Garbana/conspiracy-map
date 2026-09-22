@@ -18,9 +18,10 @@ SITE = os.path.join(ROOT, "site", "data")
 
 def main():
     tr = {}
-    for p in sorted(glob.glob(os.path.join(ROOT, "data", "i18n", "done", "*.json"))):
-        with open(p, encoding="utf-8") as f:
-            tr.update(json.load(f))
+    for sub in ("done", "done_ents"):
+        for p in sorted(glob.glob(os.path.join(ROOT, "data", "i18n", sub, "*.json"))):
+            with open(p, encoding="utf-8") as f:
+                tr.update(json.load(f))
 
     with open(os.path.join(SITE, "graph.json"), encoding="utf-8") as f:
         g = json.load(f)
@@ -40,8 +41,9 @@ def main():
         if d.get("t"):
             n["lt"] = d["t"]
             titles += 1
-        # Vikipedijos santrauka svarbesnė už mūsų vertimą
-        if d.get("s") and not sums.get(n["id"]):
+        # Vikipedijos santrauka svarbesnė už mūsų vertimą (bet pakartotinai paleidus
+        # savo pačių įrašytą santrauką atpažįstam ir vėl pažymim "ltm")
+        if d.get("s") and sums.get(n["id"], d["s"]) == d["s"]:
             sums[n["id"]] = d["s"]
             n["ltm"] = 1
             summaries += 1
