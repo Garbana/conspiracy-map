@@ -29,6 +29,7 @@ Python (standard library + `truststore`) and Node.js.
 | 7. Layout + clusters for the website | `layout/layout.mjs` | `site/data/graph.json`, `summaries.json` |
 | 8. Lithuanian summaries and links (lt.wikipedia.org) | `scraper/07_lt.py` | `site/data/summaries_lt.json`, `graph.json` |
 | 9. Lithuanian theory titles and summaries (translations) | `scraper/08_i18n.py` | `site/data/summaries_lt.json`, `graph.json` |
+| 10. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
 
 Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README);
 Lithuanian translations of all theories in `data/i18n/done/` (written by Claude from the English
@@ -55,7 +56,13 @@ python -m http.server 8765 --directory site
 
 `site/` is a static site (Sigma.js + graphology, WebGL): search, theme and type filters,
 cluster/type/theme coloring, a card with summary and all connections for each node,
-shareable links (`#Q815614`). It can be hosted for free on GitHub Pages.
+shareable links (`#Q815614`). It can be hosted for free on GitHub Pages —
+live at [garbana.github.io/conspiracy-map](https://garbana.github.io/conspiracy-map/).
+
+An **About** panel (the link at the bottom of the left panel, Esc to close) explains where the data
+comes from, what the statuses and roles mean, and the limitations. Its numbers are read from the
+loaded graph, so they never go stale. Shared links carry an Open Graph card: `site/og.png` is a real
+screenshot of the map, regenerated with `node layout/og.mjs` (needs Playwright and a local server).
 
 The interface is bilingual (English / Lithuanian). The language comes from `?lang=en` / `?lang=lt`,
 then the visitor's saved choice, then the browser language. All interface strings live in one

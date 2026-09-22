@@ -1,10 +1,31 @@
 <!doctype html>
-<html lang="lt">
+<!-- Statinė kalba – anglų (taip mato paieškos sistemos ir socialiniai tinklai);
+     applyStatic() ją pakeičia į tikrąją vartotojo kalbą iškart užsikrovus. -->
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Conspiracy Map</title>
-<meta name="description" content="Interaktyvus sąmokslo teorijų, jose minimų asmenų, vietų ir organizacijų žemėlapis pagal Vikipediją ir Wikidata.">
+<meta name="description" content="An interactive map of 371 conspiracy theories and the people, places and organizations they mention — who is accused, who promoted them, who was targeted. Built from Wikipedia and Wikidata.">
+<meta name="theme-color" content="#07080d">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://garbana.github.io/conspiracy-map/">
+<link rel="alternate" hreflang="en" href="https://garbana.github.io/conspiracy-map/?lang=en">
+<link rel="alternate" hreflang="lt" href="https://garbana.github.io/conspiracy-map/?lang=lt">
+<link rel="alternate" hreflang="x-default" href="https://garbana.github.io/conspiracy-map/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Conspiracy Map">
+<meta property="og:url" content="https://garbana.github.io/conspiracy-map/">
+<meta property="og:title" content="Conspiracy Map">
+<meta property="og:description" content="An interactive map of 371 conspiracy theories and the people, places and organizations they mention — who is accused, who promoted them, who was targeted. Built from Wikipedia and Wikidata.">
+<meta property="og:image" content="https://garbana.github.io/conspiracy-map/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A network map of conspiracy theories and the people, places, organizations and events they mention.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="lt_LT">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -111,6 +132,31 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 .showall { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 12px; padding: 6px 0; }
 .showall:hover { color: var(--accent2); }
 
+/* ---------- „Apie" langas ---------- */
+#side footer #about-btn { background: none; border: 0; padding: 0 0 8px; cursor: pointer;
+  color: var(--accent2); font-size: 11.5px; text-decoration: underline; text-underline-offset: 2px; }
+#side footer #about-btn:hover { color: var(--accent); }
+#about { position: fixed; inset: 0; z-index: 40; display: none; padding: 24px;
+  background: rgba(4,5,9,.74); backdrop-filter: blur(4px); }
+#about.open { display: grid; place-items: center; }
+#about .sheet { position: relative; width: min(720px, 100%); max-height: min(86vh, 920px);
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  display: flex; flex-direction: column; overflow: hidden; }
+#about .close { position: absolute; top: 12px; right: 12px; background: none; border: 0; z-index: 1;
+  color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; padding: 4px 8px; }
+#about .close:hover { color: var(--text); }
+#about .scroll { overflow-y: auto; padding: 28px 32px 32px; }
+#about h2 { font: 700 27px/1.15 "Cormorant Garamond", serif; margin: 0 28px 2px 0; }
+#about h2 + .sub { color: var(--muted); font-size: 12.5px; margin-bottom: 4px; }
+#about h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+  font-weight: 500; margin: 26px 0 8px; }
+#about p, #about ul { color: #cfccc4; line-height: 1.65; margin: 0 0 10px; }
+#about ul { padding-left: 18px; }
+#about li { margin-bottom: 5px; }
+#about li b, #about p b { color: var(--text); font-weight: 600; }
+#about .lead-note { border-left: 2px solid var(--accent); padding: 2px 0 2px 14px; color: var(--text); }
+#about .fine { color: var(--muted); font-size: 12.5px; }
+
 /* ---------- legenda, loader, mobilus ---------- */
 #legend { position: fixed; bottom: 16px; left: 352px; z-index: 4; display: flex; flex-wrap: wrap;
   gap: 4px 14px; max-width: calc(100vw - 760px); font-size: 12px; color: var(--muted);
@@ -149,6 +195,9 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   #side .scroll, #side footer { padding-left: 16px; padding-right: 16px; }
   h1 { font-size: 22px; }
   #card { top: 0; left: 0; right: 0; bottom: 0; width: auto; border-radius: 0; z-index: 8; }
+  #about { padding: 0; }
+  #about .sheet { max-height: 100%; height: 100%; border-radius: 0; border: 0; }
+  #about .scroll { padding: 24px 18px 32px; }
   #legend { display: none; }
   .clabel { font-size: 11px; }
   .clabel small { display: none; }
@@ -195,7 +244,9 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 
     <div id="stats"></div>
   </div>
-  <footer data-i18n-html="footer_html">
+  <footer>
+    <button id="about-btn" data-i18n="about"></button>
+    <div data-i18n-html="footer_html"></div>
   </footer>
 </aside>
 
@@ -216,6 +267,12 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   <button id="z-in" data-i18n-title="z_in">+</button>
   <button id="z-out" data-i18n-title="z_out">−</button>
   <button id="z-reset" data-i18n-title="z_reset">⤢</button>
+</div>
+<div id="about" role="dialog" aria-modal="true" aria-labelledby="about-title">
+  <div class="sheet">
+    <button class="close" id="about-close" data-i18n-aria="close">×</button>
+    <div class="scroll" id="about-body"></div>
+  </div>
 </div>
 <div id="tooltip"></div>
 <div id="loader"><div><div class="big" data-i18n-html="title_html"></div><p id="load-msg"></p></div></div>
@@ -261,7 +318,7 @@ const I18N = {
   lt: {
     title: "Sąmokslo teorijų žemėlapis",
     title_html: "Sąmokslo teorijų <span>žemėlapis</span>",
-    desc: "Interaktyvus sąmokslo teorijų, jose minimų asmenų, vietų ir organizacijų žemėlapis pagal Vikipediją ir Wikidata.",
+    desc: "Interaktyvus 371 sąmokslo teorijos žemėlapis: kas kuo kaltinamas, kas platino, kas nukentėjo. Sudarytas iš Vikipedijos ir Wikidata.",
     sub: "Teorijos, jose minimi žmonės, vietos, organizacijos ir įvykiai — ir kaip jie susiję.",
     search: "Paieška", search_ph: "Teorija, asmuo, vieta…",
     themes: "Temos", themes_all: "visos / jokios", types: "Mazgų tipai",
@@ -293,11 +350,87 @@ const I18N = {
       evt: ["Įvykiai", "Įvykis teorijose"], loc: ["Vietos", "Vieta teorijose"],
       deb: ["Paneigėjai ir tyrėjai", "Paneigė ar tyrė"], rel: ["Susijusios teorijos", "Susijusi su teorijomis"],
     },
+    role_desc: {
+      acc: "kas, pasak teorijos, slapta veikia (tariamas sąmokslininkas)",
+      pro: "kas teoriją skleidė, populiarino ar gynė",
+      vic: "kas nukentėjo nuo tariamo sąmokslo arba tapo pačios teorijos taikiniu",
+      sub: "objektas, apie kurį teorija kalba (medžiaga, technologija, daiktas)",
+      evt: "įvykis, kurį teorija aiškina arba kuriuo remiasi",
+      loc: "teorijai svarbi vieta",
+      deb: "kas teoriją paneigė, tyrė ar vykdė oficialų tyrimą",
+      rel: "glaudžiai susijusi kita sąmokslo teorija",
+    },
+    about: "Apie žemėlapį",
+    about_html: (s) => `
+<h2 id="about-title">Apie šį žemėlapį</h2>
+<div class="sub">Duomenys iš Vikipedijos ir Wikidata. Paskutinį kartą sudaryta ${s.built}</div>
+
+<p class="lead-note">Žemėlapis rodo, kas sąmokslo teorijose <b>teigiama</b> — ne tai, kas tiesa.
+Ryšys tarp asmens ir teorijos reiškia tik tai, kad teorija tą asmenį mini. Tai <b>nereiškia</b>,
+kad jis teoriją palaiko, joje dalyvavo ar dėl ko nors kaltas.</p>
+
+<h3>Kas čia yra</h3>
+<p>${s.th} sąmokslo ${ltN(s.thN, "teorija", "teorijos", "teorijų")} ir ${s.ent} su jomis
+${ltN(s.entN, "susijęs straipsnis", "susiję straipsniai", "susijusių straipsnių")} — žmonės,
+organizacijos, vietos, įvykiai, kūriniai. Iš viso ${s.nodes} ${ltN(s.nodesN, "mazgas", "mazgai", "mazgų")}
+ir ${s.edges} ${ltN(s.edgesN, "ryšys", "ryšiai", "ryšių")}, suskirstyti į ${s.themes}
+${ltN(s.themesN, "temą", "temas", "temų")} ir ${s.clusters} automatiškai
+${ltN(s.clustersN, "rastą klasterį", "rastus klasterius", "rastų klasterių")}.
+Spustelėjus mazgą atsidaro kortelė su santrauka, visais ryšiais ir nuoroda į šaltinio straipsnį.</p>
+
+<h3>Iš kur duomenys</h3>
+<ul>
+<li>Teorijų sąrašas: anglų Vikipedijos kategorijų medis, Wikidata ir straipsnis
+  „List of conspiracy theories“. Iš 4 298 rastų kandidatų po peržiūros liko ${s.th}
+  ${ltN(s.thN, "teorija", "teorijos", "teorijų")}.</li>
+<li>Santraukos, tipai, datos ir koordinatės: Vikipedija ir Wikidata.</li>
+<li>Ryšiai: nuorodos teorijų straipsnių tekste. Kuo arčiau įžangos ir kuo dažniau minima —
+  tuo ryšys stipresnis.</li>
+</ul>
+
+<h3>Būsenos</h3>
+<p>Kiekvienai teorijai priskirta būsena pagal tai, ką sako pats Vikipedijos straipsnis — ne pagal nuomonę:</p>
+<ul>
+<li><b>Paneigta</b> (${s.debunked}) — atmesta įrodymų arba mokslinio konsensuso.</li>
+<li><b>Ginčijama</b> (${s.disputed}) — neįrodyta, ginčijama arba iš dalies teisinga.</li>
+<li><b>Įrodyta</b> (${s.confirmed}) — dokumentuotas, realiai vykęs sąmokslas (pvz., MKUltra, COINTELPRO).
+  Jų žemėlapyje palikta sąmoningai: riba tarp „sąmokslo teorijos“ ir istorinio fakto ne visada aiški.</li>
+</ul>
+
+<h3>Ryšiai ir vaidmenys</h3>
+<p>Peržiūrėta ${s.roles} ${ltN(s.rolesN, "ryšys", "ryšiai", "ryšių")} — kiekvienam iš jų priskirtas vaidmuo:</p>
+<ul>${roleRows()}</ul>
+<p>Būtent šie ryšiai (${s.core}) sudaro <b>esminį sluoksnį</b>, kurį matote iš karto. Likusieji
+paminėjimai (${s.extra}) sudaro papildomą sluoksnį — jį įjungia žymė „Rodyti visus paminėjimus“ kairėje.</p>
+
+<h3>Temos ir klasteriai</h3>
+<p>Temas teorijoms priskiria raktažodžiai ir Vikipedijos kategorijos. Klasteriai (spalvos) nėra
+sugalvoti iš anksto — juos randa Louvain algoritmas pagal ryšių tankumą, o pavadinimai duoti
+rankomis pagal didžiausią kiekvieno klasterio teoriją.</p>
+
+<h3>Lietuviškas turinys</h3>
+<p>Pirmenybė lietuviškam Vikipedijos straipsniui; jei jo nėra — Claude (DI) parengtas vertimas
+iš angliškos įžangos (kortelėje tai pažymima); toliau — Wikidata pavadinimas arba originalus
+angliškas. Visos teorijos (${s.th}) turi lietuvišką pavadinimą ir santrauką; dalis susijusių
+straipsnių kol kas lieka angliški.</p>
+
+<h3>Apribojimai</h3>
+<ul>
+<li>Viskas remiasi anglų Vikipedija, todėl anglakalbio pasaulio teorijų čia daugiau nei kitų.</li>
+<li>Ryšys — tai nuoroda straipsnio tekste, o ne patikrintas teiginys.</li>
+<li>Sąrašas nėra išsamus ir atspindi Vikipedijos būklę sudarymo dieną.</li>
+</ul>
+
+<h3>Licencija ir kodas</h3>
+<p class="fine">Tekstai iš Vikipedijos — <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.lt" target="_blank" rel="noopener">CC BY-SA 4.0</a>,
+Wikidata — CC0. Projekto kodas ir duomenys:
+<a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">github.com/Garbana/conspiracy-map</a>.
+Radote klaidą? Rašykite ten – <a href="https://github.com/Garbana/conspiracy-map/issues" target="_blank" rel="noopener">Issues</a>.</p>`,
   },
   en: {
     title: "Conspiracy Map",
     title_html: "Conspiracy <span>Map</span>",
-    desc: "An interactive map of conspiracy theories and the people, places and organizations they mention, built from Wikipedia and Wikidata.",
+    desc: "An interactive map of 371 conspiracy theories and the people, places and organizations they mention — who is accused, who promoted them, who was targeted. Built from Wikipedia and Wikidata.",
     sub: "Theories, the people, places, organizations and events they mention — and how they connect.",
     search: "Search", search_ph: "Theory, person, place…",
     themes: "Themes", themes_all: "all / none", types: "Node types",
@@ -328,6 +461,78 @@ const I18N = {
       evt: ["Events", "Event in theories"], loc: ["Places", "Place in theories"],
       deb: ["Debunkers & investigators", "Debunked or investigated"], rel: ["Related theories", "Related to theories"],
     },
+    role_desc: {
+      acc: "who the theory says is secretly acting (the alleged conspirator)",
+      pro: "who spread, popularized or defended the theory",
+      vic: "who was harmed by the alleged plot, or targeted by the theory itself",
+      sub: "what the theory is about (a substance, a technology, an object)",
+      evt: "an event the theory explains or builds on",
+      loc: "a place central to the theory",
+      deb: "who debunked or investigated it, including official inquiries",
+      rel: "another conspiracy theory closely tied to this one",
+    },
+    about: "About this map",
+    about_html: (s) => `
+<h2 id="about-title">About this map</h2>
+<div class="sub">Built from Wikipedia and Wikidata. Last compiled: ${s.built}.</div>
+
+<p class="lead-note">The map shows what conspiracy theories <b>claim</b> — not what is true.
+A link between a person and a theory only means the theory mentions them. It does <b>not</b> mean
+they believe it, took part in anything, or are guilty of anything.</p>
+
+<h3>What is here</h3>
+<p>${s.th} conspiracy theories and ${s.ent} related articles — people, organizations, places, events
+and works. ${s.nodes} nodes and ${s.edges} links in total, sorted into ${s.themes} themes and
+${s.clusters} automatically detected clusters. Click any node for a card with its summary,
+all of its connections, and a link to the source article.</p>
+
+<h3>Where the data comes from</h3>
+<ul>
+<li>The list of theories: the English Wikipedia category tree, Wikidata, and the article
+  “List of conspiracy theories”. Of 4,298 candidates found, ${s.th} survived review.</li>
+<li>Summaries, types, dates and coordinates: Wikipedia and Wikidata.</li>
+<li>Links: wiki links in the text of each theory's article. The closer to the lead and the more
+  often something is mentioned, the stronger the link.</li>
+</ul>
+
+<h3>Statuses</h3>
+<p>Every theory carries a status taken from what its own Wikipedia article says — not from opinion:</p>
+<ul>
+<li><b>Debunked</b> (${s.debunked}) — rejected by evidence or scholarly consensus.</li>
+<li><b>Disputed</b> (${s.disputed}) — unproven, contested, or partially true.</li>
+<li><b>Confirmed</b> (${s.confirmed}) — a documented conspiracy that really happened (MKUltra,
+  COINTELPRO and the like). They are kept on purpose: the line between “conspiracy theory” and
+  historical fact is not always a clean one.</li>
+</ul>
+
+<h3>Links and roles</h3>
+<p>${s.roles} links were reviewed one by one and given a role:</p>
+<ul>${roleRows()}</ul>
+<p>Those ${s.core} links are the <b>core layer</b>, the one you see by default. The remaining
+${s.extra} mentions form an extended layer — switch on “Show all mentions” in the left panel.</p>
+
+<h3>Themes and clusters</h3>
+<p>Themes come from keywords and Wikipedia categories. The clusters (the colors) are not decided
+in advance: the Louvain algorithm finds them from link density, and each one is named by hand
+after its largest theory.</p>
+
+<h3>Lithuanian content</h3>
+<p>Lithuanian Wikipedia first; where there is no article, a Claude (AI) translation of the English
+lead (the card says so); then the Wikidata label, then the original English title. All ${s.th}
+theories have a Lithuanian title and summary; some related articles are still English only.</p>
+
+<h3>Limitations</h3>
+<ul>
+<li>Everything is built from the English Wikipedia, so anglophone theories are over-represented.</li>
+<li>A link is a wiki link in the article text, not a verified claim.</li>
+<li>The list is not exhaustive and reflects Wikipedia as of the date above.</li>
+</ul>
+
+<h3>License and code</h3>
+<p class="fine">Wikipedia text is <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>;
+Wikidata is CC0. Code and data:
+<a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">github.com/Garbana/conspiracy-map</a>.
+Found a mistake? Please open an <a href="https://github.com/Garbana/conspiracy-map/issues" target="_blank" rel="noopener">issue</a>.</p>`,
   },
 };
 const LANGS = Object.keys(I18N);
@@ -346,7 +551,13 @@ const fmt = (x) => x.toLocaleString(LANG);
 function applyStatic() {
   document.documentElement.lang = LANG;
   document.title = T("title");
-  document.querySelector('meta[name="description"]').content = T("desc");
+  // Meta žymos – kad ir adresas, ir bendrinimo kortelė atitiktų kalbą
+  const meta = (sel, v) => { const el = document.querySelector(sel); if (el) el.content = v; };
+  meta('meta[name="description"]', T("desc"));
+  meta('meta[property="og:title"]', T("title"));
+  meta('meta[property="og:description"]', T("desc"));
+  meta('meta[property="og:locale"]', LANG === "lt" ? "lt_LT" : "en_US");
+  meta('meta[property="og:locale:alternate"]', LANG === "lt" ? "en_US" : "lt_LT");
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = T(el.dataset.i18n); });
   document.querySelectorAll("[data-i18n-html]").forEach((el) => { el.innerHTML = T(el.dataset.i18nHtml); });
   document.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = T(el.dataset.i18nPh); });
@@ -788,6 +999,7 @@ function buildControls() {
     renderLegend();
     buildClusterLabels();
     if (state.selected) renderCard(state.selected);
+    if (aboutOpen()) renderAbout();
     refresh();
   };
   $("lang").onclick = (e) => {
@@ -804,6 +1016,9 @@ function buildControls() {
   $("z-out").onclick = () => renderer.getCamera().animatedUnzoom({ duration: 300 });
   $("z-reset").onclick = () => renderer.getCamera().animatedReset({ duration: 400 });
   $("side-head").onclick = () => { if (innerWidth <= 900) $("side").classList.toggle("open"); };
+  $("about-btn").onclick = (e) => { e.stopPropagation(); openAbout(); };
+  $("about-close").onclick = closeAbout;
+  $("about").onclick = (e) => { if (!e.target.closest(".sheet")) closeAbout(); };
   setupSearch();
   renderLegend();
 }
@@ -832,6 +1047,42 @@ function renderLegend() {
   else entries = [[T("legend_cluster"), "#e8b14a"]];
   $("legend").innerHTML = entries.map(([l, c]) => `<span><span class="dot" style="background:${c}"></span>${esc(l)}</span>`).join("");
 }
+
+// ---------- „Apie" langas ----------
+// Skaičiai imami iš pačių duomenų, kad tekste jie nepasentų perskaičiavus žemėlapį.
+function roleRows() {
+  const names = T("roles"), desc = T("role_desc");
+  return Object.keys(desc).map((k) => `<li><b>${esc(names[k][0])}</b> — ${esc(desc[k])}</li>`).join("");
+}
+
+function aboutStats() {
+  const st = { confirmed: 0, debunked: 0, disputed: 0 };
+  let th = 0, ent = 0;
+  for (const n of data.nodes) { if (n.k === "theory") { th++; if (n.st in st) st[n.st]++; } else ent++; }
+  let core = 0, roles = 0;
+  for (const [, , , , c, role] of data.edges) { if (c === undefined || c) core++; if (role) roles++; }
+  return {
+    th: fmt(th), ent: fmt(ent), nodes: fmt(data.nodes.length), edges: fmt(data.edges.length),
+    core: fmt(core), extra: fmt(data.edges.length - core), roles: fmt(roles),
+    themes: fmt(data.themes.length), clusters: fmt(data.clusters.length),
+    // neformatuoti skaičiai – lietuviškiems linksniams (ltN)
+    thN: th, entN: ent, nodesN: data.nodes.length, edgesN: data.edges.length, rolesN: roles,
+    themesN: data.themes.length, clustersN: data.clusters.length,
+    confirmed: fmt(st.confirmed), debunked: fmt(st.debunked), disputed: fmt(st.disputed),
+    built: new Date(data.built).toLocaleDateString(LANG, { year: "numeric", month: "long", day: "numeric" }),
+  };
+}
+
+const aboutOpen = () => $("about").classList.contains("open");
+function renderAbout() { $("about-body").innerHTML = T("about_html", aboutStats()); }
+function openAbout() {
+  if (!data) return;
+  renderAbout();
+  $("about").classList.add("open");
+  $("about-body").scrollTop = 0;
+  $("about-close").focus();
+}
+function closeAbout() { $("about").classList.remove("open"); }
 
 // ---------- paieška ----------
 function setupSearch() {
@@ -872,7 +1123,10 @@ function readHash() {
   const id = decodeURIComponent(location.hash.slice(1));
   if (id && graph.hasNode(id)) setTimeout(() => select(id, true), 300);
 }
-addEventListener("keydown", (e) => { if (e.key === "Escape" && document.activeElement !== $("search")) select(null); });
+addEventListener("keydown", (e) => {
+  if (e.key !== "Escape" || document.activeElement === $("search")) return;
+  if (aboutOpen()) closeAbout(); else select(null);
+});
 
 init().catch((e) => { $("load-msg").textContent = T("load_fail") + e.message; console.error(e); });
 </script>
