@@ -5,3 +5,4 @@ __pycache__/
 node_modules/
 .wrangler/
 worker/node_modules
+samokslu-atlasas.html
