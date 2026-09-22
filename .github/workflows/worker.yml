@@ -137,7 +137,13 @@ jobs:
           fi
           echo "### Žaidimo API paleista" >> "$GITHUB_STEP_SUMMARY"
           echo "- Adresas: \`$url\`" >> "$GITHUB_STEP_SUMMARY"
-          h=$(curl -s --max-time 20 "$url/health" || true)
+          # Iškart po diegimo adresas dar gali neatsiliepti (Cloudflare klaida 1042),
+          # todėl kelis kartus pabandom iš naujo.
+          for i in 1 2 3 4 5; do
+            h=$(curl -s --max-time 20 "$url/health" || true)
+            case "$h" in *'"ok"'*) break ;; esac
+            sleep 5
+          done
           echo "Sveikatos patikra: $h"
           echo "- Būsena: \`$h\`" >> "$GITHUB_STEP_SUMMARY"
           if [ "$(printf '%s' "$h" | jq -r '.ok // false' 2>/dev/null)" != "true" ]; then

@@ -124,6 +124,9 @@ To switch it on:
 4. Put the printed `…workers.dev` address into `const GAME_API` in `site/index.html` and commit.
    While it is empty the game works exactly as before, with results kept in the browser only.
 
+The board is live at `https://conspiracy-map-api.seimos-finansai-backend.workers.dev`
+(`/health` answers with the number of levels, edges and saved runs).
+
 Locally the whole thing runs without a Cloudflare account:
 `cd worker && npx wrangler d1 execute conspiracy-map --local --file=schema.sql` (then `seed.sql`),
 `npx wrangler dev --local`, and point `GAME_API` at `http://127.0.0.1:8787` while testing.
