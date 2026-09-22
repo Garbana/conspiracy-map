@@ -64,7 +64,7 @@ jobs:
             -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
             https://api.cloudflare.com/client/v4/user/tokens/verify)
           if [ "$code" != "200" ]; then
-            echo "::error::Cloudflare atmetė raktą (HTTP $code). Į CLOUDFLARE_API_TOKEN reikia įklijuoti TIK patį raktą (apie 40 simbolių) – be žodžio Bearer, be kabučių ir be viso curl pavyzdžio."
+            echo "::error::Cloudflare atmetė raktą (HTTP $code). Dabar CLOUDFLARE_API_TOKEN yra ${#CLOUDFLARE_API_TOKEN} simb., o tikras raktas – apie 40. Įklijuok TIK patį raktą: be žodžio Bearer, be kabučių, be viso curl pavyzdžio ir be rakto pavadinimo."
             jq -r '.errors[]? | "  - \(.message) [kodas \(.code)]"' /tmp/verify.json 2>/dev/null || cat /tmp/verify.json
             exit 1
           fi
