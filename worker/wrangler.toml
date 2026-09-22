@@ -13,3 +13,7 @@ binding = "DB"
 database_name = "conspiracy-map"
 # ID diegiant įrašo .github/workflows/worker.yml – duombazė randama pagal vardą
 database_id = "dadbcc4e-0eeb-47ff-aaca-50dd8c33fdec"
+
+[dev]
+# Finansų projektas vietiškai naudoja 8787 – kad abu galėtų suktis vienu metu
+port = 8788

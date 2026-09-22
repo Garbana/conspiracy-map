@@ -129,7 +129,7 @@ The board is live at `https://conspiracy-map-api.seimos-finansai-backend.workers
 
 Locally the whole thing runs without a Cloudflare account:
 `cd worker && npx wrangler d1 execute conspiracy-map --local --file=schema.sql` (then `seed.sql`),
-`npx wrangler dev --local`, and point `GAME_API` at `http://127.0.0.1:8787` while testing.
+`npx wrangler dev --local`, and point `GAME_API` at `http://127.0.0.1:8788` while testing.
 
 An **About** panel (the link at the bottom of the left panel, Esc to close) explains where the data
 comes from, what the statuses and roles mean, and the limitations. Its numbers are read from the
