@@ -158,6 +158,8 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 #trail-end { flex: none; background: none; border: 0; cursor: pointer; color: var(--muted); font-size: 17px;
   line-height: 1; padding: 3px 7px; border-radius: 6px; }
 #trail-end:hover { color: var(--accent2); background: rgba(255,255,255,.05); }
+/* Sigma briaunas piešia po mazgais, todėl paryškintas linijas piešiam patys – virš burbulų */
+#glow { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
 #trail { position: fixed; inset: 0; pointer-events: none; z-index: 3; }
 .tmark { position: absolute; transform: translate(-50%, -50%); border-radius: 50%;
   border: 1.5px solid rgba(212,168,74,.75); box-shadow: 0 0 9px rgba(212,168,74,.3); }
@@ -251,6 +253,7 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 </head>
 <body>
 <div id="graph"></div>
+<canvas id="glow"></canvas>
 
 <aside id="side">
   <header id="side-head">
@@ -650,7 +653,7 @@ const nm = (n) => (LANG === "lt" && n.lt ? ucfirst(n.lt) : n.t);
 const state = { themes: new Set(Object.keys(THEMES)), types: new Set(Object.keys(TYPES).filter((t) => t !== "media")),
   generic: false, minDeg: 2, colorBy: "cluster", layer: "core", selected: null, hovered: null, neighbors: new Set(),
   // Nueitas kelias: path – mazgas → iš kurio mazgo į jį atėjome (šaknis: null); pathEdges – nueitos briaunos
-  path: new Map(), pathEdges: new Set() };
+  path: new Map(), pathEdges: new Set(), glow: [], glowDirty: true };
 const ekey = (a, b) => (a < b ? a + "\u0000" + b : b + "\u0000" + a);
 // Pasirinkus mazgą „užsirakinam": reaguoja tik jis pats, jo sąsajos ir nueitas kelias
 const selectable = (id) => !state.selected || id === state.selected || state.neighbors.has(id) || state.path.has(id);
@@ -740,17 +743,20 @@ async function init() {
   renderer.on("enterNode", ({ node }) => {
     if (!selectable(node)) return;   // kelio režime šalia esančios nesusijusios teorijos nereaguoja
     state.hovered = node;
+    invalidateGlow();
     renderer.refresh({ skipIndexation: true });
     showTip(node);
   });
-  renderer.on("leaveNode", () => { state.hovered = null; renderer.refresh({ skipIndexation: true }); hideTip(); });
+  renderer.on("leaveNode", () => { state.hovered = null; invalidateGlow(); renderer.refresh({ skipIndexation: true }); hideTip(); });
   renderer.on("clickNode", ({ node }) => { if (selectable(node)) select(node, false); });
   renderer.on("clickStage", () => select(null));
   renderer.getMouseCaptor().on("mousemovebody", (e) => moveTip(e.original));
   setupTouchTap();
 
   buildClusterLabels();
-  renderer.on("afterRender", () => { placeClusterLabels(); placeTrailMarks(); });
+  sizeGlow();
+  addEventListener("resize", () => { sizeGlow(); drawGlow(); });
+  renderer.on("afterRender", () => { drawGlow(); placeClusterLabels(); placeTrailMarks(); });
   buildControls();
   updateStats();
   readHash();
@@ -791,30 +797,74 @@ function edgeVisible(attr) { return state.layer === "all" || attr.core; }
 
 function edgeReducer(id, attr) {
   const res = { ...attr };
-  const [s, t] = graph.extremities(id);
-  // Nueitas kelias lieka nupieštas visada – ir tada, kai einam toliau per kitą mazgą
-  if (state.pathEdges.has(ekey(s, t))) {
-    const cur = s === state.selected || t === state.selected;
-    res.color = hexA(cur ? "#f0cf82" : "#d4a84a", cur ? .95 : .7);
-    res.size = cur ? 2.6 : 1.8;
-    res.zIndex = 5;
-    return res;
-  }
+  // Kai kažkas pažymėta, WebGL sluoksnyje briaunų nerodom: paryškintas piešia drawGlow()
+  // virš mazgų (kitaip jas uždengtų pritildyti burbulai), o nesusijusių ir taip nereikia.
+  if (state.selected || state.hovered) { res.hidden = true; return res; }
   if (!edgeVisible(attr)) { res.hidden = true; return res; }
+  res.color = "#161a26";
+  res.size = 0.3;
+  return res;
+}
+
+// ---------- paryškintos sąsajos virš mazgų ----------
+let glowCtx = null;
+function sizeGlow() {
+  const c = $("glow"), dpr = Math.min(devicePixelRatio || 1, 2);
+  c.width = Math.round(innerWidth * dpr);
+  c.height = Math.round(innerHeight * dpr);
+  c.style.width = innerWidth + "px";
+  c.style.height = innerHeight + "px";
+  glowCtx = c.getContext("2d");
+  glowCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+const invalidateGlow = () => { state.glowDirty = true; };
+
+// Kurias briaunas piešti: pažymėto (ar užvesto) mazgo sąsajos + visas nueitas kelias
+function buildGlow() {
+  const out = [];
   const focus = state.selected || state.hovered;
   if (focus) {
-    if (s === focus || t === focus) {
-      const other = graph.getNodeAttributes(s === focus ? t : s).raw;
-      const a = 0.25 + 0.6 * Math.min(1, attr.weight / (data.maxW * 0.4));
-      res.color = hexA(nodeColor(other), a);
-      res.size = attr.lead ? 1.4 : 0.8;
-      res.zIndex = 2;
-    } else res.hidden = true;
-  } else {
-    res.color = "#161a26";
-    res.size = 0.3;
+    graph.forEachEdge(focus, (e, a, s, t) => {
+      if (!edgeVisible(a) || state.pathEdges.has(ekey(s, t))) return;
+      const other = s === focus ? t : s;
+      const raw = graph.getNodeAttribute(other, "raw");
+      if (!visible(raw) && !state.path.has(other)) return;
+      out.push({ s, t, c: hexA(nodeColor(raw), 0.3 + 0.55 * Math.min(1, a.weight / (data.maxW * 0.4))),
+        w: a.lead ? 2 : 1.3 });
+    });
   }
-  return res;
+  for (const k of state.pathEdges) {
+    const [s, t] = k.split("\u0000");
+    const cur = s === state.selected || t === state.selected;
+    out.push({ s, t, c: cur ? "rgba(240,207,130,.95)" : "rgba(212,168,74,.8)", w: cur ? 3 : 2.2, trail: true });
+  }
+  state.glow = out;
+}
+
+function drawGlow() {
+  if (!glowCtx) return;
+  if (state.glowDirty) { buildGlow(); state.glowDirty = false; }
+  glowCtx.clearRect(0, 0, innerWidth, innerHeight);
+  if (!state.glow.length) return;
+  glowCtx.lineCap = "round";
+  for (const g of state.glow) {
+    const a = renderer.getNodeDisplayData(g.s), b = renderer.getNodeDisplayData(g.t);
+    if (!a || !b || a.hidden || b.hidden) continue;
+    const p = renderer.framedGraphToViewport(a), q = renderer.framedGraphToViewport(b);
+    const dx = q.x - p.x, dy = q.y - p.y, len = Math.hypot(dx, dy);
+    const ra = renderer.scaleSize(a.size) + 1, rb = renderer.scaleSize(b.size) + 1;
+    if (len < ra + rb + 3) continue;                 // mazgai persidengia – linijos nereikia
+    const ux = dx / len, uy = dy / len;              // liniją trumpinam iki burbulų kraštų
+    glowCtx.beginPath();
+    glowCtx.moveTo(p.x + ux * ra, p.y + uy * ra);
+    glowCtx.lineTo(q.x - ux * rb, q.y - uy * rb);
+    glowCtx.strokeStyle = g.c;
+    glowCtx.lineWidth = g.w;
+    glowCtx.shadowBlur = g.trail ? 9 : 0;
+    glowCtx.shadowColor = g.trail ? "rgba(212,168,74,.55)" : "transparent";
+    glowCtx.stroke();
+  }
+  glowCtx.shadowBlur = 0;
 }
 
 function hexA(hex, a) {
@@ -933,6 +983,7 @@ function select(id, fromSearch) {
     state.pathEdges.clear();
     buildTrailMarks();
     renderTrailBar();
+    invalidateGlow();
     $("card").classList.remove("open", "peek");
     history.replaceState(null, "", location.pathname + location.search);
     renderer.refresh({ skipIndexation: true });
@@ -959,6 +1010,7 @@ function select(id, fromSearch) {
     if (edgeVisible(a) || state.pathEdges.has(ekey(s, t))) state.neighbors.add(s === id ? t : s);
   });
   history.replaceState(null, "", "#" + encodeURIComponent(id));
+  invalidateGlow();
   buildTrailMarks();
   renderTrailBar();
   renderCard(id);
@@ -1237,7 +1289,7 @@ function toggle(set, k, el) {
   refresh();
 }
 
-function refresh() { renderer.refresh({ skipIndexation: true }); updateStats(); }
+function refresh() { invalidateGlow(); renderer.refresh({ skipIndexation: true }); updateStats(); }
 
 function updateStats() {
   let nv = 0, nt = 0;
