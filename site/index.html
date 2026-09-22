@@ -760,11 +760,12 @@ async function init() {
     renderEdgeLabels: false, hideEdgesOnMove: true, allowInvalidContainer: true, labelFont: "Inter", labelSize: 12,
     labelWeight: "500", labelColor: { color: "#d8d4ca" }, labelDensity: 0.6,
     labelGridCellSize: 90, labelRenderedSizeThreshold: 7, zIndex: true,
-    defaultEdgeColor: "rgba(255,255,255,0.05)", minCameraRatio: 0.02, maxCameraRatio: 3,
+    defaultEdgeColor: "rgba(255,255,255,0.05)", minCameraRatio: 0.0025, maxCameraRatio: 3,
     nodeReducer, edgeReducer,
   });
   // Etiketės šviesiame fone neatrodo – piešiam be fono, su šešėliu
   renderer.setSetting("hoverRenderer", drawHover);
+  softenDeepZoom();
 
   renderer.on("enterNode", ({ node }) => {
     if (!selectable(node)) return;   // kelio režime šalia esančios nesusijusios teorijos nereaguoja
@@ -798,9 +799,37 @@ function relatedToFocus(id) {
   return id === h || (graph.hasEdge(h, id) && edgeVisible(graph.getEdgeAttributes(graph.edge(h, id))));
 }
 
+// Sigma mazgo dydį ekrane skaičiuoja kaip size / sqrt(mastelis): priartinant burbulai auga
+// beveik taip pat greitai, kaip skiriasi mazgai, todėl tankūs klasteriai lieka susilieję.
+// Nuo ZOOM_SOFT mastelio dydį prislopinam – atstumai toliau auga, o burbulai beveik ne,
+// tad klasteriai pagaliau išsiskleidžia. Slopinimas eina per nodeReducer, kad sutaptų ir
+// piešimas, ir etikečių ribos, ir pataikymas pirštu.
+const ZOOM_SOFT = 0.15, ZOOM_GROW = 0.22;
+const sizeDamp = () => {
+  const r = renderer ? renderer.getCamera().ratio : 1;   // reducer sukamas ir kuriant Sigma
+  return r >= ZOOM_SOFT ? 1 : Math.pow(r / ZOOM_SOFT, 0.5 - ZOOM_GROW);
+};
+// Perskaičiuoti visų mazgų dydžius kainuoja apie 0,15 s, tad to nedarom suspaudimo metu –
+// palaukiam, kol mastelis nurims, ir perpiešiam vieną kartą.
+let zoomApplied = 1;
+function softenDeepZoom() {
+  let timer = 0;
+  zoomApplied = sizeDamp();
+  renderer.getCamera().on("updated", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const d = sizeDamp();
+      if (Math.abs(d - zoomApplied) / zoomApplied > 0.04) {
+        zoomApplied = d;
+        renderer.refresh({ skipIndexation: true });
+      }
+    }, 220);
+  });
+}
+
 function nodeReducer(id, attr) {
   const n = attr.raw;
-  const res = { ...attr, color: nodeColor(n) };
+  const res = { ...attr, color: nodeColor(n), size: attr.size * sizeDamp() };
   const onPath = state.path.has(id);
   if (!visible(n) && id !== state.selected && !onPath) { res.hidden = true; return res; }
   const focus = state.selected || state.hovered;
@@ -1343,8 +1372,9 @@ function buildControls() {
   };
   $("deg").oninput = (e) => { state.minDeg = +e.target.value; $("deg-v").textContent = e.target.value; refresh(); };
   $("color-by").onchange = (e) => { state.colorBy = e.target.value; renderLegend(); refresh(); };
-  $("z-in").onclick = () => renderer.getCamera().animatedZoom({ duration: 300 });
-  $("z-out").onclick = () => renderer.getCamera().animatedUnzoom({ duration: 300 });
+  // Mastelio riba dabar gili, tad vienas mygtuko paspaudimas keičia mastelį stambiau
+  $("z-in").onclick = () => renderer.getCamera().animatedZoom({ duration: 260, factor: 1.9 });
+  $("z-out").onclick = () => renderer.getCamera().animatedUnzoom({ duration: 260, factor: 1.9 });
   $("z-reset").onclick = () => renderer.getCamera().animatedReset({ duration: 400 });
   $("side-head").onclick = () => { if (innerWidth <= 900) $("side").classList.toggle("open"); };
   $("crumbs").onclick = (e) => {
@@ -1366,7 +1396,12 @@ function toggle(set, k, el) {
   refresh();
 }
 
-function refresh() { invalidateGlow(); renderer.refresh({ skipIndexation: true }); updateStats(); }
+function refresh() {
+  zoomApplied = sizeDamp();
+  invalidateGlow();
+  renderer.refresh({ skipIndexation: true });
+  updateStats();
+}
 
 function updateStats() {
   let nv = 0, nt = 0;
