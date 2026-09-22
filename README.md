@@ -71,12 +71,13 @@ Clicking a connected node steps across that link — the walked **trail** stays 
 numbered steps and can branch, the trail bar at the top jumps back to any step, and × or Esc ends it.
 On phones the card is a bottom sheet (with a grab handle to collapse it), so the map stays visible.
 
-The URL carries the whole trail (`#Q51213808,Q1658150,Q274564`), so a shared link reopens the exact
-walk, not just the last node. Every card has a **share** button. Chat apps and crawlers do not run
-JavaScript, so a link into the map would only ever show the site's own title; the link therefore points
-at `site/t/<slug>-<id>.html` — a small generated page whose meta tags carry *that* node's name, summary
-and status ("Paneigta / Debunked · …") and which immediately forwards a human to the map, trail and
-language included.
+Chat apps and crawlers do not run JavaScript, and a `#fragment` never reaches the server, so a link
+into the map could only ever show the site's own title. Each node therefore has its own small page,
+`site/t/<slug>-<id>.html`, whose meta tags carry *that* node's name, status and summary ("Paneigta /
+Debunked · …") and which immediately forwards a human to the map — language and trail included
+(`?lang=lt&p=Q51213808,Q1658150`). Selecting a node rewrites the address bar to exactly that URL, so a
+link copied from the browser previews correctly too, not only one taken from the card's **share**
+button. Older `#Q51213808` links keep working.
 
 An **About** panel (the link at the bottom of the left panel, Esc to close) explains where the data
 comes from, what the statuses and roles mean, and the limitations. Its numbers are read from the

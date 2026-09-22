@@ -668,7 +668,10 @@ const kindOf = (n) => (n.k === "theory" ? "theory" : n.k === "related" ? "relate
 
 let graph, renderer, data;
 // Santraukų failai (~1 MB suspausto teksto kiekvienas) – kraunami tik pareikalavus, po vieną
-const SUM_URL = { en: "data/summaries.json", lt: "data/summaries_lt.json" };
+// Svetainės šaknis: adreso juostą keičiam į mazgo puslapio adresą (t/…), tad duomenų
+// adresai turi būti nepriklausomi nuo to, kas tuo metu parodyta juostoje.
+const SITE_BASE = location.href.replace(/[?#].*$/, "").replace(/[^/]*$/, "").replace(/t\/$/, "");
+const SUM_URL = { en: SITE_BASE + "data/summaries.json", lt: SITE_BASE + "data/summaries_lt.json" };
 const SUM = {};
 const loadSummaries = (v) => (SUM[v] ||= fetch(SUM_URL[v]).then((r) => r.json()).catch(() => ({})));
 const ucfirst = (x) => x ? x.charAt(0).toUpperCase() + x.slice(1) : x;
@@ -718,7 +721,7 @@ function visible(n) {
 }
 
 async function init() {
-  const res = await fetch("data/graph.json");
+  const res = await fetch(SITE_BASE + "data/graph.json");
   $("load-msg").textContent = T("drawing");
   data = await res.json();
   graph = new graphology.Graph({ type: "undirected", multi: false });
@@ -1008,7 +1011,7 @@ function select(id, fromSearch) {
     renderTrailBar();
     invalidateGlow();
     $("card").classList.remove("open", "peek");
-    history.replaceState(null, "", location.pathname + location.search);
+    updateUrl();
     renderer.refresh({ skipIndexation: true });
     return;
   }
@@ -1032,7 +1035,7 @@ function select(id, fromSearch) {
   graph.forEachEdge(id, (e, a, s, t) => {
     if (edgeVisible(a) || state.pathEdges.has(ekey(s, t))) state.neighbors.add(s === id ? t : s);
   });
-  updateHash();
+  updateUrl();
   invalidateGlow();
   buildTrailMarks();
   renderTrailBar();
@@ -1236,19 +1239,10 @@ $("c-body").addEventListener("click", (e) => {
 // Nuoroda veda į mazgo puslapį site/t/, kurio meta žymose – to mazgo pavadinimas ir
 // santrauka (pokalbių programėlės JavaScript nevykdo, tad mato tik jas). Iš ten iškart
 // permetama į žemėlapį; jei nueitas kelias ilgesnis nei vienas žingsnis, jis keliauja kartu.
-function shareUrl(id) {
-  const n = graph.getNodeAttribute(id, "raw");
-  const base = location.href.replace(/[?#].*$/, "").replace(/index\.html$/, "");
-  const p = pathToRoot(id);
-  const q = new URLSearchParams({ lang: LANG });
-  if (p.length > 1) q.set("p", p.join(","));
-  return n.sg ? `${base}t/${n.sg}.html?${q}` : `${base}?${q}#${encodeURIComponent(id)}`;
-}
-
 async function share(btn) {
   const id = state.selected;
   if (!id) return;
-  const url = shareUrl(id);
+  const url = nodeUrl(id);
   const title = nm(graph.getNodeAttribute(id, "raw"));
   if (navigator.share && innerWidth <= 900) {
     try { await navigator.share({ title, text: title, url }); return; }
@@ -1310,10 +1304,7 @@ function buildControls() {
     if (l === LANG) return;
     LANG = l;
     try { localStorage.setItem("cm-lang", l); } catch (e) { /* ignoruojam */ }
-    // Kalba – ir adrese, kad nuoroda atsidarytų ta pačia kalba
-    const u = new URL(location.href);
-    u.searchParams.set("lang", l);
-    history.replaceState(null, "", u);
+    updateUrl();          // kalba – ir adrese, kad nuoroda atsidarytų ta pačia kalba
     applyStatic();
     graph.forEachNode((id, a) => graph.setNodeAttribute(id, "label", nm(a.raw)));
     renderChips();
@@ -1457,11 +1448,27 @@ function setupSearch() {
   }
 }
 
-// Adrese – visas nueitas kelias (#Q1,Q2,Q3), kad pasidalinta nuoroda jį atkurtų
-function updateHash() {
-  const p = pathToRoot(state.selected);
-  history.replaceState(null, "", p.length ? "#" + p.map(encodeURIComponent).join(",")
-    : location.pathname + location.search);
+// Mazgo puslapio vardas – toks pat, kaip sukuria scraper/10_share_pages.py.
+// Paprastai jį paduoda grafas ("sg"); skaičiuojam patys tik tada, jei pasitaikytų senas graph.json.
+function slugOf(n) {
+  if (n.sg) return n.sg;
+  const s = fold(n.t).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60).replace(/-+$/, "");
+  return s ? s + "-" + n.id : n.id;
+}
+
+// Mazgo adresas: puslapis su to mazgo meta žymomis + kalba + nueitas kelias
+function nodeUrl(id) {
+  const q = new URLSearchParams({ lang: LANG });
+  const p = pathToRoot(id);
+  if (p.length > 1) q.set("p", p.join(","));
+  return `${SITE_BASE}t/${slugOf(graph.getNodeAttribute(id, "raw"))}.html?${q}`;
+}
+
+// Adreso juostoje laikom tą patį adresą, kurį duoda „Dalintis“ – kad nukopijuotas
+// iš juostos linkas pokalbyje irgi parodytų teorijos pavadinimą, o ne bendrą antraštę.
+function updateUrl() {
+  history.replaceState(null, "", state.selected ? nodeUrl(state.selected)
+    : SITE_BASE + "?lang=" + LANG);
 }
 function restorePath(ids) {
   state.path.clear();
@@ -1480,7 +1487,8 @@ function restorePath(ids) {
   }
 }
 function readHash() {
-  const ids = decodeURIComponent(location.hash.slice(1)).split(",").map((x) => x.trim())
+  const raw = location.hash.slice(1) || new URLSearchParams(location.search).get("p") || "";
+  const ids = decodeURIComponent(raw).split(",").map((x) => x.trim())
     .filter((x) => graph.hasNode(x));
   if (!ids.length) return;
   setTimeout(() => {
