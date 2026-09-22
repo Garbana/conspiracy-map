@@ -32,7 +32,8 @@ Python (standard library + `truststore`) and Node.js.
 | 10. Which language's summary each node has | `scraper/09_sumflags.py` | `site/data/graph.json` (`se` / `sl`) |
 | 11. A share page per node (title, summary, status in its meta) | `scraper/10_share_pages.py` | `site/t/*.html`, `graph.json` (`sg`) |
 | 12. Game levels (start nodes, shortest distances, budgets) | `scraper/11_levels.py` | `site/data/levels.json` |
-| 13. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
+| 13. A share page per game level (its name and result in its meta) | `scraper/12_game_pages.py` | `site/g/<lang>/*.html` |
+| 14. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
 
 Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README);
 Lithuanian translations of all theories in `data/i18n/done/` (written by Claude from the English
@@ -55,6 +56,7 @@ python scraper/08_i18n.py
 python scraper/09_sumflags.py
 python scraper/10_share_pages.py
 python scraper/11_levels.py
+python scraper/12_game_pages.py
 python -m http.server 8765 --directory site
 ```
 
@@ -86,8 +88,16 @@ reach the Anunnaki article using nothing but real connections — no search, no 
 budget, and hints that cost points. Ten fixed levels (everyone plays the same starts, so scores compare)
 plus a random mode. `scraper/11_levels.py` computes each level's shortest distance; it rebuilds exactly
 the graph the player can walk, and the page recomputes the same one in the browser — if the two ever
-disagree, "shortest route" would be a lie. Results are kept in the browser for now, and finished levels
-produce a challenge link (`?game=7&n=…&m=…`); a shared leaderboard needs a small backend and is next.
+disagree, "shortest route" would be a lie. Results are kept in the browser for now; a shared leaderboard
+needs a small backend and is next.
+
+A finished level produces a challenge link, and for the same reason as the node pages it is a real file:
+`g/lt/7-5.html?lang=lt&n=…&m=5` carries that level's own meta tags ("7 lygis: … → Anunakiai", "įveiktas
+per 5 žingsnius"), so a link dropped into a chat says which level it is instead of repeating the site's
+title. `scraper/12_game_pages.py` writes one page per level and one per possible result (between the
+shortest route and the budget), in both languages; the challenger's name stays in the query, since a
+static file cannot carry it. The address bar holds the same link while playing, and older
+`?game=7&n=…&m=…` links keep working.
 
 An **About** panel (the link at the bottom of the left panel, Esc to close) explains where the data
 comes from, what the statuses and roles mean, and the limitations. Its numbers are read from the

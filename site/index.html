@@ -1433,6 +1433,7 @@ $("game").addEventListener("click", (e) => {
       gamePut(db);
       t.disabled = true;
       t.textContent = T("g_saved");
+      updateUrl();          // dabar ir adreso juostoje – vardas, kaip iššūkio nuorodoje
       if (GAME_API && g && g.done === "won" && g.lvl) {
         boardSend(g, db.nick).then((res) => {
           if (res && res.ok) { t.textContent = T("g_rank", res.rank); boardLvl = null; }
@@ -1771,6 +1772,7 @@ function gameEnd(won) {
       gamePut(db);
     }
   }
+  updateUrl();          // dabar nuoroda jau su rezultatu
   renderGame();
 }
 
@@ -1783,13 +1785,18 @@ function gameHint() {
 
 const gameName = (id) => nm(graph.getNodeAttribute(id, "raw"));
 
+// Iššūkio adresas – ne šaknis su parametrais, o mažas lygio puslapis su savo meta
+// žymomis (scraper/12_game_pages.py): pokalbyje tada matosi lygio pavadinimas ir
+// per kiek žingsnių jis įveiktas, o ne bendra žemėlapio antraštė.
 function gameShareUrl() {
   const g = state.game, db = gameStore();
-  const q = new URLSearchParams({ lang: LANG, game: g.lvl || "r" });
+  const q = new URLSearchParams({ lang: LANG });
   if (!g.lvl) q.set("from", g.start);
   if (db.nick) q.set("n", db.nick);
-  q.set("m", g.used);
-  return `${SITE_BASE}?${q}`;
+  if (g.used) q.set("m", g.used);
+  // Puslapis su rezultatu yra tik įveiktiems lygiams (žingsnių yra tarp dist ir budget)
+  const beat = g.done === "won" && g.lvl && g.used ? "-" + g.used : "";
+  return `${SITE_BASE}g/${LANG}/${g.lvl || "r"}${beat}.html?${q}`;
 }
 
 // Bendra lentelė: kraunam tinginiu būdu ir perpiešiam, kai atkeliauja
@@ -1934,7 +1941,8 @@ function nodeUrl(id) {
 // Adreso juostoje laikom tą patį adresą, kurį duoda „Dalintis“ – kad nukopijuotas
 // iš juostos linkas pokalbyje irgi parodytų teorijos pavadinimą, o ne bendrą antraštę.
 function updateUrl() {
-  if (state.game) return;      // žaidimo metu adrese lieka iššūkio nuoroda
+  // Žaidžiant adreso juostoje laikom tą pačią iššūkio nuorodą, kurią duoda „Mesti iššūkį“
+  if (state.game) return history.replaceState(null, "", gameShareUrl());
   history.replaceState(null, "", state.selected ? nodeUrl(state.selected)
     : SITE_BASE + "?lang=" + LANG);
 }
