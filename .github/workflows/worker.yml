@@ -31,7 +31,7 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       WRANGLER_SEND_METRICS: "false"
-      D1: dadbcc4e-0eeb-47ff-aaca-50dd8c33fdec
+      DB_NAME: conspiracy-map
       READY: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
     steps:
       - uses: actions/checkout@v4
@@ -77,6 +77,26 @@ jobs:
       - run: npm install --no-save wrangler@4
         if: env.READY == 'true'
 
+      # Duombazės ieškom pagal pavadinimą ir, jei jos nėra, sukuriam. Taip ID nereikia
+      # niekur įrašinėti ranka – wrangler.toml jis įrašomas prieš pat diegimą.
+      - name: D1 duombazė
+        if: env.READY == 'true'
+        run: |
+          find_id() { npx wrangler d1 list --json | jq -r --arg n "$DB_NAME" '.[] | select(.name==$n) | .uuid' | head -1; }
+          id=$(find_id)
+          if [ -z "$id" ]; then
+            echo "Duombazės „$DB_NAME“ nėra – sukuriam."
+            npx wrangler d1 create "$DB_NAME"
+            id=$(find_id)
+          fi
+          if [ -z "$id" ]; then
+            echo "::error::Nepavyko rasti ar sukurti D1 duombazės „$DB_NAME“. Ar rakte duota teisė „D1 Edit“?"
+            exit 1
+          fi
+          echo "D1=$id" >> "$GITHUB_ENV"
+          sed -i "s|^database_id = .*|database_id = \"$id\"|" wrangler.toml
+          echo "D1 duombazė: $DB_NAME ($id)"
+
       - name: Lentelės
         if: env.READY == 'true'
         run: npx wrangler d1 execute $D1 --remote --yes --file=schema.sql
@@ -96,10 +116,25 @@ jobs:
 
       - name: Diegiam Worker'į
         if: env.READY == 'true'
-        run: npx wrangler deploy
+        run: npx wrangler deploy | tee /tmp/deploy.log
 
-      - name: Adresas
+      # Iškart patikrinam, ar API atsiliepia ir ar duombazėje yra lygių bei briaunų:
+      # be jų rezultatų priimti neįmanoma, o žaidžiant tai pamatytum per vėlai.
+      - name: Ar API atsiliepia
         if: env.READY == 'true'
         run: |
+          url=$(grep -o 'https://[A-Za-z0-9.-]*\.workers\.dev' /tmp/deploy.log | head -1)
+          if [ -z "$url" ]; then
+            echo "::warning::Diegimo išvestyje adreso nerasta – patikrink rankomis."
+            exit 0
+          fi
           echo "### Žaidimo API paleista" >> "$GITHUB_STEP_SUMMARY"
-          echo "Adresą matysi aukščiau esančio žingsnio išvestyje (…workers.dev)." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Adresas: \`$url\`" >> "$GITHUB_STEP_SUMMARY"
+          h=$(curl -s --max-time 20 "$url/health" || true)
+          echo "Sveikatos patikra: $h"
+          echo "- Būsena: \`$h\`" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$(printf '%s' "$h" | jq -r '.ok // false' 2>/dev/null)" != "true" ]; then
+            echo "::warning::Duombazėje dar nėra lygių ar briaunų. Paleisk šią darbo eigą rankomis su „seed“ varnele."
+          else
+            echo "Įjungimui: site/index.html eilutėje const GAME_API = \"\" įrašyk $url" >> "$GITHUB_STEP_SUMMARY"
+          fi

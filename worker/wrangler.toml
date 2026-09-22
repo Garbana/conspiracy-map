@@ -11,4 +11,5 @@ ALLOW_ORIGIN_DEV = "http://localhost:8765"
 [[d1_databases]]
 binding = "DB"
 database_name = "conspiracy-map"
+# ID diegiant įrašo .github/workflows/worker.yml – duombazė randama pagal vardą
 database_id = "dadbcc4e-0eeb-47ff-aaca-50dd8c33fdec"

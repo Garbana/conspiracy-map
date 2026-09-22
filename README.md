@@ -91,8 +91,8 @@ reach the Anunnaki article using nothing but real connections — no search, no 
 budget, and hints that cost points. Ten fixed levels (everyone plays the same starts, so scores compare)
 plus a random mode. `scraper/11_levels.py` computes each level's shortest distance; it rebuilds exactly
 the graph the player can walk, and the page recomputes the same one in the browser — if the two ever
-disagree, "shortest route" would be a lie. Results are kept in the browser for now; a shared leaderboard
-needs a small backend and is next. While a level is running nothing outside the game can disturb it: a stray
+disagree, "shortest route" would be a lie. Results are kept in the browser, and a shared leaderboard
+is ready to switch on (see below). While a level is running nothing outside the game can disturb it: a stray
 click on the map, Esc or closing the card leave the walked route alone, and only real moves (or
 steps back onto the route) change it — a misplaced click used to wipe the run.
 
@@ -103,6 +103,30 @@ title. `scraper/12_game_pages.py` writes one page per level and one per possible
 shortest route and the budget), in both languages; the challenger's name stays in the query, since a
 static file cannot carry it. The address bar holds the same link while playing, and older
 `?game=7&n=…&m=…` links keep working.
+
+### Shared leaderboard (optional)
+
+`worker/` is a Cloudflare Worker with a D1 database: `POST /run` takes a finished level and
+`GET /top?lvl=3` returns the best result per player. The server verifies the submitted route itself —
+it must start at that level's node, end at the Anunnaki, and every step must be a real edge (the
+`edges` table) — and it computes the score, so only the clock and the "no hints" flag are worth
+faking. Each player keeps one row per level, so the table cannot grow without limit.
+
+To switch it on:
+
+1. In Cloudflare, create an API token with **Workers Scripts: Edit** and **D1: Edit**, and copy your
+   account ID.
+2. Put them in the repository as `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
+   (Settings → Secrets and variables → Actions). Paste the token alone — no `Bearer`, no quotes.
+3. Run the **Deploy game API** workflow. It finds the D1 database by name (creating it if missing),
+   writes its id into `wrangler.toml`, creates the tables, loads levels and edges on the first run,
+   deploys, and finally calls `/health`, which reports how many levels and edges are in place.
+4. Put the printed `…workers.dev` address into `const GAME_API` in `site/index.html` and commit.
+   While it is empty the game works exactly as before, with results kept in the browser only.
+
+Locally the whole thing runs without a Cloudflare account:
+`cd worker && npx wrangler d1 execute conspiracy-map --local --file=schema.sql` (then `seed.sql`),
+`npx wrangler dev --local`, and point `GAME_API` at `http://127.0.0.1:8787` while testing.
 
 An **About** panel (the link at the bottom of the left panel, Esc to close) explains where the data
 comes from, what the statuses and roles mean, and the limitations. Its numbers are read from the
