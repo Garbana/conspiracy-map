@@ -54,6 +54,22 @@ jobs:
         run: |
           echo "::notice::Nėra CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID – diegimas praleistas."
           echo "Įdėk juos: Settings → Secrets and variables → Actions." >> "$GITHUB_STEP_SUMMARY"
+
+      # Jei į paslaptį pateko ne vien raktas (pvz. visa „curl“ eilutė su žodžiu
+      # Bearer), wrangler'io klaidos būna nesuprantamos. Pasakom tai iš karto.
+      - name: Ar raktas galioja
+        if: env.READY == 'true'
+        run: |
+          code=$(curl -s -o /tmp/verify.json -w '%{http_code}' \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            https://api.cloudflare.com/client/v4/user/tokens/verify)
+          if [ "$code" != "200" ]; then
+            echo "::error::Cloudflare atmetė raktą (HTTP $code). Į CLOUDFLARE_API_TOKEN reikia įklijuoti TIK patį raktą (apie 40 simbolių) – be žodžio Bearer, be kabučių ir be viso curl pavyzdžio."
+            jq -r '.errors[]? | "  - \(.message) [kodas \(.code)]"' /tmp/verify.json 2>/dev/null || cat /tmp/verify.json
+            exit 1
+          fi
+          echo "Raktas galioja."
+
       - uses: actions/setup-node@v4
         if: env.READY == 'true'
         with:
