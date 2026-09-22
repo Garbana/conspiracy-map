@@ -1161,6 +1161,7 @@ function hideTip() { $("tooltip").style.display = "none"; }
 
 // ---------- pasirinkimas, kelias ir kortelė ----------
 function select(id, fromSearch) {
+  if (!id && state.game) return;   // žaidžiant nei tuščia vieta, nei Esc kelio nenumeta
   if (!id) {
     state.selected = null;
     state.neighbors = new Set();
@@ -1175,8 +1176,10 @@ function select(id, fromSearch) {
     return;
   }
   const prev = state.selected;
-  // Žaidime judėti galima tik tikrais, matomais ryšiais – jokių šuolių
-  if (inGame() && prev && id !== prev && !legalMove(prev, id)) return;
+  // Žaidime judėti galima tik tikrais, matomais ryšiais – jokių šuolių. Nueito kelio
+  // atsitiktinis paspaudimas nebenumuša, o pabaigus lygį belieka vaikščioti po savo kelią.
+  if (state.game && prev && id !== prev && !state.path.has(id)
+      && !(inGame() && legalMove(prev, id))) return;
   // Iš kur atėjome: jei ankstesnis mazgas su šiuo susijęs, tai žingsnis per sąsają
   const from = prev && prev !== id && graph.hasEdge(prev, id) ? prev : null;
   if (!state.path.has(id)) {
@@ -1494,7 +1497,8 @@ async function share(btn) {
     inp.select();
   }
 }
-$("card-close").onclick = () => select(null);
+// Žaidime kryželis užveria tik kortelę – pasirinkimas ir kelias lieka
+$("card-close").onclick = () => (state.game ? $("card").classList.remove("open", "peek") : select(null));
 
 // ---------- valdikliai ----------
 function renderChips() {

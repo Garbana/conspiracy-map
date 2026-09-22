@@ -89,7 +89,9 @@ budget, and hints that cost points. Ten fixed levels (everyone plays the same st
 plus a random mode. `scraper/11_levels.py` computes each level's shortest distance; it rebuilds exactly
 the graph the player can walk, and the page recomputes the same one in the browser — if the two ever
 disagree, "shortest route" would be a lie. Results are kept in the browser for now; a shared leaderboard
-needs a small backend and is next.
+needs a small backend and is next. While a level is running nothing outside the game can disturb it: a stray
+click on the map, Esc or closing the card leave the walked route alone, and only real moves (or
+steps back onto the route) change it — a misplaced click used to wipe the run.
 
 A finished level produces a challenge link, and for the same reason as the node pages it is a real file:
 `g/lt/7-5.html?lang=lt&n=…&m=5` carries that level's own meta tags ("7 lygis: … → Anunakiai", "įveiktas
