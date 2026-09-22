@@ -28,8 +28,11 @@ Python (standard library + `truststore`) and Node.js.
 | 6. Merge reviewed roles and statuses | `scraper/06_roles.py` | `data/conspiracy.db`, `graph.json` |
 | 7. Layout + clusters for the website | `layout/layout.mjs` | `site/data/graph.json`, `summaries.json` |
 | 8. Lithuanian summaries and links (lt.wikipedia.org) | `scraper/07_lt.py` | `site/data/summaries_lt.json`, `graph.json` |
+| 9. Lithuanian theory titles and summaries (translations) | `scraper/08_i18n.py` | `site/data/summaries_lt.json`, `graph.json` |
 
 Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README);
+Lithuanian translations of all theories in `data/i18n/done/` (written by Claude from the English
+Wikipedia intro, checked with `scraper/check_i18n.py NN`; the site labels them as such);
 cluster names in `data/cluster_names.json` (keyed by each cluster's main theory, so they survive re-layout —
 the layout uses a fixed random seed).
 
@@ -44,6 +47,7 @@ python scraper/04_build.py
 python scraper/06_roles.py
 cd layout && npm install && node layout.mjs && cd ..
 python scraper/07_lt.py
+python scraper/08_i18n.py
 python -m http.server 8765 --directory site
 ```
 
@@ -52,6 +56,11 @@ python -m http.server 8765 --directory site
 `site/` is a static site (Sigma.js + graphology, WebGL): search, theme and type filters,
 cluster/type/theme coloring, a card with summary and all connections for each node,
 shareable links (`#Q815614`). It can be hosted for free on GitHub Pages.
+
+The interface is bilingual (English / Lithuanian). The language comes from `?lang=en` / `?lang=lt`,
+then the visitor's saved choice, then the browser language. All interface strings live in one
+`I18N` dictionary in `site/index.html`. Lithuanian content priority: lt.wikipedia article →
+reviewed translation → Wikidata label → original English title.
 
 ## Data license
 

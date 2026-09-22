@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sąmokslo teorijų žemėlapis</title>
+<title>Conspiracy Map</title>
 <meta name="description" content="Interaktyvus sąmokslo teorijų, jose minimų asmenų, vietų ir organizacijų žemėlapis pagal Vikipediją ir Wikidata.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,10 @@ a { color: var(--accent2); }
 #side { position: fixed; top: 16px; left: 16px; bottom: 16px; width: 320px; z-index: 5;
   background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
   backdrop-filter: blur(10px); display: flex; flex-direction: column; overflow: hidden; }
-#side header { padding: 20px 20px 14px; border-bottom: 1px solid var(--line); }
+#side header { padding: 20px 20px 14px; border-bottom: 1px solid var(--line); position: relative; }
+#lang { position: absolute; top: 14px; right: 14px; padding: 2px; }
+#lang button { flex: none; padding: 3px 8px; font-size: 11px; font-weight: 600; letter-spacing: .06em; }
+#side header h1 { margin-right: 76px; }
 h1 { font: 700 26px/1.05 "Cormorant Garamond", serif; margin: 0; letter-spacing: .01em; }
 h1 span { color: var(--accent); }
 .sub { color: var(--muted); font-size: 12px; margin-top: 6px; }
@@ -159,52 +162,46 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 
 <aside id="side">
   <header id="side-head">
-    <h1>Sąmokslo teorijų <span>žemėlapis</span></h1>
-    <div class="sub">Teorijos, jose minimi žmonės, vietos, organizacijos ir įvykiai — ir kaip jie susiję.</div>
+    <div class="seg" id="lang" role="group" aria-label="Language / Kalba">
+      <button data-l="lt" lang="lt">LT</button><button data-l="en" lang="en">EN</button>
+    </div>
+    <h1 data-i18n-html="title_html"></h1>
+    <div class="sub" data-i18n="sub"></div>
   </header>
   <div class="scroll">
-    <div class="label">Paieška</div>
+    <div class="label" data-i18n="search"></div>
     <div id="search-wrap">
-      <input id="search" type="search" placeholder="Teorija, asmuo, vieta…" autocomplete="off">
+      <input id="search" type="search" data-i18n-ph="search_ph" autocomplete="off">
       <div id="results"></div>
     </div>
 
-    <div class="label">Temos <button id="themes-all">visos / jokios</button></div>
+    <div class="label"><span data-i18n="themes"></span> <button id="themes-all" data-i18n="themes_all"></button></div>
     <div class="chips" id="themes"></div>
 
-    <div class="label">Mazgų tipai</div>
+    <div class="label" data-i18n="types"></div>
     <div class="chips" id="types"></div>
-    <label class="toggle"><input type="checkbox" id="generic"> Rodyti bendrus mazgus (žiniasklaida, šalys…)</label>
-    <label class="toggle"><input type="checkbox" id="alllinks"> Rodyti visus paminėjimus, ne tik esminius ryšius</label>
+    <label class="toggle"><input type="checkbox" id="generic"> <span data-i18n="generic"></span></label>
+    <label class="toggle"><input type="checkbox" id="alllinks"> <span data-i18n="alllinks"></span></label>
 
-    <div class="label">Min. ryšių skaičius <span id="deg-v" style="color:var(--text)">2</span></div>
+    <div class="label"><span data-i18n="mindeg"></span> <span id="deg-v" style="color:var(--text)">2</span></div>
     <div class="row"><input type="range" id="deg" min="1" max="30" value="2"></div>
 
-    <div class="label">Pavadinimai</div>
-    <div class="seg" id="lang">
-      <button data-l="lt">Lietuviškai</button><button data-l="orig">Originalo kalba</button>
-    </div>
-
-    <div class="label">Spalvinti pagal</div>
+    <div class="label" data-i18n="colorby"></div>
     <select id="color-by">
-      <option value="cluster">Klasterį (automatiškai rastas grupes)</option>
-      <option value="type">Tipą</option>
-      <option value="theme">Temą</option>
+      <option value="cluster" data-i18n="c_cluster"></option>
+      <option value="type" data-i18n="c_type"></option>
+      <option value="theme" data-i18n="c_theme"></option>
     </select>
 
     <div id="stats"></div>
   </div>
-  <footer>
-    Duomenys: <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Vikipedija</a> (CC BY-SA 4.0),
-    <a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a> (CC0).
-    <a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">Atviras kodas</a>.
-    Žemėlapis rodo, kas <em>teigiama</em> — ne tai, kas tiesa.
+  <footer data-i18n-html="footer_html">
   </footer>
 </aside>
 
 <aside id="card">
   <div class="head">
-    <button class="close" id="card-close" aria-label="Uždaryti">×</button>
+    <button class="close" id="card-close" data-i18n-aria="close">×</button>
     <span class="badge" id="c-badge"></span><span class="badge" id="c-status" hidden></span>
     <h2 id="c-title"></h2>
     <div class="lt" id="c-lt"></div>
@@ -216,68 +213,163 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 <div id="clabels"></div>
 <div id="legend"></div>
 <div id="zoom">
-  <button id="z-in" title="Priartinti">+</button>
-  <button id="z-out" title="Nutolinti">−</button>
-  <button id="z-reset" title="Visas vaizdas">⤢</button>
+  <button id="z-in" data-i18n-title="z_in">+</button>
+  <button id="z-out" data-i18n-title="z_out">−</button>
+  <button id="z-reset" data-i18n-title="z_reset">⤢</button>
 </div>
 <div id="tooltip"></div>
-<div id="loader"><div><div class="big">Sąmokslo teorijų <span>žemėlapis</span></div><p id="load-msg">Kraunami duomenys…</p></div></div>
+<div id="loader"><div><div class="big" data-i18n-html="title_html"></div><p id="load-msg"></p></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/graphology@0.25.4/dist/graphology.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
 <script>
 "use strict";
+const $ = (id) => document.getElementById(id);
 const TYPES = {
-  theory:       { lt: "Teorija",       color: "#e8b14a" },
-  related:      { lt: "Susijęs straipsnis", color: "#c77dff" },
-  person:       { lt: "Asmuo",         color: "#5fb4ff" },
-  organization: { lt: "Organizacija",  color: "#ff6b6b" },
-  place:        { lt: "Vieta",         color: "#4fd1a5" },
-  event:        { lt: "Įvykis",        color: "#ff9f5a" },
-  work:         { lt: "Kūrinys",       color: "#f57fb5" },
-  concept:      { lt: "Sąvoka",        color: "#9aa3b5" },
-  media:        { lt: "Žiniasklaida",  color: "#7b8494" },
+  theory:       { lt: "Teorija",       en: "Theory",       color: "#e8b14a" },
+  related:      { lt: "Susijęs straipsnis", en: "Related article", color: "#c77dff" },
+  person:       { lt: "Asmuo",         en: "Person",       color: "#5fb4ff" },
+  organization: { lt: "Organizacija",  en: "Organization", color: "#ff6b6b" },
+  place:        { lt: "Vieta",         en: "Place",        color: "#4fd1a5" },
+  event:        { lt: "Įvykis",        en: "Event",        color: "#ff9f5a" },
+  work:         { lt: "Kūrinys",       en: "Work",         color: "#f57fb5" },
+  concept:      { lt: "Sąvoka",        en: "Concept",      color: "#9aa3b5" },
+  media:        { lt: "Žiniasklaida",  en: "Media",        color: "#7b8494" },
 };
 const THEMES = {
-  politics:        { lt: "Politika",                color: "#ff6b6b" },
-  health:          { lt: "Sveikata ir medicina",    color: "#4fd1a5" },
-  ufo:             { lt: "NSO ir ateiviai",         color: "#8be04e" },
-  science_tech:    { lt: "Mokslas ir technologijos", color: "#5fb4ff" },
-  history:         { lt: "Istorija",                color: "#e8b14a" },
-  ethnic_religious:{ lt: "Etninės ir religinės",    color: "#c77dff" },
-  deaths:          { lt: "Mirtys ir žmogžudystės",  color: "#ff4d8d" },
-  war_terror:      { lt: "Karas ir terorizmas",     color: "#ff9f5a" },
-  finance:         { lt: "Finansai",                color: "#f5d76e" },
-  media_disinfo:   { lt: "Žiniasklaida ir dezinformacija", color: "#9aa3b5" },
-  intelligence:    { lt: "Žvalgyba ir slaptos operacijos", color: "#3ec1d3" },
-  environment:     { lt: "Klimatas ir aplinka",     color: "#6fcf97" },
+  politics:        { lt: "Politika",                en: "Politics",              color: "#ff6b6b" },
+  health:          { lt: "Sveikata ir medicina",    en: "Health & medicine",     color: "#4fd1a5" },
+  ufo:             { lt: "NSO ir ateiviai",         en: "UFOs & aliens",         color: "#8be04e" },
+  science_tech:    { lt: "Mokslas ir technologijos", en: "Science & technology", color: "#5fb4ff" },
+  history:         { lt: "Istorija",                en: "History",               color: "#e8b14a" },
+  ethnic_religious:{ lt: "Etninės ir religinės",    en: "Ethnic & religious",    color: "#c77dff" },
+  deaths:          { lt: "Mirtys ir žmogžudystės",  en: "Deaths & assassinations", color: "#ff4d8d" },
+  war_terror:      { lt: "Karas ir terorizmas",     en: "War & terrorism",       color: "#ff9f5a" },
+  finance:         { lt: "Finansai",                en: "Finance",               color: "#f5d76e" },
+  media_disinfo:   { lt: "Žiniasklaida ir dezinformacija", en: "Media & disinformation", color: "#9aa3b5" },
+  intelligence:    { lt: "Žvalgyba ir slaptos operacijos", en: "Intelligence & covert ops", color: "#3ec1d3" },
+  environment:     { lt: "Klimatas ir aplinka",     en: "Climate & environment", color: "#6fcf97" },
 };
+
+// ---------- kalbos (LT / EN) ----------
+// Visi sąsajos tekstai – čia. Funkcijos gauna skaičius ir grąžina tekstą su teisinga daugiskaita.
+const ltN = (n, one, few, many) => {
+  const d = n % 10, dd = n % 100;
+  return (d === 1 && dd !== 11) ? one : (d >= 2 && (dd < 10 || dd > 20)) ? few : many;
+};
+const I18N = {
+  lt: {
+    title: "Sąmokslo teorijų žemėlapis",
+    title_html: "Sąmokslo teorijų <span>žemėlapis</span>",
+    desc: "Interaktyvus sąmokslo teorijų, jose minimų asmenų, vietų ir organizacijų žemėlapis pagal Vikipediją ir Wikidata.",
+    sub: "Teorijos, jose minimi žmonės, vietos, organizacijos ir įvykiai — ir kaip jie susiję.",
+    search: "Paieška", search_ph: "Teorija, asmuo, vieta…",
+    themes: "Temos", themes_all: "visos / jokios", types: "Mazgų tipai",
+    generic: "Rodyti bendrus mazgus (žiniasklaida, šalys…)",
+    alllinks: "Rodyti visus paminėjimus, ne tik esminius ryšius",
+    mindeg: "Min. ryšių skaičius", colorby: "Spalvinti pagal",
+    c_cluster: "Klasterį (automatiškai rastas grupes)", c_type: "Tipą", c_theme: "Temą",
+    footer_html: 'Duomenys: <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Vikipedija</a> (CC BY-SA 4.0), ' +
+      '<a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a> (CC0). ' +
+      '<a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">Atviras kodas</a>. ' +
+      'Žemėlapis rodo, kas <em>teigiama</em> — ne tai, kas tiesa.',
+    close: "Uždaryti", z_in: "Priartinti", z_out: "Nutolinti", z_reset: "Visas vaizdas",
+    loading: "Kraunami duomenys…", drawing: "Braižomas žemėlapis…", load_fail: "Nepavyko įkelti duomenų: ",
+    st_confirmed: "Įrodyta", st_debunked: "Paneigta", st_disputed: "Ginčijama",
+    region: "Regionas", wiki: "Vikipedija", onmap: "Žemėlapyje", lead: "Minima įžangoje",
+    show: "Rodyti", show_all: "Rodyti visus", other_mentions: "Kiti paminėjimai", mentions: "Paminėjimai",
+    no_links: "Ryšių nerasta.", loading_short: "Kraunama…", read_more: "Skaityti daugiau",
+    show_orig: "Skaityti visą originalą (EN)", show_tr: "Rodyti lietuviškai",
+    note_ai: "Santrauką lietuviškai parengė Claude (DI) pagal anglišką Vikipediją.",
+    note_en: "Santrauka angliškai – lietuviško vertimo dar nėra.",
+    mentioned: (n) => `Minimas <b style="color:var(--text)">${n}</b> ${ltN(n, "teorijos straipsnyje", "teorijų straipsniuose", "teorijų straipsniuose")}.`,
+    stats: (nt, nv, ne, tv, te) => `Rodoma: teorijų <b style="color:var(--text)">${nt}</b>, mazgų ${nv}, ryšių ${ne}<br>` +
+      `Iš viso duomenyse: mazgų ${tv}, ryšių ${te}`,
+    cl_n: (n) => `${n} ${ltN(n, "teorija", "teorijos", "teorijų")}`,
+    legend_cluster: "Spalva = automatiškai rastas glaudžiai susijusių mazgų klasteris",
+    roles: {
+      acc: ["Kaltinami", "Kaltinamas teorijose"], pro: ["Skleidėjai", "Skleidė teorijas"],
+      vic: ["Aukos ir taikiniai", "Auka ar taikinys"], sub: ["Apie ką teorija", "Teorijų objektas"],
+      evt: ["Įvykiai", "Įvykis teorijose"], loc: ["Vietos", "Vieta teorijose"],
+      deb: ["Paneigėjai ir tyrėjai", "Paneigė ar tyrė"], rel: ["Susijusios teorijos", "Susijusi su teorijomis"],
+    },
+  },
+  en: {
+    title: "Conspiracy Map",
+    title_html: "Conspiracy <span>Map</span>",
+    desc: "An interactive map of conspiracy theories and the people, places and organizations they mention, built from Wikipedia and Wikidata.",
+    sub: "Theories, the people, places, organizations and events they mention — and how they connect.",
+    search: "Search", search_ph: "Theory, person, place…",
+    themes: "Themes", themes_all: "all / none", types: "Node types",
+    generic: "Show generic nodes (media, countries…)",
+    alllinks: "Show all mentions, not just core links",
+    mindeg: "Min. connections", colorby: "Color by",
+    c_cluster: "Cluster (automatically detected groups)", c_type: "Type", c_theme: "Theme",
+    footer_html: 'Data: <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0), ' +
+      '<a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a> (CC0). ' +
+      '<a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">Open source</a>. ' +
+      'The map shows what is <em>claimed</em> — not what is true.',
+    close: "Close", z_in: "Zoom in", z_out: "Zoom out", z_reset: "Fit to screen",
+    loading: "Loading data…", drawing: "Drawing the map…", load_fail: "Could not load data: ",
+    st_confirmed: "Confirmed", st_debunked: "Debunked", st_disputed: "Disputed",
+    region: "Region", wiki: "Wikipedia", onmap: "On the map", lead: "Mentioned in the lead",
+    show: "Show", show_all: "Show all", other_mentions: "Other mentions", mentions: "Mentions",
+    no_links: "No connections found.", loading_short: "Loading…", read_more: "Read more",
+    show_orig: "Read the original (EN)", show_tr: "Show translation",
+    note_ai: "", note_en: "",
+    mentioned: (n) => `Mentioned in <b style="color:var(--text)">${n}</b> theory ${n === 1 ? "article" : "articles"}.`,
+    stats: (nt, nv, ne, tv, te) => `Showing <b style="color:var(--text)">${nt}</b> theories, ${nv} nodes, ${ne} links<br>` +
+      `In the dataset: ${tv} nodes, ${te} links`,
+    cl_n: (n) => `${n} ${n === 1 ? "theory" : "theories"}`,
+    legend_cluster: "Color = automatically detected cluster of closely linked nodes",
+    roles: {
+      acc: ["Accused", "Accused in theories"], pro: ["Promoters", "Promoted theories"],
+      vic: ["Victims & targets", "Victim or target"], sub: ["What it is about", "Subject of theories"],
+      evt: ["Events", "Event in theories"], loc: ["Places", "Place in theories"],
+      deb: ["Debunkers & investigators", "Debunked or investigated"], rel: ["Related theories", "Related to theories"],
+    },
+  },
+};
+const LANGS = Object.keys(I18N);
+// Kalba: ?lang= → išsaugotas pasirinkimas → naršyklės kalba (lt → LT, kitaip EN)
+function initialLang() {
+  const q = new URLSearchParams(location.search).get("lang");
+  if (LANGS.includes(q)) return q;
+  try { const v = localStorage.getItem("cm-lang"); if (LANGS.includes(v)) return v; } catch (e) { /* privatus režimas */ }
+  return (navigator.languages || [navigator.language || ""]).some((l) => /^lt\b/i.test(l)) ? "lt" : "en";
+}
+let LANG = initialLang();
+const T = (k, ...a) => { const v = I18N[LANG][k] ?? I18N.en[k]; return typeof v === "function" ? v(...a) : v; };
+const L = (o) => o[LANG] || o.en;   // TYPES / THEMES įrašo pavadinimas
+const fmt = (x) => x.toLocaleString(LANG);
+
+function applyStatic() {
+  document.documentElement.lang = LANG;
+  document.title = T("title");
+  document.querySelector('meta[name="description"]').content = T("desc");
+  document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = T(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => { el.innerHTML = T(el.dataset.i18nHtml); });
+  document.querySelectorAll("[data-i18n-ph]").forEach((el) => { el.placeholder = T(el.dataset.i18nPh); });
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => { el.title = T(el.dataset.i18nTitle); });
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => el.setAttribute("aria-label", T(el.dataset.i18nAria)));
+  document.querySelectorAll("#lang button").forEach((b) => b.classList.toggle("on", b.dataset.l === LANG));
+}
+applyStatic();
+$("load-msg").textContent = T("loading");
 const CLUSTER_PAL = ["#e8b14a","#5fb4ff","#ff6b6b","#4fd1a5","#c77dff","#ff9f5a","#f57fb5","#8be04e",
   "#3ec1d3","#f5d76e","#b39ddb","#ff8a65","#81c784","#64b5f6","#e57373","#ffd54f"];
 
-const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const kindOf = (n) => (n.k === "theory" ? "theory" : n.k === "related" ? "related" : n.ty in TYPES ? n.ty : "concept");
 
 let graph, renderer, data, summaries = null, summariesLt = null;
-// Pavadinimų kalba: "lt" – lietuviški, kur yra (Wikidata / lt.wikipedia), "orig" – originalūs
-let LANG = "lt";
-try { LANG = localStorage.getItem("cm-lang") || "lt"; } catch (e) { /* privatus režimas */ }
 const ucfirst = (x) => x ? x.charAt(0).toUpperCase() + x.slice(1) : x;
 const nm = (n) => (LANG === "lt" && n.lt ? ucfirst(n.lt) : n.t);
 const state = { themes: new Set(Object.keys(THEMES)), types: new Set(Object.keys(TYPES).filter((t) => t !== "media")),
   generic: false, minDeg: 2, colorBy: "cluster", layer: "core", selected: null, hovered: null, neighbors: new Set() };
-// Vaidmenys: [antraštė teorijos kortelėje, antraštė subjekto kortelėje, spalva]
-const ROLES = {
-  acc: ["Kaltinami", "Kaltinamas teorijose", "#ff6b6b"],
-  pro: ["Skleidėjai", "Skleidė teorijas", "#e8b14a"],
-  vic: ["Aukos ir taikiniai", "Auka ar taikinys", "#c77dff"],
-  sub: ["Apie ką teorija", "Teorijų objektas", "#5fb4ff"],
-  evt: ["Įvykiai", "Įvykis teorijose", "#ff9f5a"],
-  loc: ["Vietos", "Vieta teorijose", "#4fd1a5"],
-  deb: ["Paneigėjai ir tyrėjai", "Paneigė ar tyrė", "#9aa3b5"],
-  rel: ["Susijusios teorijos", "Susijusi su teorijomis", "#f57fb5"],
-};
+// Vaidmenų spalvos; antraštės (teorijos kortelėje / subjekto kortelėje) – I18N.*.roles
+const ROLES = { acc: "#ff6b6b", pro: "#e8b14a", vic: "#c77dff", sub: "#5fb4ff",
+  evt: "#ff9f5a", loc: "#4fd1a5", deb: "#9aa3b5", rel: "#f57fb5" };
 const ROLE_ORDER = ["acc", "pro", "vic", "sub", "evt", "loc", "deb", "rel"];
 
 function nodeColor(n) {
@@ -304,7 +396,7 @@ function visible(n) {
 
 async function init() {
   const res = await fetch("data/graph.json");
-  $("load-msg").textContent = "Braižomas žemėlapis…";
+  $("load-msg").textContent = T("drawing");
   data = await res.json();
   graph = new graphology.Graph({ type: "undirected", multi: false });
   for (const n of data.nodes) {
@@ -473,7 +565,7 @@ function buildClusterLabels() {
   const box = $("clabels");
   box.innerHTML = (data.clusters || []).map((c) =>
     `<div class="clabel" data-c="${c.id}" style="color:${hexA(CLUSTER_PAL[c.id % CLUSTER_PAL.length], .9)}">` +
-    `${esc(LANG === "lt" ? (c.lt || c.top) : (c.en || c.top))}<small>${c.n} teorijos · ${c.themes.map((t) => esc(THEMES[t].lt)).join(" · ")}</small></div>`).join("");
+    `${esc(c[LANG] || c.en || c.top)}<small>${T("cl_n", c.n)} · ${c.themes.map((t) => esc(L(THEMES[t]))).join(" · ")}</small></div>`).join("");
 }
 function placeClusterLabels() {
   const box = $("clabels");
@@ -498,7 +590,7 @@ function placeClusterLabels() {
 // ---------- tooltip ----------
 function showTip(id) {
   const n = graph.getNodeAttribute(id, "raw");
-  $("tooltip").innerHTML = `<b>${esc(nm(n))}</b><span>${esc(TYPES[kindOf(n)].lt)}${n.sd ? " · " + esc(n.sd) : ""}</span>`;
+  $("tooltip").innerHTML = `<b>${esc(nm(n))}</b><span>${esc(L(TYPES[kindOf(n)]))}${sdOf(n) ? " · " + esc(sdOf(n)) : ""}</span>`;
   $("tooltip").style.display = "block";
 }
 function moveTip(e) {
@@ -507,6 +599,8 @@ function moveTip(e) {
   t.style.left = Math.min(e.clientX + 14, innerWidth - t.offsetWidth - 8) + "px";
   t.style.top = (e.clientY + 14) + "px";
 }
+// Wikidata trumpasis aprašymas angliškas; lietuviškai jo teorijoms nerodome (jos turi LT santrauką)
+const sdOf = (n) => (LANG === "lt" && n.k === "theory" ? "" : n.sd);
 function hideTip() { $("tooltip").style.display = "none"; }
 
 // ---------- pasirinkimas ir kortelė ----------
@@ -516,7 +610,7 @@ function select(id, fromSearch) {
   if (id) graph.forEachEdge(id, (e, a, s, t) => { if (edgeVisible(a)) state.neighbors.add(s === id ? t : s); });
   if (!id) {
     $("card").classList.remove("open");
-    history.replaceState(null, "", location.pathname);
+    history.replaceState(null, "", location.pathname + location.search);
     renderer.refresh({ skipIndexation: true });
     return;
   }
@@ -532,37 +626,37 @@ async function renderCard(id) {
   const n = graph.getNodeAttribute(id, "raw");
   const kind = kindOf(n);
   const t = TYPES[kind];
-  $("c-badge").textContent = t.lt;
+  $("c-badge").textContent = L(t);
   $("c-badge").style.cssText = `background:${hexA(t.color, .15)};color:${t.color}`;
   $("c-title").textContent = nm(n);
-  const ST = { confirmed: ["Įrodyta", "#4fd1a5"], debunked: ["Paneigta", "#ff6b6b"], disputed: ["Ginčijama", "#f5d76e"] };
+  const ST = { confirmed: "#4fd1a5", debunked: "#ff6b6b", disputed: "#f5d76e" };
   const st = $("c-status");
   if (n.st && ST[n.st]) {
-    st.textContent = ST[n.st][0];
-    st.style.cssText = `background:${hexA(ST[n.st][1], .15)};color:${ST[n.st][1]};margin-left:6px`;
+    st.textContent = T("st_" + n.st);
+    st.style.cssText = `background:${hexA(ST[n.st], .15)};color:${ST[n.st]};margin-left:6px`;
     st.hidden = false;
   } else st.hidden = true;
-  // Antrinė eilutė – kitos kalbos pavadinimas
-  const alt = nm(n) === n.t ? (n.lt ? ucfirst(n.lt) : "") : n.t;
+  // Lietuviškai – po pavadinimu originalus (anglų k.) pavadinimas
+  const alt = LANG === "lt" && nm(n) !== n.t ? n.t : "";
   $("c-lt").textContent = alt && alt.toLowerCase() !== nm(n).toLowerCase() ? alt : "";
   const meta = [];
-  if (n.sd) meta.push(esc(n.sd));
+  if (sdOf(n)) meta.push(esc(sdOf(n)));
   if (n.d) meta.push(`<b>${esc(n.d.replace(/-00/g, "").replace(/^0+/, ""))}</b>`);
-  if (n.rg) meta.push("Regionas: <b>" + n.rg.map(esc).join(", ") + "</b>");
+  if (n.rg) meta.push(T("region") + ": <b>" + n.rg.map(esc).join(", ") + "</b>");
   $("c-meta").innerHTML = meta.join(" · ");
 
   const body = [];
   if (n.th && n.th.length) {
     body.push(`<div class="chips" style="margin-bottom:14px">${n.th.map((k) =>
-      `<span class="chip on"><span class="dot" style="background:${THEMES[k].color}"></span>${esc(THEMES[k].lt)}</span>`).join("")}</div>`);
+      `<span class="chip on"><span class="dot" style="background:${THEMES[k].color}"></span>${esc(L(THEMES[k]))}</span>`).join("")}</div>`);
   }
   body.push(`<div id="c-summary"></div>`);
   const wiki = n.u || `https://en.wikipedia.org/wiki/${encodeURIComponent(n.t.replace(/ /g, "_"))}`;
   body.push(`<div class="links">` +
-    (n.lw ? `<a href="https://lt.wikipedia.org/wiki/${encodeURIComponent(n.lw.replace(/ /g, "_"))}" target="_blank" rel="noopener">Vikipedija (LT) ↗</a>` : "") +
-    `<a href="${esc(wiki)}" target="_blank" rel="noopener">${n.lw ? "Vikipedija (EN)" : "Vikipedija"} ↗</a>` +
+    (n.lw ? `<a href="https://lt.wikipedia.org/wiki/${encodeURIComponent(n.lw.replace(/ /g, "_"))}" target="_blank" rel="noopener">${T("wiki")} (LT) ↗</a>` : "") +
+    `<a href="${esc(wiki)}" target="_blank" rel="noopener">${T("wiki")}${n.lw ? " (EN)" : ""} ↗</a>` +
     (n.id.startsWith("Q") ? `<a href="https://www.wikidata.org/wiki/${esc(n.id)}" target="_blank" rel="noopener">Wikidata ↗</a>` : "") +
-    (n.c ? `<a href="https://www.openstreetmap.org/?mlat=${n.c[0]}&mlon=${n.c[1]}#map=6/${n.c[0]}/${n.c[1]}" target="_blank" rel="noopener">Žemėlapyje ↗</a>` : "") +
+    (n.c ? `<a href="https://www.openstreetmap.org/?mlat=${n.c[0]}&mlon=${n.c[1]}#map=6/${n.c[0]}/${n.c[1]}" target="_blank" rel="noopener">${T("onmap")} ↗</a>` : "") +
     `</div>`);
 
   // Ryšiai: 1) su vaidmeniu (peržiūrėti), 2) kiti esminiai – pagal tipą, 3) likę paminėjimai
@@ -578,7 +672,7 @@ async function renderCard(id) {
   });
   const isHubCard = n.k === "theory" || n.k === "related";
   const row = (c, color) => `<div class="conn" data-id="${esc(c.id)}"><span class="dot" style="background:${color || TYPES[kindOf(c.n)].color}"></span>` +
-    `<span class="t" title="${esc(nm(c.n))}">${esc(nm(c.n))}</span>${c.lead ? '<span class="lead" title="Minima įžangoje">★</span>' : ""}` +
+    `<span class="t" title="${esc(nm(c.n))}">${esc(nm(c.n))}</span>${c.lead ? `<span class="lead" title="${esc(T("lead"))}">★</span>` : ""}` +
     `<span class="w"><i style="width:${Math.max(8, Math.min(100, c.w / data.maxW * 250))}%"></i></span></div>`;
   const group = (title, list, color, lim = 12, collapsed = false) => {
     list.sort((a, b) => b.w - a.w);
@@ -586,25 +680,25 @@ async function renderCard(id) {
     return `<div class="group"><h3>${color ? `<span class="dot" style="width:8px;height:8px;border-radius:50%;background:${color}"></span>` : ""}` +
       `${esc(title)} <span class="n">${list.length}</span></h3>` + list.slice(0, shown).map((c) => row(c)).join("") +
       (list.length > shown ? `<div class="rest" hidden>${list.slice(shown).map((c) => row(c)).join("")}</div>` +
-        `<button class="showall">${collapsed ? "Rodyti" : "Rodyti visus"} (${list.length})</button>` : "") + `</div>`;
+        `<button class="showall">${T(collapsed ? "show" : "show_all")} (${list.length})</button>` : "") + `</div>`;
   };
   for (const r of ROLE_ORDER) {
-    if (byRole[r + ">"]) body.push(group(ROLES[r][0], byRole[r + ">"], ROLES[r][2]));
-    if (byRole[r + "<"]) body.push(group(ROLES[r][1], byRole[r + "<"], ROLES[r][2]));
+    if (byRole[r + ">"]) body.push(group(T("roles")[r][0], byRole[r + ">"], ROLES[r]));
+    if (byRole[r + "<"]) body.push(group(T("roles")[r][1], byRole[r + "<"], ROLES[r]));
   }
   const order = ["theory", "related", "person", "organization", "event", "place", "work", "concept", "media"];
-  for (const k of order) if (byType[k]) body.push(group(TYPES[k].lt, byType[k]));
+  for (const k of order) if (byType[k]) body.push(group(L(TYPES[k]), byType[k]));
   if (extra.length) body.push(group(Object.keys(byRole).length || Object.keys(byType).length ?
-    "Kiti paminėjimai" : "Paminėjimai", extra, null, 12, Object.keys(byRole).length + Object.keys(byType).length > 0));
+    T("other_mentions") : T("mentions"), extra, null, 12, Object.keys(byRole).length + Object.keys(byType).length > 0));
   const groups = { ...byRole, ...byType, ...(extra.length ? { x: extra } : {}) };
-  if (!Object.keys(groups).length) body.push(`<p style="color:var(--muted)">Ryšių nerasta.</p>`);
+  if (!Object.keys(groups).length) body.push(`<p style="color:var(--muted)">${T("no_links")}</p>`);
   $("c-body").innerHTML = body.join("");
   $("c-body").scrollTop = 0;
   $("card").classList.add("open");
 
   const box = $("c-summary");
   if (!summaries || !summariesLt) {
-    box.innerHTML = `<p style="color:var(--faint)">Kraunama…</p>`;
+    box.innerHTML = `<p style="color:var(--faint)">${T("loading_short")}</p>`;
     [summaries, summariesLt] = await Promise.all([
       summaries || fetch("data/summaries.json").then((r) => r.json()).catch(() => ({})),
       summariesLt || fetch("data/summaries_lt.json").then((r) => r.json()).catch(() => ({})),
@@ -612,33 +706,31 @@ async function renderCard(id) {
   }
   if (state.selected !== id) return;
   const en = summaries[id], lt = summariesLt[id];
-  const showSummary = (text, note, other) => {
-    box.innerHTML = `<div class="summary short">${esc(text)}</div>` +
-      (note ? `<p class="sumnote">${note}</p>` : "");
+  // Lietuviškai: vertimas arba LT Vikipedijos įžanga + mygtukas pereiti prie angliško originalo
+  const views = {};
+  if (lt) views.lt = { text: lt, note: n.ltm ? T("note_ai") : "", sw: T("show_orig") };
+  if (en) views.en = { text: en, note: LANG === "lt" && !lt ? T("note_en") : "", sw: T("show_tr") };
+  const show = (v) => {
+    const cur = views[v], other = v === "lt" ? "en" : "lt";
+    box.innerHTML = `<div class="summary short" lang="${v}">${esc(cur.text)}</div>` +
+      (cur.note ? `<p class="sumnote">${esc(cur.note)}</p>` : "");
     const el = box.firstChild;
     if (el.scrollHeight > el.clientHeight + 4) {
       const b = document.createElement("button");
-      b.className = "more"; b.textContent = "Skaityti daugiau";
+      b.className = "more"; b.textContent = T("read_more");
       b.onclick = () => { el.classList.remove("short"); b.remove(); };
       box.appendChild(b);
     } else el.classList.remove("short");
-    if (other) {
+    if (LANG === "lt" && views[other]) {
       const b = document.createElement("button");
-      b.className = "more"; b.textContent = other.label;
-      b.onclick = () => showSummary(other.text, other.note, other.back);
+      b.className = "more"; b.textContent = cur.sw;
+      b.onclick = () => show(other);
       box.appendChild(b);
     }
   };
-  const count = n.n ? `<p style="color:var(--muted)">Minimas <b style="color:var(--text)">${n.n}</b> teorijų straipsniuose.</p>` : "";
-  if (LANG === "lt" && lt) {
-    showSummary(lt, "", en ? { label: "Rodyti originalą (EN)", text: en, note: "",
-      back: { label: "Rodyti lietuviškai", text: lt, note: "" } } : null);
-  } else if (en) {
-    showSummary(en, LANG === "lt" && !lt ? "Santrauka angliškai – straipsnio lietuviškoje Vikipedijoje nėra." : "",
-      lt ? { label: "Rodyti lietuviškai", text: lt, note: "", back: null } : null);
-  } else if (lt) {
-    showSummary(lt, "", null);
-  } else box.innerHTML = count;
+  const first = LANG === "lt" ? (lt ? "lt" : en ? "en" : null) : (en ? "en" : lt ? "lt" : null);
+  if (first) show(first);
+  else box.innerHTML = n.n ? `<p style="color:var(--muted)">${T("mentioned", n.n)}</p>` : "";
 }
 
 $("c-body").addEventListener("click", (e) => {
@@ -650,16 +742,20 @@ $("c-body").addEventListener("click", (e) => {
 $("card-close").onclick = () => select(null);
 
 // ---------- valdikliai ----------
-function buildControls() {
+function renderChips() {
   const tc = {}, kc = {};
   for (const n of data.nodes) {
     kc[kindOf(n)] = (kc[kindOf(n)] || 0) + 1;
     if (n.k === "theory") for (const t of n.th || []) tc[t] = (tc[t] || 0) + 1;
   }
   $("themes").innerHTML = Object.entries(THEMES).sort((a, b) => (tc[b[0]] || 0) - (tc[a[0]] || 0)).map(([k, v]) =>
-    `<button class="chip on" data-k="${k}"><span class="dot" style="background:${v.color}"></span>${esc(v.lt)} <span class="n">${tc[k] || 0}</span></button>`).join("");
+    `<button class="chip ${state.themes.has(k) ? "on" : ""}" data-k="${k}"><span class="dot" style="background:${v.color}"></span>${esc(L(v))} <span class="n">${tc[k] || 0}</span></button>`).join("");
   $("types").innerHTML = Object.entries(TYPES).map(([k, v]) =>
-    `<button class="chip ${state.types.has(k) ? "on" : ""}" data-k="${k}"><span class="dot" style="background:${v.color}"></span>${esc(v.lt)} <span class="n">${kc[k] || 0}</span></button>`).join("");
+    `<button class="chip ${state.types.has(k) ? "on" : ""}" data-k="${k}"><span class="dot" style="background:${v.color}"></span>${esc(L(v))} <span class="n">${kc[k] || 0}</span></button>`).join("");
+}
+
+function buildControls() {
+  renderChips();
 
   $("themes").onclick = (e) => {
     const c = e.target.closest(".chip"); if (!c) return;
@@ -679,16 +775,25 @@ function buildControls() {
   };
   $("generic").onchange = (e) => { state.generic = e.target.checked; refresh(); };
   const setLang = (l) => {
+    if (l === LANG) return;
     LANG = l;
     try { localStorage.setItem("cm-lang", l); } catch (e) { /* ignoruojam */ }
-    document.querySelectorAll("#lang button").forEach((b) => b.classList.toggle("on", b.dataset.l === l));
+    // Kalba – ir adrese, kad nuoroda atsidarytų ta pačia kalba
+    const u = new URL(location.href);
+    u.searchParams.set("lang", l);
+    history.replaceState(null, "", u);
+    applyStatic();
     graph.forEachNode((id, a) => graph.setNodeAttribute(id, "label", nm(a.raw)));
+    renderChips();
+    renderLegend();
     buildClusterLabels();
     if (state.selected) renderCard(state.selected);
     refresh();
   };
-  $("lang").onclick = (e) => { const b = e.target.closest("button"); if (b) setLang(b.dataset.l); };
-  document.querySelectorAll("#lang button").forEach((b) => b.classList.toggle("on", b.dataset.l === LANG));
+  $("lang").onclick = (e) => {
+    e.stopPropagation();   // telefone antraštės paspaudimas atidaro / uždaro skydą
+    const b = e.target.closest("button"); if (b) setLang(b.dataset.l);
+  };
   $("alllinks").onchange = (e) => {
     state.layer = e.target.checked ? "all" : "core";
     if (state.selected) select(state.selected, false); else refresh();
@@ -717,16 +822,14 @@ function updateStats() {
   graph.forEachNode((id, a) => { if (visible(a.raw)) { nv++; vis.add(id); if (a.raw.k === "theory") nt++; } });
   let ne = 0;
   graph.forEachEdge((e, a, s, t) => { if (vis.has(s) && vis.has(t) && edgeVisible(a)) ne++; });
-  $("stats").innerHTML = `Rodoma: <b style="color:var(--text)">${nt.toLocaleString("lt")}</b> teorijų, ` +
-    `${nv.toLocaleString("lt")} mazgų, ${ne.toLocaleString("lt")} ryšių<br>` +
-    `Iš viso duomenyse: ${graph.order.toLocaleString("lt")} mazgų, ${graph.size.toLocaleString("lt")} ryšių`;
+  $("stats").innerHTML = T("stats", fmt(nt), fmt(nv), fmt(ne), fmt(graph.order), fmt(graph.size));
 }
 
 function renderLegend() {
   let entries;
-  if (state.colorBy === "type") entries = Object.values(TYPES).map((v) => [v.lt, v.color]);
-  else if (state.colorBy === "theme") entries = Object.values(THEMES).map((v) => [v.lt, v.color]);
-  else entries = [["Spalva = automatiškai rastas glaudžiai susijusių mazgų klasteris", "#e8b14a"]];
+  if (state.colorBy === "type") entries = Object.values(TYPES).map((v) => [L(v), v.color]);
+  else if (state.colorBy === "theme") entries = Object.values(THEMES).map((v) => [L(v), v.color]);
+  else entries = [[T("legend_cluster"), "#e8b14a"]];
   $("legend").innerHTML = entries.map(([l, c]) => `<span><span class="dot" style="background:${c}"></span>${esc(l)}</span>`).join("");
 }
 
@@ -738,7 +841,7 @@ function setupSearch() {
   const show = () => {
     box.innerHTML = hits.map((h, i) => `<div data-id="${esc(h.id)}" class="${i === cur ? "on" : ""}">` +
       `<span class="dot" style="width:8px;height:8px;border-radius:50%;background:${TYPES[kindOf(h.n)].color}"></span>` +
-      `${esc(nm(h.n))}<small>${esc(TYPES[kindOf(h.n)].lt)}</small></div>`).join("");
+      `${esc(nm(h.n))}<small>${esc(L(TYPES[kindOf(h.n)]))}</small></div>`).join("");
     box.style.display = hits.length ? "block" : "none";
   };
   input.oninput = () => {
@@ -771,7 +874,7 @@ function readHash() {
 }
 addEventListener("keydown", (e) => { if (e.key === "Escape" && document.activeElement !== $("search")) select(null); });
 
-init().catch((e) => { $("load-msg").textContent = "Nepavyko įkelti duomenų: " + e.message; console.error(e); });
+init().catch((e) => { $("load-msg").textContent = T("load_fail") + e.message; console.error(e); });
 </script>
 </body>
 </html>
