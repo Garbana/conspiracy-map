@@ -31,7 +31,8 @@ Python (standard library + `truststore`) and Node.js.
 | 9. Lithuanian theory titles and summaries (translations) | `scraper/08_i18n.py` | `site/data/summaries_lt.json`, `graph.json` |
 | 10. Which language's summary each node has | `scraper/09_sumflags.py` | `site/data/graph.json` (`se` / `sl`) |
 | 11. A share page per node (title, summary, status in its meta) | `scraper/10_share_pages.py` | `site/t/*.html`, `graph.json` (`sg`) |
-| 12. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
+| 12. Game levels (start nodes, shortest distances, budgets) | `scraper/11_levels.py` | `site/data/levels.json` |
+| 13. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
 
 Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README);
 Lithuanian translations of all theories in `data/i18n/done/` (written by Claude from the English
@@ -53,6 +54,7 @@ python scraper/07_lt.py
 python scraper/08_i18n.py
 python scraper/09_sumflags.py
 python scraper/10_share_pages.py
+python scraper/11_levels.py
 python -m http.server 8765 --directory site
 ```
 
@@ -78,6 +80,14 @@ Debunked · …") and which immediately forwards a human to the map — language
 (`?lang=lt&p=Q51213808,Q1658150`). Selecting a node rewrites the address bar to exactly that URL, so a
 link copied from the browser previews correctly too, not only one taken from the card's **share**
 button. Older `#Q51213808` links keep working.
+
+**Road to the Anunnaki** is a game built on the same trail: you are dropped on a theory and have to
+reach the Anunnaki article using nothing but real connections — no search, no filters, a limited move
+budget, and hints that cost points. Ten fixed levels (everyone plays the same starts, so scores compare)
+plus a random mode. `scraper/11_levels.py` computes each level's shortest distance; it rebuilds exactly
+the graph the player can walk, and the page recomputes the same one in the browser — if the two ever
+disagree, "shortest route" would be a lie. Results are kept in the browser for now, and finished levels
+produce a challenge link (`?game=7&n=…&m=…`); a shared leaderboard needs a small backend and is next.
 
 An **About** panel (the link at the bottom of the left panel, Esc to close) explains where the data
 comes from, what the statuses and roles mean, and the limitations. Its numbers are read from the

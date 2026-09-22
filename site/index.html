@@ -143,6 +143,57 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 .showall { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 12px; padding: 6px 0; }
 .showall:hover { color: var(--accent2); }
 
+/* ---------- žaidimas „Kelias pas anunakius“ ---------- */
+#play { display: flex; align-items: center; gap: 10px; width: 100%; margin-bottom: 18px; padding: 11px 13px;
+  cursor: pointer; text-align: left; border-radius: 10px; color: var(--text);
+  background: linear-gradient(135deg, rgba(212,168,74,.18), rgba(95,180,255,.1));
+  border: 1px solid rgba(212,168,74,.35); }
+#play:hover { border-color: var(--accent); background: linear-gradient(135deg, rgba(212,168,74,.26), rgba(95,180,255,.14)); }
+#play .ico { font-size: 19px; flex: none; }
+#play b { display: block; font: 600 13.5px Inter, sans-serif; }
+#play span.s { color: var(--muted); font-size: 11.5px; }
+
+#game { display: none; }
+#game.on { display: block; }
+#side.playing .scroll > :not(#game) { display: none; }
+#game .lvl { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+#game .lvl b { font: 700 19px "Cormorant Garamond", serif; letter-spacing: .02em; }
+#game .lvl .of { color: var(--faint); font-size: 11.5px; }
+#game .goal { color: var(--muted); font-size: 12.5px; line-height: 1.5; margin-bottom: 14px; }
+#game .goal b { color: var(--text); }
+#g-meters { display: flex; gap: 8px; margin-bottom: 14px; }
+#g-meters div { flex: 1; text-align: center; padding: 8px 4px; border-radius: 8px;
+  background: var(--bg2); border: 1px solid var(--line); }
+#g-meters .v { font: 600 17px Inter, sans-serif; color: var(--text); }
+#g-meters .k { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-top: 2px; }
+#g-meters .warn .v { color: #ff9f5a; }
+#g-meters .bad .v { color: #ff6b6b; }
+#g-steps { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; font-size: 12px; }
+#g-steps span { padding: 3px 8px; border-radius: 6px; background: rgba(212,168,74,.12); color: var(--accent2); }
+#g-steps span.now { background: var(--accent); color: #07080d; font-weight: 600; }
+#game .btns { display: flex; gap: 6px; flex-wrap: wrap; }
+#game button.gb { flex: 1; min-width: 92px; padding: 8px 10px; font-size: 12.5px; cursor: pointer;
+  border-radius: 8px; color: var(--text); background: var(--bg2); border: 1px solid var(--line); }
+#game button.gb:hover:not(:disabled) { border-color: var(--accent); color: var(--accent2); }
+#game button.gb:disabled { opacity: .4; cursor: default; }
+#game button.gb.main { background: rgba(212,168,74,.16); border-color: rgba(212,168,74,.4); color: var(--accent2); }
+#g-hint { margin: 12px 0 0; padding: 9px 11px; border-radius: 8px; font-size: 12.5px; line-height: 1.5;
+  background: rgba(95,180,255,.1); border: 1px solid rgba(95,180,255,.25); color: #cfccc4; }
+#g-hint.warn { background: rgba(255,107,107,.1); border-color: rgba(255,107,107,.3); }
+#g-result { margin-top: 16px; padding: 14px; border-radius: 10px; background: var(--bg2); border: 1px solid var(--line); }
+#g-result h3 { margin: 0 0 4px; font: 700 20px "Cormorant Garamond", serif; color: var(--accent2); }
+#g-result .score { font: 700 30px Inter, sans-serif; color: var(--text); line-height: 1.1; margin: 8px 0 2px; }
+#g-result .det { color: var(--muted); font-size: 12px; line-height: 1.6; margin-bottom: 12px; }
+#g-result input { width: 100%; margin-bottom: 8px; padding: 8px 10px; font-size: 13px; color: var(--text);
+  background: var(--bg); border: 1px solid var(--line); border-radius: 8px; }
+#g-board { margin-top: 18px; }
+#g-board table { width: 100%; border-collapse: collapse; font-size: 12px; }
+#g-board td { padding: 5px 4px; border-top: 1px solid var(--line); color: var(--muted); }
+#g-board td:first-child { color: var(--faint); width: 26px; }
+#g-board td.n { color: var(--text); }
+#g-board td:last-child { text-align: right; color: var(--accent2); font-weight: 600; }
+#g-board tr.done td.n::after { content: " ✓"; color: #4fd1a5; }
+
 /* ---------- kelio juosta ir žymos ---------- */
 #trailbar { position: fixed; top: 16px; left: 352px; right: 16px; z-index: 6; display: none;
   align-items: center; gap: 8px; padding: 7px 8px 7px 12px; font-size: 12px;
@@ -150,6 +201,10 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 #trailbar.on { display: flex; }
 #card.open ~ #trailbar { right: 412px; }
 #trailbar .lbl { flex: none; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+#g-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 20px; font-size: 11px;
+  letter-spacing: .04em; text-transform: none; background: rgba(212,168,74,.16); color: var(--accent2); font-weight: 600; }
+#g-chip.warn { background: rgba(255,159,90,.18); color: #ff9f5a; }
+#g-chip b { font-size: 12.5px; }
 #crumbs { flex: 1; min-width: 0; display: flex; align-items: center; gap: 2px; overflow-x: auto; scrollbar-width: none; }
 #crumbs::-webkit-scrollbar { display: none; }
 #crumbs .crumb { flex: none; max-width: 200px; display: inline-flex; align-items: center; gap: 6px;
@@ -162,6 +217,9 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 #crumbs .crumb.on .i { background: var(--accent); color: #07080d; }
 #crumbs .sep { flex: none; color: var(--faint); }
 #trailbar .hint { flex: none; color: var(--faint); font-size: 11.5px; }
+#g-hint-bar { flex: none; background: rgba(95,180,255,.14); border: 1px solid rgba(95,180,255,.3); cursor: pointer;
+  font-size: 13px; line-height: 1; padding: 5px 8px; border-radius: 7px; }
+#g-hint-bar:hover { background: rgba(95,180,255,.24); }
 #trail-end { flex: none; background: none; border: 0; cursor: pointer; color: var(--muted); font-size: 17px;
   line-height: 1; padding: 3px 7px; border-radius: 6px; }
 #trail-end:hover { color: var(--accent2); background: rgba(255,255,255,.05); }
@@ -271,6 +329,8 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
     <div class="sub" data-i18n="sub"></div>
   </header>
   <div class="scroll">
+    <button id="play"><span class="ico">🛸</span><span><b data-i18n="g_title"></b><span class="s" data-i18n="g_sub"></span></span></button>
+    <div id="game"></div>
     <div class="label" data-i18n="search"></div>
     <div id="search-wrap">
       <input id="search" type="search" data-i18n-ph="search_ph" autocomplete="off">
@@ -316,9 +376,11 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 </aside>
 
 <div id="trailbar">
+  <span class="lbl" id="g-chip" hidden></span>
   <span class="lbl" data-i18n="trail"></span>
   <div id="crumbs"></div>
   <span class="hint" data-i18n="trail_hint"></span>
+  <button id="g-hint-bar" hidden>💡</button>
   <button id="trail-end" data-i18n-title="trail_end">×</button>
 </div>
 <div id="clabels"></div>
@@ -397,6 +459,24 @@ const I18N = {
       'Žemėlapis rodo, kas <em>teigiama</em> — ne tai, kas tiesa.',
     close: "Uždaryti", z_in: "Priartinti", z_out: "Nutolinti", z_reset: "Visas vaizdas",
     share: "Dalintis", share_done: "Nuoroda nukopijuota ✓", share_path: "Dalintis su keliu",
+    g_title: "Kelias pas anunakius", g_sub: "Žaidimas: nuo teorijos iki ateivių",
+    g_lvl: "lygis", g_of: (n) => `iš ${n}`, g_random: "Atsitiktinis",
+    g_goal: (from) => `Nuo <b>${from}</b> pasiek <b>anunakius</b> — eik tik per tikras sąsajas.`,
+    g_moves: "Žingsniai", g_budget: "Liko", g_best: "Trumpiausias",
+    g_hint: "Užuomina", g_back: "Atgal", g_give: "Baigti", g_next: "Kitas lygis",
+    g_retry: "Bandyti iš naujo", g_start: "Pradėti", g_close: "Išeiti iš žaidimo",
+    g_hint_txt: (d) => d === 1 ? "Anunakiai <b>už vieno žingsnio</b> — jie tarp šio mazgo sąsajų."
+      : `Nuo čia iki anunakių — <b>${d} žingsniai</b>.`,
+    g_hint_dead: "Aklavietė: iš čia anunakių nepasieksi. Grįžk atgal.",
+    g_hint_nolink: "Tą mazgą pasiekti gali tik per matomas sąsajas.",
+    g_won: "Pasiekei anunakius!", g_lost: "Biudžetas baigėsi",
+    g_lost_txt: (b) => `Sunaudojai visus ${b} žingsnius. Kelias buvo trumpesnis.`,
+    g_det: (m, d, h, sec) => `${m} ž. (trumpiausias ${d}) · užuominų ${h} · ${sec} s`,
+    g_perfect: "Tobulas kelias!", g_pts: "tšk.",
+    g_nick: "Tavo vardas", g_save: "Išsaugoti", g_saved: "Išsaugota ✓",
+    g_share: "Mesti iššūkį", g_board: "Mano rezultatai", g_total: "Iš viso",
+    g_none: "Dar nežaista", g_challenge: (n, m) => `<b>${n}</b> įveikė šį lygį per <b>${m}</b> ž. Pakartok!`,
+    g_rules: "Žaidimo metu paieška ir filtrai nenaudojami — keliauji tik tuo, ką matai žemėlapyje.",
     card_toggle: "Suskleisti arba išskleisti kortelę",
     trail: "Kelias", trail_hint: "Spustelėkite susijusį mazgą – eisite toliau",
     trail_end: "Baigti kelią (Esc)",
@@ -446,6 +526,13 @@ ir ${s.edges} ${ltN(s.edgesN, "ryšys", "ryšiai", "ryšių")}, suskirstyti į $
 ${ltN(s.themesN, "temą", "temas", "temų")} ir ${s.clusters} automatiškai
 ${ltN(s.clustersN, "rastą klasterį", "rastus klasterius", "rastų klasterių")}.
 Spustelėjus mazgą atsidaro kortelė su santrauka, visais ryšiais ir nuoroda į šaltinio straipsnį.</p>
+
+<h3>Žaidimas</h3>
+<p>Kairėje viršuje – <b>„Kelias pas anunakius“</b>: atsiduri ties kuria nors teorija ir turi pasiekti
+straipsnį apie anunakius einant vien tikromis sąsajomis. Paieška ir filtrai išjungti, žingsnių kiekis
+ribotas, užuominos kainuoja taškų. Dešimt vienodų lygių visiems ir atsitiktinis režimas. Trumpiausią
+kelią skaičiuoja ta pati taisyklė, pagal kurią piešiamas žemėlapis, tad „trumpiausias“ reiškia būtent
+tai, ką galima nueiti.</p>
 
 <h3>Kelias per sąsajas</h3>
 <p>Pažymėjus mazgą užsidega jis pats ir visos jo tiesioginės sąsajos, o likęs žemėlapis nurimsta —
@@ -523,6 +610,24 @@ Radote klaidą? Rašykite ten – <a href="https://github.com/Garbana/conspiracy
       'The map shows what is <em>claimed</em> — not what is true.',
     close: "Close", z_in: "Zoom in", z_out: "Zoom out", z_reset: "Fit to screen",
     share: "Share", share_done: "Link copied ✓", share_path: "Share with the trail",
+    g_title: "Road to the Anunnaki", g_sub: "A game: from a theory to the aliens",
+    g_lvl: "level", g_of: (n) => `of ${n}`, g_random: "Random",
+    g_goal: (from) => `From <b>${from}</b>, reach the <b>Anunnaki</b> — using real connections only.`,
+    g_moves: "Moves", g_budget: "Left", g_best: "Shortest",
+    g_hint: "Hint", g_back: "Back", g_give: "End", g_next: "Next level",
+    g_retry: "Try again", g_start: "Start", g_close: "Leave the game",
+    g_hint_txt: (d) => d === 1 ? "The Anunnaki are <b>one step away</b> — among this node's connections."
+      : `From here to the Anunnaki: <b>${d} steps</b>.`,
+    g_hint_dead: "Dead end: the Anunnaki cannot be reached from here. Go back.",
+    g_hint_nolink: "You can only move along the connections you can see.",
+    g_won: "You reached the Anunnaki!", g_lost: "Out of budget",
+    g_lost_txt: (b) => `You used all ${b} moves. There was a shorter way.`,
+    g_det: (m, d, h, sec) => `${m} moves (shortest ${d}) · ${h} hints · ${sec}s`,
+    g_perfect: "Perfect route!", g_pts: "pts",
+    g_nick: "Your name", g_save: "Save", g_saved: "Saved ✓",
+    g_share: "Challenge a friend", g_board: "My results", g_total: "Total",
+    g_none: "Not played yet", g_challenge: (n, m) => `<b>${n}</b> finished this level in <b>${m}</b> moves. Beat it!`,
+    g_rules: "Search and filters are off during the game — you travel only by what you see on the map.",
     card_toggle: "Collapse or expand the card",
     trail: "Trail", trail_hint: "Click a connected node to step further",
     trail_end: "End the trail (Esc)",
@@ -568,6 +673,12 @@ they believe it, took part in anything, or are guilty of anything.</p>
 and works. ${s.nodes} nodes and ${s.edges} links in total, sorted into ${s.themes} themes and
 ${s.clusters} automatically detected clusters. Click any node for a card with its summary,
 all of its connections, and a link to the source article.</p>
+
+<h3>The game</h3>
+<p>Top left: <b>Road to the Anunnaki</b>. You start at some theory and have to reach the Anunnaki
+article using real connections only — search and filters are off, moves are limited, and hints cost
+points. Ten fixed levels, the same for everyone, plus a random mode. The shortest distance is computed
+with the very rule that draws the map, so "shortest" means what can actually be walked.</p>
 
 <h3>Following a trail</h3>
 <p>Selecting a node lights it up together with all of its direct connections, and the rest of the map
@@ -679,7 +790,7 @@ const nm = (n) => (LANG === "lt" && n.lt ? ucfirst(n.lt) : n.t);
 const state = { themes: new Set(Object.keys(THEMES)), types: new Set(Object.keys(TYPES).filter((t) => t !== "media")),
   generic: false, minDeg: 2, colorBy: "cluster", layer: "core", selected: null, hovered: null, neighbors: new Set(),
   // Nueitas kelias: path – mazgas → iš kurio mazgo į jį atėjome (šaknis: null); pathEdges – nueitos briaunos
-  path: new Map(), pathEdges: new Set(), glow: [], glowDirty: true };
+  path: new Map(), pathEdges: new Set(), glow: [], glowDirty: true, game: null };
 const ekey = (a, b) => (a < b ? a + "\u0000" + b : b + "\u0000" + a);
 // Pasirinkus mazgą „užsirakinam": reaguoja tik jis pats, jo sąsajos ir nueitas kelias
 const selectable = (id) => !state.selected || id === state.selected || state.neighbors.has(id) || state.path.has(id);
@@ -1062,6 +1173,8 @@ function select(id, fromSearch) {
     return;
   }
   const prev = state.selected;
+  // Žaidime judėti galima tik tikrais, matomais ryšiais – jokių šuolių
+  if (inGame() && prev && id !== prev && !legalMove(prev, id)) return;
   // Iš kur atėjome: jei ankstesnis mazgas su šiuo susijęs, tai žingsnis per sąsają
   const from = prev && prev !== id && graph.hasEdge(prev, id) ? prev : null;
   if (!state.path.has(id)) {
@@ -1076,6 +1189,7 @@ function select(id, fromSearch) {
       state.path.set(id, null);
     }
   }
+  const stepped = inGame() && prev && id !== prev;
   state.selected = id;
   state.pickedAt = Date.now();
   state.neighbors = new Set();
@@ -1089,6 +1203,7 @@ function select(id, fromSearch) {
   renderCard(id);
   focusNode(id, fromSearch, from);
   renderer.refresh({ skipIndexation: true });
+  if (stepped) gameMove(id);
 }
 
 // Kamera į mazgą. Žengiant per sąsają kadre paliekam ir ankstesnį mazgą – kad matytųsi,
@@ -1144,6 +1259,18 @@ function placeTrailMarks() {
 }
 function renderTrailBar() {
   const bar = $("trailbar");
+  // Žaidimo skaitiklis viršuje – telefone šoninį skydą uždengia kortelė
+  const chip = $("g-chip"), g = state.game;
+  chip.hidden = !g;
+  $("g-hint-bar").hidden = !inGame() || (g && g.lvl === 10);
+  $("g-hint-bar").title = g ? T("g_hint") + " (−100)" : "";
+  if (g) {
+    const used = g.moves.length - 1, left = g.budget - used;
+    const d = g.hints && gdist ? gdist.get(state.selected) : undefined;
+    chip.innerHTML = `🛸 <b>${used}</b>/${g.budget}` +
+      (g.hints ? ` · ${d === undefined ? "⊘" : d + " →"}` : "");
+    chip.classList.toggle("warn", left <= 1);
+  }
   bar.classList.toggle("on", state.path.size > 0);
   if (!state.path.size) { $("crumbs").innerHTML = ""; return; }
   const crumbs = pathToRoot(state.selected);
@@ -1204,6 +1331,7 @@ async function renderCard(id) {
   const byRole = {}, byType = {}, extra = [];
   graph.forEachEdge(id, (e, a, s, tg) => {
     const o = s === id ? tg : s;
+    if (inGame() && !legalMove(id, o)) return;   // žaidime rodom tik tai, kuo galima eiti
     const c = { id: o, n: graph.getNodeAttribute(o, "raw"), w: a.weight, lead: a.lead };
     // Vaidmuo priklauso jį priskyrusiai teorijai (a.src): jos kortelėje – "Kaltinami",
     // kitos pusės kortelėje – "Kaltinamas teorijose"
@@ -1272,6 +1400,51 @@ async function renderCard(id) {
   };
   show(first);
 }
+
+
+// Vienas klausytojas visam žaidimo skydui – turinys perpiešiamas po kiekvieno žingsnio
+$("game").addEventListener("click", (e) => {
+  const t = e.target.closest("[data-go], [data-lvl], button");
+  if (!t) return;
+  const go = t.dataset.go;
+  if (go === "x") return gameClose();
+  if (go === "r") return gameOpen(0);
+  if (go) return gameOpen(+go);
+  const row = t.closest("[data-lvl]");
+  if (row) return gameOpen(+row.dataset.lvl);
+  const g = state.game;
+  switch (t.id) {
+    case "g-hint-btn": return gameHint();
+    case "g-back": {
+      const par = state.path.get(state.selected);
+      if (par) select(par, false);
+      return;
+    }
+    case "g-quit": return gameOpen(undefined);
+    case "g-menu": return gameOpen(undefined);
+    case "g-retry": return gameOpen(g.lvl, g.lvl ? null : { from: g.start });
+    case "g-next": return gameOpen(g.lvl + 1);
+    case "g-save": {
+      const db = gameStore();
+      db.nick = ($("g-nick").value || "").trim().slice(0, 20);
+      gamePut(db);
+      t.textContent = T("g_saved");
+      t.disabled = true;
+      return;
+    }
+    case "g-share": {
+      const db = gameStore();
+      if (!db.nick) { db.nick = ($("g-nick").value || "").trim().slice(0, 20); gamePut(db); }
+      const url = gameShareUrl();
+      navigator.clipboard.writeText(url).then(() => { t.textContent = T("share_done"); }, () => {
+        const inp = document.createElement("input");
+        inp.readOnly = true; inp.value = url; t.parentElement.appendChild(inp); inp.select();
+      });
+      return;
+    }
+  }
+});
+$("play").onclick = () => gameOpen(undefined);
 
 $("c-body").addEventListener("click", (e) => {
   const c = e.target.closest(".conn");
@@ -1359,6 +1532,7 @@ function buildControls() {
     buildClusterLabels();
     if (state.selected) renderCard(state.selected);
     renderTrailBar();
+    if ($("game").classList.contains("on")) renderGame();
     if (aboutOpen()) renderAbout();
     refresh();
   };
@@ -1379,9 +1553,13 @@ function buildControls() {
   $("side-head").onclick = () => { if (innerWidth <= 900) $("side").classList.toggle("open"); };
   $("crumbs").onclick = (e) => {
     const c = e.target.closest(".crumb");
-    if (c && c.dataset.id !== state.selected) select(c.dataset.id, false);
+    if (!c || c.dataset.id === state.selected) return;
+    // Žaidime grįžti galima tik per gretimą mazgą – kelio juosta nėra teleportas
+    if (inGame() && !legalMove(state.selected, c.dataset.id)) return;
+    select(c.dataset.id, false);
   };
-  $("trail-end").onclick = () => select(null);
+  $("trail-end").onclick = () => (state.game ? gameOpen(undefined) : select(null));
+  $("g-hint-bar").onclick = () => gameHint();
   $("card-grab").onclick = () => $("card").classList.toggle("peek");
   $("about-btn").onclick = (e) => { e.stopPropagation(); openAbout(); };
   $("about-close").onclick = closeAbout;
@@ -1456,6 +1634,197 @@ function openAbout() {
 }
 function closeAbout() { $("about").classList.remove("open"); }
 
+// ---------- žaidimas „Kelias pas anunakius“ ----------
+// Žaidimo grafas = tas pats, ką žaidėjas mato su numatytais filtrais (esminiai ryšiai,
+// be bendrinių mazgų ir žiniasklaidos). Tie patys skaičiavimai kaip scraper/11_levels.py,
+// todėl „trumpiausias kelias“ sutampa su tuo, ką realiai galima nueiti.
+const GAME_KEY = "cm-game";
+let levels = null, gameAdj = null, gdist = null;
+
+const gameOk = (n) => !n.g && kindOf(n) !== "media" && ((n.cdg || 0) >= 2 || n.id === levels.target);
+const legalMove = (a, b) => !!(gameAdj && gameAdj.get(a) && gameAdj.get(a).has(b));
+const inGame = () => !!(state.game && !state.game.done);
+
+function buildGameGraph() {
+  const ok = new Set();
+  graph.forEachNode((id, a) => { if (gameOk(a.raw)) ok.add(id); });
+  gameAdj = new Map();
+  const link = (a, b) => { if (!gameAdj.has(a)) gameAdj.set(a, new Set()); gameAdj.get(a).add(b); };
+  graph.forEachEdge((e, a, sr, tg) => {
+    if (!a.core || !ok.has(sr) || !ok.has(tg)) return;
+    link(sr, tg); link(tg, sr);
+  });
+  gdist = new Map([[levels.target, 0]]);           // atstumas iki anunakių kiekvienam mazgui
+  let wave = [levels.target];
+  while (wave.length) {
+    const next = [];
+    for (const u of wave) for (const v of gameAdj.get(u) || []) {
+      if (!gdist.has(v)) { gdist.set(v, gdist.get(u) + 1); next.push(v); }
+    }
+    wave = next;
+  }
+}
+
+const gameStore = () => { try { return JSON.parse(localStorage.getItem(GAME_KEY)) || {}; } catch (e) { return {}; } };
+const gamePut = (o) => { try { localStorage.setItem(GAME_KEY, JSON.stringify(o)); } catch (e) { /* privatus režimas */ } };
+
+async function gameOpen(lvl, opts) {
+  if (!levels) levels = await fetch(SITE_BASE + "data/levels.json").then((r) => r.json());
+  if (!gameAdj) buildGameGraph();
+  $("side").classList.add("playing");
+  $("game").classList.add("on");
+  if (innerWidth <= 900) $("side").classList.add("open");
+  if (lvl === undefined) { state.game = null; renderGame(); return; }   // meniu
+  // Filtrai žaidimo metu – numatytieji, kad visiems grafas būtų vienodas
+  state.themes = new Set(Object.keys(THEMES));
+  state.types = new Set(Object.keys(TYPES).filter((t) => t !== "media"));
+  state.generic = false; state.minDeg = 2; state.layer = "core";
+  $("generic").checked = false; $("alllinks").checked = false; $("deg").value = 2; $("deg-v").textContent = 2;
+  renderChips();
+
+  const L = lvl ? levels.levels.find((x) => x.lvl === lvl) : null;
+  const start = (opts && opts.from) || (L && L.start) || randomStart();
+  const dist = gdist.get(start);
+  state.game = {
+    lvl: lvl || 0, start, dist,
+    budget: L ? L.budget : dist + 3,
+    moves: [start], hints: 0, t0: Date.now(), done: null,
+    challenge: opts && opts.challenge,
+  };
+  state.path.clear(); state.pathEdges.clear();
+  state.selected = null;
+  select(start, true);
+  renderGame();
+}
+
+function randomStart() {
+  const pool = [];
+  gdist.forEach((d, id) => {
+    if (d < 3) return;
+    const n = graph.getNodeAttribute(id, "raw");
+    if (n.k === "theory" && (n.lt || LANG === "en")) pool.push(id);
+  });
+  return pool[Math.floor(Math.random() * pool.length)] || levels.levels[0].start;
+}
+
+function gameClose() {
+  state.game = null;
+  $("side").classList.remove("playing");
+  $("game").classList.remove("on");
+  $("game").innerHTML = "";
+  select(null);
+}
+
+function gameMove(id) {
+  const g = state.game;
+  g.moves.push(id);
+  renderTrailBar();
+  if (id === levels.target) gameEnd(true);
+  else if (g.moves.length - 1 >= g.budget) gameEnd(false);
+  else renderGame();
+}
+
+function gameEnd(won) {
+  const g = state.game;
+  g.done = won ? "won" : "lost";
+  g.used = g.moves.length - 1;
+  g.sec = Math.max(1, Math.round((Date.now() - g.t0) / 1000));
+  g.score = won ? Math.max(100, 1000 - 120 * (g.used - g.dist) - 100 * g.hints) : 0;
+  if (innerWidth <= 900) {          // telefone parodom rezultatą, o ne kortelę
+    $("card").classList.remove("open", "peek");
+    $("side").classList.add("open");
+  }
+  if (won && g.lvl) {
+    const db = gameStore();
+    db.best = db.best || {};
+    const old = db.best[g.lvl];
+    if (!old || g.score > old.score) {
+      db.best[g.lvl] = { score: g.score, moves: g.used, hints: g.hints, sec: g.sec, path: g.moves, at: Date.now() };
+      gamePut(db);
+    }
+  }
+  renderGame();
+}
+
+function gameHint() {
+  if (!inGame()) return;
+  state.game.hints++;
+  renderGame();
+  renderTrailBar();
+}
+
+const gameName = (id) => nm(graph.getNodeAttribute(id, "raw"));
+
+function gameShareUrl() {
+  const g = state.game, db = gameStore();
+  const q = new URLSearchParams({ lang: LANG, game: g.lvl || "r" });
+  if (!g.lvl) q.set("from", g.start);
+  if (db.nick) q.set("n", db.nick);
+  q.set("m", g.used);
+  return `${SITE_BASE}?${q}`;
+}
+
+function renderGame() {
+  const box = $("game"), g = state.game, db = gameStore();
+  if (!g) {                                   // ---- meniu ----
+    const best = db.best || {};
+    const total = Object.values(best).reduce((a, b) => a + b.score, 0);
+    box.innerHTML = `<div class="lvl"><b>${esc(T("g_title"))}</b></div>` +
+      `<div class="goal">${esc(T("g_rules"))}</div>` +
+      `<div id="g-board"><table>` + levels.levels.map((L) => {
+        const b = best[L.lvl];
+        return `<tr class="${b ? "done" : ""}" data-lvl="${L.lvl}" style="cursor:pointer">` +
+          `<td>${L.lvl}</td><td class="n">${esc(gameName(L.start))}</td>` +
+          `<td>${b ? b.score + " " + esc(T("g_pts")) : esc(T("g_none"))}</td></tr>`;
+      }).join("") + `</table></div>` +
+      `<div class="goal" style="margin:12px 0 10px">${esc(T("g_total"))}: <b>${total} ${esc(T("g_pts"))}</b></div>` +
+      `<div class="btns"><button class="gb main" data-go="1">${esc(T("g_start"))}</button>` +
+      `<button class="gb" data-go="r">${esc(T("g_random"))}</button>` +
+      `<button class="gb" data-go="x">${esc(T("g_close"))}</button></div>`;
+    return;
+  }
+  const used = g.moves.length - 1, left = g.budget - used;
+  const cur = g.moves[g.moves.length - 1];
+  const d = gdist.has(cur) ? gdist.get(cur) : null;
+  const steps = g.moves.slice(-4).map((id, i, arr) =>
+    `<span class="${i === arr.length - 1 ? "now" : ""}">${esc(gameName(id))}</span>`).join("");
+  const meter = (v, k, cls) => `<div class="${cls || ""}"><div class="v">${v}</div><div class="k">${esc(k)}</div></div>`;
+  let html = `<div class="lvl"><b>${g.lvl ? g.lvl + " " + esc(T("g_lvl")) : esc(T("g_random"))}</b>` +
+    (g.lvl ? `<span class="of">${esc(T("g_of", levels.levels.length))}</span>` : "") + `</div>` +
+    `<div class="goal">${T("g_goal", esc(gameName(g.start)))}</div>`;
+  if (g.challenge) html += `<div id="g-hint">${T("g_challenge", esc(g.challenge.n), esc(g.challenge.m))}</div>`;
+  html += `<div id="g-meters">` + meter(used, T("g_moves")) +
+    meter(left, T("g_budget"), left <= 0 ? "bad" : left <= 1 ? "warn" : "") +
+    meter(g.dist, T("g_best")) + `</div>`;
+  html += `<div id="g-steps">${steps}</div>`;
+
+  if (!g.done) {
+    html += `<div class="btns">` +
+      `<button class="gb" id="g-hint-btn"${g.lvl === 10 ? " disabled" : ""}>${esc(T("g_hint"))} (−100)</button>` +
+      `<button class="gb" id="g-back"${g.moves.length < 2 ? " disabled" : ""}>${esc(T("g_back"))}</button>` +
+      `<button class="gb" id="g-quit">${esc(T("g_give"))}</button></div>`;
+    if (g.hints) {
+      html += d === undefined || d === null ? `<div id="g-hint" class="warn">${esc(T("g_hint_dead"))}</div>`
+        : `<div id="g-hint">${T("g_hint_txt", d)}</div>`;
+    }
+  } else {
+    const won = g.done === "won";
+    html += `<div id="g-result"><h3>${esc(T(won ? "g_won" : "g_lost"))}</h3>` +
+      (won ? `<div class="score">${g.score} <span style="font-size:14px;color:var(--muted)">${esc(T("g_pts"))}</span></div>` +
+        `<div class="det">${esc(T("g_det", g.used, g.dist, g.hints, g.sec))}` +
+        (g.used === g.dist ? ` · <b style="color:#4fd1a5">${esc(T("g_perfect"))}</b>` : "") + `</div>` +
+        `<input id="g-nick" maxlength="20" placeholder="${esc(T("g_nick"))}" value="${esc(db.nick || "")}">` +
+        `<div class="btns"><button class="gb main" id="g-save">${esc(T("g_save"))}</button>` +
+        `<button class="gb" id="g-share">${esc(T("g_share"))}</button></div>`
+        : `<div class="det">${esc(T("g_lost_txt", g.budget))}</div>`) +
+      `<div class="btns" style="margin-top:8px">` +
+      `<button class="gb" id="g-retry">${esc(T("g_retry"))}</button>` +
+      (g.lvl && g.lvl < levels.levels.length ? `<button class="gb main" id="g-next">${esc(T("g_next"))}</button>` : "") +
+      `<button class="gb" id="g-menu">${esc(T("g_board"))}</button></div></div>`;
+  }
+  box.innerHTML = html;
+}
+
 // ---------- paieška ----------
 // Paieškai nurašom diakritiką: „samokslo" turi rasti „sąmokslo", „zydu" – „žydų"
 const fold = (s) => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -1520,6 +1889,7 @@ function nodeUrl(id) {
 // Adreso juostoje laikom tą patį adresą, kurį duoda „Dalintis“ – kad nukopijuotas
 // iš juostos linkas pokalbyje irgi parodytų teorijos pavadinimą, o ne bendrą antraštę.
 function updateUrl() {
+  if (state.game) return;      // žaidimo metu adrese lieka iššūkio nuoroda
   history.replaceState(null, "", state.selected ? nodeUrl(state.selected)
     : SITE_BASE + "?lang=" + LANG);
 }
@@ -1539,7 +1909,20 @@ function restorePath(ids) {
     prev = id;
   }
 }
+// Iššūkio nuoroda: ?game=<lygis|r>&from=<mazgas>&n=<vardas>&m=<žingsniai>
+function readGameLink() {
+  const q = new URLSearchParams(location.search);
+  const gm = q.get("game");
+  if (gm === null) return false;
+  const n = q.get("n"), m = q.get("m");
+  gameOpen(gm === "r" ? 0 : Math.max(1, Math.min(10, +gm || 1)),
+    { from: q.get("from") && graph.hasNode(q.get("from")) ? q.get("from") : null,
+      challenge: n && m ? { n: n.slice(0, 20), m: String(m).slice(0, 3) } : null });
+  return true;
+}
+
 function readHash() {
+  if (readGameLink()) return;
   const raw = location.hash.slice(1) || new URLSearchParams(location.search).get("p") || "";
   const ids = decodeURIComponent(raw).split(",").map((x) => x.trim())
     .filter((x) => graph.hasNode(x));
