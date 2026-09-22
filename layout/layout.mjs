@@ -26,6 +26,12 @@ const TOP_K = +(process.env.TOP_K || 8);         // kiek stipriausių kaimynų p
 const MAX_SHARED = 60;     // subjektai, minimi daugiau straipsnių, karkaso nekuria (per bendri)
 
 const byId = new Map(src.nodes.map((n) => [n.id, n]));
+// Fiksuota sėkla: klasteriai ir išdėstymas kaskart vienodi (kad klasterių pavadinimai neišsimėtytų)
+function mulberry32(a) {
+  return () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const SEED = +(process.env.SEED || 20260922);
 const isHub = (id) => { const n = byId.get(id); return n && (n.k === "theory" || n.k === "related"); };
 
 // ---------- 1) karkaso svoriai ----------
@@ -72,13 +78,13 @@ const lonely = g.filterNodes((n) => g.degree(n) === 0);
 lonely.forEach((n) => g.dropNode(n));
 console.log(`Karkasas: ${g.order} straipsnių, ${g.size} ryšių (be ryšių: ${lonely.length})`);
 
-const comm = louvain(g, { getEdgeWeight: "weight", resolution: 1.2 });
+const comm = louvain(g, { getEdgeWeight: "weight", resolution: 1.2, rng: mulberry32(SEED) });
 console.log(`Klasterių: ${new Set(Object.values(comm)).size}`);
 
 // Klasterio vidaus ryšiai traukia stipriau, tarp klasterių – silpniau: aiškesni "žemynai"
 const INTRA = +(process.env.INTRA || 5), INTER = +(process.env.INTER || 0.2);
 g.forEachEdge((e, a, s, t) => g.setEdgeAttribute(e, "weight", a.weight * (comm[s] === comm[t] ? INTRA : INTER)));
-random.assign(g, { scale: 1000, center: 0 });
+random.assign(g, { scale: 1000, center: 0, rng: mulberry32(SEED + 1) });
 const settings = { ...forceAtlas2.inferSettings(g), barnesHutOptimize: true, barnesHutTheta: 0.5,
   linLogMode: false, scalingRatio: 10, gravity: 1, strongGravityMode: false,
   edgeWeightInfluence: 1, outboundAttractionDistribution: false, adjustSizes: false, slowDown: 3,
@@ -171,14 +177,26 @@ for (const n of nodes) {
   const c = (clusters[n.cm] ||= { id: n.cm, n: 0, themes: {}, top: null, x: 0, y: 0 });
   c.n++; c.x += n.x; c.y += n.y;
   for (const t of n.th || []) c.themes[t] = (c.themes[t] || 0) + 1;
-  if (!c.top || n.dg > c.top.dg) c.top = { t: n.t, dg: n.dg };
+  (c.list ||= []).push(n);
+  if (!c.top || n.dg > c.top.dg) c.top = { id: n.id, t: n.t, dg: n.dg };
 }
-const clusterList = Object.values(clusters).filter((c) => c.n >= 5).map((c) => ({
-  id: c.id, n: c.n, x: r1(c.x / c.n), y: r1(c.y / c.n), top: c.top.t,
-  themes: Object.entries(c.themes).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([t]) => t),
-}));
+// Rankiniai pavadinimai: data/cluster_names.json {pagrindinės teorijos ID: {lt, en}}
+const namesPath = path.join(ROOT, "data/cluster_names.json");
+const NAMES = fs.existsSync(namesPath) ? JSON.parse(fs.readFileSync(namesPath, "utf8")) : {};
+const preview = [];
+const clusterList = Object.values(clusters).filter((c) => c.n >= 5).map((c) => {
+  const name = NAMES[c.top.id] || {};
+  preview.push({ id: c.id, top: c.top.id, n: c.n, name: name.lt || null,
+    theories: c.list.sort((a, b) => b.dg - a.dg).slice(0, 10).map((x) => x.t) });
+  return {
+    id: c.id, n: c.n, x: r1(c.x / c.n), y: r1(c.y / c.n), top: c.top.t, topId: c.top.id,
+    lt: name.lt, en: name.en,
+    themes: Object.entries(c.themes).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([t]) => t),
+  };
+});
+fs.writeFileSync(path.join(ROOT, "data/raw/clusters_preview.json"), JSON.stringify(preview, null, 1));
 console.log("Klasteriai (>=5 teorijų):");
-for (const c of clusterList.sort((a, b) => b.n - a.n)) console.log(`  #${c.id} ${c.n} teor. | ${c.themes.join(", ")} | ${c.top}`);
+for (const c of clusterList.sort((a, b) => b.n - a.n)) console.log(`  #${c.id} ${c.n} teor. | ${c.lt || "(be pavadinimo)"} | ${c.top}`);
 
 const out = { nodes, edges: src.edges, themes: src.themes, clusters: clusterList, built: new Date().toISOString() };
 fs.writeFileSync(path.join(ROOT, "site/data/graph.json"), JSON.stringify(out));

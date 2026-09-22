@@ -65,6 +65,11 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 .toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--muted);
   font-size: 13px; margin-top: 8px; }
 .toggle input { accent-color: var(--accent); }
+.seg { display: flex; background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; padding: 3px; }
+.seg button { flex: 1; background: none; border: 0; border-radius: 6px; padding: 6px 8px; cursor: pointer;
+  color: var(--muted); font-size: 12.5px; }
+.seg button.on { background: rgba(212,168,74,.16); color: var(--accent2); }
+.sumnote { color: var(--faint); font-size: 12px; margin: 6px 0 0; font-style: italic; }
 #stats { color: var(--faint); font-size: 12px; margin-top: 18px; line-height: 1.6; }
 #side footer { padding: 12px 20px; border-top: 1px solid var(--line); font-size: 11px; color: var(--faint); }
 #side footer a { color: var(--muted); }
@@ -87,7 +92,7 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 #card .scroll { overflow-y: auto; padding: 16px 20px 24px; flex: 1; }
 .summary { color: #cfccc4; line-height: 1.65; white-space: pre-line; }
 .summary.short { max-height: 11.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
-.more { background: none; border: 0; color: var(--accent2); cursor: pointer; padding: 4px 0; font-size: 13px; }
+.more { background: none; border: 0; color: var(--accent2); cursor: pointer; padding: 4px 0; font-size: 13px; margin-right: 16px; }
 .links a { display: inline-block; margin: 10px 14px 0 0; font-size: 13px; }
 .group h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
   margin: 22px 0 8px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
@@ -175,6 +180,11 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
     <div class="label">Min. ryšių skaičius <span id="deg-v" style="color:var(--text)">2</span></div>
     <div class="row"><input type="range" id="deg" min="1" max="30" value="2"></div>
 
+    <div class="label">Pavadinimai</div>
+    <div class="seg" id="lang">
+      <button data-l="lt">Lietuviškai</button><button data-l="orig">Originalo kalba</button>
+    </div>
+
     <div class="label">Spalvinti pagal</div>
     <select id="color-by">
       <option value="cluster">Klasterį (automatiškai rastas grupes)</option>
@@ -249,7 +259,12 @@ const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const kindOf = (n) => (n.k === "theory" ? "theory" : n.k === "related" ? "related" : n.ty in TYPES ? n.ty : "concept");
 
-let graph, renderer, data, summaries = null;
+let graph, renderer, data, summaries = null, summariesLt = null;
+// Pavadinimų kalba: "lt" – lietuviški, kur yra (Wikidata / lt.wikipedia), "orig" – originalūs
+let LANG = "lt";
+try { LANG = localStorage.getItem("cm-lang") || "lt"; } catch (e) { /* privatus režimas */ }
+const ucfirst = (x) => x ? x.charAt(0).toUpperCase() + x.slice(1) : x;
+const nm = (n) => (LANG === "lt" && n.lt ? ucfirst(n.lt) : n.t);
 const state = { themes: new Set(Object.keys(THEMES)), types: new Set(Object.keys(TYPES).filter((t) => t !== "media")),
   generic: false, minDeg: 2, colorBy: "cluster", layer: "core", selected: null, hovered: null, neighbors: new Set() };
 // Vaidmenys: [antraštė teorijos kortelėje, antraštė subjekto kortelėje, spalva]
@@ -295,7 +310,7 @@ async function init() {
   for (const n of data.nodes) {
     const kind = kindOf(n);
     const base = kind === "theory" ? 2 : kind === "related" ? 1.6 : 1;
-    graph.addNode(n.id, { x: n.x, y: n.y, label: n.t, size: base + Math.sqrt(n.dg || 0) * (kind === "theory" ? .32 : .2),
+    graph.addNode(n.id, { x: n.x, y: n.y, label: nm(n), size: base + Math.sqrt(n.dg || 0) * (kind === "theory" ? .32 : .2),
       raw: n, zIndex: kind === "theory" ? 2 : 1 });
   }
   let maxW = 0;
@@ -458,7 +473,7 @@ function buildClusterLabels() {
   const box = $("clabels");
   box.innerHTML = (data.clusters || []).map((c) =>
     `<div class="clabel" data-c="${c.id}" style="color:${hexA(CLUSTER_PAL[c.id % CLUSTER_PAL.length], .9)}">` +
-    `${esc(c.top)}<small>${c.n} teorijos · ${c.themes.map((t) => esc(THEMES[t].lt)).join(" · ")}</small></div>`).join("");
+    `${esc(LANG === "lt" ? (c.lt || c.top) : (c.en || c.top))}<small>${c.n} teorijos · ${c.themes.map((t) => esc(THEMES[t].lt)).join(" · ")}</small></div>`).join("");
 }
 function placeClusterLabels() {
   const box = $("clabels");
@@ -483,7 +498,7 @@ function placeClusterLabels() {
 // ---------- tooltip ----------
 function showTip(id) {
   const n = graph.getNodeAttribute(id, "raw");
-  $("tooltip").innerHTML = `<b>${esc(n.t)}</b><span>${esc(TYPES[kindOf(n)].lt)}${n.sd ? " · " + esc(n.sd) : ""}</span>`;
+  $("tooltip").innerHTML = `<b>${esc(nm(n))}</b><span>${esc(TYPES[kindOf(n)].lt)}${n.sd ? " · " + esc(n.sd) : ""}</span>`;
   $("tooltip").style.display = "block";
 }
 function moveTip(e) {
@@ -519,7 +534,7 @@ async function renderCard(id) {
   const t = TYPES[kind];
   $("c-badge").textContent = t.lt;
   $("c-badge").style.cssText = `background:${hexA(t.color, .15)};color:${t.color}`;
-  $("c-title").textContent = n.t;
+  $("c-title").textContent = nm(n);
   const ST = { confirmed: ["Įrodyta", "#4fd1a5"], debunked: ["Paneigta", "#ff6b6b"], disputed: ["Ginčijama", "#f5d76e"] };
   const st = $("c-status");
   if (n.st && ST[n.st]) {
@@ -527,7 +542,9 @@ async function renderCard(id) {
     st.style.cssText = `background:${hexA(ST[n.st][1], .15)};color:${ST[n.st][1]};margin-left:6px`;
     st.hidden = false;
   } else st.hidden = true;
-  $("c-lt").textContent = n.lt && n.lt !== n.t ? n.lt : "";
+  // Antrinė eilutė – kitos kalbos pavadinimas
+  const alt = nm(n) === n.t ? (n.lt ? ucfirst(n.lt) : "") : n.t;
+  $("c-lt").textContent = alt && alt.toLowerCase() !== nm(n).toLowerCase() ? alt : "";
   const meta = [];
   if (n.sd) meta.push(esc(n.sd));
   if (n.d) meta.push(`<b>${esc(n.d.replace(/-00/g, "").replace(/^0+/, ""))}</b>`);
@@ -541,7 +558,9 @@ async function renderCard(id) {
   }
   body.push(`<div id="c-summary"></div>`);
   const wiki = n.u || `https://en.wikipedia.org/wiki/${encodeURIComponent(n.t.replace(/ /g, "_"))}`;
-  body.push(`<div class="links"><a href="${esc(wiki)}" target="_blank" rel="noopener">Vikipedija ↗</a>` +
+  body.push(`<div class="links">` +
+    (n.lw ? `<a href="https://lt.wikipedia.org/wiki/${encodeURIComponent(n.lw.replace(/ /g, "_"))}" target="_blank" rel="noopener">Vikipedija (LT) ↗</a>` : "") +
+    `<a href="${esc(wiki)}" target="_blank" rel="noopener">${n.lw ? "Vikipedija (EN)" : "Vikipedija"} ↗</a>` +
     (n.id.startsWith("Q") ? `<a href="https://www.wikidata.org/wiki/${esc(n.id)}" target="_blank" rel="noopener">Wikidata ↗</a>` : "") +
     (n.c ? `<a href="https://www.openstreetmap.org/?mlat=${n.c[0]}&mlon=${n.c[1]}#map=6/${n.c[0]}/${n.c[1]}" target="_blank" rel="noopener">Žemėlapyje ↗</a>` : "") +
     `</div>`);
@@ -559,7 +578,7 @@ async function renderCard(id) {
   });
   const isHubCard = n.k === "theory" || n.k === "related";
   const row = (c, color) => `<div class="conn" data-id="${esc(c.id)}"><span class="dot" style="background:${color || TYPES[kindOf(c.n)].color}"></span>` +
-    `<span class="t" title="${esc(c.n.t)}">${esc(c.n.t)}</span>${c.lead ? '<span class="lead" title="Minima įžangoje">★</span>' : ""}` +
+    `<span class="t" title="${esc(nm(c.n))}">${esc(nm(c.n))}</span>${c.lead ? '<span class="lead" title="Minima įžangoje">★</span>' : ""}` +
     `<span class="w"><i style="width:${Math.max(8, Math.min(100, c.w / data.maxW * 250))}%"></i></span></div>`;
   const group = (title, list, color, lim = 12, collapsed = false) => {
     list.sort((a, b) => b.w - a.w);
@@ -584,26 +603,42 @@ async function renderCard(id) {
   $("card").classList.add("open");
 
   const box = $("c-summary");
-  if (n.k === "theory" || n.k === "related") {
-    if (!summaries) {
-      box.innerHTML = `<p style="color:var(--faint)">Kraunama…</p>`;
-      summaries = await fetch("data/summaries.json").then((r) => r.json()).catch(() => ({}));
-    }
-    if (state.selected !== id) return;
-    const s = summaries[id];
-    if (s) {
-      box.innerHTML = `<div class="summary short">${esc(s)}</div>`;
-      const el = box.firstChild;
-      if (el.scrollHeight > el.clientHeight + 4) {
-        const b = document.createElement("button");
-        b.className = "more"; b.textContent = "Skaityti daugiau";
-        b.onclick = () => { el.classList.remove("short"); b.remove(); };
-        box.appendChild(b);
-      } else el.classList.remove("short");
-    } else box.innerHTML = "";
-  } else {
-    box.innerHTML = n.n ? `<p style="color:var(--muted)">Minimas <b style="color:var(--text)">${n.n}</b> teorijų straipsniuose.</p>` : "";
+  if (!summaries || !summariesLt) {
+    box.innerHTML = `<p style="color:var(--faint)">Kraunama…</p>`;
+    [summaries, summariesLt] = await Promise.all([
+      summaries || fetch("data/summaries.json").then((r) => r.json()).catch(() => ({})),
+      summariesLt || fetch("data/summaries_lt.json").then((r) => r.json()).catch(() => ({})),
+    ]);
   }
+  if (state.selected !== id) return;
+  const en = summaries[id], lt = summariesLt[id];
+  const showSummary = (text, note, other) => {
+    box.innerHTML = `<div class="summary short">${esc(text)}</div>` +
+      (note ? `<p class="sumnote">${note}</p>` : "");
+    const el = box.firstChild;
+    if (el.scrollHeight > el.clientHeight + 4) {
+      const b = document.createElement("button");
+      b.className = "more"; b.textContent = "Skaityti daugiau";
+      b.onclick = () => { el.classList.remove("short"); b.remove(); };
+      box.appendChild(b);
+    } else el.classList.remove("short");
+    if (other) {
+      const b = document.createElement("button");
+      b.className = "more"; b.textContent = other.label;
+      b.onclick = () => showSummary(other.text, other.note, other.back);
+      box.appendChild(b);
+    }
+  };
+  const count = n.n ? `<p style="color:var(--muted)">Minimas <b style="color:var(--text)">${n.n}</b> teorijų straipsniuose.</p>` : "";
+  if (LANG === "lt" && lt) {
+    showSummary(lt, "", en ? { label: "Rodyti originalą (EN)", text: en, note: "",
+      back: { label: "Rodyti lietuviškai", text: lt, note: "" } } : null);
+  } else if (en) {
+    showSummary(en, LANG === "lt" && !lt ? "Santrauka angliškai – straipsnio lietuviškoje Vikipedijoje nėra." : "",
+      lt ? { label: "Rodyti lietuviškai", text: lt, note: "", back: null } : null);
+  } else if (lt) {
+    showSummary(lt, "", null);
+  } else box.innerHTML = count;
 }
 
 $("c-body").addEventListener("click", (e) => {
@@ -643,6 +678,17 @@ function buildControls() {
     refresh();
   };
   $("generic").onchange = (e) => { state.generic = e.target.checked; refresh(); };
+  const setLang = (l) => {
+    LANG = l;
+    try { localStorage.setItem("cm-lang", l); } catch (e) { /* ignoruojam */ }
+    document.querySelectorAll("#lang button").forEach((b) => b.classList.toggle("on", b.dataset.l === l));
+    graph.forEachNode((id, a) => graph.setNodeAttribute(id, "label", nm(a.raw)));
+    buildClusterLabels();
+    if (state.selected) renderCard(state.selected);
+    refresh();
+  };
+  $("lang").onclick = (e) => { const b = e.target.closest("button"); if (b) setLang(b.dataset.l); };
+  document.querySelectorAll("#lang button").forEach((b) => b.classList.toggle("on", b.dataset.l === LANG));
   $("alllinks").onchange = (e) => {
     state.layer = e.target.checked ? "all" : "core";
     if (state.selected) select(state.selected, false); else refresh();
@@ -692,7 +738,7 @@ function setupSearch() {
   const show = () => {
     box.innerHTML = hits.map((h, i) => `<div data-id="${esc(h.id)}" class="${i === cur ? "on" : ""}">` +
       `<span class="dot" style="width:8px;height:8px;border-radius:50%;background:${TYPES[kindOf(h.n)].color}"></span>` +
-      `${esc(h.n.t)}<small>${esc(TYPES[kindOf(h.n)].lt)}</small></div>`).join("");
+      `${esc(nm(h.n))}<small>${esc(TYPES[kindOf(h.n)].lt)}</small></div>`).join("");
     box.style.display = hits.length ? "block" : "none";
   };
   input.oninput = () => {

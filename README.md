@@ -27,8 +27,11 @@ Python (standard library + `truststore`) and Node.js.
 | 5. Relevance score (optional, ranks the extended layer) | `scraper/05_relevance.py` | `mentions.score/tier` |
 | 6. Merge reviewed roles and statuses | `scraper/06_roles.py` | `data/conspiracy.db`, `graph.json` |
 | 7. Layout + clusters for the website | `layout/layout.mjs` | `site/data/graph.json`, `summaries.json` |
+| 8. Lithuanian summaries and links (lt.wikipedia.org) | `scraper/07_lt.py` | `site/data/summaries_lt.json`, `graph.json` |
 
-Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README).
+Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README);
+cluster names in `data/cluster_names.json` (keyed by each cluster's main theory, so they survive re-layout —
+the layout uses a fixed random seed).
 
 Every step saves progress to `data/raw/` and resumes where it stopped.
 
@@ -39,7 +42,8 @@ python scraper/02_enrich.py
 python scraper/03_links.py
 python scraper/04_build.py
 python scraper/06_roles.py
-cd layout && npm install && node layout.mjs
+cd layout && npm install && node layout.mjs && cd ..
+python scraper/07_lt.py
 python -m http.server 8765 --directory site
 ```
 
