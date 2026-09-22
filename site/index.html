@@ -360,7 +360,11 @@ const THEMES = {
   media_disinfo:   { lt: "Žiniasklaida ir dezinformacija", en: "Media & disinformation", color: "#9aa3b5" },
   intelligence:    { lt: "Žvalgyba ir slaptos operacijos", en: "Intelligence & covert ops", color: "#3ec1d3" },
   environment:     { lt: "Klimatas ir aplinka",     en: "Climate & environment", color: "#6fcf97" },
+  // Teorijos, kurioms nė viena tema netiko (satyra, autorystės ginčai, miesto legendos…).
+  // Be šio krepšelio jos dingdavo vos pažymėjus bent vieną temos filtrą.
+  other:           { lt: "Kita",                    en: "Other",                 color: "#6e7382" },
 };
+const themesOf = (n) => (n.th && n.th.length ? n.th : ["other"]);
 
 // ---------- kalbos (LT / EN) ----------
 // Visi sąsajos tekstai – čia. Funkcijos gauna skaičius ir grąžina tekstą su teisinga daugiskaita.
@@ -468,7 +472,8 @@ numeriais, tad galite šakotis ir grįžti atgal nepametę kelio. Viršuje matom
 paminėjimai (${s.extra}) sudaro papildomą sluoksnį — jį įjungia žymė „Rodyti visus paminėjimus“ kairėje.</p>
 
 <h3>Temos ir klasteriai</h3>
-<p>Temas teorijoms priskiria raktažodžiai ir Vikipedijos kategorijos. Klasteriai (spalvos) nėra
+<p>Temas teorijoms priskiria raktažodžiai ir Vikipedijos kategorijos; toms, kurioms nė viena netiko
+(satyrinės, autorystės ginčai, miesto legendos), lieka „Kita“. Klasteriai (spalvos) nėra
 sugalvoti iš anksto — juos randa Louvain algoritmas pagal ryšių tankumą, o pavadinimai duoti
 rankomis pagal didžiausią kiekvieno klasterio teoriją.</p>
 
@@ -586,7 +591,8 @@ to any step, and × or Esc ends the trail.</p>
 ${s.extra} mentions form an extended layer — switch on “Show all mentions” in the left panel.</p>
 
 <h3>Themes and clusters</h3>
-<p>Themes come from keywords and Wikipedia categories. The clusters (the colors) are not decided
+<p>Themes come from keywords and Wikipedia categories; the ones no theme fitted (satirical theories,
+authorship disputes, urban legends) fall under “Other”. The clusters (the colors) are not decided
 in advance: the Louvain algorithm finds them from link density, and each one is named by hand
 after its largest theory.</p>
 
@@ -647,7 +653,11 @@ const CLUSTER_PAL = ["#e8b14a","#5fb4ff","#ff6b6b","#4fd1a5","#c77dff","#ff9f5a"
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const kindOf = (n) => (n.k === "theory" ? "theory" : n.k === "related" ? "related" : n.ty in TYPES ? n.ty : "concept");
 
-let graph, renderer, data, summaries = null, summariesLt = null;
+let graph, renderer, data;
+// Santraukų failai (~1 MB suspausto teksto kiekvienas) – kraunami tik pareikalavus, po vieną
+const SUM_URL = { en: "data/summaries.json", lt: "data/summaries_lt.json" };
+const SUM = {};
+const loadSummaries = (v) => (SUM[v] ||= fetch(SUM_URL[v]).then((r) => r.json()).catch(() => ({})));
 const ucfirst = (x) => x ? x.charAt(0).toUpperCase() + x.slice(1) : x;
 const nm = (n) => (LANG === "lt" && n.lt ? ucfirst(n.lt) : n.t);
 const state = { themes: new Set(Object.keys(THEMES)), types: new Set(Object.keys(TYPES).filter((t) => t !== "media")),
@@ -674,7 +684,7 @@ const ROLE_ORDER = ["acc", "pro", "vic", "sub", "evt", "loc", "deb", "rel"];
 
 function nodeColor(n) {
   if (state.colorBy === "theme") {
-    const t = n.th && n.th[0];
+    const t = n.k === "theory" || n.k === "related" ? themesOf(n)[0] : n.th && n.th[0];
     return t ? THEMES[t].color : "#4a4d57";
   }
   if (state.colorBy === "cluster") return n.cm === undefined ? "#4a4d57" : CLUSTER_PAL[n.cm % CLUSTER_PAL.length];
@@ -688,7 +698,7 @@ function visible(n) {
   if (((state.layer === "core" ? n.cdg : n.dg) || 0) < state.minDeg) return false;
   if (n.k === "theory" || n.k === "related") {
     if (state.themes.size < Object.keys(THEMES).length) {
-      if (!n.th || !n.th.some((t) => state.themes.has(t))) return false;
+      if (!themesOf(n).some((t) => state.themes.has(t))) return false;
     }
   }
   return true;
@@ -1161,23 +1171,23 @@ async function renderCard(id) {
   $("card").classList.add("open");
 
   const box = $("c-summary");
-  if (!summaries || !summariesLt) {
-    box.innerHTML = `<p style="color:var(--faint)">${T("loading_short")}</p>`;
-    [summaries, summariesLt] = await Promise.all([
-      summaries || fetch("data/summaries.json").then((r) => r.json()).catch(() => ({})),
-      summariesLt || fetch("data/summaries_lt.json").then((r) => r.json()).catch(() => ({})),
-    ]);
+  // Kurios kalbos santrauka mazgui yra – pasako grafo žymos (se / sl), todėl užtenka
+  // parsisiųsti vieną santraukų failą; antrasis kraunamas tik paprašius originalo.
+  const has = { en: !!n.se, lt: !!n.sl };
+  const first = LANG === "lt" ? (has.lt ? "lt" : has.en ? "en" : null) : (has.en ? "en" : has.lt ? "lt" : null);
+  if (!first) {
+    box.innerHTML = n.n ? `<p style="color:var(--muted)">${T("mentioned", n.n)}</p>` : "";
+    return;
   }
-  if (state.selected !== id) return;
-  const en = summaries[id], lt = summariesLt[id];
   // Lietuviškai: vertimas arba LT Vikipedijos įžanga + mygtukas pereiti prie angliško originalo
-  const views = {};
-  if (lt) views.lt = { text: lt, note: n.ltm ? T("note_ai") : "", sw: T("show_orig") };
-  if (en) views.en = { text: en, note: LANG === "lt" && !lt ? T("note_en") : "", sw: T("show_tr") };
-  const show = (v) => {
-    const cur = views[v], other = v === "lt" ? "en" : "lt";
-    box.innerHTML = `<div class="summary short" lang="${v}">${esc(cur.text)}</div>` +
-      (cur.note ? `<p class="sumnote">${esc(cur.note)}</p>` : "");
+  const show = async (v) => {
+    if (!SUM[v]) box.innerHTML = `<p style="color:var(--faint)">${T("loading_short")}</p>`;
+    const text = (await loadSummaries(v))[id];
+    if (state.selected !== id) return;
+    if (!text) { box.innerHTML = ""; return; }
+    const note = v === "lt" ? (n.ltm ? T("note_ai") : "") : (LANG === "lt" && !has.lt ? T("note_en") : "");
+    box.innerHTML = `<div class="summary short" lang="${v}">${esc(text)}</div>` +
+      (note ? `<p class="sumnote">${esc(note)}</p>` : "");
     const el = box.firstChild;
     if (el.scrollHeight > el.clientHeight + 4) {
       const b = document.createElement("button");
@@ -1185,16 +1195,15 @@ async function renderCard(id) {
       b.onclick = () => { el.classList.remove("short"); b.remove(); };
       box.appendChild(b);
     } else el.classList.remove("short");
-    if (LANG === "lt" && views[other]) {
+    const other = v === "lt" ? "en" : "lt";
+    if (LANG === "lt" && has[other]) {
       const b = document.createElement("button");
-      b.className = "more"; b.textContent = cur.sw;
+      b.className = "more"; b.textContent = v === "lt" ? T("show_orig") : T("show_tr");
       b.onclick = () => show(other);
       box.appendChild(b);
     }
   };
-  const first = LANG === "lt" ? (lt ? "lt" : en ? "en" : null) : (en ? "en" : lt ? "lt" : null);
-  if (first) show(first);
-  else box.innerHTML = n.n ? `<p style="color:var(--muted)">${T("mentioned", n.n)}</p>` : "";
+  show(first);
 }
 
 $("c-body").addEventListener("click", (e) => {
@@ -1210,7 +1219,7 @@ function renderChips() {
   const tc = {}, kc = {};
   for (const n of data.nodes) {
     kc[kindOf(n)] = (kc[kindOf(n)] || 0) + 1;
-    if (n.k === "theory") for (const t of n.th || []) tc[t] = (tc[t] || 0) + 1;
+    if (n.k === "theory") for (const t of themesOf(n)) tc[t] = (tc[t] || 0) + 1;
   }
   $("themes").innerHTML = Object.entries(THEMES).sort((a, b) => (tc[b[0]] || 0) - (tc[a[0]] || 0)).map(([k, v]) =>
     `<button class="chip ${state.themes.has(k) ? "on" : ""}" data-k="${k}"><span class="dot" style="background:${v.color}"></span>${esc(L(v))} <span class="n">${tc[k] || 0}</span></button>`).join("");
@@ -1345,8 +1354,11 @@ function openAbout() {
 function closeAbout() { $("about").classList.remove("open"); }
 
 // ---------- paieška ----------
+// Paieškai nurašom diakritiką: „samokslo" turi rasti „sąmokslo", „zydu" – „žydų"
+const fold = (s) => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
 function setupSearch() {
-  const idx = data.nodes.map((n) => ({ id: n.id, s: (n.t + " " + (n.lt || "")).toLowerCase(), n }));
+  const idx = data.nodes.map((n) => ({ id: n.id, t: fold(n.t), l: fold(n.lt || ""), d: fold(n.sd || ""), n }));
   const input = $("search"), box = $("results");
   let hits = [], cur = -1;
   const show = () => {
@@ -1356,12 +1368,19 @@ function setupSearch() {
     box.style.display = hits.length ? "block" : "none";
   };
   input.oninput = () => {
-    const q = input.value.trim().toLowerCase();
+    const q = fold(input.value.trim());
     cur = -1;
     if (q.length < 2) { hits = []; return show(); }
-    hits = idx.filter((x) => x.s.includes(q))
-      .sort((a, b) => (b.s.startsWith(q) - a.s.startsWith(q)) || ((b.n.k === "theory") - (a.n.k === "theory")) || ((b.n.dg || 0) - (a.n.dg || 0)))
-      .slice(0, 12);
+    // Rangas: pavadinimas prasideda užklausa (0) → yra pavadinime (1) → tik aprašyme (2)
+    const found = [];
+    for (const x of idx) {
+      const r = x.t.startsWith(q) || x.l.startsWith(q) ? 0
+        : x.t.includes(q) || x.l.includes(q) ? 1
+        : x.d.includes(q) ? 2 : -1;
+      if (r >= 0) found.push({ x, r });
+    }
+    hits = found.sort((a, b) => a.r - b.r || ((b.x.n.k === "theory") - (a.x.n.k === "theory")) ||
+      ((b.x.n.dg || 0) - (a.x.n.dg || 0))).slice(0, 12).map((f) => f.x);
     show();
   };
   input.onkeydown = (e) => {

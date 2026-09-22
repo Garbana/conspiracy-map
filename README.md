@@ -29,7 +29,8 @@ Python (standard library + `truststore`) and Node.js.
 | 7. Layout + clusters for the website | `layout/layout.mjs` | `site/data/graph.json`, `summaries.json` |
 | 8. Lithuanian summaries and links (lt.wikipedia.org) | `scraper/07_lt.py` | `site/data/summaries_lt.json`, `graph.json` |
 | 9. Lithuanian theory titles and summaries (translations) | `scraper/08_i18n.py` | `site/data/summaries_lt.json`, `graph.json` |
-| 10. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
+| 10. Which language's summary each node has | `scraper/09_sumflags.py` | `site/data/graph.json` (`se` / `sl`) |
+| 11. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
 
 Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README);
 Lithuanian translations of all theories in `data/i18n/done/` (written by Claude from the English
@@ -49,6 +50,7 @@ python scraper/06_roles.py
 cd layout && npm install && node layout.mjs && cd ..
 python scraper/07_lt.py
 python scraper/08_i18n.py
+python scraper/09_sumflags.py
 python -m http.server 8765 --directory site
 ```
 
@@ -56,7 +58,9 @@ python -m http.server 8765 --directory site
 
 `site/` is a static site (Sigma.js + graphology, WebGL): search, theme and type filters,
 cluster/type/theme coloring, a card with summary and all connections for each node,
-shareable links (`#Q815614`). It can be hosted for free on GitHub Pages —
+shareable links (`#Q815614`). Search ignores diacritics (`samokslo` finds `sąmokslo`) and also looks
+at the short descriptions. Only the summaries of the language being read are downloaded (~1 MB each),
+the other only when the reader asks for the original. It can be hosted for free on GitHub Pages —
 live at [garbana.github.io/conspiracy-map](https://garbana.github.io/conspiracy-map/).
 
 Selecting a node (by search, by click or by tap) lights it up with all of its direct connections and
