@@ -94,6 +94,14 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   color: var(--muted); font-size: 12.5px; }
 .seg button.on { background: rgba(212,168,74,.16); color: var(--accent2); }
 .sumnote { color: var(--faint); font-size: 12px; margin: 6px 0 0; font-style: italic; }
+/* laiko juosta: stulpelis = dešimtmetis, aukštis = kiek teorijų */
+#era { display: flex; align-items: flex-end; gap: 2px; height: 42px; margin-bottom: 4px;
+  touch-action: none; user-select: none; }
+#era i { flex: 1; min-width: 3px; background: rgba(255,255,255,.14); border-radius: 2px 2px 0 0;
+  cursor: pointer; transition: background .12s; }
+#era i.on { background: var(--accent); }
+#era i:hover { background: var(--accent2); }
+#era-lab { display: flex; justify-content: space-between; color: var(--faint); font-size: 11px; }
 #stats { color: var(--faint); font-size: 12px; margin-top: 18px; line-height: 1.6; }
 #side footer { padding: 12px 20px; border-top: 1px solid var(--line); font-size: 11px; color: var(--faint); }
 #side footer a { color: var(--muted); }
@@ -348,6 +356,10 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
     <div class="label"><span data-i18n="mindeg"></span> <span id="deg-v" style="color:var(--text)">2</span></div>
     <div class="row"><input type="range" id="deg" min="1" max="30" value="2"></div>
 
+    <div class="label"><span data-i18n="era"></span> <button id="era-all" data-i18n="era_all"></button></div>
+    <div id="era"></div>
+    <div id="era-lab"><span></span><span></span></div>
+
     <div class="label" data-i18n="colorby"></div>
     <select id="color-by">
       <option value="cluster" data-i18n="c_cluster"></option>
@@ -452,6 +464,10 @@ const I18N = {
     generic: "Rodyti bendrus mazgus (žiniasklaida, šalys…)",
     alllinks: "Rodyti visus paminėjimus, ne tik esminius ryšius",
     mindeg: "Min. ryšių skaičius", colorby: "Spalvinti pagal",
+    era: "Laikotarpis", era_all: "visas", era_sel: (a, b) => a === b ? `${a}-ieji` : `${a}–${b + 9}`,
+    era_hint: "Kada teorija atsirado. Spausk arba brauk per stulpelius.",
+    d_year: (y) => `${y} m.`, d_decade: (y) => `${y}-ieji`, d_bc: (y) => `${y} m. pr. Kr.`,
+    d_century: (y) => `${roman(Math.floor(y / 100) + 1)} a.`,
     c_cluster: "Klasterį (automatiškai rastas grupes)", c_type: "Tipą", c_theme: "Temą",
     footer_html: 'Duomenys: <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Vikipedija</a> (CC BY-SA 4.0), ' +
       '<a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a> (CC0). ' +
@@ -604,6 +620,10 @@ Radote klaidą? Rašykite ten – <a href="https://github.com/Garbana/conspiracy
     generic: "Show generic nodes (media, countries…)",
     alllinks: "Show all mentions, not just core links",
     mindeg: "Min. connections", colorby: "Color by",
+    era: "Period", era_all: "all", era_sel: (a, b) => a === b ? `${a}s` : `${a}–${b + 9}`,
+    era_hint: "When the theory appeared. Click or drag across the bars.",
+    d_year: (y) => `${y}`, d_decade: (y) => `${y}s`, d_bc: (y) => `${y} BC`,
+    d_century: (y) => `${Math.floor(y / 100) + 1}th century`,
     c_cluster: "Cluster (automatically detected groups)", c_type: "Type", c_theme: "Theme",
     footer_html: 'Data: <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a> (CC BY-SA 4.0), ' +
       '<a href="https://www.wikidata.org" target="_blank" rel="noopener">Wikidata</a> (CC0). ' +
@@ -787,10 +807,19 @@ const SITE_BASE = location.href.replace(/[?#].*$/, "").replace(/[^/]*$/, "").rep
 const SUM_URL = { en: SITE_BASE + "data/summaries.json", lt: SITE_BASE + "data/summaries_lt.json" };
 const SUM = {};
 const loadSummaries = (v) => (SUM[v] ||= fetch(SUM_URL[v]).then((r) => r.json()).catch(() => ({})));
+const ROMAN = [[1000, "M"], [900, "CM"], [500, "D"], [400, "CD"], [100, "C"], [90, "XC"],
+  [50, "L"], [40, "XL"], [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]];
+const roman = (n) => ROMAN.reduce((a, [v, r]) => { while (n >= v) { a += r; n -= v; } return a; }, "");
+// Metai mazge: "1947", "1964-08-02" arba "-0065" (pr. Kr.)
+const yearOf = (n) => {
+  if (!n.d) return null;
+  const m = String(n.d).match(/^(-?)0*(\d{1,4})/);
+  return m ? (m[1] ? -+m[2] : +m[2]) : null;
+};
 const ucfirst = (x) => x ? x.charAt(0).toUpperCase() + x.slice(1) : x;
 const nm = (n) => (LANG === "lt" && n.lt ? ucfirst(n.lt) : n.t);
 const state = { themes: new Set(Object.keys(THEMES)), types: new Set(Object.keys(TYPES).filter((t) => t !== "media")),
-  generic: false, minDeg: 2, colorBy: "cluster", layer: "core", selected: null, hovered: null, neighbors: new Set(),
+  generic: false, minDeg: 2, colorBy: "cluster", layer: "core", era: null, selected: null, hovered: null, neighbors: new Set(),
   // Nueitas kelias: path – mazgas → iš kurio mazgo į jį atėjome (šaknis: null); pathEdges – nueitos briaunos
   path: new Map(), pathEdges: new Set(), glow: [], glowDirty: true, game: null };
 const ekey = (a, b) => (a < b ? a + "\u0000" + b : b + "\u0000" + a);
@@ -825,6 +854,13 @@ function visible(n) {
   if (!state.types.has(kind)) return false;
   if (n.g && !state.generic) return false;
   if (((state.layer === "core" ? n.cdg : n.dg) || 0) < state.minDeg) return false;
+  if (n.k === "theory") {
+    // Laikotarpio filtras liečia tik teorijas – tik jos turi peržiūrėtas atsiradimo datas
+    if (state.era) {
+      const y = yearOf(n);
+      if (y === null || y < state.era[0] || y > state.era[1] + 9) return false;
+    }
+  }
   if (n.k === "theory" || n.k === "related") {
     if (state.themes.size < Object.keys(THEMES).length) {
       if (!themesOf(n).some((t) => state.themes.has(t))) return false;
@@ -1310,7 +1346,12 @@ async function renderCard(id) {
   $("c-lt").textContent = alt && alt.toLowerCase() !== nm(n).toLowerCase() ? alt : "";
   const meta = [];
   if (sdOf(n)) meta.push(esc(sdOf(n)));
-  if (n.d) meta.push(`<b>${esc(n.d.replace(/-00/g, "").replace(/^0+/, ""))}</b>`);
+  if (n.d) {
+    const y = yearOf(n);
+    const full = String(n.d).replace(/-00/g, "").replace(/^0+/, "");
+    meta.push(`<b>${esc(y < 0 ? T("d_bc", -y) : n.dp === "decade" ? T("d_decade", y)
+      : n.dp === "century" ? T("d_century", y) : n.dp === "year" ? T("d_year", y) : full)}</b>`);
+  }
   if (n.rg) meta.push(T("region") + ": <b>" + n.rg.map(esc).join(", ") + "</b>");
   $("c-meta").innerHTML = meta.join(" · ");
 
@@ -1501,6 +1542,72 @@ async function share(btn) {
 $("card-close").onclick = () => (state.game ? $("card").classList.remove("open", "peek") : select(null));
 
 // ---------- valdikliai ----------
+// Laiko juosta. Stulpelis – dešimtmetis; viskas iki 1900 m. suplakama į vieną kairįjį stulpelį,
+// kitaip 20 tuščių stulpelių nustelbtų tikrąjį pasiskirstymą.
+const ERA_FROM = 1900;
+let eraBins = null;
+
+function buildEra() {
+  const years = data.nodes.filter((n) => n.k === "theory").map(yearOf).filter((y) => y !== null);
+  if (!years.length) return;
+  const maxD = Math.floor(Math.max(...years) / 10) * 10;
+  eraBins = [{ from: -4000, to: ERA_FROM - 1, n: 0, old: true }];
+  for (let y = ERA_FROM; y <= maxD; y += 10) eraBins.push({ from: y, to: y + 9, n: 0 });
+  for (const y of years) {
+    const b = y < ERA_FROM ? eraBins[0] : eraBins[Math.floor((y - ERA_FROM) / 10) + 1];
+    if (b) b.n += 1;
+  }
+  const max = Math.max(...eraBins.map((b) => b.n));
+  $("era").innerHTML = eraBins.map((b, i) =>
+    `<i data-i="${i}" style="height:${Math.max(8, Math.round(b.n / max * 100))}%" title="${
+      b.old ? "…" + b.to : b.from + "–" + b.to} · ${b.n}"></i>`).join("");
+  $("era").title = T("era_hint");
+  renderEra();
+}
+
+function renderEra() {
+  if (!eraBins) return;
+  const [a, b] = state.era || [];
+  $("era").querySelectorAll("i").forEach((el, i) => {
+    const bin = eraBins[i];
+    el.classList.toggle("on", !!state.era && bin.to >= a && bin.from <= b + 9);
+  });
+  const lab = $("era-lab").children;
+  if (state.era) {
+    const from = eraBins.find((x) => x.to >= a), to = eraBins.filter((x) => x.from <= b + 9).pop();
+    lab[0].textContent = from && from.old ? "…" + from.to : a;
+    lab[1].textContent = to ? (to.to) : b + 9;
+  } else {
+    lab[0].textContent = "…" + (ERA_FROM - 1);
+    lab[1].textContent = eraBins[eraBins.length - 1].to;
+  }
+}
+
+function setupEra() {
+  const box = $("era");
+  let drag = null;
+  const binAt = (t) => (t && t.dataset && t.dataset.i !== undefined ? +t.dataset.i : null);
+  const apply = (i, j) => {
+    const lo = eraBins[Math.min(i, j)], hi = eraBins[Math.max(i, j)];
+    state.era = [lo.old ? -4000 : lo.from, hi.to - 9];
+    renderEra(); refresh();
+  };
+  box.addEventListener("pointerdown", (e) => {
+    const i = binAt(e.target);
+    if (i === null) return;
+    box.setPointerCapture(e.pointerId);
+    drag = i; apply(i, i);
+  });
+  box.addEventListener("pointermove", (e) => {
+    if (drag === null) return;
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    const i = binAt(el);
+    if (i !== null) apply(drag, i);
+  });
+  box.addEventListener("pointerup", () => { drag = null; });
+  $("era-all").onclick = () => { state.era = null; renderEra(); refresh(); };
+}
+
 function renderChips() {
   const tc = {}, kc = {};
   for (const n of data.nodes) {
@@ -1515,6 +1622,8 @@ function renderChips() {
 
 function buildControls() {
   renderChips();
+  buildEra();
+  setupEra();
 
   $("themes").onclick = (e) => {
     const c = e.target.closest(".chip"); if (!c) return;
@@ -1541,6 +1650,7 @@ function buildControls() {
     applyStatic();
     graph.forEachNode((id, a) => graph.setNodeAttribute(id, "label", nm(a.raw)));
     renderChips();
+    buildEra();
     renderLegend();
     buildClusterLabels();
     if (state.selected) renderCard(state.selected);

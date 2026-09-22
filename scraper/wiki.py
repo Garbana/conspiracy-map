@@ -45,13 +45,17 @@ def get_json(url, params=None, retries=8):
     raise RuntimeError(f"Nepavyko: {url[:200]}")
 
 
-def wp_query(params):
-    """MediaWiki API užklausa su automatiniu 'continue' puslapiavimu."""
+def wp_query(params, api=None):
+    """MediaWiki API užklausa su automatiniu 'continue' puslapiavimu.
+
+    api – kitos kalbos Vikipedijos adresas (pvz. https://lt.wikipedia.org/w/api.php);
+    nenurodžius kreipiamasi į anglišką.
+    """
     base = {"action": "query", "format": "json", "formatversion": "2", "maxlag": "5"}
     base.update(params)
     cont = {}
     while True:
-        data = get_json(WP_API, {**base, **cont})
+        data = get_json(api or WP_API, {**base, **cont})
         yield data
         if "continue" not in data:
             break

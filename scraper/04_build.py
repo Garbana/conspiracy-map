@@ -313,7 +313,10 @@ def main():
         regions = set()
         for n in direct:
             m = REGION_RE.search(n)
-            if m and not m.group(1).lower().startswith(("the united states by", "popular")):
+            # „…in the Gaza war", „…in Russia related to the invasion" – ne regionai, o temos
+            bad = (" war", " related to", " conflict", " pandemic", " election")
+            if (m and not m.group(1).lower().startswith(("the united states by", "popular"))
+                    and not any(b in m.group(1).lower() for b in bad)):
                 regions.add(m.group(1).strip())
         i["regions"] = sorted(regions)
     print("Temos:", Counter(t for i in kept if i["role"] == "theory" for t in i["themes"]).most_common())
