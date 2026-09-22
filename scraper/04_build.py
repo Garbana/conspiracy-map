@@ -228,7 +228,8 @@ def main():
     ov = json.load(open(os.path.join(ROOT, "data", "overrides.json"), encoding="utf-8"))
     ov_role = {k: v for k, v in ov.get("role", {}).items() if not k.startswith("_")}
     ov_status = {k: v for k, v in ov.get("status", {}).items() if not k.startswith("_")}
-    ov_status.update({k: v for k, v in ov.get("add", {}).items() if not k.startswith("_")})
+    # „add" įrašai dažnai pridedami be būsenos – tuščia reikšmė neturi užgožti peržiūros
+    ov_status.update({k: v for k, v in ov.get("add", {}).items() if v and not k.startswith("_")})
     item_by_id = {i["id"]: i for i in items}
     theory_ids = {i["id"] for i in items if i["type"] in ("theory", "theory?")}
     # Kiek teorijų mini įrašą ir kiek teorijų įrašas mini

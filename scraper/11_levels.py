@@ -30,7 +30,7 @@ LEVELS = [
     ("Q160944",      4, 1),   # Durklo į nugarą mitas
     ("Q1073494",     5, 2),   # Muilas iš žmonių lavonų
     ("Q104423071",   5, 1),   # Kurdų neigimas Turkijoje
-    ("Q56064174",    6, 1),   # Straightwashing – vienintelis 6 žingsnių mazgas žemėlapyje
+    ("Q41084",       5, 1),   # „New Coke“ – po grafo praplėtimo toliausias atpažįstamas startas
 ]
 
 

@@ -1,23 +1,99 @@
 {
-  "_about": "Klasterių pavadinimai. Raktas – klasterio pagrindinės (daugiausia ryšių turinčios) teorijos Wikidata ID, todėl pavadinimai išlieka perskaičiavus išdėstymą. Naujiems klasteriams žr. data/raw/clusters_preview.json.",
-  "Q51213808": {"lt": "QAnon ir JAV politika", "en": "QAnon & US politics"},
-  "Q110995514": {"lt": "Rusijos dezinformacija", "en": "Russian disinformation"},
-  "Q151296": {"lt": "Holokausto neigimas ir nacių mitai", "en": "Holocaust denial & Nazi myths"},
-  "Q85173778": {"lt": "Vakcinos, COVID ir medicina", "en": "Vaccines, COVID & medicine"},
-  "Q22763": {"lt": "9/11 ir žvalgybos operacijos", "en": "9/11 & intelligence operations"},
-  "Q123039362": {"lt": "Gaza, Izraelis ir kraujo prasimanymai", "en": "Gaza, Israel & blood libels"},
-  "Q926348": {"lt": "Naujoji pasaulio tvarka ir slaptos draugijos", "en": "New World Order & secret societies"},
-  "Q786536": {"lt": "Gladio, Turkija ir genocido neigimas", "en": "Gladio, Turkey & genocide denial"},
-  "Q421": {"lt": "NSO ir ateiviai", "en": "UFOs & aliens"},
-  "Q601271": {"lt": "Kultūrinis marksizmas ir Raudonoji panika", "en": "Cultural Marxism & Red Scare"},
-  "Q22909760": {"lt": "Didysis pakeitimas", "en": "Great Replacement"},
-  "Q7928823": {"lt": "Įžymybės, karališkoji šeima ir mistifikacijos", "en": "Celebrities, royals & hoaxes"},
-  "Q644439": {"lt": "Politinės žmogžudystės ir COINTELPRO", "en": "Assassinations & COINTELPRO"},
-  "Q1931364": {"lt": "Klimato neigimas ir oro manipuliacijos", "en": "Climate denial & weather control"},
-  "Q1268748": {"lt": "Satanistinė panika", "en": "Satanic panic"},
-  "Q7571617": {"lt": "Suvereniai piliečiai ir pseudoteisė", "en": "Sovereign citizens & pseudolaw"},
-  "Q48772314": {"lt": "Genocidų neigimas", "en": "Genocide denial"},
-  "Q1466166": {"lt": "Šekspyro autorystė", "en": "Shakespeare authorship"},
-  "Q3137784": {"lt": "Birtherizmas ir mokesčių protestai", "en": "Birtherism & tax protesters"},
-  "Q2378246": {"lt": "Evoliucijos neigimas ir plokščia Žemė", "en": "Evolution denial & flat Earth"}
+ "_about": "Klasterių pavadinimai. Raktas – klasterio pagrindinės (daugiausia ryšių turinčios) teorijos Wikidata ID, todėl pavadinimai išlieka perskaičiavus išdėstymą. Naujiems klasteriams žr. data/raw/clusters_preview.json.",
+ "Q51213808": {
+  "lt": "QAnon ir JAV politika",
+  "en": "QAnon & US politics"
+ },
+ "Q110995514": {
+  "lt": "Rusijos dezinformacija",
+  "en": "Russian disinformation"
+ },
+ "Q151296": {
+  "lt": "Holokausto neigimas ir nacių mitai",
+  "en": "Holocaust denial & Nazi myths"
+ },
+ "Q85173778": {
+  "lt": "Vakcinos, COVID ir medicina",
+  "en": "Vaccines, COVID & medicine"
+ },
+ "Q22763": {
+  "lt": "9/11 ir žvalgybos operacijos",
+  "en": "9/11 & intelligence operations"
+ },
+ "Q123039362": {
+  "lt": "Gaza, Izraelis ir kraujo prasimanymai",
+  "en": "Gaza, Israel & blood libels"
+ },
+ "Q926348": {
+  "lt": "Naujoji pasaulio tvarka ir slaptos draugijos",
+  "en": "New World Order & secret societies"
+ },
+ "Q786536": {
+  "lt": "Gladio, Turkija ir genocido neigimas",
+  "en": "Gladio, Turkey & genocide denial"
+ },
+ "Q421": {
+  "lt": "NSO ir ateiviai",
+  "en": "UFOs & aliens"
+ },
+ "Q601271": {
+  "lt": "Kultūrinis marksizmas ir Raudonoji panika",
+  "en": "Cultural Marxism & Red Scare"
+ },
+ "Q22909760": {
+  "lt": "Didysis pakeitimas",
+  "en": "Great Replacement"
+ },
+ "Q7928823": {
+  "lt": "Įžymybės, karališkoji šeima ir mistifikacijos",
+  "en": "Celebrities, royals & hoaxes"
+ },
+ "Q644439": {
+  "lt": "Politinės žmogžudystės ir COINTELPRO",
+  "en": "Assassinations & COINTELPRO"
+ },
+ "Q1931364": {
+  "lt": "Klimato neigimas ir oro manipuliacijos",
+  "en": "Climate denial & weather control"
+ },
+ "Q1268748": {
+  "lt": "Satanistinė panika",
+  "en": "Satanic panic"
+ },
+ "Q7571617": {
+  "lt": "Suvereniai piliečiai ir pseudoteisė",
+  "en": "Sovereign citizens & pseudolaw"
+ },
+ "Q48772314": {
+  "lt": "Genocidų neigimas",
+  "en": "Genocide denial"
+ },
+ "Q1466166": {
+  "lt": "Šekspyro autorystė",
+  "en": "Shakespeare authorship"
+ },
+ "Q3137784": {
+  "lt": "Birtherizmas ir mokesčių protestai",
+  "en": "Birtherism & tax protesters"
+ },
+ "Q2378246": {
+  "lt": "Evoliucijos neigimas ir plokščia Žemė",
+  "en": "Evolution denial & flat Earth"
+ },
+ "Q1321697": {
+  "lt": "Kennedy nužudymas ir CŽV operacijos",
+  "en": "The Kennedy assassination & CIA operations"
+ },
+ "Q646988": {
+  "lt": "Pseudoistorija ir prarastos civilizacijos",
+  "en": "Pseudohistory & lost civilisations"
+ },
+ "Q741229": {
+  "lt": "Įžymybės, mistifikacijos ir žiniasklaida",
+  "en": "Celebrities, hoaxes & the media"
+ },
+ "Q1823932": {
+  "lt": "Sorosas ir Vidurio Europos politika",
+  "en": "Soros & Central European politics"
+ }
 }

@@ -25,7 +25,9 @@ def main():
         if f.endswith(".json"):
             reviewed.update(json.load(open(os.path.join(DONE, f), encoding="utf-8")))
     ov = json.load(open(os.path.join(ROOT, "data", "overrides.json"), encoding="utf-8"))
-    manual_status = {k for k in list(ov.get("status", {})) + list(ov.get("add", {})) if not k.startswith("_")}
+    # Rankinė būsena turi pirmenybę prieš peržiūrą, bet tik jei ji tikrai nurodyta
+    manual_status = {k for k, v in list(ov.get("status", {}).items()) + list(ov.get("add", {}).items())
+                     if v and not k.startswith("_")}
 
     db = sqlite3.connect(DB)
     db.execute("DROP TABLE IF EXISTS roles")
