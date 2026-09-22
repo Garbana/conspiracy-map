@@ -1,0 +1,74 @@
+name: Deploy game API (Cloudflare Worker)
+
+# Diegia worker/ į Cloudflare. Paslaptys (Settings → Secrets → Actions):
+#   CLOUDFLARE_API_TOKEN   – teisės: Workers Scripts Edit + D1 Edit
+#   CLOUDFLARE_ACCOUNT_ID  – paskyros ID iš Cloudflare skydelio
+# Lentelės kuriamos kaskart (idempotentiška), o briaunos ir lygiai įkeliami tik tada,
+# kai duombazė tuščia arba paleidžiant rankomis su „seed“ varnele.
+
+on:
+  push:
+    branches: [main]
+    paths: ["worker/**", ".github/workflows/worker.yml"]
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: "Iš naujo įkelti lygius ir briaunas į D1"
+        type: boolean
+        default: false
+
+concurrency:
+  group: worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: worker
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      WRANGLER_SEND_METRICS: "false"
+      READY: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ar yra raktai
+        if: env.READY != 'true'
+        run: |
+          echo "::notice::Nėra CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID – diegimas praleistas."
+          echo "Įdėk juos: Settings → Secrets and variables → Actions." >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/setup-node@v4
+        if: env.READY == 'true'
+        with:
+          node-version: 22
+      - run: npm install --no-save wrangler@4
+        if: env.READY == 'true'
+
+      - name: Lentelės
+        if: env.READY == 'true'
+        run: npx wrangler d1 execute conspiracy-map --remote --yes --file=schema.sql
+
+      - name: Ar duombazėje jau yra briaunų
+        if: env.READY == 'true'
+        id: have
+        run: |
+          n=$(npx wrangler d1 execute conspiracy-map --remote --yes --json \
+                --command "SELECT COUNT(*) AS n FROM edges" | jq -r '.[0].results[0].n')
+          echo "edges=$n" >> "$GITHUB_OUTPUT"
+          echo "Briaunų duombazėje: $n"
+
+      - name: Lygiai ir briaunos
+        if: env.READY == 'true' && (steps.have.outputs.edges == '0' || inputs.seed)
+        run: npx wrangler d1 execute conspiracy-map --remote --yes --file=seed.sql
+
+      - name: Diegiam Worker'į
+        if: env.READY == 'true'
+        run: npx wrangler deploy
+
+      - name: Adresas
+        if: env.READY == 'true'
+        run: |
+          echo "### Žaidimo API paleista" >> "$GITHUB_STEP_SUMMARY"
+          echo "Adresą matysi aukščiau esančio žingsnio išvestyje (…workers.dev)." >> "$GITHUB_STEP_SUMMARY"

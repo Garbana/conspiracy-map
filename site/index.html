@@ -474,6 +474,7 @@ const I18N = {
     g_det: (m, d, h, sec) => `${m} ž. (trumpiausias ${d}) · užuominų ${h} · ${sec} s`,
     g_perfect: "Tobulas kelias!", g_pts: "tšk.",
     g_nick: "Tavo vardas", g_save: "Išsaugoti", g_saved: "Išsaugota ✓",
+    g_rank: (n) => `${n} vieta ✓`, g_world: "Geriausi", g_loading: "Kraunama…",
     g_share: "Mesti iššūkį", g_board: "Mano rezultatai", g_total: "Iš viso",
     g_none: "Dar nežaista", g_challenge: (n, m) => `<b>${n}</b> įveikė šį lygį per <b>${m}</b> ž. Pakartok!`,
     g_rules: "Žaidimo metu paieška ir filtrai nenaudojami — keliauji tik tuo, ką matai žemėlapyje.",
@@ -625,6 +626,7 @@ Radote klaidą? Rašykite ten – <a href="https://github.com/Garbana/conspiracy
     g_det: (m, d, h, sec) => `${m} moves (shortest ${d}) · ${h} hints · ${sec}s`,
     g_perfect: "Perfect route!", g_pts: "pts",
     g_nick: "Your name", g_save: "Save", g_saved: "Saved ✓",
+    g_rank: (n) => `#${n} ✓`, g_world: "Top players", g_loading: "Loading…",
     g_share: "Challenge a friend", g_board: "My results", g_total: "Total",
     g_none: "Not played yet", g_challenge: (n, m) => `<b>${n}</b> finished this level in <b>${m}</b> moves. Beat it!`,
     g_rules: "Search and filters are off during the game — you travel only by what you see on the map.",
@@ -1427,9 +1429,15 @@ $("game").addEventListener("click", (e) => {
     case "g-save": {
       const db = gameStore();
       db.nick = ($("g-nick").value || "").trim().slice(0, 20);
+      if (!db.nick) return $("g-nick").focus();
       gamePut(db);
-      t.textContent = T("g_saved");
       t.disabled = true;
+      t.textContent = T("g_saved");
+      if (GAME_API && g && g.done === "won" && g.lvl) {
+        boardSend(g, db.nick).then((res) => {
+          if (res && res.ok) { t.textContent = T("g_rank", res.rank); boardLvl = null; }
+        }).catch(() => { /* be tinklo lieka vietinis rezultatas */ });
+      }
       return;
     }
     case "g-share": {
@@ -1639,7 +1647,27 @@ function closeAbout() { $("about").classList.remove("open"); }
 // be bendrinių mazgų ir žiniasklaidos). Tie patys skaičiavimai kaip scraper/11_levels.py,
 // todėl „trumpiausias kelias“ sutampa su tuo, ką realiai galima nueiti.
 const GAME_KEY = "cm-game";
-let levels = null, gameAdj = null, gdist = null;
+// Bendros lentelės adresas (Cloudflare Worker). Tuščias – žaidimas veikia be jos,
+// rezultatai lieka tik naršyklėje.
+const GAME_API = "";
+let levels = null, gameAdj = null, gdist = null, board = null, boardLvl = null;
+
+// Rezultatą tikrina serveris: jis pats pereina kelią briauna po briaunos ir perskaičiuoja
+// taškus, tad atsiųsti savo skaičiaus neįmanoma.
+async function boardSend(g, nick) {
+  if (!GAME_API || !g.lvl) return null;
+  const r = await fetch(GAME_API + "/run", {
+    method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ lvl: g.lvl, nick, path: g.moves, hints: g.hints, secs: g.sec }),
+  });
+  return r.json();
+}
+async function boardLoad(lvl) {
+  if (!GAME_API) return null;
+  const r = await fetch(`${GAME_API}/top?lvl=${lvl}&limit=10`);
+  const d = await r.json();
+  return d.rows || [];
+}
 
 const gameOk = (n) => !n.g && kindOf(n) !== "media" && ((n.cdg || 0) >= 2 || n.id === levels.target);
 const legalMove = (a, b) => !!(gameAdj && gameAdj.get(a) && gameAdj.get(a).has(b));
@@ -1764,6 +1792,21 @@ function gameShareUrl() {
   return `${SITE_BASE}?${q}`;
 }
 
+// Bendra lentelė: kraunam tinginiu būdu ir perpiešiam, kai atkeliauja
+function boardHtml(want) {
+  if (!GAME_API) return "";
+  if (boardLvl !== want) {
+    boardLvl = want; board = "loading";
+    boardLoad(want).then((rows) => { board = rows || []; renderGame(); })
+      .catch(() => { board = []; renderGame(); });
+  }
+  if (board === "loading") return `<div class="goal">${esc(T("g_loading"))}</div>`;
+  if (!board || !board.length) return "";
+  return `<div id="g-board" style="margin-top:14px"><div class="label" style="margin-top:0">${esc(T("g_world"))}</div><table>` +
+    board.map((r, i) => `<tr><td>${i + 1}</td><td class="n">${esc(r.nick)}</td>` +
+      `<td>${r.score} ${esc(T("g_pts"))}</td></tr>`).join("") + `</table></div>`;
+}
+
 function renderGame() {
   const box = $("game"), g = state.game, db = gameStore();
   if (!g) {                                   // ---- meniu ----
@@ -1780,7 +1823,8 @@ function renderGame() {
       `<div class="goal" style="margin:12px 0 10px">${esc(T("g_total"))}: <b>${total} ${esc(T("g_pts"))}</b></div>` +
       `<div class="btns"><button class="gb main" data-go="1">${esc(T("g_start"))}</button>` +
       `<button class="gb" data-go="r">${esc(T("g_random"))}</button>` +
-      `<button class="gb" data-go="x">${esc(T("g_close"))}</button></div>`;
+      `<button class="gb" data-go="x">${esc(T("g_close"))}</button></div>` +
+      boardHtml("all");
     return;
   }
   const used = g.moves.length - 1, left = g.budget - used;
@@ -1820,7 +1864,8 @@ function renderGame() {
       `<div class="btns" style="margin-top:8px">` +
       `<button class="gb" id="g-retry">${esc(T("g_retry"))}</button>` +
       (g.lvl && g.lvl < levels.levels.length ? `<button class="gb main" id="g-next">${esc(T("g_next"))}</button>` : "") +
-      `<button class="gb" id="g-menu">${esc(T("g_board"))}</button></div></div>`;
+      `<button class="gb" id="g-menu">${esc(T("g_board"))}</button></div></div>` +
+      (g.lvl ? boardHtml(g.lvl) : "");
   }
   box.innerHTML = html;
 }

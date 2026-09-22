@@ -114,6 +114,22 @@ def main():
     with open(os.path.join(SITE, "levels.json"), "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
 
+    # Serveriui – tos pačios briaunos ir lygiai, kad jis galėtų patikrinti atsiųstą kelią
+    seed = os.path.join(ROOT, "worker", "seed.sql")
+    if os.path.isdir(os.path.dirname(seed)):
+        pairs = sorted({(a, b) if a < b else (b, a) for a, nb in adj.items() for b in nb})
+        with open(seed, "w", encoding="utf-8") as f:
+            f.write("-- Sugeneruota scraper/11_levels.py – nekeisti ranka.\n")
+            f.write("DELETE FROM levels;\n")
+            for lv in out:
+                f.write("INSERT INTO levels (lvl,start,dist,budget) VALUES "
+                        f"({lv['lvl']},'{lv['start']}',{lv['dist']},{lv['budget']});\n")
+            f.write("DELETE FROM edges;\n")
+            for i in range(0, len(pairs), 500):       # po 500 eilučių viename INSERT
+                chunk = ",".join(f"('{a}','{b}')" for a, b in pairs[i:i + 500])
+                f.write(f"INSERT OR IGNORE INTO edges (a,b) VALUES {chunk};\n")
+        print(f"  worker/seed.sql: {len(pairs)} briaunų, {len(out)} lygių")
+
     for lv in out:
         n = nodes[lv["start"]]
         print(f"  {lv['lvl']:2d}. {lv['dist']} ž. (biudžetas {lv['budget']}) – {n.get('lt') or n['t']}")

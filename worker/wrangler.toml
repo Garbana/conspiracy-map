@@ -1,0 +1,14 @@
+name = "conspiracy-map-api"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+# Iš kur leidžiam kreiptis (CORS). Vietinis serveris – kad būtų galima testuoti.
+[vars]
+ALLOW_ORIGIN = "https://garbana.github.io"
+ALLOW_ORIGIN_DEV = "http://localhost:8765"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "conspiracy-map"
+database_id = "dadbcc4e-0eeb-47ff-aaca-50dd8c33fdec"
