@@ -59,6 +59,12 @@ cluster/type/theme coloring, a card with summary and all connections for each no
 shareable links (`#Q815614`). It can be hosted for free on GitHub Pages —
 live at [garbana.github.io/conspiracy-map](https://garbana.github.io/conspiracy-map/).
 
+Selecting a node (by search, by click or by tap) lights it up with all of its direct connections and
+quiets the rest of the map: unrelated nodes stop reacting to the cursor, so the selection holds still.
+Clicking a connected node steps across that link — the walked **trail** stays drawn as a gold line with
+numbered steps and can branch, the trail bar at the top jumps back to any step, and × or Esc ends it.
+On phones the card is a bottom sheet (with a grab handle to collapse it), so the map stays visible.
+
 An **About** panel (the link at the bottom of the left panel, Esc to close) explains where the data
 comes from, what the statuses and roles mean, and the limitations. Its numbers are read from the
 loaded graph, so they never go stale. Shared links carry an Open Graph card: `site/og.png` is a real

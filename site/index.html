@@ -107,6 +107,10 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 #card .close { position: absolute; top: 12px; right: 12px; background: none; border: 0;
   color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; padding: 4px 8px; }
 #card .close:hover { color: var(--text); }
+/* Telefone – rankenėlė lapui suskleisti / išskleisti */
+#card-grab { display: none; width: 100%; background: none; border: 0; padding: 8px 0 6px; cursor: pointer; }
+#card-grab::before { content: ""; display: block; width: 38px; height: 4px; margin: 0 auto;
+  border-radius: 2px; background: rgba(255,255,255,.22); }
 #card h2 { font: 700 24px/1.15 "Cormorant Garamond", serif; margin: 6px 28px 4px 0; }
 #card .lt { color: var(--muted); font-style: italic; margin-bottom: 6px; }
 .badge { display: inline-block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
@@ -131,6 +135,36 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 .conn .lead { color: var(--accent); font-size: 10px; }
 .showall { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 12px; padding: 6px 0; }
 .showall:hover { color: var(--accent2); }
+
+/* ---------- kelio juosta ir žymos ---------- */
+#trailbar { position: fixed; top: 16px; left: 352px; right: 16px; z-index: 6; display: none;
+  align-items: center; gap: 8px; padding: 7px 8px 7px 12px; font-size: 12px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; backdrop-filter: blur(10px); }
+#trailbar.on { display: flex; }
+#card.open ~ #trailbar { right: 412px; }
+#trailbar .lbl { flex: none; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+#crumbs { flex: 1; min-width: 0; display: flex; align-items: center; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+#crumbs::-webkit-scrollbar { display: none; }
+#crumbs .crumb { flex: none; max-width: 200px; display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: 0; cursor: pointer; color: var(--muted); padding: 3px 8px; border-radius: 6px; }
+#crumbs .crumb .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#crumbs .crumb .i { flex: none; width: 17px; height: 17px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 10px; font-weight: 600; background: rgba(212,168,74,.16); color: var(--accent2); }
+#crumbs .crumb:hover { background: rgba(255,255,255,.05); color: var(--text); }
+#crumbs .crumb.on { color: var(--text); background: rgba(212,168,74,.14); }
+#crumbs .crumb.on .i { background: var(--accent); color: #07080d; }
+#crumbs .sep { flex: none; color: var(--faint); }
+#trailbar .hint { flex: none; color: var(--faint); font-size: 11.5px; }
+#trail-end { flex: none; background: none; border: 0; cursor: pointer; color: var(--muted); font-size: 17px;
+  line-height: 1; padding: 3px 7px; border-radius: 6px; }
+#trail-end:hover { color: var(--accent2); background: rgba(255,255,255,.05); }
+#trail { position: fixed; inset: 0; pointer-events: none; z-index: 3; }
+.tmark { position: absolute; transform: translate(-50%, -50%); border-radius: 50%;
+  border: 1.5px solid rgba(212,168,74,.75); box-shadow: 0 0 9px rgba(212,168,74,.3); }
+.tmark.cur { border: 2px solid var(--accent2); box-shadow: 0 0 16px rgba(240,207,130,.55); }
+.tmark i { position: absolute; top: -8px; left: -10px; font: 600 9.5px/1 Inter, sans-serif; font-style: normal;
+  color: #07080d; background: rgba(212,168,74,.9); border-radius: 7px; padding: 3px 5px; }
+.tmark.cur i { background: var(--accent2); }
 
 /* ---------- „Apie" langas ---------- */
 #side footer #about-btn { background: none; border: 0; padding: 0 0 8px; cursor: pointer;
@@ -194,7 +228,15 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   #side header .sub { display: none; }
   #side .scroll, #side footer { padding-left: 16px; padding-right: 16px; }
   h1 { font-size: 22px; }
-  #card { top: 0; left: 0; right: 0; bottom: 0; width: auto; border-radius: 0; z-index: 8; }
+  /* Kortelė – apatinis lapas: viršuje lieka matomas žemėlapis su pažymėtu mazgu */
+  #card { top: auto; left: 0; right: 0; bottom: 0; width: auto; height: 58vh; border-radius: 14px 14px 0 0; z-index: 8; }
+  #card.peek { height: 124px; }
+  #card .head { padding: 6px 20px 12px; }
+  #card-grab { display: block; }
+  #trailbar { top: 8px; left: 8px; right: 8px; padding-left: 10px; }
+  #card.open ~ #trailbar { right: 8px; }
+  #trailbar .hint { display: none; }          /* siaurame ekrane vietos tik keliui */
+  #crumbs .crumb { max-width: 42vw; }
   #about { padding: 0; }
   #about .sheet { max-height: 100%; height: 100%; border-radius: 0; border: 0; }
   #about .scroll { padding: 24px 18px 32px; }
@@ -202,7 +244,8 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   .clabel { font-size: 11px; }
   .clabel small { display: none; }
   #zoom { bottom: 80px; }
-  #card.open ~ #zoom { right: 16px; }
+  #card.open ~ #zoom { right: 16px; bottom: calc(58vh + 12px); }
+  #card.open.peek ~ #zoom { bottom: 136px; }
 }
 </style>
 </head>
@@ -252,6 +295,7 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 
 <aside id="card">
   <div class="head">
+    <button id="card-grab" data-i18n-aria="card_toggle"></button>
     <button class="close" id="card-close" data-i18n-aria="close">×</button>
     <span class="badge" id="c-badge"></span><span class="badge" id="c-status" hidden></span>
     <h2 id="c-title"></h2>
@@ -261,7 +305,14 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   <div class="scroll" id="c-body"></div>
 </aside>
 
+<div id="trailbar">
+  <span class="lbl" data-i18n="trail"></span>
+  <div id="crumbs"></div>
+  <span class="hint" data-i18n="trail_hint"></span>
+  <button id="trail-end" data-i18n-title="trail_end">×</button>
+</div>
 <div id="clabels"></div>
+<div id="trail"></div>
 <div id="legend"></div>
 <div id="zoom">
   <button id="z-in" data-i18n-title="z_in">+</button>
@@ -331,6 +382,9 @@ const I18N = {
       '<a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">Atviras kodas</a>. ' +
       'Žemėlapis rodo, kas <em>teigiama</em> — ne tai, kas tiesa.',
     close: "Uždaryti", z_in: "Priartinti", z_out: "Nutolinti", z_reset: "Visas vaizdas",
+    card_toggle: "Suskleisti arba išskleisti kortelę",
+    trail: "Kelias", trail_hint: "Spustelėkite susijusį mazgą – eisite toliau",
+    trail_end: "Baigti kelią (Esc)",
     loading: "Kraunami duomenys…", drawing: "Braižomas žemėlapis…", load_fail: "Nepavyko įkelti duomenų: ",
     st_confirmed: "Įrodyta", st_debunked: "Paneigta", st_disputed: "Ginčijama",
     region: "Regionas", wiki: "Vikipedija", onmap: "Žemėlapyje", lead: "Minima įžangoje",
@@ -377,6 +431,13 @@ ir ${s.edges} ${ltN(s.edgesN, "ryšys", "ryšiai", "ryšių")}, suskirstyti į $
 ${ltN(s.themesN, "temą", "temas", "temų")} ir ${s.clusters} automatiškai
 ${ltN(s.clustersN, "rastą klasterį", "rastus klasterius", "rastų klasterių")}.
 Spustelėjus mazgą atsidaro kortelė su santrauka, visais ryšiais ir nuoroda į šaltinio straipsnį.</p>
+
+<h3>Kelias per sąsajas</h3>
+<p>Pažymėjus mazgą užsidega jis pats ir visos jo tiesioginės sąsajos, o likęs žemėlapis nurimsta —
+vedžiojant pelę ar pirštą nesusijusios teorijos nebešvyti ir netrukdo pataikyti. Spustelėję susijusį
+mazgą žengiate per sąsają toliau: nueitas kelias lieka nupieštas auksine linija su žingsnių
+numeriais, tad galite šakotis ir grįžti atgal nepametę kelio. Viršuje matoma kelio juosta
+(spustelėjus žingsnį – grįžtate į jį), o × arba Esc kelią baigia.</p>
 
 <h3>Iš kur duomenys</h3>
 <ul>
@@ -443,6 +504,9 @@ Radote klaidą? Rašykite ten – <a href="https://github.com/Garbana/conspiracy
       '<a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">Open source</a>. ' +
       'The map shows what is <em>claimed</em> — not what is true.',
     close: "Close", z_in: "Zoom in", z_out: "Zoom out", z_reset: "Fit to screen",
+    card_toggle: "Collapse or expand the card",
+    trail: "Trail", trail_hint: "Click a connected node to step further",
+    trail_end: "End the trail (Esc)",
     loading: "Loading data…", drawing: "Drawing the map…", load_fail: "Could not load data: ",
     st_confirmed: "Confirmed", st_debunked: "Debunked", st_disputed: "Disputed",
     region: "Region", wiki: "Wikipedia", onmap: "On the map", lead: "Mentioned in the lead",
@@ -485,6 +549,13 @@ they believe it, took part in anything, or are guilty of anything.</p>
 and works. ${s.nodes} nodes and ${s.edges} links in total, sorted into ${s.themes} themes and
 ${s.clusters} automatically detected clusters. Click any node for a card with its summary,
 all of its connections, and a link to the source article.</p>
+
+<h3>Following a trail</h3>
+<p>Selecting a node lights it up together with all of its direct connections, and the rest of the map
+goes quiet — unrelated theories no longer flare up under the cursor or your finger. Click a connected
+node to step across that link: the trail you walked stays drawn as a gold line with numbered steps,
+so you can branch off and come back without losing your way. The trail bar at the top takes you back
+to any step, and × or Esc ends the trail.</p>
 
 <h3>Where the data comes from</h3>
 <ul>
@@ -577,7 +648,22 @@ let graph, renderer, data, summaries = null, summariesLt = null;
 const ucfirst = (x) => x ? x.charAt(0).toUpperCase() + x.slice(1) : x;
 const nm = (n) => (LANG === "lt" && n.lt ? ucfirst(n.lt) : n.t);
 const state = { themes: new Set(Object.keys(THEMES)), types: new Set(Object.keys(TYPES).filter((t) => t !== "media")),
-  generic: false, minDeg: 2, colorBy: "cluster", layer: "core", selected: null, hovered: null, neighbors: new Set() };
+  generic: false, minDeg: 2, colorBy: "cluster", layer: "core", selected: null, hovered: null, neighbors: new Set(),
+  // Nueitas kelias: path – mazgas → iš kurio mazgo į jį atėjome (šaknis: null); pathEdges – nueitos briaunos
+  path: new Map(), pathEdges: new Set() };
+const ekey = (a, b) => (a < b ? a + "\u0000" + b : b + "\u0000" + a);
+// Pasirinkus mazgą „užsirakinam": reaguoja tik jis pats, jo sąsajos ir nueitas kelias
+const selectable = (id) => !state.selected || id === state.selected || state.neighbors.has(id) || state.path.has(id);
+function pathDepth(id) {
+  let d = 0;
+  for (let p = state.path.get(id); p && d < 64; p = state.path.get(p)) d++;
+  return d;
+}
+function pathToRoot(id) {
+  const out = [];
+  for (let c = id; c && out.length < 64; c = state.path.get(c) || null) out.unshift(c);
+  return out;
+}
 // Vaidmenų spalvos; antraštės (teorijos kortelėje / subjekto kortelėje) – I18N.*.roles
 const ROLES = { acc: "#ff6b6b", pro: "#e8b14a", vic: "#c77dff", sub: "#5fb4ff",
   evt: "#ff9f5a", loc: "#4fd1a5", deb: "#9aa3b5", rel: "#f57fb5" };
@@ -651,15 +737,20 @@ async function init() {
   // Etiketės šviesiame fone neatrodo – piešiam be fono, su šešėliu
   renderer.setSetting("hoverRenderer", drawHover);
 
-  renderer.on("enterNode", ({ node }) => { state.hovered = node; renderer.refresh({ skipIndexation: true }); showTip(node); });
+  renderer.on("enterNode", ({ node }) => {
+    if (!selectable(node)) return;   // kelio režime šalia esančios nesusijusios teorijos nereaguoja
+    state.hovered = node;
+    renderer.refresh({ skipIndexation: true });
+    showTip(node);
+  });
   renderer.on("leaveNode", () => { state.hovered = null; renderer.refresh({ skipIndexation: true }); hideTip(); });
-  renderer.on("clickNode", ({ node }) => select(node, false));
+  renderer.on("clickNode", ({ node }) => { if (selectable(node)) select(node, false); });
   renderer.on("clickStage", () => select(null));
   renderer.getMouseCaptor().on("mousemovebody", (e) => moveTip(e.original));
   setupTouchTap();
 
   buildClusterLabels();
-  renderer.on("afterRender", placeClusterLabels);
+  renderer.on("afterRender", () => { placeClusterLabels(); placeTrailMarks(); });
   buildControls();
   updateStats();
   readHash();
@@ -667,16 +758,25 @@ async function init() {
   setTimeout(() => $("loader").remove(), 700);
 }
 
+// Ar mazgas susijęs su tuo, ties kuo esame: pasirinkimas svarbesnis už pelės užvedimą,
+// todėl pažymėta teorija lieka pažymėta vedžiojant pelę per žemėlapį.
+function relatedToFocus(id) {
+  if (state.selected) return id === state.selected || state.neighbors.has(id) || state.path.has(id);
+  const h = state.hovered;
+  return id === h || (graph.hasEdge(h, id) && edgeVisible(graph.getEdgeAttributes(graph.edge(h, id))));
+}
+
 function nodeReducer(id, attr) {
   const n = attr.raw;
   const res = { ...attr, color: nodeColor(n) };
-  if (!visible(n) && id !== state.selected) { res.hidden = true; return res; }
-  const focus = state.hovered || state.selected;
+  const onPath = state.path.has(id);
+  if (!visible(n) && id !== state.selected && !onPath) { res.hidden = true; return res; }
+  const focus = state.selected || state.hovered;
   if (focus) {
-    if (id === focus || state.neighbors.has(id) ||
-        (state.hovered && graph.hasEdge(state.hovered, id) && edgeVisible(graph.getEdgeAttributes(graph.edge(state.hovered, id))))) {
-      res.forceLabel = true;
-      res.zIndex = 3;
+    if (relatedToFocus(id)) {
+      // Siaurame ekrane visų kaimynų vardai susilietų – paliekam tik kelio mazgus
+      res.forceLabel = innerWidth > 900 || id === state.selected || onPath;
+      res.zIndex = onPath ? 4 : 3;
       if (id === focus) res.highlighted = true;
     } else {
       res.color = "#23252e";
@@ -691,9 +791,17 @@ function edgeVisible(attr) { return state.layer === "all" || attr.core; }
 
 function edgeReducer(id, attr) {
   const res = { ...attr };
-  if (!edgeVisible(attr)) { res.hidden = true; return res; }
   const [s, t] = graph.extremities(id);
-  const focus = state.hovered || state.selected;
+  // Nueitas kelias lieka nupieštas visada – ir tada, kai einam toliau per kitą mazgą
+  if (state.pathEdges.has(ekey(s, t))) {
+    const cur = s === state.selected || t === state.selected;
+    res.color = hexA(cur ? "#f0cf82" : "#d4a84a", cur ? .95 : .7);
+    res.size = cur ? 2.6 : 1.8;
+    res.zIndex = 5;
+    return res;
+  }
+  if (!edgeVisible(attr)) { res.hidden = true; return res; }
+  const focus = state.selected || state.hovered;
   if (focus) {
     if (s === focus || t === focus) {
       const other = graph.getNodeAttributes(s === focus ? t : s).raw;
@@ -715,6 +823,7 @@ function hexA(hex, a) {
 }
 
 function drawHover(ctx, d, settings) {
+  if (!selectable(d.key)) return;   // nesusijusios teorijos neužsidega
   const size = settings.labelSize, font = settings.labelFont;
   ctx.font = `600 ${size}px ${font}`;
   const w = ctx.measureText(d.label).width + 12;
@@ -759,11 +868,12 @@ function setupTouchTap() {
 function nearestNode(x, y, maxDist) {
   let best = null, bestD = maxDist;
   graph.forEachNode((id, a) => {
-    if (!visible(a.raw) && id !== state.selected) return;
+    if (!visible(a.raw) && id !== state.selected && !state.path.has(id)) return;
+    if (!selectable(id)) return;   // kelio režime bakstelėjimas pataiko tik į susijusius
     const d = renderer.getNodeDisplayData(id);
     if (!d || d.hidden) return;
     const v = renderer.framedGraphToViewport(d);
-    const dist = Math.hypot(v.x - x, v.y - y) - d.size;
+    const dist = Math.hypot(v.x - x, v.y - y) - renderer.scaleSize(d.size);
     // Teorijoms – nedidelis pranašumas, kad būtų lengviau pataikyti
     const bias = a.raw.k === "theory" ? 4 : 0;
     if (dist - bias < bestD) { bestD = dist - bias; best = id; }
@@ -814,23 +924,114 @@ function moveTip(e) {
 const sdOf = (n) => (LANG === "lt" && n.k === "theory" ? "" : n.sd);
 function hideTip() { $("tooltip").style.display = "none"; }
 
-// ---------- pasirinkimas ir kortelė ----------
+// ---------- pasirinkimas, kelias ir kortelė ----------
 function select(id, fromSearch) {
-  state.selected = id;
-  state.neighbors = new Set();
-  if (id) graph.forEachEdge(id, (e, a, s, t) => { if (edgeVisible(a)) state.neighbors.add(s === id ? t : s); });
   if (!id) {
-    $("card").classList.remove("open");
+    state.selected = null;
+    state.neighbors = new Set();
+    state.path.clear();
+    state.pathEdges.clear();
+    buildTrailMarks();
+    renderTrailBar();
+    $("card").classList.remove("open", "peek");
     history.replaceState(null, "", location.pathname + location.search);
     renderer.refresh({ skipIndexation: true });
     return;
   }
+  const prev = state.selected;
+  // Iš kur atėjome: jei ankstesnis mazgas su šiuo susijęs, tai žingsnis per sąsają
+  const from = prev && prev !== id && graph.hasEdge(prev, id) ? prev : null;
+  if (!state.path.has(id)) {
+    // Žingsnis per sąsają – kelias auga (ir šakojasi); šuolis (paieška, nuoroda) – kelias naujas.
+    // Tinka ir kortelėje išvardyti paminėjimai, kurių esminiame sluoksnyje nematyti.
+    if (from) {
+      state.path.set(id, from);
+      state.pathEdges.add(ekey(from, id));
+    } else {
+      state.path.clear();
+      state.pathEdges.clear();
+      state.path.set(id, null);
+    }
+  }
+  state.selected = id;
+  state.neighbors = new Set();
+  graph.forEachEdge(id, (e, a, s, t) => {
+    if (edgeVisible(a) || state.pathEdges.has(ekey(s, t))) state.neighbors.add(s === id ? t : s);
+  });
   history.replaceState(null, "", "#" + encodeURIComponent(id));
+  buildTrailMarks();
+  renderTrailBar();
   renderCard(id);
+  focusNode(id, fromSearch, from);
+  renderer.refresh({ skipIndexation: true });
+}
+
+// Kamera į mazgą. Žengiant per sąsają kadre paliekam ir ankstesnį mazgą – kad matytųsi,
+// iš kur atėjome; telefone kortelė uždengia apačią, todėl mazgą keliam į laisvą viršų.
+function focusNode(id, fromSearch, from) {
   const cam = renderer.getCamera();
   const p = renderer.getNodeDisplayData(id);
-  if (p) cam.animate({ x: p.x, y: p.y, ratio: fromSearch ? 0.25 : Math.min(cam.ratio, 0.6) }, { duration: 600 });
-  renderer.refresh({ skipIndexation: true });
+  if (!p || !cam.ratio) return;
+  const mobile = innerWidth <= 900;
+  const sheet = mobile && $("card").classList.contains("open") ? $("card").offsetHeight : 0;
+  let ratio = fromSearch ? 0.25 : Math.min(cam.ratio, 0.6);
+  let x = p.x, y = p.y;
+  const q = from ? renderer.getNodeDisplayData(from) : null;
+  if (q) {
+    x = p.x * 0.7 + q.x * 0.3;
+    y = p.y * 0.7 + q.y * 0.3;
+    const { width, height } = renderer.getDimensions();
+    const a = renderer.viewportToFramedGraph({ x: 0, y: 0 });
+    const b = renderer.viewportToFramedGraph({ x: width, y: height });
+    // Kiek kadro skiriam nueitai briaunai (telefone mažiau – apačią dengia kortelė)
+    const fit = mobile ? 0.42 : 0.6;
+    const need = cam.ratio * Math.max(
+      Math.abs(p.x - q.x) / (Math.abs(b.x - a.x) * fit),
+      Math.abs(p.y - q.y) / (Math.abs(b.y - a.y) * fit));
+    if (need > ratio) ratio = Math.min(need, 1.2);   // per toli neišzuminam
+  }
+  if (sheet) {
+    const a = renderer.viewportToFramedGraph({ x: 0, y: 0 });
+    const b = renderer.viewportToFramedGraph({ x: 0, y: sheet / 2 });
+    y += (b.y - a.y) * (ratio / cam.ratio);
+  }
+  cam.animate({ x, y, ratio }, { duration: 600 });
+}
+
+// Kelio žymos ant žemėlapio: žiedas apie aplankytą mazgą ir žingsnio numeris
+function buildTrailMarks() {
+  $("trail").innerHTML = [...state.path.keys()].map((id) =>
+    `<div class="tmark" data-id="${esc(id)}"><i>${pathDepth(id) + 1}</i></div>`).join("");
+}
+function placeTrailMarks() {
+  const box = $("trail");
+  for (const el of box.children) {
+    const d = renderer.getNodeDisplayData(el.dataset.id);
+    if (!d) { el.style.display = "none"; continue; }
+    const v = renderer.framedGraphToViewport(d);
+    const r = renderer.scaleSize(d.size) + 7;
+    el.style.display = "";
+    el.style.left = v.x + "px";
+    el.style.top = v.y + "px";
+    el.style.width = el.style.height = r * 2 + "px";
+    el.classList.toggle("cur", el.dataset.id === state.selected);
+  }
+}
+function renderTrailBar() {
+  const bar = $("trailbar");
+  bar.classList.toggle("on", state.path.size > 0);
+  if (!state.path.size) { $("crumbs").innerHTML = ""; return; }
+  const crumbs = pathToRoot(state.selected);
+  $("crumbs").innerHTML = crumbs.map((id, i) => {
+    const n = graph.getNodeAttribute(id, "raw");
+    return (i ? `<span class="sep">›</span>` : "") +
+      `<button class="crumb ${id === state.selected ? "on" : ""}" data-id="${esc(id)}" title="${esc(nm(n))}">` +
+      `<span class="i">${i + 1}</span><span class="t">${esc(nm(n))}</span></button>`;
+  }).join("");
+  bar.querySelector(".hint").style.display = state.path.size > 1 ? "none" : "";
+  const box = $("crumbs"), last = box.lastElementChild;
+  // Ilgą kelią paslenkam į dabartinį žingsnį; trumpą paliekam kaip yra
+  if (last && box.scrollWidth > box.clientWidth + 4) last.scrollIntoView({ block: "nearest", inline: "end" });
 }
 
 async function renderCard(id) {
@@ -999,6 +1200,7 @@ function buildControls() {
     renderLegend();
     buildClusterLabels();
     if (state.selected) renderCard(state.selected);
+    renderTrailBar();
     if (aboutOpen()) renderAbout();
     refresh();
   };
@@ -1016,6 +1218,12 @@ function buildControls() {
   $("z-out").onclick = () => renderer.getCamera().animatedUnzoom({ duration: 300 });
   $("z-reset").onclick = () => renderer.getCamera().animatedReset({ duration: 400 });
   $("side-head").onclick = () => { if (innerWidth <= 900) $("side").classList.toggle("open"); };
+  $("crumbs").onclick = (e) => {
+    const c = e.target.closest(".crumb");
+    if (c && c.dataset.id !== state.selected) select(c.dataset.id, false);
+  };
+  $("trail-end").onclick = () => select(null);
+  $("card-grab").onclick = () => $("card").classList.toggle("peek");
   $("about-btn").onclick = (e) => { e.stopPropagation(); openAbout(); };
   $("about-close").onclick = closeAbout;
   $("about").onclick = (e) => { if (!e.target.closest(".sheet")) closeAbout(); };
