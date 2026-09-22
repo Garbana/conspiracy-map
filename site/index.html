@@ -122,6 +122,13 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 .summary.short { max-height: 11.5em; overflow: hidden; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
 .more { background: none; border: 0; color: var(--accent2); cursor: pointer; padding: 4px 0; font-size: 13px; margin-right: 16px; }
 .links a { display: inline-block; margin: 10px 14px 0 0; font-size: 13px; }
+.links button.share { display: inline-flex; align-items: center; gap: 6px; margin: 10px 14px 0 0;
+  padding: 5px 11px; font-size: 13px; cursor: pointer; color: var(--accent2); border-radius: 7px;
+  background: rgba(212,168,74,.12); border: 1px solid rgba(212,168,74,.28); }
+.links button.share:hover { background: rgba(212,168,74,.2); }
+.links button.share.ok { color: #4fd1a5; background: rgba(79,209,165,.12); border-color: rgba(79,209,165,.3); }
+.links input.share { margin: 10px 0 0; width: 100%; font-size: 12px; padding: 6px 8px; color: var(--text);
+  background: var(--bg2); border: 1px solid var(--line); border-radius: 7px; }
 .group h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
   margin: 22px 0 8px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
 .group h3 .n { color: var(--faint); }
@@ -389,6 +396,7 @@ const I18N = {
       '<a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">Atviras kodas</a>. ' +
       'Žemėlapis rodo, kas <em>teigiama</em> — ne tai, kas tiesa.',
     close: "Uždaryti", z_in: "Priartinti", z_out: "Nutolinti", z_reset: "Visas vaizdas",
+    share: "Dalintis", share_done: "Nuoroda nukopijuota ✓", share_path: "Dalintis su keliu",
     card_toggle: "Suskleisti arba išskleisti kortelę",
     trail: "Kelias", trail_hint: "Spustelėkite susijusį mazgą – eisite toliau",
     trail_end: "Baigti kelią (Esc)",
@@ -444,7 +452,9 @@ Spustelėjus mazgą atsidaro kortelė su santrauka, visais ryšiais ir nuoroda �
 vedžiojant pelę ar pirštą nesusijusios teorijos nebešvyti ir netrukdo pataikyti. Spustelėję susijusį
 mazgą žengiate per sąsają toliau: nueitas kelias lieka nupieštas auksine linija su žingsnių
 numeriais, tad galite šakotis ir grįžti atgal nepametę kelio. Viršuje matoma kelio juosta
-(spustelėjus žingsnį – grįžtate į jį), o × arba Esc kelią baigia.</p>
+(spustelėjus žingsnį – grįžtate į jį), o × arba Esc kelią baigia. Kelias lieka ir adrese, tad
+kortelės mygtukas „Dalintis“ duoda nuorodą, kuri atveria būtent tą teoriją (o pokalbyje parodo jos
+pavadinimą ir santrauką) kartu su visu nueitu keliu.</p>
 
 <h3>Iš kur duomenys</h3>
 <ul>
@@ -512,6 +522,7 @@ Radote klaidą? Rašykite ten – <a href="https://github.com/Garbana/conspiracy
       '<a href="https://github.com/Garbana/conspiracy-map" target="_blank" rel="noopener">Open source</a>. ' +
       'The map shows what is <em>claimed</em> — not what is true.',
     close: "Close", z_in: "Zoom in", z_out: "Zoom out", z_reset: "Fit to screen",
+    share: "Share", share_done: "Link copied ✓", share_path: "Share with the trail",
     card_toggle: "Collapse or expand the card",
     trail: "Trail", trail_hint: "Click a connected node to step further",
     trail_end: "End the trail (Esc)",
@@ -563,7 +574,9 @@ all of its connections, and a link to the source article.</p>
 goes quiet — unrelated theories no longer flare up under the cursor or your finger. Click a connected
 node to step across that link: the trail you walked stays drawn as a gold line with numbered steps,
 so you can branch off and come back without losing your way. The trail bar at the top takes you back
-to any step, and × or Esc ends the trail.</p>
+to any step, and × or Esc ends the trail. The trail lives in the URL too, so the card's <b>share</b>
+button hands you a link that opens that very node — showing its name and summary in a chat preview —
+with the whole walk attached.</p>
 
 <h3>Where the data comes from</h3>
 <ul>
@@ -1019,7 +1032,7 @@ function select(id, fromSearch) {
   graph.forEachEdge(id, (e, a, s, t) => {
     if (edgeVisible(a) || state.pathEdges.has(ekey(s, t))) state.neighbors.add(s === id ? t : s);
   });
-  history.replaceState(null, "", "#" + encodeURIComponent(id));
+  updateHash();
   invalidateGlow();
   buildTrailMarks();
   renderTrailBar();
@@ -1127,6 +1140,10 @@ async function renderCard(id) {
   body.push(`<div id="c-summary"></div>`);
   const wiki = n.u || `https://en.wikipedia.org/wiki/${encodeURIComponent(n.t.replace(/ /g, "_"))}`;
   body.push(`<div class="links">` +
+    `<button class="share" title="${esc(state.path.size > 1 ? T("share_path") : T("share"))}">` +
+    `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ` +
+    `stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/>` +
+    `<circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>${esc(T("share"))}</button>` +
     (n.lw ? `<a href="https://lt.wikipedia.org/wiki/${encodeURIComponent(n.lw.replace(/ /g, "_"))}" target="_blank" rel="noopener">${T("wiki")} (LT) ↗</a>` : "") +
     `<a href="${esc(wiki)}" target="_blank" rel="noopener">${T("wiki")}${n.lw ? " (EN)" : ""} ↗</a>` +
     (n.id.startsWith("Q") ? `<a href="https://www.wikidata.org/wiki/${esc(n.id)}" target="_blank" rel="noopener">Wikidata ↗</a>` : "") +
@@ -1209,9 +1226,51 @@ async function renderCard(id) {
 $("c-body").addEventListener("click", (e) => {
   const c = e.target.closest(".conn");
   if (c) return select(c.dataset.id, false);
+  const sh = e.target.closest(".share");
+  if (sh) return share(sh);
   const b = e.target.closest(".showall");
   if (b) { b.previousElementSibling.hidden = false; b.remove(); }
 });
+
+// ---------- dalinimasis ----------
+// Nuoroda veda į mazgo puslapį site/t/, kurio meta žymose – to mazgo pavadinimas ir
+// santrauka (pokalbių programėlės JavaScript nevykdo, tad mato tik jas). Iš ten iškart
+// permetama į žemėlapį; jei nueitas kelias ilgesnis nei vienas žingsnis, jis keliauja kartu.
+function shareUrl(id) {
+  const n = graph.getNodeAttribute(id, "raw");
+  const base = location.href.replace(/[?#].*$/, "").replace(/index\.html$/, "");
+  const p = pathToRoot(id);
+  const q = new URLSearchParams({ lang: LANG });
+  if (p.length > 1) q.set("p", p.join(","));
+  return n.sg ? `${base}t/${n.sg}.html?${q}` : `${base}?${q}#${encodeURIComponent(id)}`;
+}
+
+async function share(btn) {
+  const id = state.selected;
+  if (!id) return;
+  const url = shareUrl(id);
+  const title = nm(graph.getNodeAttribute(id, "raw"));
+  if (navigator.share && innerWidth <= 900) {
+    try { await navigator.share({ title, text: title, url }); return; }
+    catch (e) { if (e && e.name === "AbortError") return; }   // atšaukė – nieko nedarom
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    const old = btn.innerHTML;
+    btn.classList.add("ok");
+    btn.textContent = T("share_done");
+    setTimeout(() => { btn.classList.remove("ok"); btn.innerHTML = old; }, 2200);
+  } catch (e) {
+    // Be leidimo rašyti į iškarpinę – parodom nuorodą, kad būtų galima nusikopijuoti ranka
+    const inp = document.createElement("input");
+    inp.className = "share";
+    inp.readOnly = true;
+    inp.value = url;
+    btn.parentElement.appendChild(inp);
+    inp.focus();
+    inp.select();
+  }
+}
 $("card-close").onclick = () => select(null);
 
 // ---------- valdikliai ----------
@@ -1398,9 +1457,38 @@ function setupSearch() {
   }
 }
 
+// Adrese – visas nueitas kelias (#Q1,Q2,Q3), kad pasidalinta nuoroda jį atkurtų
+function updateHash() {
+  const p = pathToRoot(state.selected);
+  history.replaceState(null, "", p.length ? "#" + p.map(encodeURIComponent).join(",")
+    : location.pathname + location.search);
+}
+function restorePath(ids) {
+  state.path.clear();
+  state.pathEdges.clear();
+  let prev = null;
+  for (const id of ids) {
+    if (prev && graph.hasEdge(prev, id)) {
+      state.path.set(id, prev);
+      state.pathEdges.add(ekey(prev, id));
+    } else {                       // nutrūkusi grandinė (pasikeitė duomenys) – pradedam iš naujo
+      state.path.clear();
+      state.pathEdges.clear();
+      state.path.set(id, null);
+    }
+    prev = id;
+  }
+}
 function readHash() {
-  const id = decodeURIComponent(location.hash.slice(1));
-  if (id && graph.hasNode(id)) setTimeout(() => select(id, true), 300);
+  const ids = decodeURIComponent(location.hash.slice(1)).split(",").map((x) => x.trim())
+    .filter((x) => graph.hasNode(x));
+  if (!ids.length) return;
+  setTimeout(() => {
+    const last = ids[ids.length - 1];
+    restorePath(ids);
+    state.selected = state.path.get(last) || null;   // kad kamera parodytų ir paskutinį žingsnį
+    select(last, ids.length === 1);
+  }, 300);
 }
 addEventListener("keydown", (e) => {
   if (e.key !== "Escape" || document.activeElement === $("search")) return;

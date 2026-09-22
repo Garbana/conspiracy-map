@@ -30,7 +30,8 @@ Python (standard library + `truststore`) and Node.js.
 | 8. Lithuanian summaries and links (lt.wikipedia.org) | `scraper/07_lt.py` | `site/data/summaries_lt.json`, `graph.json` |
 | 9. Lithuanian theory titles and summaries (translations) | `scraper/08_i18n.py` | `site/data/summaries_lt.json`, `graph.json` |
 | 10. Which language's summary each node has | `scraper/09_sumflags.py` | `site/data/graph.json` (`se` / `sl`) |
-| 11. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
+| 11. A share page per node (title, summary, status in its meta) | `scraper/10_share_pages.py` | `site/t/*.html`, `graph.json` (`sg`) |
+| 12. Sharing image (optional, after a re-layout) | `layout/og.mjs` | `site/og.png` |
 
 Manual corrections live in `data/overrides.json`; role reviews in `data/roles/` (see its README);
 Lithuanian translations of all theories in `data/i18n/done/` (written by Claude from the English
@@ -51,6 +52,7 @@ cd layout && npm install && node layout.mjs && cd ..
 python scraper/07_lt.py
 python scraper/08_i18n.py
 python scraper/09_sumflags.py
+python scraper/10_share_pages.py
 python -m http.server 8765 --directory site
 ```
 
@@ -69,10 +71,17 @@ Clicking a connected node steps across that link — the walked **trail** stays 
 numbered steps and can branch, the trail bar at the top jumps back to any step, and × or Esc ends it.
 On phones the card is a bottom sheet (with a grab handle to collapse it), so the map stays visible.
 
+The URL carries the whole trail (`#Q51213808,Q1658150,Q274564`), so a shared link reopens the exact
+walk, not just the last node. Every card has a **share** button. Chat apps and crawlers do not run
+JavaScript, so a link into the map would only ever show the site's own title; the link therefore points
+at `site/t/<slug>-<id>.html` — a small generated page whose meta tags carry *that* node's name, summary
+and status ("Paneigta / Debunked · …") and which immediately forwards a human to the map, trail and
+language included.
+
 An **About** panel (the link at the bottom of the left panel, Esc to close) explains where the data
 comes from, what the statuses and roles mean, and the limitations. Its numbers are read from the
-loaded graph, so they never go stale. Shared links carry an Open Graph card: `site/og.png` is a real
-screenshot of the map, regenerated with `node layout/og.mjs` (needs Playwright and a local server).
+loaded graph, so they never go stale. The preview image `site/og.png` is a real screenshot of the map,
+regenerated with `node layout/og.mjs` (needs Playwright and a local server).
 
 The interface is bilingual (English / Lithuanian). The language comes from `?lang=en` / `?lang=lt`,
 then the visitor's saved choice, then the browser language. All interface strings live in one
