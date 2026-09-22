@@ -917,27 +917,44 @@ function drawHover(ctx, d, settings) {
 // ---------- lietimas (telefonai) ----------
 // Sigma "click" sugeneruoja tik jei pirštas visai nepajudėjo, o mazgai maži – todėl patys
 // atpažįstam bakstelėjimą ir parenkam artimiausią matomą mazgą aplink piršto vietą.
+//
+// Svarbu: keičiant mastelį, nuėmus pirmą pirštą Sigma iš naujo praneša "touchdown" su likusiu
+// pirštu ir tuoj pat "touchup" – be to, ką sekam patys, tai atrodo kaip tobulas bakstelėjimas
+// ir pažymėdavo atsitiktinę teoriją. Todėl bakstelėjimu laikom tik judesį, kuris nuo pradžios
+// iki galo buvo vieno piršto, baigėsi nuėmus visus pirštus ir netrukus po mastelio keitimo.
 function setupTouchTap() {
-  const TAP_MOVE = 12, TAP_MS = 450, HIT_R = 28;
-  let start = null, last = null, multi = false;
+  const TAP_MOVE = 10, TAP_MS = 400, HIT_R = 24, CALM = 450;
+  let tap = null, multiGesture = false, calmUntil = 0;
   const tc = renderer.getTouchCaptor();
+
+  const gotMulti = () => { tap = null; multiGesture = true; calmUntil = Date.now() + CALM; };
+
   tc.on("touchdown", (e) => {
-    multi = e.touches.length > 1;
-    start = last = { x: e.touches[0].x, y: e.touches[0].y, t: Date.now() };
+    if (e.touches.length !== 1) return gotMulti();
+    const p = e.touches[0];
+    tap = Date.now() < calmUntil ? null : { x: p.x, y: p.y, lx: p.x, ly: p.y, t: Date.now(), moved: 0 };
   });
+
   tc.on("touchmove", (e) => {
-    if (e.touches.length > 1) multi = true;
-    if (e.touches[0]) last = { x: e.touches[0].x, y: e.touches[0].y };
+    if (e.touches.length !== 1) return gotMulti();
+    if (!tap) return;
+    const p = e.touches[0];
+    tap.moved += Math.hypot(p.x - tap.lx, p.y - tap.ly);   // kaupiam visą nueitą kelią
+    tap.lx = p.x;
+    tap.ly = p.y;
+    if (tap.moved > TAP_MOVE) tap = null;                  // tai stūmimas
   });
-  tc.on("touchup", () => {
-    if (!start || multi) { start = null; return; }
-    const moved = Math.hypot(last.x - start.x, last.y - start.y);
-    const quick = Date.now() - start.t < TAP_MS;
-    const p = start;
-    start = null;
-    if (moved > TAP_MOVE || !quick) return;
-    const id = nearestNode(p.x, p.y, HIT_R);
-    if (id) select(id, false);
+
+  tc.on("touchup", (e) => {
+    const t = tap;
+    tap = null;
+    if (e.touches && e.touches.length) return;             // ant ekrano dar yra pirštų
+    const wasMulti = multiGesture;
+    multiGesture = false;
+    if (!t || wasMulti || Date.now() < calmUntil || Date.now() - t.t > TAP_MS) return;
+    const id = nearestNode(t.x, t.y, HIT_R);
+    // Sigma retkarčiais pati sugeneruoja paspaudimą – nesirenkam to paties mazgo dukart
+    if (id && !(id === state.selected && Date.now() - (state.pickedAt || 0) < 500)) select(id, false);
   });
 }
 
@@ -1031,6 +1048,7 @@ function select(id, fromSearch) {
     }
   }
   state.selected = id;
+  state.pickedAt = Date.now();
   state.neighbors = new Set();
   graph.forEachEdge(id, (e, a, s, t) => {
     if (edgeVisible(a) || state.pathEdges.has(ekey(s, t))) state.neighbors.add(s === id ? t : s);
