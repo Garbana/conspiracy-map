@@ -98,6 +98,12 @@ is ready to switch on (see below). While a level is running nothing outside the 
 click on the map, Esc or closing the card leave the walked route alone, and only real moves (or
 steps back onto the route) change it — a misplaced click used to wipe the run.
 
+A **Scores** window (the link in the left panel's footer, or the button in the game's menu) holds what
+came of all that playing: levels done, points, perfect routes, games played and won, then a row per
+level with the best score, the moves against the shortest route, hints and time, and a **Route** link
+that draws that saved run back onto the map. Below it the shared leaderboard, by level or by total,
+with your own row marked.
+
 A finished level produces a challenge link, and for the same reason as the node pages it is a real file:
 `g/lt/7-5.html?lang=lt&n=…&m=5` carries that level's own meta tags ("7 lygis: … → Anunakiai", "įveiktas
 per 5 žingsnius"), so a link dropped into a chat says which level it is instead of repeating the site's

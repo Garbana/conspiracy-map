@@ -242,22 +242,23 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 .tmark.cur i { background: var(--accent2); }
 
 /* ---------- „Apie" langas ---------- */
-#side footer #about-btn { background: none; border: 0; padding: 0 0 8px; cursor: pointer;
+#side footer #about-btn, #side footer #scores-btn { background: none; border: 0; padding: 0 0 8px; cursor: pointer;
   color: var(--accent2); font-size: 11.5px; text-decoration: underline; text-underline-offset: 2px; }
-#side footer #about-btn:hover { color: var(--accent); }
-#about { position: fixed; inset: 0; z-index: 40; display: none; padding: 24px;
+#side footer #about-btn:hover, #side footer #scores-btn:hover { color: var(--accent); }
+#side footer .links { display: flex; gap: 14px; }
+#about, #scores { position: fixed; inset: 0; z-index: 40; display: none; padding: 24px;
   background: rgba(4,5,9,.74); backdrop-filter: blur(4px); }
-#about.open { display: grid; place-items: center; }
-#about .sheet { position: relative; width: min(720px, 100%); max-height: min(86vh, 920px);
+#about.open, #scores.open { display: grid; place-items: center; }
+#about .sheet, #scores .sheet { position: relative; width: min(720px, 100%); max-height: min(86vh, 920px);
   background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
   display: flex; flex-direction: column; overflow: hidden; }
-#about .close { position: absolute; top: 12px; right: 12px; background: none; border: 0; z-index: 1;
+#about .close, #scores .close { position: absolute; top: 12px; right: 12px; background: none; border: 0; z-index: 1;
   color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; padding: 4px 8px; }
-#about .close:hover { color: var(--text); }
-#about .scroll { overflow-y: auto; padding: 28px 32px 32px; }
-#about h2 { font: 700 27px/1.15 "Cormorant Garamond", serif; margin: 0 28px 2px 0; }
-#about h2 + .sub { color: var(--muted); font-size: 12.5px; margin-bottom: 4px; }
-#about h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+#about .close:hover, #scores .close:hover { color: var(--text); }
+#about .scroll, #scores .scroll { overflow-y: auto; padding: 28px 32px 32px; }
+#about h2, #scores h2 { font: 700 27px/1.15 "Cormorant Garamond", serif; margin: 0 28px 2px 0; }
+#about h2 + .sub, #scores .sub { color: var(--muted); font-size: 12.5px; margin-bottom: 4px; }
+#about h3, #scores h3 { font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
   font-weight: 500; margin: 26px 0 8px; }
 #about p, #about ul { color: #cfccc4; line-height: 1.65; margin: 0 0 10px; }
 #about ul { padding-left: 18px; }
@@ -265,6 +266,43 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
 #about li b, #about p b { color: var(--text); font-weight: 600; }
 #about .lead-note { border-left: 2px solid var(--accent); padding: 2px 0 2px 14px; color: var(--text); }
 #about .fine { color: var(--muted); font-size: 12.5px; }
+
+/* ---------- rezultatų langas ---------- */
+#sc-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 8px; margin: 16px 0 4px; }
+#sc-tiles > div { text-align: center; padding: 10px 6px; border-radius: 10px;
+  background: var(--bg2); border: 1px solid var(--line); }
+#sc-tiles .v { font: 600 20px Inter, sans-serif; color: var(--text); line-height: 1.2; }
+#sc-tiles .k { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-top: 3px; }
+#scores table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+#scores th { text-align: left; font: 500 10px Inter, sans-serif; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--faint); padding: 0 6px 7px; }
+#scores td { padding: 7px 6px; border-top: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+#scores td.n { white-space: normal; }
+#scores td.n { color: var(--text); }
+#scores td.pts { text-align: right; color: var(--accent2); font-weight: 600; white-space: nowrap; }
+#scores tr.me td { background: rgba(212,168,74,.09); }
+#scores tr.none td, #scores tr.none td.pts { color: var(--faint); font-weight: 400; }
+#scores .act { text-align: right; white-space: nowrap; }
+#scores .act button { background: none; border: 0; color: var(--accent2); font-size: 11.5px; cursor: pointer;
+  padding: 0 0 0 12px; text-decoration: underline; text-underline-offset: 2px; }
+#scores .act button:hover { color: var(--accent); }
+#scores .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 12px; }
+#scores .chips button { padding: 4px 11px; font-size: 11.5px; cursor: pointer; border-radius: 20px;
+  background: var(--bg2); border: 1px solid var(--line); color: var(--muted); }
+#scores .chips button.on { border-color: rgba(212,168,74,.5); color: var(--accent2); background: rgba(212,168,74,.14); }
+#scores .note { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin: 10px 0 0; }
+#scores .btns { display: flex; gap: 8px; margin-top: 22px; }
+#scores .btns button { flex: 1; padding: 9px 10px; font-size: 12.5px; cursor: pointer; color: var(--muted);
+  background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; }
+#scores .btns button.main { background: rgba(212,168,74,.16); border-color: rgba(212,168,74,.4); color: var(--accent2); }
+#scores .btns button:hover { border-color: var(--accent); color: var(--accent2); }
+#scores .sm { display: none; font-size: 11.5px; color: var(--muted); margin-top: 3px; white-space: normal; }
+@media (max-width: 900px) {
+  /* telefone lentelė netelpa – žingsnius ir laiką rodom po pavadinimu */
+  #scores th.c-moves, #scores td.c-moves, #scores th.c-time, #scores td.c-time { display: none; }
+  #scores .sm { display: block; }
+  #scores .act button { padding-left: 8px; }
+}
 
 /* ---------- legenda, loader, mobilus ---------- */
 #legend { position: fixed; bottom: 16px; left: 352px; z-index: 4; display: flex; flex-wrap: wrap;
@@ -312,9 +350,9 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   #card.open ~ #trailbar { right: 8px; }
   #trailbar .hint { display: none; }          /* siaurame ekrane vietos tik keliui */
   #crumbs .crumb { max-width: 42vw; }
-  #about { padding: 0; }
-  #about .sheet { max-height: 100%; height: 100%; border-radius: 0; border: 0; }
-  #about .scroll { padding: 24px 18px 32px; }
+  #about, #scores { padding: 0; }
+  #about .sheet, #scores .sheet { max-height: 100%; height: 100%; border-radius: 0; border: 0; }
+  #about .scroll, #scores .scroll { padding: 24px 18px 32px; }
   #legend { display: none; }
   .clabel { font-size: 11px; }
   .clabel small { display: none; }
@@ -370,7 +408,10 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
     <div id="stats"></div>
   </div>
   <footer>
-    <button id="about-btn" data-i18n="about"></button>
+    <div class="links">
+      <button id="about-btn" data-i18n="about"></button>
+      <button id="scores-btn" data-i18n="sc_open"></button>
+    </div>
     <div data-i18n-html="footer_html"></div>
   </footer>
 </aside>
@@ -407,6 +448,12 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   <div class="sheet">
     <button class="close" id="about-close" data-i18n-aria="close">×</button>
     <div class="scroll" id="about-body"></div>
+  </div>
+</div>
+<div id="scores" role="dialog" aria-modal="true" aria-labelledby="sc-title">
+  <div class="sheet">
+    <button class="close" id="sc-close" data-i18n-aria="close">×</button>
+    <div class="scroll" id="sc-body"></div>
   </div>
 </div>
 <div id="tooltip"></div>
@@ -494,6 +541,18 @@ const I18N = {
     g_share: "Mesti iššūkį", g_board: "Mano rezultatai", g_total: "Iš viso",
     g_none: "Dar nežaista", g_challenge: (n, m) => `<b>${n}</b> įveikė šį lygį per <b>${m}</b> ž. Pakartok!`,
     g_rules: "Žaidimo metu paieška ir filtrai nenaudojami — keliauji tik tuo, ką matai žemėlapyje.",
+    sc_open: "Rezultatai", sc_title: "Mano rezultatai",
+    sc_as: (n) => `Žaidžiama vardu <b>${n}</b>`, sc_noname: "Vardas dar neįrašytas – jį įrašysi įveikęs lygį.",
+    sc_done: "Įveikta lygių", sc_points: "Taškai", sc_perfect: "Tobulų kelių",
+    sc_games: "Partijų", sc_won: "Laimėta", sc_mine: "Lygiai",
+    sc_lvl: "Lyg.", sc_start: "Pradžia", sc_score: "Taškai", sc_moves: "Žingsniai", sc_time: "Laikas",
+    sc_route: "Kelias", sc_play: "Žaisti", sc_min: (d) => `trumpiausias ${d}`,
+    sc_sm: (m, d, t) => `${m} ž. (trumpiausias ${d}) · ${t}`,
+    sc_world: "Bendra lentelė", sc_rank: "Vt.", sc_nick: "Vardas", sc_levels: "Lygių",
+    sc_empty: "Kol kas rezultatų nėra – būsi pirmas.", sc_fail: "Bendros lentelės pasiekti nepavyko.",
+    sc_local: "Bendra lentelė neįjungta – rezultatai lieka tik šioje naršyklėje.",
+    sc_keep: "Rezultatai saugomi šioje naršyklėje; į bendrą lentelę patenka tie, kuriuos išsaugojai su vardu.",
+    sc_menu: "Lygių sąrašas", sc_close: "Uždaryti",
     card_toggle: "Suskleisti arba išskleisti kortelę",
     trail: "Kelias", trail_hint: "Spustelėkite susijusį mazgą – eisite toliau",
     trail_end: "Baigti kelią (Esc)",
@@ -650,6 +709,18 @@ Radote klaidą? Rašykite ten – <a href="https://github.com/Garbana/conspiracy
     g_share: "Challenge a friend", g_board: "My results", g_total: "Total",
     g_none: "Not played yet", g_challenge: (n, m) => `<b>${n}</b> finished this level in <b>${m}</b> moves. Beat it!`,
     g_rules: "Search and filters are off during the game — you travel only by what you see on the map.",
+    sc_open: "Scores", sc_title: "My scores",
+    sc_as: (n) => `Playing as <b>${n}</b>`, sc_noname: "No name saved yet — you add one after finishing a level.",
+    sc_done: "Levels done", sc_points: "Points", sc_perfect: "Perfect routes",
+    sc_games: "Games", sc_won: "Won", sc_mine: "Levels",
+    sc_lvl: "Lvl", sc_start: "Start", sc_score: "Score", sc_moves: "Moves", sc_time: "Time",
+    sc_route: "Route", sc_play: "Play", sc_min: (d) => `shortest ${d}`,
+    sc_sm: (m, d, t) => `${m} moves (shortest ${d}) · ${t}`,
+    sc_world: "Global leaderboard", sc_rank: "#", sc_nick: "Name", sc_levels: "Levels",
+    sc_empty: "No results yet — you could be the first.", sc_fail: "Could not reach the leaderboard.",
+    sc_local: "The shared leaderboard is off — results stay in this browser.",
+    sc_keep: "Results are kept in this browser; the ones you saved with a name also go to the leaderboard.",
+    sc_menu: "Level list", sc_close: "Close",
     card_toggle: "Collapse or expand the card",
     trail: "Trail", trail_hint: "Click a connected node to step further",
     trail_end: "End the trail (Esc)",
@@ -1467,7 +1538,8 @@ $("game").addEventListener("click", (e) => {
       return;
     }
     case "g-quit": return gameOpen(undefined);
-    case "g-menu": return gameOpen(undefined);
+    case "g-menu": return openScores();          // „Mano rezultatai" – tikras rezultatų langas
+    case "g-stats": return openScores();
     case "g-retry": return gameOpen(g.lvl, g.lvl ? null : { from: g.start });
     case "g-next": return gameOpen(g.lvl + 1);
     case "g-save": {
@@ -1685,6 +1757,7 @@ function buildControls() {
   $("g-hint-bar").onclick = () => gameHint();
   $("card-grab").onclick = () => $("card").classList.toggle("peek");
   $("about-btn").onclick = (e) => { e.stopPropagation(); openAbout(); };
+  $("scores-btn").onclick = (e) => { e.stopPropagation(); openScores(); };
   $("about-close").onclick = closeAbout;
   $("about").onclick = (e) => { if (!e.target.closest(".sheet")) closeAbout(); };
   setupSearch();
@@ -1777,9 +1850,9 @@ async function boardSend(g, nick) {
   });
   return r.json();
 }
-async function boardLoad(lvl) {
+async function boardLoad(lvl, limit) {
   if (!GAME_API) return null;
-  const r = await fetch(`${GAME_API}/top?lvl=${lvl}&limit=10`);
+  const r = await fetch(`${GAME_API}/top?lvl=${lvl}&limit=${limit || 10}`);
   const d = await r.json();
   return d.rows || [];
 }
@@ -1877,6 +1950,15 @@ function gameEnd(won) {
     $("card").classList.remove("open", "peek");
     $("side").classList.add("open");
   }
+  const stat = gameStore();
+  stat.runs = stat.runs || { played: 0, won: 0, moves: 0, hints: 0, sec: 0 };
+  stat.runs.played++;
+  if (won) stat.runs.won++;
+  stat.runs.moves += g.used;
+  stat.runs.hints += g.hints;
+  stat.runs.sec += g.sec;
+  gamePut(stat);
+
   if (won && g.lvl) {
     const db = gameStore();
     db.best = db.best || {};
@@ -1944,6 +2026,7 @@ function renderGame() {
       `<div class="goal" style="margin:12px 0 10px">${esc(T("g_total"))}: <b>${total} ${esc(T("g_pts"))}</b></div>` +
       `<div class="btns"><button class="gb main" data-go="1">${esc(T("g_start"))}</button>` +
       `<button class="gb" data-go="r">${esc(T("g_random"))}</button>` +
+      `<button class="gb" id="g-stats">${esc(T("sc_open"))}</button>` +
       `<button class="gb" data-go="x">${esc(T("g_close"))}</button></div>` +
       boardHtml("all");
     return;
@@ -1990,6 +2073,131 @@ function renderGame() {
   }
   box.innerHTML = html;
 }
+
+// ---------- rezultatų langas ----------
+// Viskas vienoje vietoje: mano lygiai iš naršyklės atminties ir bendra lentelė iš Worker'io.
+let scLvl = "all", scRows = null, scState = "";
+
+const scoresOpen = () => $("scores").classList.contains("open");
+const dur = (sec) => {
+  const s = Math.max(0, Math.round(sec || 0));
+  return s < 60 ? s + " s" : Math.floor(s / 60) + " min " + String(s % 60).padStart(2, "0") + " s";
+};
+
+async function openScores() {
+  if (!levels) levels = await fetch(SITE_BASE + "data/levels.json").then((r) => r.json());
+  scLvl = "all"; scRows = null; scState = "";
+  renderScores();
+  $("scores").classList.add("open");
+  $("sc-body").scrollTop = 0;
+  $("sc-close").focus();
+  loadScores();
+}
+function closeScores() { $("scores").classList.remove("open"); }
+
+function loadScores() {
+  if (!GAME_API) return;
+  const want = scLvl;
+  scState = "loading"; scRows = null;
+  renderScores();
+  boardLoad(want, 20).then((rows) => {
+    if (scLvl !== want) return;                 // kol krovėsi, žiūrovas perjungė lygį
+    scRows = rows || []; scState = "ok"; renderScores();
+  }).catch(() => { if (scLvl === want) { scState = "fail"; renderScores(); } });
+}
+
+function renderScores() {
+  const db = gameStore(), best = db.best || {}, runs = db.runs || null;
+  const done = levels.levels.filter((L) => best[L.lvl]).length;
+  const pts = levels.levels.reduce((a, L) => a + (best[L.lvl] ? best[L.lvl].score : 0), 0);
+  const perfect = levels.levels.filter((L) => best[L.lvl] && best[L.lvl].moves === L.dist).length;
+  const tile = (v, k) => `<div><div class="v">${v}</div><div class="k">${esc(k)}</div></div>`;
+
+  let html = `<h2 id="sc-title">${esc(T("sc_title"))}</h2>` +
+    `<div class="sub">${db.nick ? T("sc_as", esc(db.nick)) : esc(T("sc_noname"))}</div>` +
+    `<div id="sc-tiles">` + tile(`${done}<span style="font-size:13px;color:var(--muted)">/${levels.levels.length}</span>`, T("sc_done")) +
+      tile(pts, T("sc_points")) + tile(perfect, T("sc_perfect")) +
+      (runs ? tile(runs.played, T("sc_games")) + tile(runs.won, T("sc_won")) : "") + `</div>` +
+    `<p class="note">${esc(T("sc_keep"))}</p>`;
+
+  // ---- mano lygiai
+  html += `<h3>${esc(T("sc_mine"))}</h3><table><tr>` +
+    [["", T("sc_lvl")], ["", T("sc_start")], ["", T("sc_score")], ["c-moves", T("sc_moves")],
+     ["c-time", T("sc_time")], ["", ""]]
+      .map(([c, h]) => `<th class="${c}">${esc(h)}</th>`).join("") + `</tr>`;
+  html += levels.levels.map((L) => {
+    const b = best[L.lvl];
+    const act = (b && b.path && !inGame() ? `<button data-sc-path="${L.lvl}">${esc(T("sc_route"))}</button>` : "") +
+      `<button data-sc-play="${L.lvl}">${esc(T("sc_play"))}</button>`;
+    const name = esc(gameName(L.start));
+    if (!b) {
+      return `<tr class="none"><td>${L.lvl}</td><td class="n">${name}</td>` +
+        `<td class="pts">${esc(T("g_none"))}</td><td class="c-moves"></td><td class="c-time"></td>` +
+        `<td class="act">${act}</td></tr>`;
+    }
+    return `<tr><td>${L.lvl}</td>` +
+      `<td class="n">${name}<span class="sm">${esc(T("sc_sm", b.moves, L.dist, dur(b.sec)))}` +
+        (b.hints ? ` · 💡${b.hints}` : "") + `</span></td>` +
+      `<td class="pts">${b.score} ${esc(T("g_pts"))}</td>` +
+      `<td class="c-moves">${b.moves} <span style="color:var(--faint)">(${esc(T("sc_min", L.dist))})</span>` +
+      (b.hints ? ` · 💡${b.hints}` : "") + `</td>` +
+      `<td class="c-time">${esc(dur(b.sec))}</td><td class="act">${act}</td></tr>`;
+  }).join("") + `</table>`;
+
+  // ---- bendra lentelė
+  html += `<h3>${esc(T("sc_world"))}</h3>`;
+  if (!GAME_API) {
+    html += `<p class="note">${esc(T("sc_local"))}</p>`;
+  } else {
+    html += `<div class="chips"><button data-sc-lvl="all" class="${scLvl === "all" ? "on" : ""}">${esc(T("g_total"))}</button>` +
+      levels.levels.map((L) => `<button data-sc-lvl="${L.lvl}" class="${String(scLvl) === String(L.lvl) ? "on" : ""}">${L.lvl}</button>`).join("") +
+      `</div>`;
+    if (scState === "loading") html += `<p class="note">${esc(T("g_loading"))}</p>`;
+    else if (scState === "fail") html += `<p class="note">${esc(T("sc_fail"))}</p>`;
+    else if (!scRows || !scRows.length) html += `<p class="note">${esc(T("sc_empty"))}</p>`;
+    else {
+      const all = scLvl === "all";
+      html += `<table><tr>` +
+        [["", T("sc_rank")], ["", T("sc_nick")], ["", T("sc_score")],
+         ["", all ? T("sc_levels") : T("sc_moves")]].map(([c, h]) => `<th class="${c}">${esc(h)}</th>`).join("") +
+        (all ? "" : `<th class="c-time">${esc(T("sc_time"))}</th>`) + `</tr>` +
+        scRows.map((r, i) => `<tr class="${db.nick && r.nick === db.nick ? "me" : ""}">` +
+          `<td>${i + 1}</td><td class="n">${esc(r.nick)}</td>` +
+          `<td class="pts">${r.score} ${esc(T("g_pts"))}</td>` +
+          `<td>${all ? r.levels : r.moves}</td>` + (all ? "" : `<td class="c-time">${esc(dur(r.secs))}</td>`) +
+          `</tr>`).join("") + `</table>`;
+    }
+  }
+
+  html += `<div class="btns"><button class="main" data-sc-menu="1">${esc(T("sc_menu"))}</button>` +
+    `<button data-sc-x="1">${esc(T("sc_close"))}</button></div>`;
+  $("sc-body").innerHTML = html;
+}
+
+// Rodom išsaugotą kelią žemėlapyje – tą patį maršrutą, kuriuo lygis buvo įveiktas
+function showStoredPath(lvl) {
+  const b = (gameStore().best || {})[lvl];
+  if (!b || !b.path) return;
+  const ids = b.path.filter((id) => graph.hasNode(id));
+  if (ids.length < 2) return;
+  closeScores();
+  if (state.game) gameClose();       // kelias apžiūrimas jau ne žaidime
+  restorePath(ids);
+  const last = ids[ids.length - 1];
+  state.selected = state.path.get(last) || null;
+  select(last, false);
+}
+
+$("scores").addEventListener("click", (e) => {
+  if (!e.target.closest(".sheet")) return closeScores();
+  const t = e.target.closest("button");
+  if (!t) return;
+  if (t.id === "sc-close" || t.dataset.scX) return closeScores();
+  if (t.dataset.scLvl) { scLvl = t.dataset.scLvl; return loadScores(); }
+  if (t.dataset.scPlay) { closeScores(); return gameOpen(+t.dataset.scPlay); }
+  if (t.dataset.scPath) return showStoredPath(+t.dataset.scPath);
+  if (t.dataset.scMenu) { closeScores(); return gameOpen(undefined); }
+});
 
 // ---------- paieška ----------
 // Paieškai nurašom diakritiką: „samokslo" turi rasti „sąmokslo", „zydu" – „žydų"
@@ -2103,7 +2311,7 @@ function readHash() {
 }
 addEventListener("keydown", (e) => {
   if (e.key !== "Escape" || document.activeElement === $("search")) return;
-  if (aboutOpen()) closeAbout(); else select(null);
+  if (scoresOpen()) closeScores(); else if (aboutOpen()) closeAbout(); else select(null);
 });
 
 init().catch((e) => { $("load-msg").textContent = T("load_fail") + e.message; console.error(e); });
