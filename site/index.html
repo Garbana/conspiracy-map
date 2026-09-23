@@ -291,6 +291,9 @@ select { width: 100%; padding: 8px 10px; background: var(--bg2); border: 1px sol
   background: var(--bg2); border: 1px solid var(--line); color: var(--muted); }
 #scores .chips button.on { border-color: rgba(212,168,74,.5); color: var(--accent2); background: rgba(212,168,74,.14); }
 #scores .note { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin: 10px 0 0; }
+#scores .note button { background: none; border: 0; color: var(--accent2); font-size: 12.5px; cursor: pointer;
+  padding: 0; text-decoration: underline; text-underline-offset: 2px; }
+#scores .note .why { color: var(--faint); font-size: 11.5px; }
 #scores .btns { display: flex; gap: 8px; margin-top: 22px; }
 #scores .btns button { flex: 1; padding: 9px 10px; font-size: 12.5px; cursor: pointer; color: var(--muted);
   background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; }
@@ -549,7 +552,8 @@ const I18N = {
     sc_route: "Kelias", sc_play: "Žaisti", sc_min: (d) => `trumpiausias ${d}`,
     sc_sm: (m, d, t) => `${m} ž. (trumpiausias ${d}) · ${t}`,
     sc_world: "Bendra lentelė", sc_rank: "Vt.", sc_nick: "Vardas", sc_levels: "Lygių",
-    sc_empty: "Kol kas rezultatų nėra – būsi pirmas.", sc_fail: "Bendros lentelės pasiekti nepavyko.",
+    sc_empty: "Kol kas rezultatų nėra – būsi pirmas.",
+    sc_fail: "Bendros lentelės pasiekti nepavyko.", sc_retry: "Bandyti dar",
     sc_local: "Bendra lentelė neįjungta – rezultatai lieka tik šioje naršyklėje.",
     sc_keep: "Rezultatai saugomi šioje naršyklėje; į bendrą lentelę patenka tie, kuriuos išsaugojai su vardu.",
     sc_menu: "Lygių sąrašas", sc_close: "Uždaryti",
@@ -717,7 +721,8 @@ Radote klaidą? Rašykite ten – <a href="https://github.com/Garbana/conspiracy
     sc_route: "Route", sc_play: "Play", sc_min: (d) => `shortest ${d}`,
     sc_sm: (m, d, t) => `${m} moves (shortest ${d}) · ${t}`,
     sc_world: "Global leaderboard", sc_rank: "#", sc_nick: "Name", sc_levels: "Levels",
-    sc_empty: "No results yet — you could be the first.", sc_fail: "Could not reach the leaderboard.",
+    sc_empty: "No results yet — you could be the first.",
+    sc_fail: "Could not reach the leaderboard.", sc_retry: "Try again",
     sc_local: "The shared leaderboard is off — results stay in this browser.",
     sc_keep: "Results are kept in this browser; the ones you saved with a name also go to the leaderboard.",
     sc_menu: "Level list", sc_close: "Close",
@@ -1853,7 +1858,9 @@ async function boardSend(g, nick) {
 async function boardLoad(lvl, limit) {
   if (!GAME_API) return null;
   const r = await fetch(`${GAME_API}/top?lvl=${lvl}&limit=${limit || 10}`);
+  if (!r.ok) throw new Error("HTTP " + r.status);
   const d = await r.json();
+  if (d.error) throw new Error(d.error);
   return d.rows || [];
 }
 
@@ -2076,7 +2083,7 @@ function renderGame() {
 
 // ---------- rezultatų langas ----------
 // Viskas vienoje vietoje: mano lygiai iš naršyklės atminties ir bendra lentelė iš Worker'io.
-let scLvl = "all", scRows = null, scState = "";
+let scLvl = "all", scRows = null, scState = "", scErr = "";
 
 const scoresOpen = () => $("scores").classList.contains("open");
 const dur = (sec) => {
@@ -2103,7 +2110,15 @@ function loadScores() {
   boardLoad(want, 20).then((rows) => {
     if (scLvl !== want) return;                 // kol krovėsi, žiūrovas perjungė lygį
     scRows = rows || []; scState = "ok"; renderScores();
-  }).catch(() => { if (scLvl === want) { scState = "fail"; renderScores(); } });
+  }).catch((e) => {
+    console.warn("Bendra lentelė:", e);
+    if (scLvl !== want) return;
+    scState = "fail";
+    // Pasakom, kas tiksliai nutiko – „Failed to fetch" reiškia, kad užklausa net neišėjo
+    // (priedas, tinklas ar dingęs adresas), o „HTTP 500" – kad serveris atsakė klaida.
+    scErr = String((e && e.message) || e);
+    renderScores();
+  });
 }
 
 function renderScores() {
@@ -2153,7 +2168,10 @@ function renderScores() {
       levels.levels.map((L) => `<button data-sc-lvl="${L.lvl}" class="${String(scLvl) === String(L.lvl) ? "on" : ""}">${L.lvl}</button>`).join("") +
       `</div>`;
     if (scState === "loading") html += `<p class="note">${esc(T("g_loading"))}</p>`;
-    else if (scState === "fail") html += `<p class="note">${esc(T("sc_fail"))}</p>`;
+    else if (scState === "fail") {
+      html += `<p class="note">${esc(T("sc_fail"))} <button data-sc-retry="1">${esc(T("sc_retry"))}</button>` +
+        `<br><span class="why">${esc(scErr)} · ${esc(GAME_API.replace(/^https?:\/\//, ""))}</span></p>`;
+    }
     else if (!scRows || !scRows.length) html += `<p class="note">${esc(T("sc_empty"))}</p>`;
     else {
       const all = scLvl === "all";
@@ -2164,7 +2182,8 @@ function renderScores() {
         scRows.map((r, i) => `<tr class="${db.nick && r.nick === db.nick ? "me" : ""}">` +
           `<td>${i + 1}</td><td class="n">${esc(r.nick)}</td>` +
           `<td class="pts">${r.score} ${esc(T("g_pts"))}</td>` +
-          `<td>${all ? r.levels : r.moves}</td>` + (all ? "" : `<td class="c-time">${esc(dur(r.secs))}</td>`) +
+          `<td>${esc(String((all ? r.levels : r.moves) ?? "—"))}</td>` +
+          (all ? "" : `<td class="c-time">${esc(r.secs == null ? "—" : dur(r.secs))}</td>`) +
           `</tr>`).join("") + `</table>`;
     }
   }
@@ -2194,6 +2213,7 @@ $("scores").addEventListener("click", (e) => {
   if (!t) return;
   if (t.id === "sc-close" || t.dataset.scX) return closeScores();
   if (t.dataset.scLvl) { scLvl = t.dataset.scLvl; return loadScores(); }
+  if (t.dataset.scRetry) return loadScores();
   if (t.dataset.scPlay) { closeScores(); return gameOpen(+t.dataset.scPlay); }
   if (t.dataset.scPath) return showStoredPath(+t.dataset.scPath);
   if (t.dataset.scMenu) { closeScores(); return gameOpen(undefined); }
