@@ -7,12 +7,14 @@ Each theory keeps a link to its source article. The map shows what is *claimed*,
 
 ## Current dataset
 
-- 371 conspiracy theories (every one reviewed: 291 debunked, 50 disputed, 30 confirmed),
-  ~1,500 related articles
-- 4,334 reviewed roles linking theories to people, organizations, places and events:
+A snapshot; the site's **About** panel counts the graph it has loaded, so its figures are never stale.
+
+- 597 conspiracy theories (every one reviewed: 493 debunked, 63 disputed, 41 confirmed),
+  ~1,700 related articles
+- ~4,300 reviewed roles linking theories to people, organizations, places and events:
   accused, promoter, victim/target, subject, event, place, debunker/investigator, related theory
-- ~9,400 nodes, ~74,000 links (core layer ≈ 21,000 links; the rest is an optional "all mentions" layer)
-- 12 themes, ~20 automatically detected clusters
+- ~11,500 nodes, ~92,000 links (core layer ≈ 22,600 links; the rest is an optional "all mentions" layer)
+- 12 themes, 19 automatically detected clusters
 
 ## Pipeline
 
